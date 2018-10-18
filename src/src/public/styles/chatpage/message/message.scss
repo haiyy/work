@@ -1,0 +1,373 @@
+﻿.directionMessage {
+  .systemPrompt {
+    width: 65%;
+    max-width: 435px;
+    margin: 20px auto 0;
+    line-height: 26px;
+    background-color: #f6f6f6;
+    color: #666;
+    text-align: center;
+    border-radius: 5px;
+    word-wrap: break-word;
+    padding: 0 10px;
+    i {
+      vertical-align: middle;
+    }
+    span {
+      vertical-align: middle;
+      margin-left: 4px;
+    }
+  }
+  .UserMessage {
+    text-align: left;
+    position: relative;
+    margin-top: 25px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    padding: 1px 0 1px 0.48rem;
+    .hyPerMediaMessageWrapper {
+      float: left;
+      position: relative;
+      .FriendsPageWrapper {
+        margin-left: 10px;
+        position: relative;
+      }
+    }
+    .transferComp {
+      color: #c3dcfa;
+    }
+    .VisitorLogo {
+      position: absolute;
+      top: 0;
+      left: 0.11rem;
+    }
+    .comment_bubble {
+      margin-right: 80px;
+      float: left;
+      color: #fff;
+      left: 0.05rem;
+      text-align: left;
+      a {
+        text-decoration: underline;
+        color: #fff;
+        cursor: pointer;
+      }
+      .fileMessage {
+        width: 100%;
+        height: 39px;
+        .suffix {
+          width: 39px;
+          height: 39px;
+          line-height: 39px;
+          font-size: 16px;
+          text-align: center;
+          float: left;
+          font-weight: 600;
+          margin-right: 10px;
+          border-radius: 8px;
+          background-color: #fff;
+          font-family: "Arial Narrow", "sans-serif";
+          overflow: hidden;
+        }
+        .fileMsgBox {
+          float: left;
+          text-align: left;
+          p {
+            display: block;
+            font-size: 13px;
+          }
+        }
+        .downloadBox {
+          position: absolute;
+          bottom: 9px;
+          right: 10px;
+          span {
+            cursor: pointer;
+          }
+          i, span {
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+    .comment_bubble:before {
+      content: "";
+      width: 0;
+      height: 0;
+      right: 100%;
+      top: 0.11rem;
+      position: absolute;
+      border-top: 0.025rem solid transparent;
+      border-bottom: 0.025rem solid transparent;
+    }
+
+    .status {
+      color: #FF6600;
+      position: absolute;
+      top: 50%;
+      display: inline-block;
+      float: left;
+      margin-left: -55px;
+      margin-top: -12px;
+    }
+  }
+  .comment_timev, .comment_namev {
+    float: left;
+    color: #bfbfbf;
+  }
+  .comment_timev {
+    margin-left: 0.18rem;
+  }
+  .comment_namev {
+    margin-left: 0.53rem;
+  }
+
+  .file {
+    width: 272px;
+  }
+  .SelfMessage {
+    text-align: right;
+    position: relative;
+    overflow: hidden;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    padding: 1px 0.48rem 1px 0;
+    .hyPerMediaMessageWrapper {
+      position: relative;
+      float: right;
+      .FriendsPageWrapper {
+        margin-right: 10px;
+        position: relative;
+      }
+    }
+    .ant-upload-list-item {
+      display: none;
+    }
+    .UserLogo {
+      position: absolute;
+      top: 0;
+      right: 0.11rem;
+    }
+    .comment_bubble:before {
+      content: "";
+      width: 0;
+      height: 0;
+      left: 100%;
+      top: 0.11rem;
+      position: absolute;
+      border-top: 0.025rem solid transparent;
+      border-left: 0.025rem solid #fff;
+      border-bottom: 0.025rem solid transparent;
+    }
+    .comment_bubble {
+      text-align: left;
+      right: 0.05rem;
+      margin-left: 80px;
+      font-family: 'Microsoft YaHei';
+      .transferComp {
+        color: #45a6f3;
+      }
+      a {
+        text-decoration: underline;
+        cursor: pointer;
+        color: #2db7f5;
+      }
+      .fileMessage {
+        width: 100%;
+        height: 39px;
+        .suffix {
+          width: 39px;
+          line-height: 39px;
+          height: 39px;
+          font-size: 16px;
+          font-weight: 600;
+          text-align: center;
+          float: left;
+          margin-right: 10px;
+          border-radius: 8px;
+          color: #fff;
+          font-family: "Arial Narrow", "sans-serif";
+        }
+        .fileMsgBox {
+          float: left;
+          text-align: left;
+          p {
+            display: block;
+            font-size: 13px;
+          }
+        }
+        .downloadBox {
+          position: absolute;
+          bottom: 9px;
+          right: 10px;
+          span {
+            cursor: pointer;
+          }
+          i, span {
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+    .status {
+      color: #FF6600;
+      position: absolute;
+      top: 50%;
+      margin-top: -14px;
+      margin-left: 40px;
+    }
+  }
+  .comment_bubble {
+    max-width: 100%;
+    box-sizing: border-box;
+    min-height: 0.3rem;
+    padding: 0.06rem;
+    float: right;
+    background: #e4f7fd;
+    border-right: 0;
+    position: relative;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 0.04rem;
+    word-break: break-word;
+  }
+  .comment_bubble p {
+    display: inline-block;
+  }
+
+  .comment_timeu, .comment_nameu {
+    float: right;
+    color: #bfbfbf;
+  }
+  .comment_timeu {
+    margin-right: 0.18rem;
+  }
+  .comment_nameu {
+    margin-right: 0.53rem;
+  }
+}
+
+.side-toolbar .ant-upload-list.ant-upload-list-text {
+  display: none;
+}
+
+.image-toolbar {
+  display: none;
+  width: 300px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 165px;
+  background: #666;
+  user-select: none;
+  border-radius: 6px 6px 0 0;
+  span {
+    margin: 0 5px 0 5px;
+    display: inline-block;
+    height: 100%;
+    width: 50px;
+    color: #fff;
+    cursor: pointer;
+  }
+}
+
+.image-box {
+  -webkit-app-region: no-drag;
+  box-shadow: 0 0 8px #24373d;
+  position: absolute;
+  z-index: 100;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  .imageViewMask {
+    -webkit-app-region: no-drag;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.7;
+  }
+  .box {
+    -webkit-app-region: no-drag;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+
+  .prev, .next {
+    display: none;
+    position: absolute;
+    top: 50%;
+    font-weight: bold;
+    margin-top: -20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 35px;
+    border: 3px solid #fff;
+    cursor: pointer;
+    color: #fff;
+    i {
+      font-size: 0.2rem;
+    }
+  }
+
+  .prev {
+    left: 10px;
+  }
+
+  .next {
+    right: 10px;
+  }
+}
+
+.image-box:hover .image-toolbar {
+  display: block;
+}
+
+.image-box:hover .prev, .image-box:hover .next {
+  display: inline-block;
+}
+
+.ant-modal.image-model .ant-modal-content {
+  background-color: rgba(55, 55, 55, 0);
+  box-shadow: none;
+}
+
+.sentence-message {
+  height: 25px;
+  text-align: center;
+  margin: 12px auto;
+
+  span {
+    display: inline-block;
+    border-bottom: 1px dashed #666;
+  }
+  span:nth-child(1) {
+    margin-right: 6px;
+  }
+  span:not(.sentence-body) {
+    width: 130px;
+  }
+  span.sentence-right {
+    margin-left: 6px;
+  }
+  span.sentence-body {
+    border-bottom: none;
+    position: relative;
+    top: 4px;
+  }
+}
+
+

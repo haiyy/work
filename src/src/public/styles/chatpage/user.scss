@@ -1,0 +1,81 @@
+.user .ant-select-selection-selected-value{
+  height: 23px;
+  line-height: 23px;
+}
+.user .ant-select-open .ant-select-selection{
+    box-shadow: none;
+}
+.user .ant-select-enabled .ant-select-selection{
+    box-shadow: none;
+}
+.userSelectStatus .ant-select-dropdown-menu-item{
+    padding: 10px 16px 10px 10px;
+}
+.individuationSettings{
+    .ant-modal {
+        height: 4.62rem;
+        top: 50%;
+        margin-top: -2.31rem;
+        min-width: 632px;
+    }
+
+    .ant-tabs-nav-wrap{
+        width: 1.3rem;
+    }
+}
+
+/*个性化设置Modal样式*/
+.ant-modal-wrap.individuationSettings{
+    .ant-modal{
+        width: 6.32rem!important;
+        .setting-left{
+            height: 3.95rem;
+            position: absolute;
+            width: 100%;
+            .ant-tabs-content{
+                height: 3.95rem;
+                .ant-tabs-tabpane{
+                    height: 100%;
+                    position: relative;
+                }
+            }
+        }
+    }
+    .answer{
+        height: 100%;
+        padding: 0.14rem 0 0;
+        .ant-card{
+            margin: 0 0.14rem 0.14rem;
+            border-radius: 4px;
+            .ant-card-body{
+                height: 0.99rem;
+                .switchFormItem{
+                    float: right;
+                    margin-right: 7px;
+                }
+                .textareaFormItem{
+                    width: 100%;
+                    height: 0.515rem;
+                    .ant-form-item-control-wrapper{
+                        height: 100%;
+                        .ant-form-item-control{
+                            height: 100%;
+                            .textarea{
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+                .ant-input-number-lg{
+                    height: 0.23rem;
+                    .ant-input-number-input-wrap{
+                        height: 100%;
+                        input{
+                            height: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

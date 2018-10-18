@@ -8,7 +8,7 @@ const GLOBALS = {
 	isElectron: false,
 	TRANSLATE_ENABLED: true,
 	MULTI_LANGUAGE: true,
-	Type: 1
+	Type: 2
 };
 
 module.exports = {

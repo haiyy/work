@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import {  Form, Input, Switch, Button, Upload, Icon, DatePicker } from 'antd';
-import "../view/style/formContent.less";
-import Modal from "../../../components/xn/modal/Modal";
+import { Modal, Form, Input, Switch, Button, Upload, Icon, DatePicker } from 'antd';
+import "../view/style/formContent.less"
 
 const FormItem = Form.Item;
 import moment from 'moment';
@@ -148,7 +147,7 @@ class TelephonVisitPlanComponent extends React.Component { //子组件
 						<Modal visible={true} title={isEdit ? "编辑回访计划" : "新建回访计划"} okText="保存"
 						       style={{width: '418px', marginTop: 100}}
 						       onOk={this.handleSubmit.bind(this)}
-						       onCancel={this.handleCancel.bind(this)}>
+						       onCancel={this.handleCancel.bind(this)} zIndex={1000}>
 							<Form onSubmit={this.handleSubmit.bind(this)}>
 								<FormItem {...formItemLayout} label="电话号码">
 									{

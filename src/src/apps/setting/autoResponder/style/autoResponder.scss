@@ -1,0 +1,89 @@
+.settingRight{
+    background-color: #fff;
+  .autoResponder{
+      height: 100%;
+      .autoTabs{
+          height: 100%;
+          .ant-tabs {
+              height: 100%;
+              .ant-tabs-bar {
+                  margin-bottom: 0;
+              }
+              .ant-tabs-content{
+                  height: calc(100% - 56px);
+                  height: -moz-calc(100% - 56px);
+                  height: -webkit-calc(100% - 56px);
+              }
+          }
+      }
+      .company-footer {
+          position: absolute;
+          width: 100%;
+          border-top: 1px solid #e9e9e9;
+          padding: 0.14rem 0;
+          bottom: 0;
+          right: 0;
+          overflow: hidden;
+          .primary, .ghost {
+              float: right;
+              margin-right: 20px;
+          }
+      }
+  }
+}
+
+.autoGreetings{
+    height: 100%;
+    margin-top: 16px;
+    .isOpenGreeting {
+        margin-bottom: 20px;
+        position: relative;
+        display: inline-block;
+        padding-right: 38px;
+        .greetingOpenChecked {
+            display: inline-block;
+            position: absolute;
+            top: -8px;
+            right: -60px;
+        }
+    }
+    .greetingSetting {
+        width: 540px;
+        height: 90px;
+        border-radius: 10px;
+        background: #eaf3ff;
+        padding: 20px 0;
+        .greetingSettingTitle {
+            margin: 0 0 12px 22px;
+        }
+        .greetingSettingSelect {
+            margin-left: 22px;
+        }
+    }
+    .greetingTitle {
+        margin: 25px 0;
+    }
+}
+
+.autoGreetings, .answer {
+    box-sizing: border-box;
+    .ant-input::-webkit-scrollbar
+    {
+        width: 8px;
+        height: 8px;
+    }
+
+    .ant-input::-webkit-scrollbar-thumb
+    {
+        background-color: #bdbdbd;
+        border-radius: 4px;
+    }
+}
+
+.usersPWrapper{
+    text-align: center;
+    margin-top: 80px;
+    i, span{
+        vertical-align: middle;
+    }
+}

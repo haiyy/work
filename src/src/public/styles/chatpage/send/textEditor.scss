@@ -1,0 +1,241 @@
+﻿.control-box {
+  position: absolute;
+  background-color: #f6f6f6;
+  width: 100%;
+  top: -0.32rem;
+  z-index: 2;
+  height: 0.3rem;
+  border-top: 1px solid #e5e5e5;
+  padding: 0.04rem 0.06rem 0;
+}
+
+.control span {
+  color: #666766;
+}
+
+.control button {
+  border: 0;
+  background: rgba(0, 0, 0, 0);
+}
+
+.user-box {
+  float: left;
+}
+
+.self-box {
+  float: right;
+}
+
+.self-box .colorBtn, .user-box .colorBtn {
+  position: relative;
+  top: 3px;
+}
+
+.RichEditor-root {
+  height: 0.66rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0 20px;
+}
+
+.RichEditor-editor {
+  width: 100%;
+  height: 100%;
+  font-family: "Microsoft YaHei";
+
+  h5, div, h5 + figure, div + figure,
+  h1, h1 + figure,
+  h2, h2 + figure,
+  h3, h3 + figure,
+  h6, h6 + figure,
+  h4, h4 + figure {
+    display: inline-block;
+  }
+
+  h5 + h5, h5 + div, div + h5,
+  h6 + h6, h6 + div, div + h6,
+  h1 + h1, h1 + div, div + h1,
+  h2 + h2, h2 + div, div + h2,
+  h3 + h3, h3 + div, div + h3,
+  h4 + h4, h4 + div, div + h4 {
+    display: block;
+  }
+
+  .notranslate.public-DraftEditor-content {
+    word-break: break-word;
+  }
+}
+
+.RichEditor-editor .RichEditor-blockquote {
+  border-left: 5px solid #eee;
+  color: #666;
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  margin: 16px 0;
+  padding: 10px 10px;
+}
+
+.public-DraftEditorPlaceholder-root {
+  position: absolute;
+  .public-DraftEditorPlaceholder-inner {
+    color: #ccc;
+    opacity: 1;
+    outline: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    height: auto;
+    padding: -10px 10px;
+  }
+}
+
+button.colorBtn {
+  border-top: 3px solid #abacab;
+  border-left: 3px solid #abacab;
+  border-right: 3px solid #edeeee;
+  border-bottom: 3px solid #edeeee;
+  position: relative;
+  top: 5px;
+}
+
+.control button {
+  height: 20px;
+  width: 25px;
+  color: #000;
+  padding: 0px;
+  font-size: 13px;
+  margin-right: 5px;
+}
+
+.control button i {
+  line-height: 20px;
+  margin-right: 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.auto-complete {
+  position: absolute;
+  bottom: 195px;
+  width: 100%;
+  padding: 0 10px;
+  p {
+    cursor: pointer;
+    span {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-right: 6px;
+      border-radius: 50%;
+      position: relative;
+      bottom: 3px;
+    }
+  }
+  .complete-container {
+    line-height: 35px;
+    border-radius: 6px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+    height: 420px;
+    overflow: auto;
+  }
+}
+
+.auto-complete:before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  left: 50px;
+  bottom: -6px;
+  border: 1px solid #ccc;
+  border-top: 0;
+  border-right: 0;
+  background: #fff;
+  position: absolute;
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+
+.smartInput {
+  z-index: 10001;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  max-height: 486px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
+  border-radius: 4px;
+  color: #666;
+  .smartInputTitle {
+    height: 36px;
+    line-height: 36px;
+    color: #fff;
+    text-align: center;
+  }
+  li {
+    height: 32px;
+    line-height: 32px;
+    padding-left: 15px;
+    position: relative;
+    cursor: default;
+    img.imgCon {
+      border-radius: 12px;
+      width: 24px;
+      height: 24px;
+      margin-right: 10px;
+      margin-left: 8px;
+      vertical-align: sub;
+    }
+    span.imgNameCon, a {
+      vertical-align: super;
+    }
+    div.file {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      margin-left: 8px;
+      margin-right: 10px;
+      background: url(../../../images/file.png) no-repeat fixed center;
+    }
+    svg {
+      width: 6px;
+      height: 6px;
+      position: absolute;
+      left: 8px;
+      top: 13px;
+    }
+    .main {
+      display: block;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 85%;
+      padding-left: 8px;
+      white-space: nowrap;
+    }
+  }
+  li:hover {
+    background-color: #eaf8fe;
+  }
+}
+
+.smartInput:before {
+  content: '';
+  width: 0;
+  height: 0;
+  border: 7px solid transparent;
+  border-top-color: #cccccc;
+  position: absolute;
+  left: 72px;
+  bottom: -14px;
+  margin-left: -19px;
+}
+
+.smartInput:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top-color: #FFFFFF;
+  position: absolute;
+  left: 72px;
+  bottom: -10px;
+  margin-left: -17px;
+}

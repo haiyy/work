@@ -1,0 +1,66 @@
+.consultExportModal {
+    .userDefinedExportWrapper {
+        .ant-col-4 {
+            width: 62px;
+        }
+
+        .exportTaskTitle {
+            margin-bottom: 12px;
+            .ant-col-14 {
+                width: 284px;
+            }
+            .has-error .ant-form-explain,
+            .ant-form-explain {
+                position: absolute;
+                left: 296px;
+                top: 6px;
+                text-align: left;
+                margin: 0;
+            }
+        }
+
+        .exportConditionItem {
+            border: 1px solid #ccc;
+            border-bottom: none;
+            padding: 7px 0;
+            margin-bottom: 0;
+
+            .ant-form-item-label {
+                width: 100px;
+                padding-left: 10px;
+                text-align: left;
+                float: left;
+                display: inline-block;
+                font-weight: 900;
+            }
+            .ant-form-item-label label:after {
+                content: '';
+            }
+            .ant-form-item-control-wrapper {
+                width: ~'calc(100% - 100px)';
+                display: inline-block;
+            }
+            .ant-checkbox-wrapper:not(:last-child) {
+                margin-right: 50px;
+            }
+        }
+        .exportConditionItem:last-child {
+            border-bottom: 1px solid #ccc;
+        }
+    }
+
+    .ant-modal-footer {
+        position: relative;
+        padding: 15px 16px;
+        .exportTypeSelect {
+            position: absolute;
+            left: 16px;
+            top: 13px;
+            width: 125px;
+        }
+    }
+}
+
+.ant-modal-content{
+    border-radius: 8px;
+}

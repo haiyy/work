@@ -1,0 +1,195 @@
+.clearFix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.show-users {
+    background: #eee;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    .show-users-head {
+        height: 41px;
+        background: #404040;
+        border-bottom: 1px solid #e9e9e9;
+        line-height: 50px;
+        .TabPaneCody {
+            /*background: url('/public/images/zhinengbg.png') center center no-repeat;*/
+            background: black;
+            background-size: 100% 100%;
+            .TabPaneCodyBody {
+                height: 93%;
+                padding: 42px 0 0 25px;
+                box-sizing: border-box;
+                background: darkred;
+                .allUserGroup {
+                    float: left;
+                    width: 186px;
+                    height: 316px;
+                    margin-right: 4px;
+                    background: #051622;
+                    border: 1px solid #02233c;
+                }
+                .singleUserGroupBox {
+                    float: left;
+                    width: 104px;
+                    height: 316px;
+                    margin-right: 4px;
+                    .singleUserGroup {
+                        width: 104px;
+                        height: 76px;
+                        background: #051622;
+                        border: 1px solid #02233c;
+                        margin-bottom: 2px;
+                    }
+                }
+                .consultBox {
+                    float: left;
+                    width: 252px;
+                    height: 443px;
+                    margin-right: 4px;
+                    .consultContent {
+                        float: left;
+                        width: 252px;
+                        height: 348px;
+                        background: #051622;
+                        border: 1px solid #02233c;
+                        margin-bottom: 4px;
+                    }
+                    .queuingContent {
+                        float: left;
+                        width: 110px;
+                        height: 87px;
+                        background: #051622;
+                        border: 1px solid #02233c;
+                        margin-right: 4px;
+                    }
+                    .leaveMsgContent {
+                        float: left;
+                        width: 138px;
+                        height: 87px;
+                        background: #051622;
+                        border: 1px solid #02233c;
+                    }
+                }
+
+                .customerServiceBox {
+                    float: left;
+                    width: 92px;
+                    margin-right: 4px;
+                    .singleCustomerService {
+                        width: 92px;
+                        height: 148px;
+                        background: #051622;
+                        border: 1px solid #02233c;
+                        margin-bottom: 4px;
+                    }
+                }
+                .hideOption {
+                    float: left;
+                    position: relative;
+                    height: 100%;
+                    width: 14px;
+
+                    .hideOptionIcon {
+                        position: absolute;
+                        left: -10px;
+                        top: 222px;
+                        font-size: 48px;
+                        color: #2b374d;
+                        cursor: pointer;
+                    }
+                }
+                .showOption {
+                    float: left;
+                    height: 100%;
+                    .optionBox {
+                        float: left;
+                        width: 82px;
+                        height: 441px;
+                        margin-right: 4px;
+                        .singleOptionSame {
+                            width: 82px;
+                            height: 70px;
+                            background: #051622;
+                            border: 1px solid #02233c;
+                            margin-bottom: 2px;
+                        }
+                    }
+                    .customerServerDistribute {
+                        float: left;
+                        width: 80px;
+                        height: 100%;
+                        .customerServer {
+                            width: 80px;
+                            height: 40px;
+                            margin-bottom: 4px;
+                            background: cornflowerblue;
+                        }
+                    }
+                }
+
+            }
+        }
+        .ant-tabs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            .ant-tabs-nav {
+                height: 41px;
+                line-height: 24px;
+                color: #fff;
+            }
+        }
+        .ant-tabs-bar {
+            margin: 0;
+        }
+        .return {
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 2;
+            display: inline-block;
+            height: 39px;
+            line-height: 39px;
+            background: #2b2b2b;
+            width: 135px;
+            text-align: center;
+            color: #fff;
+            cursor: pointer;
+            i {
+                position: absolute;
+                left: 7px;
+                top: 1px;
+            }
+        }
+    }
+    .TabPaneCody {
+        .footer-list {
+            padding-left: 16px;
+            position: absolute;
+            bottom: 0;
+            display: inline-block;
+            width: 100%;
+            span {
+                margin-right: 38px;
+                color: #fff;
+                i {
+                    display: inline-block;
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 6px;
+                    margin-right: 10px;
+                    background: #2953ce;
+                    position: relative;
+                    top: 1px;
+                }
+            }
+        }
+    }
+}

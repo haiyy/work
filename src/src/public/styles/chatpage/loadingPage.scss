@@ -1,0 +1,23 @@
+﻿.page_loading{
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background:#00BCD4;
+    .content{
+        position: absolute;
+        text-align: center;
+        margin: auto;
+        color: #fff;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.16rem;
+    }
+    .spinner-2{
+        background-color: #fff;
+        margin: 20px auto;
+    }
+}

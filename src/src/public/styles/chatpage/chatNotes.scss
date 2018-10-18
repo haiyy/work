@@ -1,0 +1,53 @@
+.theChatNotes{
+    .chatNotesHead{
+        padding: 5px;
+        .chatNotesHeadLeft{
+            float: left;
+        }
+        .chatNotesHeadRight{
+            float: right;
+            .chatNotesHeadRightLeft{
+                float: right;
+            }
+            .chatNotesHeadRightRight{
+                float: right;
+                cursor: pointer;
+            }
+        }
+    }
+    .chatNotesContent{
+        .contentItem{
+            .chatNotesContentTitle{
+                .ContentTitleLeft{
+                    float: left;
+                    padding: 5px 0;
+                    .customName{
+                        padding-left: 10px;
+                    }
+                }
+                .ContentTitleRight{
+                    float: right
+                }
+            }
+            .chatNotesContentBottom{
+
+            }
+        }
+        
+    }
+}
+
+@mixin clear-float{
+    content: '';
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+.chatNotesHead:after{
+    @include clear-float;
+}
+
+.chatNotesContentTitle:after{
+    @include clear-float;
+}

@@ -1,0 +1,18 @@
+.messageTrigger{
+    border-radius: 4px;
+    box-shadow: 0 0 2px rgba(16, 142, 233, 0.2);
+    .itemLi{
+        height: 32px;
+        line-height: 32px;
+        padding: 0 10px;
+        border-bottom: 1px solid #eeeeee;
+        background-color: #fff;
+        .circle{
+            width: 8px;
+            height: 8px;
+            display: inline-block;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+    }
+}

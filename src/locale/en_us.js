@@ -7,7 +7,6 @@ const en_us= {
 	noData3: "No data",
 	noData4: "No conversation",
 	noData5: "No data",
-	searchNoData: "未搜索到内容",
 
 	edit: "Edit",
 	all_select: "Select all",
@@ -153,6 +152,7 @@ const en_us= {
 	20024: "Login is abnormal, please try again later!20024)", //key失效
 	20025: "Login is abnormal, please try again later!20025)", //获取UserDo对象失败
 	20026: "The site is closed. If you have any questions, please contact the administrator!(20026)",
+    20027: "登录Token超时(20027)",
 
 	//-----------------升级----------------------------------------------
 	20011: "The upgrade failed, please contact the administrator!",
@@ -558,7 +558,8 @@ const en_us= {
 	setting_early_note2: "The keyword input content is too long!",
 	setting_early_note3: "Operation failed!",
 	setting_early_note4: "Note: 1. Each word is separated by comma in Chinese or English, and supports up to 50 words or 200 words.",
-	setting_early_note5: "2. After the repeated warning words are added, they will be automatically filtered and deleted.",
+    setting_early_note4_1: "2、Please try to avoid using long sentences, phrases or words, so as not to affect business conversations.",
+	setting_early_note5: "3. After the repeated warning words are added, they will be automatically filtered and deleted.",
 	setting_early_add_keywords: "New keyword",
 
     setting_early_error_msg: "Please enter at least an integer greater than 1",
@@ -909,6 +910,10 @@ const en_us= {
 	setting_webview_newmsg: "New message vioce",
 	setting_webview_record: "Chat record",
 	setting_webview_robot_to_people: "Chatbot to manual service",
+    setting_webview_realTime_voice: "Instantaneous voice",
+    setting_webview_realTime_video: "Instantaneous video",
+    setting_webview_input_guide: "Input guide",
+    setting_webview_remote_assistance: "Remote assistance",
 	setting_webview_webtag: "Client label",
 	setting_webview_company: "About enterprise",
 	setting_webview_tagname: "Label name",
@@ -949,7 +954,6 @@ const en_us= {
 	setting_autoreply_word1: "Visitors did not respond for more than ",
 	setting_autoreply_word2: "minutes, visitors received a reminder",
 	setting_autoreply_welcome: "Greetings",
-	setting_autoreply_welcome2:"Please input welcome words",
 	setting_autoreply_word3: "Guest waits for more than",
 	setting_autoreply_word4: "minutes and visitors receive a reminder",
 	setting_autoreply_word5: "Visitors have not responded at least 1 time!",

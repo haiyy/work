@@ -1,0 +1,153 @@
+.personalcall{
+    padding: 20px 25px 0 30px;
+    min-height: 400px;
+    .ant-form-item-label {
+        text-align: left !important;
+    }
+    .ant-form-item {
+        margin-bottom: 18px;
+    }
+
+    .PersonalCall-Radio{
+        padding-top: 10px;
+        padding-left: 10px;
+        color: #404040;
+        span{
+            display: inline-block;
+        }
+        .PersonalCall-Radio-title{
+            width:0.8rem;
+        }
+        .PersonalCall-Radio-title+span {
+            color: #999;
+        }
+
+    }
+    //type为转移至手机的表单style
+    .sonalcalltel_text .ant-input{
+        display: block;
+        width:200px;
+        margin:0 0 5px 0;
+    }
+    //登陆默认状态按钮
+    .loginstatus {
+        font-size: 12px;
+        width:80px;
+        border-radius: 5px;
+        text-align: center;
+        box-sizing: border-box;
+        background: #fff;
+        border: solid 1px #E9E9E9 !important;
+        display: inline-block;
+        color: #999 !important;
+    }
+    .sonalcalllogin_btn2 {
+        margin: 0 0 0 12px;
+    }
+
+    .login-status-active-btn1 {
+        background: #29cd42;
+        border: none !important;
+        color: #fff !important;
+        text-decoration: none;
+    }
+    .login-status-active-btn2 {
+        background: #F09000;
+        border: none !important;
+        color: white !important;
+        margin: 0 0 0 12px;
+    }
+    .login-status-active-btn1:hover, .login-status-active-btn2:hover {
+        color: white !important;
+    }
+
+    //来电弹屏设置
+    .sonalcallphone_btn{
+        font-size: 14px;
+        margin: 0 12px;
+    }
+    .ant-form-item-label label:after{
+        content: "";
+    }
+    .Personal-NickName {
+        width: 170px;
+    }
+    .personal-select {
+        width: 200px;
+    }
+    .ant-select-arrow {
+        right: 15px !important;
+    }
+    .Personal-Callout{
+        width: 170px;
+    }
+    .PersonalCall-timer{
+        width:90px;
+    }
+    .personalcall-serviceMode{
+        border:1px solid #f0f0f0;
+        width: 100%;
+        .ant-form-item-label{
+        width:100% !important;
+        background: #f0f0f0;
+        display: inline-block;
+        text-align: left;
+        padding-left: 20px;
+        }
+    }
+    .PersonalCallSetting-box {
+        .ant-form-item-label {
+            width: 100px;
+        }
+        .ant-form-item-control-wrapper {
+            width: 450px;
+        }
+        .ant-form-item-required:before {
+            display: none;
+        }
+    }
+}
+.PersonalCallSetting-footer{
+    position: fixed;
+    bottom: 0;
+    right: 6px;
+    height: 0.5rem;
+    width: calc(~'100% - 1.92rem - 12px');
+    padding:0 0.3rem 0 0;
+    line-height: 0.5rem;
+    border-top:1px solid #E9E9E9;
+    text-align: right;
+    .saveResult {
+        position: absolute;
+        right: 120px;
+        animation: saveResult 5s;
+        -moz-animation:saveResult 5s; /* Firefox */
+        -webkit-animation:saveResult 5s; /* Safari and Chrome */
+        -o-animation:saveResult 5s; /* Opera */
+        opacity: 0;
+    }
+}
+
+@keyframes saveResult
+{
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@-moz-keyframes saveResult /* Firefox */
+{
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@-webkit-keyframes saveResult /* Safari and Chrome */
+{
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@-o-keyframes saveResult /* Opera */
+{
+    from {opacity: 1;}
+    to {opacity: 0;}
+}

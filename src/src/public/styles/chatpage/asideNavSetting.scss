@@ -1,0 +1,40 @@
+﻿.asideSetting{
+    height: 2.94rem;
+    overflow: auto;
+    .ant-table-thead > tr > th, .ant-table-tbody > tr > td{
+        padding: 0.11rem 0.055rem;
+        text-align: center;
+    }
+    .ant-table-tbody > tr > td{
+      border: 0;
+    }
+}
+
+
+.asideSetting::-webkit-scrollbar
+{
+    width: 8px;
+    height: 8px;
+}
+
+.asideSetting::-webkit-scrollbar-thumb
+{
+    background-color: #bdbdbd;
+    border-radius: 4px;
+}
+
+
+/*页签管理Modal的样式*/
+.ant-modal-wrap.tabManage{
+    .ant-modal{
+        position: absolute;
+        top: 0.84rem;
+        padding: 0;
+        .ant-modal-body{
+            padding: 0.11rem 0.05rem 0.11rem 0.11rem;
+        }
+        .ant-modal-footer{
+            padding: 0.073rem 0.11rem 0.073rem 0.073rem;
+        }
+    }
+}

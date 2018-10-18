@@ -1,11 +1,10 @@
 import React from 'react';
-import { Form, Input,DatePicker,TreeSelect ,Tree} from 'antd';
+import { Modal, Form, Input,DatePicker,TreeSelect ,Tree} from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import {bglen} from "../../../utils/StringUtils";
-import {getBindGroupList}  from "../redux/reducers/receptiongroupReducer";
-import "../view/style/formContent.less";
-import Modal from "../../../components/xn/modal/Modal";
+import {bglen} from "../../../utils/StringUtils"
+import {getBindGroupList}  from "../redux/reducers/receptiongroupReducer"
+import "../view/style/formContent.less"
 const FormItem = Form.Item;
 const {TextArea} = Input;
 import moment from 'moment';
@@ -124,6 +123,7 @@ class CallRecordComponent extends React.Component { //子组件
                             style={{top:"200px"}}
                             onOk={this.handleSubmit.bind(this)}
                             onCancel={this.props.handleCancel.bind(this)}
+                            zIndex={1000}
                         >
                             <Form onSubmit={this.handleSubmit.bind(this)}>
                                 <FormItem {...formItemLayout} label="任务名称">
@@ -149,7 +149,7 @@ class CallRecordComponent extends React.Component { //子组件
                                                 ranges={{ Today: [moment(), moment()], 'This Month': [moment(), moment().endOf('month')] }}
                                                 showTime
                                                 disabledDate={current => {
-                                                    return current.isBefore(moment(Date.now()).add(-1, 'days'));
+                                                    return current&&current.isBefore(moment(Date.now()).add(-1, 'days'));
                                                   }}
                                                 format="YYYY/MM/DD HH:mm:ss"
                                                 onChange={this.onTaskTime.bind(this)}

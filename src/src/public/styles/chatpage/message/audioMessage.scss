@@ -1,0 +1,72 @@
+.audioWrapper{
+    width: 142px;
+    height: 38px;
+    position: relative;
+    border-radius: 4px;
+    .audioImg{
+        position: absolute;
+        top: 50%;
+        margin-top: -9px;
+    }
+    .audioTime{
+        position: absolute;
+        bottom: 4px;
+    }
+}
+
+.retweetHistoryList{
+    .audioImg{
+        left: 10px;
+    }
+    .audioTime{
+        color: #fff;
+        right: 9px;
+    }
+}
+
+.SelfMessage{
+    .audioWrapper{
+        background-color: #fff;
+        float: right;
+        .audioImg{
+            right: 10px;
+        }
+        .audioTime{
+            color: #696969;
+            left: 9px;
+        }
+    }
+    .audioWrapper:before{
+        content: "";
+        width: 0;
+        height: 0;
+        left: 100%;
+        top: 0.11rem;
+        position: absolute;
+        border-top: 0.025rem solid transparent;
+        border-left: 0.025rem solid #fff;
+        border-bottom: 0.025rem solid transparent;
+    }
+}
+
+.UserMessage{
+    .audioWrapper{
+        .audioImg{
+            left: 10px;
+        }
+        .audioTime{
+            color: #fff;
+            right: 9px;
+        }
+    }
+    .audioWrapper:before{
+        content: "";
+        width: 0;
+        height: 0;
+        right: 100%;
+        top: 0.11rem;
+        position: absolute;
+        border-top: 0.025rem solid transparent;
+        border-bottom: 0.025rem solid transparent;
+    }
+}

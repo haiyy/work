@@ -1,0 +1,171 @@
+.skillTagComp {
+    height: 100%;
+    .skillTagForm {
+        height: 100%;
+    }
+    .createTagBtn {
+        margin: 0.1rem 0.09rem;
+        height: 0.28rem;
+    }
+    .ant-table-wrapper {
+        table{
+            table-layout: fixed;
+            width: 100%;
+            .ant-table-thead tr th {
+                padding: 0.04rem 0.08rem;
+                line-height: 0.24rem;
+            }
+            .ant-table-tbody tr td {
+                padding: 0.03rem 0.08rem;
+            }
+        }
+        .ant-table-pagination {
+            margin: 0.06rem 0 0.06rem 0;
+        }
+    }
+}
+.quality-testing-body{
+    position: relative;
+    height: 100%;
+    .skillScrollArea {
+        height: calc(100% - 0.48rem);
+        padding: 0 0.08rem 0 0.06rem;
+    }
+    .tagNameStyle {
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        .editTagName {
+            margin-bottom: 0;
+        }
+        .tagNamePopover {
+            width: 350px;
+            height: auto;
+            word-wrap: break-word;
+        }
+    }
+    .tagOperate {
+        position: relative;
+        height: 24px;
+        .detailIcon {
+            display: inline-block;
+            width: 16px;
+            height: 17px;
+            position: absolute;
+            top: 3px;
+            background: url("../image/detailIcon.png") no-repeat center;
+        }
+        i {
+            cursor:pointer;
+        }
+        i:nth-child(2) {
+            margin-left: 0.32rem;
+        }
+    }
+    .unEditTagName {
+        display: inline-block;
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    table{
+        table-layout: fixed;
+        width: 100%;
+    }
+    .ant-table-thead > tr > th {
+        padding: 13px 8px;
+        .ant-table-column-sorter{
+            margin-left: 14px;
+        }
+    }
+    .ant-table-tbody > tr > td {
+        padding: 8px 8px;
+    }
+    .ant-table-tbody > tr > td:nth-child(3){
+        div{
+            margin-left: 8px;
+        }
+    }
+}
+
+.quality-testing-remove {
+    .icon-010yiwen{
+        position: absolute;
+        left: 25px;
+        top: 3px;
+        font-size: 0.3rem;
+    }
+    .removeTips {
+        color: #eb4f38;
+        margin-left: 78px;
+        line-height: 51px;
+    }
+    .ant-modal-footer {
+        border: 0;
+        padding: 10px 30px 20px 0;
+        button + button {
+            margin-left: 20px;
+            background-color: #eb4f38;
+            border-color: #eb4f38;
+        }
+    }
+}
+.quality-testing-remove_first{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -272px;
+    padding: 0;
+    margin-top: -209px;
+
+    .ant-modal-body{
+        padding: 0;
+        height: 367px;
+    }
+    .ant-table-thead tr th:nth-child(1), .ant-table-tbody tr td:nth-child(1){
+        padding: 16px 0 16px 50px;
+    }
+    .ant-table-body::-webkit-scrollbar
+    {
+        width: 8px;
+        height: 8px;
+    }
+
+    .ant-table-body::-webkit-scrollbar-thumb
+    {
+        background-color: #bdbdbd;
+        border-radius: 4px;
+    }
+
+    .ant-table-header::-webkit-scrollbar
+    {
+        width: 8px;
+        height: 8px;
+    }
+
+    .ant-table-header::-webkit-scrollbar-thumb
+    {
+        background-color: #bdbdbd;
+        border-radius: 4px;
+    }
+
+
+}
+.newQualityTesting{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 0;
+    margin-left: -260px;
+    margin-top: -116px;
+}
+
+.ant-modal.skillWarnTip{
+    margin-top: -86px;
+}

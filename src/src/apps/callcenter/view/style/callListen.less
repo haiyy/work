@@ -1,0 +1,194 @@
+// .settingRight {
+//     overflow: auto;
+// }
+.callListen {
+    padding: 0 12px 0 12px;
+    .top {
+        position: relative;
+        border-bottom: solid 1px #e9e9e9;
+        height: 50px;
+        line-height: 50px;
+        min-width: 783px;
+        .tip {
+            padding-left: 20px;
+            color: rgba(0,0,0,0.43);
+            margin-left: 80px;
+        }
+        .refresh {
+            position: absolute;
+            right: 24px;
+            top: 8.5px;
+        }
+        .select {
+            width: 120px;
+            position: absolute;
+            top: 10px;
+            height: 30px;
+        }
+        .search {
+            width: 150px;
+            height: 30px;
+            float: right;
+            margin-right: 10px;
+            position: relative;
+            margin-top: 7px;
+            input {
+                height: 30px;
+                float: left;
+            }
+            .searchBtn {
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 30px;
+                border-radius: 0 4px 4px 0;
+            }
+        }
+    }
+    .topFront {
+        position: absolute;
+        top: 0px;
+        border: none;
+        width: 100%;
+        height: 45px;
+        line-height: 45px;
+    }
+    .content {
+        padding: 0 !important;
+        .card {
+            float: left;
+            margin-right:10px;
+            margin-top: 10px;
+            margin: 10px 10px 0 0;
+            width: auto;
+            .floatleft {
+                float: left;
+                .column {
+                    width: 80px;
+                    text-align: center;
+                    line-height: 20px;
+                    float: left;
+                    .name {
+                        clear: both;
+                    }
+                }
+                .vertical {
+                    background-color: #e9e9e9;
+                    width: 1px;
+                    height: 15px;
+                    float: left;
+                    margin-top: 10px;
+                }
+            }
+            .floatleft:last-child .vertical {
+                display: none;
+            }
+            .ant-card-body {
+                padding: 10px;
+            }
+        }
+        .card:last-child {
+            margin-right: 0;
+        }
+        .ant-card-head {
+            background-color: #f7f7f7;
+        }
+
+    }
+    .table {
+        .tableAndTurnpage {
+            padding: 0 !important;
+            .ant-table-body {
+                overflow-x: auto;
+                table {
+                    min-width: 1000px;
+                }
+            }
+        }
+        .ant-btn {
+            background-color: transparent;
+            border: none;
+        }
+        .ant-btn:hover {
+            border: none;
+        }
+    }
+    .realtimeCard .floatleft:nth-child(4),.realtimeCard1 .floatleft:nth-child(5),.realtimeCard2 .floatleft:nth-child(3) {
+        clear: both;
+    }
+    .realtimeCard .floatleft:nth-child(3) .vertical,.realtimeCard1 .floatleft:nth-child(4) .vertical,.realtimeCard2 .floatleft:nth-child(2) .vertical{
+        display: none;
+    }
+    .tableoperate {
+        min-width: 105px;
+        .ant-btn {
+            padding: 0 5px;
+        }
+        .monitor, .canclemonitor, .guaduan, .qiangcha, .qiangchai {
+            width: 24px;
+            height: 24px;
+            background: url(../images/monitor.png) no-repeat center;
+            float: left;
+        }
+        .canclemonitor {
+            background: url(../images/canclemonitor.png) no-repeat center;
+        }
+        .guaduan {
+            background: url(../images/guaduan.png) no-repeat center;
+        }
+        .qiangcha {
+            background: url(../images/qiangcha.png) no-repeat center;
+        }
+        .qiangchai {
+            background: url(../images/qiangchai.png) no-repeat center;
+        }
+    }
+}
+
+ .callStateIcon {
+    width: 8px;
+    height: 8px;
+    background: black;
+    position: absolute;
+    border-radius: 4px;
+    top: 11px;
+}
+.callStateImg {
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 7px;
+}
+.callStateImg + span {
+    padding-left: 20px;
+}
+.callStateImg0 {//软电话
+    background: url(../images/iphuaji.png) no-repeat center;
+}
+.callStateImg1 {//ip话机
+    background: url(../images/zuoji.png) no-repeat center;
+}
+
+
+.callStateIcon + span {
+    padding-left: 12px;
+}
+.callStateIcon1 { //空闲
+    background-color: #29cd42;
+}
+
+.callStateIcon2 { //忙碌
+    background-color: #ff8856;
+}
+
+.callStateIcon0 { //离线
+    background-color: #c5c5c5;
+}
+
+.callStateIcon4 { //会议
+    background-color: #5f9fff;
+}
+
+.callStateIcon3 { //小休
+    background-color: #f2d076;
+}

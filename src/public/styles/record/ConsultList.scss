@@ -1,3 +1,27 @@
+.consultListPopover .ant-popover-inner-content {
+    width: 200px;
+    max-height: 355px;
+    overflow: auto;
+    height: auto;
+    word-wrap: break-word;
+}
+.consultListPopover .ant-popover-inner-content::-webkit-scrollbar
+{
+    width: 8px;
+    height: 8px;
+}
+
+.consultListPopover .ant-popover-inner-content::-webkit-scrollbar-track
+{
+    background-color: transparent;
+}
+
+.consultListPopover .ant-popover-inner-content::-webkit-scrollbar-thumb
+{
+    background-color: #bdbdbd;
+    border-radius: 4px;
+}
+
 .consultList{
     height: 100%;
     position: relative;

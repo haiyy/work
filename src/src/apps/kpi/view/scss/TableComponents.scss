@@ -1,0 +1,28 @@
+.ant-table-wrapper{
+    margin:10px;
+    width:calc(100% - 20px);
+    height:auto;
+    background:#fff;
+    .ant-table{
+        .ant-table-content{
+            .ant-table-thead{
+                height: 34px;
+                line-height:34px;
+            }
+            .ant-table-tbody{
+                line-height:28px;
+                .changeColor{
+                    background:#f7f7f7;
+                    font-family:"Microsoft YaHei";
+                    font-size:12px;
+                }
+            }
+        }
+    }
+}
+.kpi .ant-table-wrapper .ant-table .ant-table-content .ant-table-thead > tr > th{
+    background:#e5f3fe;
+    font-family:"Microsoft YaHei";
+    font-size:12px;
+}
+

@@ -1,0 +1,36 @@
+﻿.singleGoods_box{
+  padding: 0.07rem 0.07rem 0.07rem 10px;
+  .top_div{
+    background-color: #fff;
+    position: relative;
+    img{
+      display: block;
+      max-width: 2.67rem;
+      margin: 0 auto;
+    }
+  }
+  dl{
+    width: 85%;
+    margin:0 auto;
+    line-height: 2.5;
+    .type {
+      cursor: default;
+    }
+  }
+}
+.fall-list {
+    position: relative;
+    padding-bottom: 40px;
+    background: white;
+
+    .fall-btn {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+        background: #fff;
+        height: 40px;
+        line-height: 40px;
+        text-align: center;
+        border-top: 1px solid #eaeaea;
+    }
+}

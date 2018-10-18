@@ -1,0 +1,178 @@
+.clearFix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.blackListContent {
+    width: 100%;
+    height: 100%;
+    .blackListHeader {
+        width: 100%;
+        padding: 0.1rem 0.09rem;
+        .checkProgress {
+            vertical-align: middle;
+        }
+        .ant-switch {
+            margin: 0 0 0 16px;
+        }
+        .ant-input-search, .ant-btn{
+            float: left;
+            height: 0.28rem;
+            margin-right: 0.07rem;
+        }
+        .ant-input-search {
+            width: 140px;
+            margin-right: 19px;
+        }
+        .searchBlackList {
+            float: right;
+            margin: 0;
+            .ant-input-suffix {
+                right: 0;
+                width: 32px;
+                height: 32px;
+                text-align: center;
+                line-height: 34px;
+                border-left: 1px solid #d9d9d9;
+            }
+        }
+    }
+    .blackListTable {
+        height: calc(100% - 0.48rem);
+        .blackListScrollArea {
+            height: 100%;
+            padding: 0 0.08rem 0 0.06rem;
+        }
+        table {
+            table-layout: fixed;
+            .ant-table-selection-column {
+                width: 30px;
+            }
+            .ant-table-thead tr th {
+                padding: 0.07rem 0.08rem;
+                line-height: 0.24rem;
+            }
+            .ant-table-tbody tr td {
+                padding: 0.05rem 0.08rem;
+            }
+            .blackListOperate {
+                .anticon-search, .anticon-minus-circle-o{
+                    font-size: 16px;
+                    line-height: 24px;
+                    cursor: pointer;
+                }
+                .anticon-search {
+                    margin-right: 16px;
+                }
+                .anticon-minus-circle-o {
+                    color: #ef595d;
+                }
+            }
+        }
+        .ant-table-pagination {
+            margin: 0.09rem 0 0.07rem 0;
+        }
+
+        .blackListTd {
+            width: 100%;
+            cursor: pointer;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: break-word;
+        }
+    }
+}
+
+.newBlackModal {
+    position: relative;
+    top: 50%;
+    margin-top: -200px;
+
+    .has-success.has-feedback:after,
+    .has-warning.has-feedback:after,
+    .has-error.has-feedback:after,
+    .is-validating.has-feedback:after {
+        right: -35px;
+    }
+
+    .ant-modal-content {
+        width: 540px;
+        .ant-modal-body {
+            height: 300px;
+            .createRules {
+                text-align: center;
+                line-height: 26px;
+                color: #999;
+
+                .icon-010yiwen {
+                    display: inline-block;
+                    height: 29px;
+                    margin-right: 7px;
+                }
+            }
+            .ant-form-item-with-help, .ant-form-item-control-wrapper .has-error {
+                height: 32px;
+            }
+            .ant-form-item {
+                margin-bottom: 12px;
+            }
+            .removeTime {
+                .ant-form-item-control {
+                    .ant-calendar-picker {
+                        width: 100%!important;
+                        .ant-calendar-picker-input {
+                            padding-right: 12px;
+                        }
+                        .ant-calendar-picker-icon, .ant-calendar-picker-clear {
+                            right: 8px;
+                        }
+                    }
+                }
+            }
+            .blackReason {
+                position: relative;
+                .ant-form-explain {
+                    display: none;
+                }
+                .ant-form-item-control-wrapper {
+                    .has-error {
+                        height: 54px;
+                    }
+                }
+                .blackReasonIpt {
+                    height: 54px;
+                    resize: none;
+                }
+                .reasonIptCount {
+                    position: absolute;
+                    right: -34px;
+                    bottom: -8px;
+                }
+                .ant-input::-webkit-scrollbar
+                {
+                    width: 8px;
+                    height: 8px;
+                }
+
+                .ant-input::-webkit-scrollbar-thumb
+                {
+                    background-color: #bdbdbd;
+                    border-radius: 4px;
+                }
+            }
+        }
+    }
+}
+
+.importModal {
+    position: relative;
+    top: 50%;
+    margin-top: -200px;
+    .attentions {
+        line-height: 30px;
+    }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {  Popover, Button } from 'antd';
+import { Modal, Popover, Button, TreeSelect } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import { List, Map } from "immutable";
 import NTTableWithPageRecord from "../../../components/NTTableWithPageRecord";
@@ -25,7 +25,6 @@ import { truncateToPop } from "../../../utils/StringUtils";
 import SearchByShopComp from "../public/SearchByShopComp";
 import {getConversationCount} from "../redux/consultReducer";
 import {setRecordCommonTime} from "../redux/recordTimeReducer";
-import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class ConsultList extends React.PureComponent {
 
@@ -134,7 +133,7 @@ class ConsultList extends React.PureComponent {
                 truncateToPopInfo = truncateToPop(text, width*2 - 4);
 
                 comp = truncateToPopInfo&&truncateToPopInfo.show ?
-                    <Popover content={<div style={{width: '100px',height:'auto',wordWrap: 'break-word'}}>{text}</div>} placement="topLeft">
+                    <Popover overlayClassName="consultListPopover" content={text} placement="topLeft">
                         <span>{truncateToPopInfo.content}</span>
                     </Popover>
                     :
@@ -155,7 +154,7 @@ class ConsultList extends React.PureComponent {
                 truncateToPopInfo = truncateToPop(text.toString(), width*2 - 4);
 
                 comp = truncateToPopInfo.show ?
-                    <Popover content={<div style={{width: '100px',height:'auto',wordWrap: 'break-word'}}>{text}</div>} placement="topLeft">
+                    <Popover overlayClassName="consultListPopover" content={text} placement="topLeft">
                         <span>{truncateToPopInfo.content}</span>
                     </Popover>
                     :
@@ -433,7 +432,7 @@ class ConsultList extends React.PureComponent {
     /*删除常用话术tag*/
     delCommonUsedTag(key)
     {
-        confirm({
+        Modal.confirm({
             title: '删除提示',
             width: '320px',
             iconType: 'exclamation-circle',
@@ -871,43 +870,43 @@ class ConsultList extends React.PureComponent {
 }
 
 const searchMap = [
-	{key: "kfs.kfid", commitKey: "mainKfIds"},
-	{key: "kfs.distributeid", commitKey: "templateId"},
-	{key: "kfs.kfresponseid", commitKey: "takePartInKfIds"},
-	{key: "memberacts.actiontype", commitKey: "converType"},
-	{key: "customeridentity"},
-	{key: "terminal", commitKey: "customer.terminal"},
-	{key: "region", commitKey: "customer.city"},
-	{key: "source", commitKey: "customer.source"},
-	{key: "visitorpage", commitKey: "customer.startPageUrl"},
-	{key: "summary", commitKey: "summary.ids"},
-	{key: "consultInitTypeValue", commitKey: "referType"},
-	{key: "consultLastTypeValue", commitKey: "lasterType"},
-	/*{key: "consultresult", commitKey: "effective"},*/
-	{key: "pleased", commitKey: "evaluate.evaluateContent1"},
-	{key: "solve", commitKey: "evaluate.evaluateContent2"},
-	{key: "evaluatetype", commitKey: "evaluate.evaluateMethod"},
-	{key: "isinviteevaluate", commitKey: "isInviteEvaluate"},
-	{key: "customername", commitKey: "customer.customerName", type: 1},
-	{key: "customerid", commitKey: "customer.customerId", type: 1},
-	{key: "customerip", commitKey: "customer.ip", type: 1},
+    {key: "kfs.kfid", commitKey: "mainKfIds"},
+    {key: "kfs.distributeid", commitKey: "templateId"},
+    {key: "kfs.kfresponseid", commitKey: "takePartInKfIds"},
+    {key: "memberacts.actiontype", commitKey: "converType"},
+    {key: "customeridentity"},
+    {key: "terminal", commitKey: "customer.terminal"},
+    {key: "region", commitKey: "customer.city"},
+    {key: "source", commitKey: "customer.source"},
+    {key: "visitorpage", commitKey: "customer.startPageUrl"},
+    {key: "summary", commitKey: "summary.ids"},
+    {key: "consultInitTypeValue", commitKey: "referType"},
+    {key: "consultLastTypeValue", commitKey: "lasterType"},
+    /*{key: "consultresult", commitKey: "effective"},*/
+    {key: "pleased", commitKey: "evaluate.evaluateContent1"},
+    {key: "solve", commitKey: "evaluate.evaluateContent2"},
+    {key: "evaluatetype", commitKey: "evaluate.evaluateMethod"},
+    {key: "isinviteevaluate", commitKey: "isInviteEvaluate"},
+    {key: "customername", commitKey: "customer.customerName", type: 1},
+    {key: "customerid", commitKey: "customer.customerId", type: 1},
+    {key: "customerip", commitKey: "customer.ip", type: 1},
 
-	{key: "customerConverID", commitKey: "converId", type: 1},
-	{key: "customerKeyword", commitKey: "messageContent", type: 1},
+    {key: "customerConverID", commitKey: "converId", type: 1},
+    {key: "customerKeyword", commitKey: "messageContent", type: 1},
 
-	{key: "startpageurl", commitKey: "customer.startPageUrl", type: 1},
-	{key: "sourcepage", commitKey: "customer.sourcePage", type: 1},
-	{key: "landpage", commitKey: "customer.landPage", type: 1},
-	{key: "consultresult", commitKey: "effective", type: 3},
+    {key: "startpageurl", commitKey: "customer.startPageUrl", type: 1},
+    {key: "sourcepage", commitKey: "customer.sourcePage", type: 1},
+    {key: "landpage", commitKey: "customer.landPage", type: 1},
+    {key: "consultresult", commitKey: "effective", type: 3},
 
-	{key: "totalMsg", commitKey: "totalMsg", type: 2},
-	{key: "guesttotalMsg", commitKey: "customerTotalMsg", type: 2},
-	{key: "kfTotalMsg", commitKey: "kfTotalMsg", type: 2},
-	{key: "rounds", commitKey: "rounds", type: 2},
+    {key: "totalMsg", commitKey: "totalMsg", type: 2},
+    {key: "guesttotalMsg", commitKey: "customerTotalMsg", type: 2},
+    {key: "kfTotalMsg", commitKey: "kfTotalMsg", type: 2},
+    {key: "rounds", commitKey: "rounds", type: 2},
 
-	{key: "totalTime", commitKey: "totalTime", type: 2},
-	{key: "firstResponseTime", commitKey: "firstResponseTime", type: 2},
-	{key: "avgResponseTime", commitKey: "avgResponseTime", type: 2}
+    {key: "totalTime", commitKey: "totalTime", type: 2},
+    {key: "firstResponseTime", commitKey: "firstResponseTime", type: 2},
+    {key: "avgResponseTime", commitKey: "avgResponseTime", type: 2}
 ];
 
 function mapStateToProps(state)

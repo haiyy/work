@@ -1,0 +1,257 @@
+﻿.CompanyInfo {
+    padding: 38px 0;
+
+    .ant-form-item {
+        margin-bottom: 15px;
+    }
+
+    .cascader {
+        .ant-select {
+            margin-bottom: 15px;
+        }
+    }
+
+    .img-size {
+        position: relative;
+        top: 20px;
+        left: 25px;
+        color: #999;
+    }
+    .cascade-help .ant-form-explain {
+        top: 22px;
+    }
+    .ant-upload-list-item-done {
+        padding: 0;
+    }
+
+    .avatar {
+        display: inline-block;
+        width: 95px;
+        height: 95px;
+        border: 1px dashed #d9d9d9;
+        text-align: center;
+        border-radius: 10px;
+        .uploadPlus {
+            display: inline-block;
+            margin-top: 22px;
+            font-size: 22px;
+            line-height: 22px;
+            color: #c9c9c9;
+        }
+    }
+
+    .name {
+        margin: 0 10px 0 15px;
+        position: relative;
+        bottom: 50px;
+    }
+
+    .image-intro {
+        color: #B3B3B3;
+        position: relative;
+        left: 10px;
+        top: 20px;
+    }
+
+    .ant-upload-list-item-info {
+        margin-top: 0;
+    }
+
+    .fileList {
+        display: inline-block;
+        width: 166px;
+        height: 96px;
+        position: relative;
+        cursor: pointer;
+        img {
+            width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
+        .change-image {
+            display: none;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border-radius: 0 0 10px 10px;
+            span {
+                display: inline-block;
+                width: 100%;
+                .ant-upload.ant-upload-select {
+                    display: block;
+                }
+            }
+        }
+    }
+
+    .fileList:hover span {
+        display: inline-block;
+    }
+
+    .ant-form-explain {
+        display: inline;
+        margin-left: 17px;
+        color: #999;
+    }
+
+    .companyLogo {
+        position: relative;
+        margin-bottom: 34px;
+        margin-left: 28px;
+        .companyLogoTitle {
+            margin-right: 10px;
+          width: 114px;
+            vertical-align: top;
+            line-height: 32px;
+        }
+    }
+
+    .companyInfoMargin {
+        margin-left: 28px;
+        .companyInfoTitle {
+          margin-right: 10px;
+          width: 114px;
+        }
+        .companyAddressTitle {
+          margin-right: 10px;
+          width: 114px;
+            vertical-align: top;
+            line-height: 32px;
+        }
+    }
+}
+
+.settingRight .companyInfo_one .companyInfo_subBtn {
+    border-top: 1px solid #e9e9e9;
+    padding: 16px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: right;
+    .ant-form-item-control {
+        line-height: 28px;
+    }
+    button {
+        font-size: 12px;
+        height: 28px;
+        margin-right: 20px;
+    }
+}
+
+.ant-select-selection--single {
+    height: 32px;
+}
+
+.ant-select-selection__rendered {
+    line-height: 30px;
+    margin: 0 12px;
+}
+
+.ant-input {
+    padding: 4px 12px;
+}
+
+.has-error .ant-form-explain {
+    position: static;
+    display: inline;
+    margin-left: 17px;
+    color: #f50;
+}
+
+.companyInfo_one {
+    .ant-form-item-control {
+        span {
+            display: inline-block;
+        }
+    }
+}
+
+.avatar {
+    .icon-tianjia {
+        display: inline-block;
+        margin-top: 16px;
+        margin-bottom: 10px;
+    }
+}
+
+.submitStatus {
+    position: absolute;
+    bottom: 16px;
+    height: 28px;
+    line-height: 27px;
+    right: 96px;
+    opacity: 0;
+    animation: statusHide 2s 1 ease;
+    i, span{
+        vertical-align: middle;
+    }
+    span{
+        margin-left: 2px;
+    }
+}
+.submitStatus.submitStatusDouble{
+    right: 168px;
+}
+
+.submitStatus.userSaveStatus{
+    bottom: 0;
+    right: 1.2rem;
+    height: 0.36rem;
+    line-height: 0.36rem;
+}
+@keyframes statusHide{
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity:0;
+    }
+}
+
+@-webkit-keyframes statusHide{
+    0% {
+        opacity: 1;
+    }
+    70% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.loadFail_CompanyInfo {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    text-align: center;
+    z-index: 1000;
+    top:0;
+    font-size: 18px;
+    position: absolute;
+    div {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        height: 28px;
+        margin-top: -14px;
+        span {
+            cursor: pointer;
+        }
+    }
+}
+.companyInfoAvastar .cropper .cropper-body .crop-area{
+    width: 260px;
+    height: 150px;
+    margin: -75px 0 0 -130px;
+}

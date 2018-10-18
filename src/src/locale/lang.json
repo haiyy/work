@@ -1,0 +1,114 @@
+[
+  {
+    "key": "zh",
+    "label": "中文"
+  },
+  {
+    "key": "en",
+    "label": "英语"
+  },
+  {
+    "key": "yue",
+    "label": "粤语"
+  },
+  {
+    "key": "wyw",
+    "label": "文言文"
+  },
+  {
+    "key": "jp",
+    "label": "日语"
+  },
+  {
+    "key": "kor",
+    "label": "韩语"
+  },
+  {
+    "key": "fra",
+    "label": "法语"
+  },
+  {
+    "key": "spa",
+    "label": "西班牙语"
+  },
+  {
+    "key": "th",
+    "label": "泰语"
+  },
+  {
+    "key": "ara",
+    "label": "阿拉伯语"
+  },
+  {
+    "key": "ru",
+    "label": "俄语"
+  },
+  {
+    "key": "pt",
+    "label": "葡萄牙语"
+  },
+  {
+    "key": "de",
+    "label": "德语"
+  },
+  {
+    "key": "it",
+    "label": "意大利语"
+  },
+  {
+    "key": "el",
+    "label": "希腊语"
+  },
+  {
+    "key": "nl",
+    "label": "荷兰语"
+  },
+  {
+    "key": "pl",
+    "label": "波兰语"
+  },
+  {
+    "key": "bul",
+    "label": "保加利亚语"
+  },
+  {
+    "key": "est",
+    "label": "爱沙尼亚语"
+  },
+  {
+    "key": "dan",
+    "label": "丹麦语"
+  },
+  {
+    "key": "fin",
+    "label": "芬兰语"
+  },
+  {
+    "key": "cs",
+    "label": "捷克语"
+  },
+  {
+    "key": "rom",
+    "label": "罗马尼亚语"
+  },
+  {
+    "key": "slo",
+    "label": "斯洛文尼亚语"
+  },
+  {
+    "key": "swe",
+    "label": "瑞典语"
+  },
+  {
+    "key": "hu",
+    "label": "匈牙利语"
+  },
+  {
+    "key": "cht",
+    "label": "繁体中文"
+  },
+  {
+    "key": "vie",
+    "label": "越南语"
+  }
+]

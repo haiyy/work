@@ -6,7 +6,7 @@ import ScrollArea from 'react-scrollbar';
 import { bindActionCreators } from 'redux';
 import Logo from "../../../components/Logo";
 import UserInfo from "../../../model/vo/UserInfo";
-import { bglen } from "../../../utils/StringUtils";
+import { bglen, truncateToPop } from "../../../utils/StringUtils";
 import '../../../public/styles/chatpage/retweet.scss';
 import '../../../public/styles/enterpriseSetting/consultDetail.scss';
 import MessageType from "../../../im/message/MessageType";
@@ -24,7 +24,6 @@ import HyperMediaMessage from "../../chat/view/message/HyperMediaMessage";
 import VideoMessage from "../../chat/view/message/VideoMessage";
 import AudioMessage from "../../chat/view/message/AudioMessage";
 import Trajectory from "../../chat/view/aside/trajectory/Trajectory";
-
 const TabPane = Tabs.TabPane, Panel = Collapse.Panel;
 
 class ConsultDetail extends React.PureComponent {
@@ -424,17 +423,42 @@ class ConsultDetail extends React.PureComponent {
         ]
 	}
 
+    changeExpandSummary()
+    {
+        let {isExpand} = this.state;
+
+        this.setState({isExpand: !isExpand})
+    }
+
+    getExpandFun(summary)
+    {
+        let summaryContainer = this.refs.summaryContentCls,
+            scWidth = summaryContainer && summaryContainer.clientWidth;
+
+        return truncateToPop(summary, scWidth)
+    }
+
     getSummaryInfoComp()
     {
         let conversation = this.conversation || {},
-            {summary, summaryRemark} = conversation;
+            {summary, summaryRemark} = conversation,
+            {isExpand} = this.state,
+            isExpandName = isExpand ? "收起" : "展开",
+            expandCls = isExpand ? "itemContent summaryDetailComp expandStatus" : "itemContent summaryDetailComp hideLineStatus",
+            isShowExpandBtn = this.getExpandFun(summary) || {};
 
         return [
-            <div className="itemContent">
+            <div className={expandCls}>
                 <span> 咨询总结 : </span>
                 <i className="iconfont icon-zixunzongjie"
                     onClick={this.onSummaryEdit.bind(this)}/>
-                <span>  {summary || "空"}  </span>
+                <span ref="summaryContentCls" className="summaryContentCls">  {summary || "空"}  </span>
+                {
+                    isShowExpandBtn.show ?
+                        <div className="isExpandSummaryBtn" onClick={this.changeExpandSummary.bind(this)}>{isExpandName}</div>
+                        : null
+                }
+
             </div>,
             <div className="itemContent">
                 <span> 备注 : </span>

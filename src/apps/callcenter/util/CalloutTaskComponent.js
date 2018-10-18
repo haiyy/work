@@ -1,24 +1,21 @@
 import React from 'react';
 import { render } from 'react-dom';
-import {  Form, Input, Button, Upload, Icon ,DatePicker,TreeSelect ,Tree,message} from 'antd';
+import { Modal, Form, Input, Button, Upload, Icon ,DatePicker,TreeSelect ,Tree,message} from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
-import {stringLen} from "../../../utils/StringUtils";
+import {stringLen} from "../../../utils/StringUtils"
 import { Map, fromJS } from 'immutable';
-import {downloadTemplate} from "../redux/reducers/calloutTaskReducer";
-import {getBindGroupList} from "../redux/reducers/receptiongroupReducer";
+import {downloadTemplate} from "../redux/reducers/calloutTaskReducer"
+import {getBindGroupList} from "../redux/reducers/receptiongroupReducer"
 import { configProxy, loginUserProxy } from "../../../utils/MyUtil";
-import "../view/style/callOutTask.less";
-import "../view/style/formContent.less";
-import Modal from "../../../components/xn/modal/Modal";
-import { confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
+import "../view/style/callOutTask.less"
+import "../view/style/formContent.less"
 const FormItem = Form.Item;
 const {TextArea} = Input;
 import moment from 'moment';
 const RangePicker = DatePicker.RangePicker;
 const TreeNode = Tree.TreeNode;
-//const confirm = Modal.confirm;
-
+const confirm = Modal.confirm;
 class CalloutTaskComponent extends React.Component { //子组件
 	constructor(props)
 	{
@@ -307,7 +304,8 @@ class CalloutTaskComponent extends React.Component { //子组件
                             id="callOutTaskModal"
                             style={{top:"200px"}}
 							onOk={this.handleSubmit.bind(this)}
-							onCancel={this.onhandleCancel.bind(this)}
+                            onCancel={this.onhandleCancel.bind(this)}
+                            zIndex={1000}
 						>
 							<Form onSubmit={this.handleSubmit.bind(this)}>
 								<FormItem {...formItemLayout} label="任务名称">

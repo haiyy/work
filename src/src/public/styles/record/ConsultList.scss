@@ -1,0 +1,156 @@
+.consultList{
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    .scrollarea.consultListScrollArea{
+        height: calc(100% - 55px);
+        .scrollarea-content{
+            min-height: 100%;
+        }
+    }
+    .tableAndTurnpage{
+        height: calc(100% - 130px);
+    }
+}
+
+.searchShopComponent {
+    .searchShopIpt {
+        width: 198px;
+        padding: 12px;
+    }
+
+    .searchByShopMask {
+        position: fixed;
+        width: 100%;
+        height:100%;
+        top: 0;
+        left: 0;
+        background: #000;
+        opacity: .3;
+        z-index: 1;
+    }
+
+    .searchByShop {
+        position: absolute;
+        top: calc(0.192rem + 74px);
+        left: 12px;
+        z-index: 1;
+        border: 1px solid #d2d2d2;
+        border-radius: 6px;
+
+
+        .searchIpt {
+            padding: 12px;
+            background: #fff;
+            .ant-input-search {
+                width: 240px;
+            }
+        }
+    }
+
+    .searchByShopComp {
+        width: 800px;
+        height: 500px;
+        background: #fff;
+        overflow-y: hidden;
+        white-space: nowrap;
+        border-top: 1px solid #d2d2d2;
+        .ant-menu {
+            height: 400px;
+        }
+        .ant-menu-root {
+            position: relative;
+        }
+        .ant-menu-submenu {
+            position: static;
+        }
+
+        .shopGroupMenu {
+            display: inline-block;
+            height: 100%;
+            overflow-y: auto;
+            border-right: 1px solid #d2d2d2;
+            .levelFirst {
+                line-height: 40px;
+                white-space: nowrap;
+                .selectedStatus {
+                    background: #e5f1fd;
+                    color: #7a7b7f;
+                }
+                .iconfont {
+                    position: relative;
+                    top: 2px;
+                }
+            }
+
+            .groupName, .levelChildren {
+                display: inline-block;
+            }
+
+            .groupName {
+                vertical-align: top;
+                width: 100px;
+                //border-right: 1px solid #d2d2d2;
+                cursor: default;
+                text-align: center;
+            }
+
+            //.levelChildren {
+            //    position: absolute;
+            //    top: 0;
+            //}
+        }
+        .shopListCheckComp {
+            display: inline-block;
+            width: calc(100% - 109px);
+            height: 100%;
+            vertical-align: top;
+            padding: 6px 0 6px 10px;
+            white-space: normal;
+            .shopItemCheckBox {
+                height: calc(100% - 34px);
+                overflow-y: auto;
+            }
+            .ant-tag-checkable {
+                margin: 8px 14px;
+                height: 26px;
+                line-height: 12px;
+                padding: 6px 12px;
+            }
+
+            .searchByLetter {
+                margin-bottom: 10px;
+                .ant-tag {
+                    padding: 0 5px;
+                    height: 24px;
+                    line-height: 22px;
+                    color: #0287f0;
+                }
+                .ant-tag-checkable {
+                    margin: 0 3px;
+                }
+                .ant-tag-checkable-checked {
+                    color: #fff;
+                }
+            }
+        }
+
+    }
+
+    .searchByShopComp::-webkit-scrollbar, .shopGroupMenu::-webkit-scrollbar, .shopItemCheckBox::-webkit-scrollbar
+    {
+        width: 8px;
+        height: 8px;
+    }
+
+    .searchByShopComp::-webkit-scrollbar-track, .shopGroupMenu::-webkit-scrollbar-track, .shopItemCheckBox::-webkit-scrollbar-track
+    {
+        background-color: transparent;
+    }
+
+    .searchByShopComp::-webkit-scrollbar-thumb, .shopGroupMenu::-webkit-scrollbar-thumb, .shopItemCheckBox::-webkit-scrollbar-thumb
+    {
+        background-color: #bdbdbd;
+        border-radius: 4px;
+    }
+}

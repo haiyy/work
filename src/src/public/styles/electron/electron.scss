@@ -1,0 +1,107 @@
+.appWrap.isMiniAppWrap{
+    border-radius: 10px;
+    padding: 6px;
+    .AppCSS{
+        box-shadow: 0 0 8px #888;
+        border-radius: 8px;
+        .ant-layout-aside{
+            border-radius: 8px;
+            .header{
+                border-top-right-radius: 8px;
+                border-top-left-radius: 8px;
+                .logo{
+                    border-top-left-radius: 8px;
+                    .main{
+                        border-top-left-radius: 8px;
+                    }
+                }
+                .headerMiddle{
+                    border-top-right-radius: 8px;
+                    border-top-left-radius: 8px;
+                    .headerMiddleInner{
+                        border-top-right-radius: 8px;
+                        border-top-left-radius: 8px;
+                    }
+                }
+            }
+            .ant-layout-main{
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+                .ant-layout-container{
+                    border-bottom-left-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                    .ant-layout-content{
+                        border-bottom-left-radius: 8px;
+                        border-bottom-right-radius: 8px;
+                        .chatpage{
+                            border-bottom-left-radius: 8px;
+                            border-bottom-right-radius: 8px;
+                        }
+                        .settingTabsMenuScrollArea{
+                            border-bottom-left-radius: 8px;
+                        }
+                        .user-select-disable{
+                            border-bottom-left-radius: 8px;
+                        }
+                        .settingTabsMenu, .recordTabWrap{
+                            border-bottom-right-radius: 8px;
+                            .settingRight{
+                                border-bottom-right-radius: 8px;
+                                .mailCon{
+                                    border-bottom-right-radius: 8px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.toolWrap{
+    border-top-right-radius: 8px;
+    width: 103px;
+    height: 27px;
+    line-height: 27px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0 6px 0 0;
+    border-bottom-left-radius: 25px;
+    i{
+        color: #fff;
+        font-size: 12px;
+        float: right;
+        cursor: pointer;
+        width: 28px;
+        text-align: center;
+    }
+    i:hover{
+        background-color: #000;
+    }
+    button{
+        background: none;
+        border: none;
+        float: right;
+    }
+    button:focus{
+        outline: none;
+    }
+}
+
+.bodyIsElectron{
+    .appWrap{
+        .user{
+            .detail{
+                padding-top: 11px!important;
+            }
+            .down{
+                bottom: -2px!important;
+            }
+        }
+    }
+    .ant-modal-mask{
+        display: none;
+    }
+}

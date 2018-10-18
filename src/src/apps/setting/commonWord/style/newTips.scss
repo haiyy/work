@@ -1,0 +1,152 @@
+.clearfix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.uploadBtn {
+    float: left;
+    margin-right: 10px;
+    display: inline-block;
+    margin-top: 6px;
+    .ant-upload-select {
+        .ant-upload {
+            .ant-btn {
+                height: 34px;
+            }
+        }
+    }
+}
+.clearFile {
+    float: left;
+}
+.clearfix .btnBox .clearFile {
+    display: inline-block;
+    width: 50px;
+    height: 34px;
+    margin-top: 6px;
+    padding: 4px 10px;
+    text-align: center;
+}
+.ant-upload-list-item-info {
+    float: left;
+    margin-top: 20px;
+}
+.ant-progress-outer .ant-progress-inner .ant-progress-bg{
+    width: 100%;
+    float: left;
+    margin-top: 5px;
+}
+.ant-select-tree-node-content-wrapper {
+    width: 100%
+}
+.uploadBtn .ant-upload-list .ant-upload-list-item-uploading {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+.ant-upload-list-item-done {
+    display: none;
+}
+.fileBoxFormStyle {
+    .ant-form-item-with-help {
+        .ant-form-explain {
+            display: none
+        }
+    }
+    .ant-upload-list {
+        display: none;
+    }
+    .ant-input::-webkit-scrollbar
+    {
+        width: 8px;
+        height: 8px;
+    }
+
+    .ant-input::-webkit-scrollbar-thumb
+    {
+        background-color: #bdbdbd;
+        border-radius: 4px;
+    }
+
+    .NewTipsInput {
+        height: 98px;
+        word-break: break-all;
+        resize: none;
+    }
+}
+.uploadBox {
+    height: 98px;
+    box-sizing: border-box;
+    padding: 30px 10px;
+    border: 1px solid #D9D9D9;
+    border-radius: 5px;
+    .fileBox {
+        height: 40px;
+    }
+    .fileName {
+        float: left;
+        height: 40px;
+        width: 35%;
+        line-height: 40px;
+        font-weight: 900;
+    }
+    .previewImg {
+        float: left;
+        margin-right: 20px;
+        height: 40px;
+        width: 40px;
+    }
+    .previewImgName {
+        float: left;
+        height: 40px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 65%;
+        line-height: 40px;
+    }
+}
+.ant-message{
+    margin-top: 100px;
+}
+.choiceFatherGroup {
+    .ant-form-item-label label:after {
+        content: "";
+    }
+    .ant-form-item-required:after{
+        content: "";
+    }
+    .ant-form-item-with-help {
+        margin-bottom: 24px;
+    }
+    .ant-form-item-with-help:nth-child(2) {
+        height: 223px;
+
+    }
+    .ant-form-item-with-help:nth-child(3) {
+        height: 32px;
+        .has-error {
+            height: 32px;
+        }
+    }
+    .ant-form-explain {
+        visibility: hidden;
+    }
+    .ant-select-dropdown {
+        .ant-select-tree li {
+            .ant-select-tree-switcher {
+                display: none;
+            }
+        }
+
+    }
+    .newTipsUpperGroup {
+        width: 100%;
+    }
+}
