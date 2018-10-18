@@ -9,12 +9,12 @@ import CooperateData from "../../../../model/vo/CooperateData";
 import { List, is, fromJS } from "immutable";
 import { shallowEqual, loginUser, getLangTxt } from "../../../../utils/MyUtil";
 import { getUserName } from "../../../../utils/ConverUtils";
-import NTModal from "../../../../components/NTModal";
 import TreeNode from "../../../../components/antd2/tree/TreeNode";
 import { distribute } from "../../../setting/distribution/action/distribute"
 import "../style/cooperrate.scss";
 import {getBindingShopGroup} from "../../../setting/consultBinding/reducer/consultBindingReducer";
 import {loginUserProxy} from "../../../../utils/MyUtil";
+import Modal from "../../../../components/xn/modal/Modal";
 
 const TabPane = Tabs.TabPane,
     Option = Select.Option,
@@ -444,7 +444,7 @@ class Cooperate extends Component {
 				</div>
 				{
 					this.state.visible ? (
-						<NTModal title={labelData.get("title")} visible onCancel={this.transferCancel.bind(this)}
+						<Modal title={labelData.get("title")} visible onCancel={this.transferCancel.bind(this)}
 						         width={524} okText={getLangTxt("sure")} cancelText={getLangTxt("cancel")} wrapClassName="modalCommonStyle cooperateModal"
 						         footer={[
 							         <Button key="cancel" size="large" onClick={this.transferCancel.bind(this)}>
@@ -516,7 +516,7 @@ class Cooperate extends Component {
                                     }
 
 								</Tabs>
-						</NTModal>
+						</Modal>
 					) : null
 				}
 			</div>

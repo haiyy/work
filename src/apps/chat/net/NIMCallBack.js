@@ -80,7 +80,6 @@ class NIMCallBack extends INIMCallBack {
 				5007: this.remoteNotifySessionDestroy.bind(this), //会话终止事件remoteNotifyConversationTerminated
 				5008: this.remoteNotifyUserInformation.bind(this), //接收干系人信息变化事件
 				5009: this.remoteNotifySystemMsg.bind(this), //remoteNotifyNotification接收干系人信息变化事件
-				5013: this.remoteNotifyFilterSensitiveWords.bind(this), //  该接口用于客服发送消息后过滤敏感词信息。
 				5020: this.remoteNotifyCooperate.bind(this),  //收到被协同操作通知
 				5021: this.remoteNotifyCooperateAction.bind(this),  //协同操作结果
 				6003: this.remoteNotifyTimeoutConver.bind(this),  //接收已超时的会话列表[待处理]
@@ -261,15 +260,13 @@ class NIMCallBack extends INIMCallBack {
 	
 	requestUpdateUserStatus()
 	{
+		log("requestUpdateUserStatus...");
+		
 		let loginUserProxy = Model.retrieveProxy(LoginUserProxy.NAME);
-		
-		log("requestUpdateUserStatus...", sessionStorage.getItem("loginStatus") || loginUserProxy.loginStatus);
-		
-		
 		
 		sendT2DEvent({
 			listen: SessionEvent.REQUEST_UPDATE_USERSTATUS,
-			params: [sessionStorage.getItem("loginStatus") || loginUserProxy.loginStatus]
+			params: [loginUserProxy.loginStatus]
 		});
 	}
 	
@@ -428,11 +425,6 @@ class NIMCallBack extends INIMCallBack {
 	remoteNotifyCooperateAction(body)
 	{
 		this.chatSession.onNotifyCooperateAction(body.converid, body.cooptype, body.operation, body.targets, body.description);
-	}
-	
-	remoteNotifyFilterSensitiveWords(body)
-	{
-		this.chatSession.onNotifyFilterSensitiveWords(body.converid, body.messageid, body.sensitiveWord, body.message, body.createdat);
 	}
 	
 	destroy()

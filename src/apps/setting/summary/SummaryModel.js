@@ -1,10 +1,12 @@
 import React from 'react';
-import { Modal, Card, Input, Switch, DatePicker, Form, TreeSelect, Tree } from 'antd';
+import { Card, Input, Switch, DatePicker, Form} from 'antd';
 import moment from 'moment';
 import { getLangTxt, getLocalTime } from "../../../utils/MyUtil";
-import NTModal from "../../../components/NTModal";
 import { bglen } from "../../../utils/StringUtils";
 import TreeNode from "../../../components/antd2/tree/TreeNode";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
+import TreeSelect from "../../public/TreeSelect";
+import "./style/summaryModel.less";
 
 const FormItem = Form.Item;
 
@@ -19,7 +21,7 @@ class SummaryModel extends React.PureComponent {
 			addSummaryLeafCount: 1,
 			selectedSummaryTypeId: props.selectedSummaryType || null
 		};
-		
+
 		this.handleOk = this.handleOk.bind(this);
 		this.handleCancel = this.handleCancel.bind(this);
 		this.handleSummaryTypeChange = this.handleSummaryTypeChange.bind(this);
@@ -30,7 +32,7 @@ class SummaryModel extends React.PureComponent {
 		 this.handleValidTime = this.handleValidTime.bind(this);*/
 		this.notifyParentSummaryTypeId = this.notifyParentSummaryTypeId.bind(this);
 	}
-	
+
 	componentWillReceiveProps(nextProps)
 	{
 		if(nextProps.type != this.props.type && nextProps.type == "editSummaryLeaf")
@@ -43,7 +45,7 @@ class SummaryModel extends React.PureComponent {
 			this.setState({disabledStartValue: null})
 		}
 	}
-	
+
 	//设置是否常用
 	handleIsCommon(isCommon)
 	{
@@ -55,10 +57,10 @@ class SummaryModel extends React.PureComponent {
 			isCommon: isCommon
 		});
 	}
-	
+
 	isCommonDisabled()
 	{
-		Modal.info({
+		info({
 			title: '提示',
 			iconType: 'exclamation-circle',
 			className: 'commonTip',
@@ -72,7 +74,7 @@ class SummaryModel extends React.PureComponent {
 			}
 		});
 	}
-	
+
 	judgeSpace(rule, value, callback)
 	{
 		if(value && value.trim() !== "" && bglen(value) <= 80)
@@ -81,26 +83,26 @@ class SummaryModel extends React.PureComponent {
 		}
 		callback(getLangTxt("setting_summary_note2"));
 	}
-	
+
 	//保存分组或条目信息
 	handleOk()
 	{
-		
+
 		let {form} = this.props;
 		form.validateFields((errors) => {
-			
+
 			if(errors)
 				return false;
-			
+
 			let parentid = this.props.rootid;
 			let {editSummaryInfo} = this.props,
 				{summaryTypeParentid = "", summaryLeafParentid = ""} = editSummaryInfo;
-			
+
 			if(!editSummaryInfo && this.state.selectedSummaryTypeId === null)
 			{
 				parentid = this.props.selectedSummaryType;
 			}
-			
+
 			if(editSummaryInfo && this.state.selectedSummaryTypeId === null)
 			{
 				if(summaryTypeParentid && this.props.type.indexOf('SummaryType') > -1 || summaryTypeParentid == "" && this.props.type.indexOf('SummaryType') > -1)
@@ -112,12 +114,12 @@ class SummaryModel extends React.PureComponent {
 					parentid = summaryLeafParentid;
 				}
 			}
-			
+
 			if(this.state.selectedSummaryTypeId !== null)
 			{
 				parentid = this.state.selectedSummaryTypeId;
 			}
-			
+
 			if(this.props.type === 'addSummaryType')
 			{
 				this.props.addSummaryType({
@@ -126,28 +128,28 @@ class SummaryModel extends React.PureComponent {
 					content: this.state.summaryTypeContent
 				});
 			}
-			
+
 			if(this.props.type === 'editSummaryType')
 			{
-				
+
 				let editData = {
 					summaryid: editSummaryInfo.summaryid,
 					parentid: parentid,
 					type: 1,
 					content: this.state.summaryTypeContent
 				};
-				
+
 				if(parentid !== editSummaryInfo.summaryTypeParentid)
 				{
 					editData = Object.assign(editData, {
 						oldParentid: editSummaryInfo.summaryTypeParentid
 					});
 				}
-				
+
 				this.props.editSummaryType(editData);
 				this.setState({selectedSummaryTypeId: null});
 			}
-			
+
 			if(this.props.type === 'addSummaryLeaf')
 			{
 				this.props.addSummaryLeaf({
@@ -159,7 +161,7 @@ class SummaryModel extends React.PureComponent {
 					stopTime: this.state.stopTime || 0
 				});
 			}
-			
+
 			if(this.props.type === 'editSummaryLeaf')
 			{
 				this.props.editSummaryLeaf({
@@ -174,34 +176,34 @@ class SummaryModel extends React.PureComponent {
 					stopTime: this.state.stopTime || 0
 				});
 			}
-			
+
 			this.setState({
 				selectedSummaryTypeId: null, stopTime: 0, disabledStopValue: null, startTime: 0,
 				disabledStartValue: null
 			});
 		});
-		
+
 	}
-	
+
 	//取消弹框
 	handleCancel(e)
 	{
 		this.setState({selectedSummaryTypeId: null});
 		this.props.hideSummaryModel();
 	}
-	
+
 	//获取分组名称
 	handleSummaryTypeChange(e)
 	{
 		this.setState({summaryTypeContent: e.target.value});
 	}
-	
+
 	//修改咨询总结条目名称
 	handleSummaryLeafChange(e)
 	{
 		this.setState({summaryLeafContent: e.target.value});
 	}
-	
+
 	//选取组id
 	notifyParentSummaryTypeId(id)
 	{
@@ -209,7 +211,7 @@ class SummaryModel extends React.PureComponent {
 			selectedSummaryTypeId: id
 		});
 	}
-	
+
 	componentWillUpdate(nextProps, nextState)
 	{
 		if(this.props.editSummaryInfo != nextProps.editSummaryInfo)
@@ -219,7 +221,7 @@ class SummaryModel extends React.PureComponent {
 			});
 		}
 	}
-	
+
 	//更改组
 	onSummaryGroupChange(value, label, extra)
 	{
@@ -234,65 +236,58 @@ class SummaryModel extends React.PureComponent {
 			this.setState({selectedSummaryTypeId: ""})
 		}
 	}
-	
+
 	//上级分组树渲染---分组
 	_createGroupTreeNodes(states)
 	{
 		let {editSummaryInfo = {summaryid: ""}} = this.props,
 			{summaryid = ""} = editSummaryInfo;
-		
+
 		if(states)
-			return states.map(item => {
-				item.disabled = this.props.type === "editSummaryType" && summaryid === item.summaryid;
-				return (
-					<TreeNode
-						key={item.key} label={item.content}
-						value={item.summaryid} disabled={item.disabled}
-						title={
-							<div className="sourceTree">
-								{item.content}
-							</div>
-						}
-					>
-						{item.children ? this._createGroupTreeNodes(item.children) : null}
-					</TreeNode>
-				);
-			});
+            return states.map(item => {
+                item.disabled = this.props.type === "editSummaryType" && summaryid === item.summaryid;
+                return (
+                    <TreeNode
+                        key={item.key} label={item.content}
+                        value={item.summaryid} disabled={item.disabled}
+                        title={item.content}>
+                    {item.children ? this._createGroupTreeNodes(item.children) : null}
+                    </TreeNode>
+                );
+            });
+        return [];
 	}
-	
+
 	//上级分组树渲染---条目
 	_createTreeNodes(states)
 	{
 		if(states) return states.map(item => {
 			return (
-				<TreeNode key={item.key} label={item.content} value={item.summaryid} title={
-					<div className="sourceTree">
-						{item.content}
-					</div>}>
+				<TreeNode key={item.key} label={item.content} value={item.summaryid} title={item.content}>
 					{item.children ? this._createTreeNodes(item.children) : null}
 				</TreeNode>
 			);
 		});
 	}
-	
+
 	//不可选开始时间
 	disabledStartDate(startValue)
 	{
 		let endValue = this.state.disabledStopValue,
 			{editSummaryInfo: {stopTime = 0}} = this.props;
-		
+
 		if(this.props.type === "editSummaryLeaf" && stopTime != 0)
 		{
 			endValue = this.state.disabledStopValue ? this.state.disabledStopValue : moment(stopTime)
 		}
-		
+
 		if(!startValue || !endValue)
 		{
 			return false;
 		}
 		return startValue.valueOf() > endValue.valueOf();
 	}
-	
+
 	//选择开始时间
 	newSummaryStartTime(value)
 	{
@@ -303,7 +298,7 @@ class SummaryModel extends React.PureComponent {
 			disabledStartValue: value
 		});
 	}
-	
+
 	//开始时间选择之后打开结束时间
 	handleStartOpenChange(open)
 	{
@@ -312,26 +307,26 @@ class SummaryModel extends React.PureComponent {
 			this.setState({endOpen: true});
 		}
 	}
-	
+
 	//不可选结束时间
 	disabledEndDate(endValue)
 	{
 		let {editSummaryInfo: {startTime = 0}} = this.props,
 			editStartTime = this.state.disabledStartValue;
-		
+
 		if(this.props.type === "editSummaryLeaf")
 		{
 			editStartTime = this.state.disabledStartValue ? this.state.disabledStartValue : moment(getLocalTime(startTime))
 		}
-		
+
 		if(!endValue || !editStartTime)
 		{
 			return false;
 		}
-		
+
 		return endValue.valueOf() < editStartTime.valueOf();
 	}
-	
+
 	range(start, end)
 	{
 		const result = [];
@@ -341,28 +336,28 @@ class SummaryModel extends React.PureComponent {
 		}
 		return result;
 	}
-	
+
 	disabledDateTime()
 	{
-		
+
 		let myDate = new Date(this.state.startTime),
 			{editSummaryInfo: {startTime = 0}} = this.props;
 		if(this.props.type === "editSummaryLeaf")
 		{
 			myDate = this.state.startTime ? new Date(this.state.startTime) : new Date(startTime);
 		}
-		
+
 		let startHour = myDate.getHours(),
 			startMin = myDate.getMinutes(),
 			startSec = myDate.getSeconds();
-		
+
 		return {
 			disabledHours: () => this.range(0, startHour),
 			disabledMinutes: () => this.range(0, startMin),
 			disabledSeconds: () => this.range(0, startSec)
 		};
 	}
-	
+
 	//选择结束时间
 	newSummaryEndTime(value)
 	{
@@ -373,12 +368,12 @@ class SummaryModel extends React.PureComponent {
 			disabledStopValue: value
 		});
 	}
-	
+
 	handleEndOpenChange(open)
 	{
 		let {editSummaryInfo} = this.props,
 			editStartTime = this.state.startTime === 0 ? editSummaryInfo.startTime : this.state.startTime;
-		
+
 		if(!open && this.state.stopTime < editStartTime)
 		{
 			if(this.props.type === "editSummaryLeaf" && editSummaryInfo.stopTime != 0)
@@ -398,24 +393,26 @@ class SummaryModel extends React.PureComponent {
 				});
 				this.props.form.setFieldsValue({summaryEndTime: null})
 			}
-			
+
 		}
 		this.setState({endOpen: open});
 	}
-	
+
 	//咨询总结新建组组件渲染
 	_getSummaryGroupComp(summaryTypeContent, defaultEditParentId)
 	{
 		const formItemLayout = {
 			labelCol: {span: 6},
 			wrapperCol: {span: 16}
-		}, {getFieldDecorator} = this.props.form;
-		
+		}, {getFieldDecorator} = this.props.form,
+            treeNodes = this._createGroupTreeNodes(this.props.summaryTypeTree),
+            treeNodesAndEmpty = treeNodes.concat(<TreeNode title={<div>空</div>} value="firstLevel"/>);
+
 		if(this.props.type === "editSummaryType" && defaultEditParentId === "")
 		{
 			defaultEditParentId = "firstLevel";
 		}
-		
+
 		return (
 			<Card className='model-card summaryTypeGroup clearFix'>
 				<FormItem
@@ -434,21 +431,18 @@ class SummaryModel extends React.PureComponent {
 						/>
 					)}
 				</FormItem>
-				
+
 				<TreeSelect
-					dropdownStyle={{maxHeight: 400, overflowY: 'auto', overflowX: 'hidden'}}
 					placeholder={getLangTxt("setting_group_type")}
-					getPopupContainer={() => document.getElementsByClassName('summaryTypeGroup')[0]}
 					className="superiorSummaryType"
 					defaultValue={defaultEditParentId || this.state.selectedSummaryTypeId || this.props.selectedSummaryType || "firstLevel"}
-					onChange={this.onSummaryGroupChange.bind(this)}>
-					{this._createGroupTreeNodes(this.props.summaryTypeTree)}
-					<TreeNode title={<div>空</div>} value="firstLevel"/>
-				</TreeSelect>
+					onChange={this.onSummaryGroupChange.bind(this)}
+                    treeNode={treeNodesAndEmpty}
+                />
 			</Card>
 		)
 	}
-	
+
 	//咨询总结新建条目组件渲染
 	_getSummaryItemComp(summaryParentId, summaryLeafContent, editSummaryInfo, isCommon)
 	{
@@ -467,11 +461,11 @@ class SummaryModel extends React.PureComponent {
 			.format('YYYY-MM-DD HH:mm:ss'),
 			editStopTime = moment(editSummaryInfo.stopTime)
 			.format('YYYY-MM-DD HH:mm:ss');
-		
+
 		return (
 			<div>
 				<Card className='model-card summaryItem'>
-					<div className="parentName parentGroupStyle" style={{borderBottom: '1px solid #e9e9e9'}}>
+					<div className="parentName parentGroupStyle">
 						<FormItem
 							{...formItemLayoutSummary}
 							label={getLangTxt("setting_consult_type_name")}>
@@ -481,17 +475,16 @@ class SummaryModel extends React.PureComponent {
 							})(
 								<TreeSelect
 									className="groupSelect"
-									dropdownStyle={{maxHeight: 340, overflowX: 'hidden', overflowY: 'auto'}}
 									placeholder={getLangTxt("setting_group_type")}
 									treeDefaultExpandAll
 									getPopupContainer={() => document.getElementsByClassName('summaryItem')[0]}
 									onChange={this.onSummaryGroupChange.bind(this)}
-								>{this._createTreeNodes(this.props.summaryTypeTree)}</TreeSelect>
+                                    treeNode={this._createTreeNodes(this.props.summaryTypeTree)}
+								/>
 							)}
 						</FormItem>
 					</div>
-					<div className="parentName summaryInfo clearFix"
-					     style={{borderBottom: '1px solid #e9e9e9', padding: '10px 0 10px 0'}}>
+					<div className="parentName summaryInfo clearFix">
 						<FormItem
 							{...formItemLayoutSummaryName}
 							label={getLangTxt("setting_record_summary")}
@@ -552,7 +545,7 @@ class SummaryModel extends React.PureComponent {
 			</div>
 		)
 	}
-	
+
 	render()
 	{
 		let {editSummaryInfo = {}, isCommonOk} = this.props,
@@ -560,7 +553,7 @@ class SummaryModel extends React.PureComponent {
 			summaryParentId = editSummaryInfo.parentid,
 			modalElement = document.getElementsByClassName("summaryModel")[0],
 			modalHeight = this.props.type === 'addSummaryType' || this.props.type === 'editSummaryType' ? 227 : 412;
-		
+
 		if(!isCommonOk)
 		{
 			this.isCommonDisabled()
@@ -574,23 +567,23 @@ class SummaryModel extends React.PureComponent {
 			startTime,
 			stopTime
 		} = this.state;
-		
+
 		if(summaryTypeParentid === this.props.rootid)
 		{
 			summaryTypeParentid = "";
 		}
-		
+
 		if(summaryLeafParentid === this.props.rootid)
 		{
 			summaryLeafParentid = "";
 		}
-		
+
 		if(this.state.selectedSummaryTypeId)
 		{
 			summaryTypeParentid = this.state.selectedSummaryTypeId;
 			summaryLeafParentid = this.state.selectedSummaryTypeId;
 		}
-		
+
 		if(this.props.type === 'editSummaryLeaf')
 		{
 			isCommon = editSummaryInfo.isCommon;
@@ -599,10 +592,10 @@ class SummaryModel extends React.PureComponent {
 		{
 			isCommon = false;
 		}
-		
+
 		let modeltitle = getLangTxt("setting_record_summary");
 		let modelView = null;
-		
+
 		switch(this.props.type)
 		{
 			case 'addSummaryType':
@@ -624,13 +617,13 @@ class SummaryModel extends React.PureComponent {
 			default:
 				break;
 		}
-		
+
 		return (
-			<NTModal
+			<Modal
 				width={845}
 				title={modeltitle}
 				className="summaryModel"
-				style={{marginTop: -modalHeight / 2 + 'px'}}
+				//style={{marginTop: -modalHeight / 2 + 'px'}}
 				visible={this.props.type ? true : false}
 				onOk={this.handleOk}
 				onCancel={this.handleCancel}
@@ -639,7 +632,7 @@ class SummaryModel extends React.PureComponent {
 				<Form hideRequiredMark={true}>
 					{modelView}
 				</Form>
-			</NTModal>
+			</Modal>
 		)
 	}
 }

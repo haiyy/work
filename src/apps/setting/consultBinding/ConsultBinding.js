@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {Table, Tooltip, Popover, Modal, message} from 'antd';
+import {Table, Tooltip, Popover,  message} from 'antd';
 import './style/consultBinding.less'
 import {getConsultBindingList, getConsultBindingDetail, editConsultBinding, clearConsultBindingErr} from "./reducer/consultBindingReducer";
 import {truncateToPop} from "../../../utils/StringUtils";
 import ConsultBindingCon from "./ConsultBindingCon";
-import NTModal from "../../../components/NTModal";
 import {getProgressComp} from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import ReFresh from "../../../components/ReFresh";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
+
 class ConsultBinding extends React.PureComponent {
 
 	constructor(props)
@@ -47,13 +48,13 @@ class ConsultBinding extends React.PureComponent {
         let {bindingModalShow, editGroupItem = {}} = this.state;
 
         return bindingModalShow ?
-            <NTModal className='consultBindingModal modalCommonStyle' width={640}
+            <Modal className='consultBindingModal modalCommonStyle' width={640}
                 title={editGroupItem.templateName} visible={true} okText="保存"
                 onOk={this.handleBindingOk.bind(this)}
                 onCancel={this.handleEditBinding.bind(this)}
             >
                 <ConsultBindingCon bindingDetail={this.bindingDetail}/>
-            </NTModal> : null
+            </Modal> : null
     }
 
     getUnselectedIds(merchantids)
@@ -110,7 +111,7 @@ class ConsultBinding extends React.PureComponent {
 
                 this.props.clearConsultBindingErr();
 
-                this.errorModal = Modal.error({
+                this.errorModal = error({
                     title: '错误提示',
                     iconType: 'exclamation-circle',
                     className: classname,

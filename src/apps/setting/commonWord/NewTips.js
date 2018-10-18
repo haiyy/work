@@ -1,14 +1,15 @@
 import React from 'react';
-import ScrollArea from 'react-scrollbar';
-import {Form, Input, Button, TreeSelect, Upload, Tree, message} from 'antd';
+import {Form, Input, Button, Upload, message, Popover} from 'antd';
 import './style/newTips.scss';
 import {upload, UPLOAD_IMAGE_ACTION, UPLOAD_FILE_ACTION, getLangTxt} from "../../../utils/MyUtil";
 import ToolUpload from "../../../apps/chat/view/send/ToolUpload";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import {bglen} from "../../../utils/StringUtils";
-import TreeNode from "../../../components/antd2/tree/TreeNode";
+import Select from "../../public/Select";
+import {truncateToPop} from "../../../utils/StringUtils";
 
-const FormItem = Form.Item;
+const FormItem = Form.Item,
+    Option = Select.Option;
 
 class NewTips extends React.PureComponent {
 
@@ -224,14 +225,28 @@ class NewTips extends React.PureComponent {
     }
 
     //下拉框展示分组信息
-    _createTreeNodes(states) {
+    _createTreeNodes(states)
+    {
+        if (states) return states.map(item =>
+        {
+            const {groupId, groupName} = item;
 
-        if (states) return states.map(function (item) {
+            // contentInfo = truncateToPop(groupName, 230) || {}
+            // {
+            //     contentInfo.show ?
+            //         <Popover content={<div style={{
+				// 					maxWidth: "1.4rem", height: "auto", wordBreak: "break-word", zIndex: "9999"
+				// 				}}>{groupName}</div>} placement="topLeft">
+            //             {contentInfo.content}
+            //         </Popover>
+            //         :
+            //         groupName
+            // }
+            
             return (
-                <TreeNode key={item.groupId} title={item.groupName} value={item.groupId}/>
+                <Option key={groupId} value={groupId}> { groupName } </Option>
             );
         });
-
     }
 
     judgeTitleSpace(rule, value, callback) {
@@ -403,164 +418,156 @@ class NewTips extends React.PureComponent {
             };
 
         return (
-            <NTModal className='newTipsStyle' title={modalTitle} visible={true}/* okText = "保存"*/
+            <Modal className='newTipsStyle' title={modalTitle} visible={true}/* okText = "保存"*/
                      onOk={this.newTipOk.bind(this)} onCancel={this.props.changeNewTip.bind(this)}>
                 <div className="choiceFatherGroup">
-                    <ScrollArea
-                        speed={1}
-                        className="area"
-                        contentClassName="UserMenu"
-                        horizontal={false} smoothScrolling>
-                        <Form hideRequiredMark={true}>
+                    <Form hideRequiredMark={true}>
+                        <FormItem
+                            {...formItemLayout}
+                            label={getLangTxt("setting_common_word_title")}
+                            >{/*去掉了hasFeedback(绿色对号)*/}
+                            {getFieldDecorator('title', {
+                                initialValue: editorData && newTipName ? editorData.title : null,
+                                rules: [{validator: this.judgeTitleSpace.bind(this)}]
+                            })(
+                                <Input/>
+                            )}
+                            <span className="inputTips">{getLangTxt("setting_common_word_title_note")}</span>
+                        </FormItem>
+
+                        <div className="fileBoxFormStyle">
                             <FormItem
                                 {...formItemLayout}
-                                label={getLangTxt("setting_common_word_title")}
-                                >{/*去掉了hasFeedback(绿色对号)*/}
-                                {getFieldDecorator('title', {
-                                    initialValue: editorData && newTipName ? editorData.title : null,
-                                    rules: [{validator: this.judgeTitleSpace.bind(this)}]
-                                })(
-                                    <Input/>
+                                label={getLangTxt("setting_common_word_content")}
+                                >
+                                {getFieldDecorator('response', {
+                                    initialValue: editorData && newTipName ? editorData.response : null,
+                                    rules: this.state.type === 1 ? [{required: true, message: ' '},
+                                        {validator: this.judgeSpace.bind(this)}] : [{required: true, message: ' '}]
+                                })(this.state.isedit ?
+                                    <div>
+                                        {
+                                            editorData.type !== 1 ?
+                                                <div className='uploadBox'>
+                                                    {
+                                                        editorData.type === 3 ?
+                                                            <div className='fileBox'>
+                                                                <img className='previewImg'
+                                                                     src={editorData.response.imgUrl}
+                                                                     alt={editorData.response.imgName}/>
+                                                                <span className='previewImgName'>
+                                                                    {editorData.response.imgName}
+                                                                </span>
+                                                            </div>
+                                                            :
+                                                            <div className='fileBox'>
+                                                                <span
+                                                                    className='fileName'>{getLangTxt("setting_common_word_filename")}</span>
+                                                                <span className='previewImgName'>
+                                                                    {editorData.response.fileName}
+                                                                </span>
+                                                            </div>
+                                                    }
+                                                </div>
+                                                : <Input type="textarea" id="clearInput" value={editorData.response}
+                                                         onFocus={this.setIsEdit.bind(this)}
+                                                         className="NewTipsInput"/>
+                                        }
+                                    </div>
+                                    :
+                                    <div>
+                                        {
+                                            this.state.flag ?
+                                                <div className='uploadBox'>
+                                                    {
+                                                        this.state.ifImg ?
+                                                            <div className='fileBox'>
+                                                                <img className='previewImg'
+                                                                     src={this.state.thumbImgUrl}
+                                                                     alt={this.state.thumbImgName}/>
+                                                                <span className='previewImgName'>
+                                                                    {this.state.thumbImgName}
+                                                                </span>
+                                                            </div>
+                                                            :
+                                                            <div className='fileBox'>
+                                                                <span
+                                                                    className='fileName'>{getLangTxt("setting_common_word_filename")}</span>
+                                                                <span className='previewImgName'>
+                                                                    {this.state.fileName}
+                                                                </span>
+                                                            </div>
+                                                    }
+                                                </div>
+                                                :
+                                                <Input
+                                                    type="textarea"
+                                                    id="clearInput"
+                                                    className="isThisShow NewTipsInput"
+                                                    onKeyUp={this.getKeyWord.bind(this)}
+                                                />
+                                        }
+                                    </div>
                                 )}
-                                <span className="inputTips">{getLangTxt("setting_common_word_title_note")}</span>
-                            </FormItem>
+                                <div className="clearfix">
+                                    <div className="btnBox clearfix">
+                                        <Upload {...props} className="uploadBtn"
+                                                showUploadList={false}
+                                                beforeUpload={this.beforeUpload.bind(this)}
+                                                onChange={this.onChangeFun.bind(this)}>
+                                            <Button disabled={this.state.disabled}
+                                                    onClick={this.getTypeFile.bind(this)}>
+                                                <i className="icon-wenjianjia iconfont newTipsIcon"/>
+                                            </Button>
+                                        </Upload>
 
-                            <div className="fileBoxFormStyle">
-                                <FormItem
-                                    {...formItemLayout}
-                                    label={getLangTxt("setting_common_word_content")}
-                                    >
-                                    {getFieldDecorator('response', {
-                                        initialValue: editorData && newTipName ? editorData.response : null,
-                                        rules: this.state.type === 1 ? [{required: true, message: ' '},
-                                            {validator: this.judgeSpace.bind(this)}] : [{required: true, message: ' '}]
-                                    })(this.state.isedit ?
-                                        <div>
-                                            {
-                                                editorData.type !== 1 ?
-                                                    <div className='uploadBox'>
-                                                        {
-                                                            editorData.type === 3 ?
-                                                                <div className='fileBox'>
-                                                                    <img className='previewImg'
-                                                                         src={editorData.response.imgUrl}
-                                                                         alt={editorData.response.imgName}/>
-                                                                    <span className='previewImgName'>
-                                                                        {editorData.response.imgName}
-                                                                    </span>
-                                                                </div>
-                                                                :
-                                                                <div className='fileBox'>
-																	<span
-                                                                        className='fileName'>{getLangTxt("setting_common_word_filename")}</span>
-                                                                    <span className='previewImgName'>
-                                                                        {editorData.response.fileName}
-                                                                    </span>
-                                                                </div>
-                                                        }
-                                                    </div>
-                                                    : <Input type="textarea" id="clearInput" value={editorData.response}
-                                                             onFocus={this.setIsEdit.bind(this)}
-                                                             className="NewTipsInput"/>
-                                            }
-                                        </div>
-                                        :
-                                        <div>
-                                            {
-                                                this.state.flag ?
-                                                    <div className='uploadBox'>
-                                                        {
-                                                            this.state.ifImg ?
-                                                                <div className='fileBox'>
-                                                                    <img className='previewImg'
-                                                                         src={this.state.thumbImgUrl}
-                                                                         alt={this.state.thumbImgName}/>
-                                                                    <span className='previewImgName'>
-                                                                        {this.state.thumbImgName}
-                                                                    </span>
-                                                                </div>
-                                                                :
-                                                                <div className='fileBox'>
-																	<span
-                                                                        className='fileName'>{getLangTxt("setting_common_word_filename")}</span>
-                                                                    <span className='previewImgName'>
-                                                                        {this.state.fileName}
-                                                                    </span>
-                                                                </div>
-                                                        }
-                                                    </div>
-                                                    :
-                                                    <Input
-                                                        type="textarea"
-                                                        id="clearInput"
-                                                        className="isThisShow NewTipsInput"
-                                                        onKeyUp={this.getKeyWord.bind(this)}
-                                                    />
-                                            }
-                                        </div>
-                                    )}
-                                    <div className="clearfix">
-                                        <div className="btnBox clearfix">
-                                            <Upload {...props} className="uploadBtn"
-                                                    showUploadList={false}
-                                                    beforeUpload={this.beforeUpload.bind(this)}
-                                                    onChange={this.onChangeFun.bind(this)}>
-                                                <Button disabled={this.state.disabled}
-                                                        onClick={this.getTypeFile.bind(this)}>
-                                                    <i className="icon-wenjianjia iconfont newTipsIcon"/>
-                                                </Button>
-                                            </Upload>
+                                        <Upload {...props2} className="uploadBtn"
+                                                showUploadList={false}
+                                                beforeUpload={this.beforeUpload.bind(this)}
+                                                onChange={this.onChangeFun.bind(this)}>
+                                            <Button disabled={this.state.disabled}
+                                                    onClick={this.getTypeImage.bind(this)}>
+                                                <i className="icon-tupian iconfont newTipsIcon"/>
+                                            </Button>
+                                        </Upload>
 
-                                            <Upload {...props2} className="uploadBtn"
-                                                    showUploadList={false}
-                                                    beforeUpload={this.beforeUpload.bind(this)}
-                                                    onChange={this.onChangeFun.bind(this)}>
-                                                <Button disabled={this.state.disabled}
-                                                        onClick={this.getTypeImage.bind(this)}>
-                                                    <i className="icon-tupian iconfont newTipsIcon"/>
-                                                </Button>
-                                            </Upload>
+                                        <Button type="default" className="clearFile"
+                                                onClick={this.onRemoveFile.bind(this)}>{getLangTxt("clear")}</Button>
+                                    </div>
 
-                                            <Button type="default" className="clearFile"
-                                                    onClick={this.onRemoveFile.bind(this)}>{getLangTxt("clear")}</Button>
-                                        </div>
-
-                                        <div className="img-size">
-                                            <div className="newTipsInfo">
-                                                <span>{getLangTxt("setting_common_word_note1")}</span></div>
-                                            <div className="newTipsInfo">
-                                                <p>{getLangTxt("setting_common_word_note2")}</p>
-                                                <p>{getLangTxt("setting_common_word_note3")}</p>
-                                            </div>
+                                    <div className="img-size">
+                                        <div className="newTipsInfo">
+                                            <span>{getLangTxt("setting_common_word_note1")}</span></div>
+                                        <div className="newTipsInfo">
+                                            <p>{getLangTxt("setting_common_word_note2")}</p>
+                                            <p>{getLangTxt("setting_common_word_note3")}</p>
                                         </div>
                                     </div>
-                                </FormItem>
-                            </div>
-
-                            <FormItem
-                                {...formItemLayout}
-                                label={getLangTxt("select_group")}>
-                                {getFieldDecorator('groupName', {
-                                    initialValue: editorData && newTipName ? editorData.groupId : selectedKey,
-                                    rules: [{
-                                        required: true,
-                                        message: ' '
-                                    }]
-                                })(
-                                    this.props.state ?
-                                        <TreeSelect
-                                            placeholder={getLangTxt("select_group")}
-                                            className="newTipsUpperGroup"
-                                            dropdownStyle={{maxHeight: 340, overflowX: 'hidden', overflowY: 'auto'}}
-                                            onChange={this.onChange.bind(this)}
-                                            getPopupContainer={() => document.querySelector(".ant-layout-aside")}
-                                        >{this._createTreeNodes(this.props.state)}</TreeSelect> : null
-                                )}
+                                </div>
                             </FormItem>
-                        </Form>
-                    </ScrollArea>
+                        </div>
+
+                        <FormItem
+                            {...formItemLayout}
+                            label={getLangTxt("select_group")}>
+                            {getFieldDecorator('groupName', {
+                                initialValue: editorData && newTipName ? editorData.groupId : selectedKey,
+                                rules: [{
+                                    required: true,
+                                    message: ' '
+                                }]
+                            })(
+                                this.props.state ?
+                                    <Select
+                                        placeholder={getLangTxt("select_group")}
+                                        onSelect={this.onChange.bind(this)}
+                                        option={this._createTreeNodes(this.props.state)}
+                                    /> : null
+                            )}
+                        </FormItem>
+                    </Form>
                 </div>
-            </NTModal>
+            </Modal>
         )
     }
 }

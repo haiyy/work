@@ -5,7 +5,8 @@ import {bindActionCreators} from 'redux'
 import {is} from 'immutable'
 import LoadProgressConst from "../../../model/vo/LoadProgressConst"
 import {ReFresh} from "../../../components/ReFresh"
-import Loading from './Loading'
+//import Loading from './Loading'
+import Loading from "../../../components/xn/loading/Loading"
 import getQuery from './kpiService/getQuery'
 import EnterFrameComp from "../../../components/EnterFrameComp"
 

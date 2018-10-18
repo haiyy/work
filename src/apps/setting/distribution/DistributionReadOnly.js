@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal } from 'antd';
+import { Button } from 'antd';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { getUserSkillTag, getAccountGroup } from '../account/accountAction/sessionLabel';

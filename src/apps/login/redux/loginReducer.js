@@ -6,7 +6,6 @@ import LoginUserProxy from "../../../model/proxy/LoginUserProxy";
 import { urlLoader } from "../../../lib/utils/cFetch";
 import LogUtil from "../../../lib/utils/LogUtil";
 import ConfigProxy from "../../../model/proxy/ConfigProxy";
-import { createMessageId } from "../../../lib/utils/Utils";
 
 const LOGIN_REQUEST = 'LOGIN_REQUEST';
 const LOGIN_ONCANEL = 'LOGIN_ONCANEL';
@@ -15,7 +14,6 @@ const LOGIN_USERINFO_UPATE = 'LOGIN_USERINFO_UPATE';
 const LOGIN_FAILURE = 'LOGIN_FAILURE';
 const LOGOUT_REQUEST = 'LOGOUT_REQUEST';
 const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
-const REDIRECT = 'LOGIN_REDIRECT';
 
 //-------------------------Actions------------------------------
 
@@ -23,7 +21,8 @@ export function requestLogin(formData, requestId)
 {
 	log("requestLogin requestId = " + requestId);
 	
-	return dispatch => {
+	return dispatch =>
+	{
 		try
 		{
 			if(!formData)
@@ -46,10 +45,9 @@ export function requestLogin(formData, requestId)
 			
 			dispatch({type: LOGIN_REQUEST, user: {success: -1}});  //正在登录
 			
-			sessionStorage.setItem("siteid", siteid);
-			
 			getLoginCode()
-			.then(result => {
+			.then(result =>
+			{
 				if(result.success)
 				{
 					let pwd = ntMd5(userPwd + loginProxy.loginCode);
@@ -58,7 +56,8 @@ export function requestLogin(formData, requestId)
 					body.key = loginProxy.loginCodeKey;
 					
 					gotoLogin(loginUrl, body, loginProxy)
-					.then(result => {
+					.then(result =>
+					{
 						if(result)
 						{
 							if(result.success)
@@ -88,7 +87,8 @@ export function requestLoginWithToken(value, siteid)
 {
 	log("requestLoginWithToken token = " + value + ", siteid = " + siteid);
 	
-	return dispatch => {
+	return dispatch =>
+	{
 		dispatch({type: LOGIN_REQUEST, user: {success: -1}});  //正在登录
 		
 		let configProxy = Model.retrieveProxy(ConfigProxy.NAME),
@@ -99,13 +99,15 @@ export function requestLoginWithToken(value, siteid)
 		dispatch({type: "LOGIN_REQUEST", user: {success: -1}});  //正在登录
 		
 		configProxy.getFlashServer()
-		.then(success => {
+		.then(success =>
+		{
 			if(success)
 			{
 				urlLoader(Settings.getLoginWithTokenUrl(), {
 					body: JSON.stringify({token: value, siteid}), method: "post"
 				})
-				.then(({jsonResult}) => {
+				.then(({jsonResult}) =>
+				{
 					let {error, code, data} = jsonResult;
 					
 					let success = code === 200;
@@ -116,10 +118,6 @@ export function requestLoginWithToken(value, siteid)
 						loginProxy.token = data.token;
 						loginProxy.ntoken = data.token;
 						loginProxy.loginStatus = 1;
-						
-						sessionStorage.setItem("sessid", data.sessid);
-						sessionStorage.setItem("userid", data.userid);
-						sessionStorage.setItem("token", data.token);
 					}
 					else
 					{
@@ -147,7 +145,8 @@ export function requestCancel(cannel)
 {
 	log("requestCancel cannel = " + cannel);
 	
-	return dispatch => {
+	return dispatch =>
+	{
 		let onCancel = {};
 		onCancel[cannel] = cannel;
 		
@@ -159,7 +158,8 @@ function updateStorage(siteId, password, userName, remember)
 {
 	let loginView = Array.from(JSON.parse(localStorage.getItem('loginView')) || []);
 	
-	let siteIdIndex = loginView.findIndex(value => {
+	let siteIdIndex = loginView.findIndex(value =>
+		{
 			if(value && value.length > 0)
 			{
 				return value[0].siteId === siteId;
@@ -195,9 +195,9 @@ function gotoLogin(loginUrl, body, loginProxy)
 	return urlLoader(loginUrl, {
 		body: JSON.stringify(body),
 		method: "post",
-		credentials:'include'
 	})
-	.then((response) => {
+	.then((response) =>
+	{
 		let jsonResult = response.jsonResult;
 		if(!jsonResult)
 			return Promise.resolve();
@@ -217,10 +217,6 @@ function gotoLogin(loginUrl, body, loginProxy)
 			loginProxy.token = data.token;
 			loginProxy.ntoken = data.token;
 			result.nloginToken = nloginToken;
-			
-			sessionStorage.setItem("sessid", data.sessid);
-			sessionStorage.setItem("userid", data.userid);
-			sessionStorage.setItem("token", data.token);
 		}
 		else
 		{
@@ -236,7 +232,8 @@ function gotoLogin(loginUrl, body, loginProxy)
 // user = {success:true,access_token:"token"}
 export function loginSuccess(user)
 {
-	return dispatch => {
+	return dispatch =>
+	{
 		dispatch({
 			type: LOGIN_SUCCESS,
 			user
@@ -246,14 +243,16 @@ export function loginSuccess(user)
 
 export function dispatchAction(value)
 {
-	return dispatch => {
+	return dispatch =>
+	{
 		dispatch(value);
 	};
 }
 
 export function mineInfoUpdate()
 {
-	return dispatch => {
+	return dispatch =>
+	{
 		dispatch({
 			type: LOGIN_USERINFO_UPATE,
 		});
@@ -262,7 +261,8 @@ export function mineInfoUpdate()
 
 export function logoutUser()
 {
-	return dispatch => {
+	return dispatch =>
+	{
 		let loginProxy = Model.retrieveProxy(LoginUserProxy.NAME);
 		if(!loginProxy)
 			return;
@@ -280,82 +280,10 @@ export function logoutUser()
 	};
 }
 
-export function checkLogin()
-{
-	return dispatch => {
-		let userid = sessionStorage.getItem("userid"),
-			token = sessionStorage.getItem("token"),
-			sessid = sessionStorage.getItem("sessid");
-		
-		if(!userid || !token || !sessid)
-		{
-			logoutUser()(dispatch);
-			return;
-		}
-		
-		let configProxy = Model.retrieveProxy(ConfigProxy.NAME);
-		
-		configProxy.getFlashServer()
-		.then(success => {
-			if(success)
-			{
-				toChecklogin(userid, sessid, token, dispatch);
-			}
-			else
-			{
-				dispatch({type: LOGIN_SUCCESS, user: {success: false, error: 20027}});
-			}
-		});
-		
-		dispatch({type: LOGIN_REQUEST, user: {success: -1}});  //正在登录
-	};
-}
-
-function toChecklogin(userid, sessid, token, dispatch)
-{
-	console.log("loginReducer toChecklogin ....");
-	
-	let loginProxy = Model.retrieveProxy(LoginUserProxy.NAME);
-	
-	urlLoader(Settings.getLoginCheckUrl(), {
-		body: JSON.stringify({userid, sessid, token}),
-		method: "post",
-	})
-	.then((response) => {
-		let jsonResult = response.jsonResult;
-		if(!jsonResult)
-			return Promise.resolve();
-		
-		let success = jsonResult.code === 200;
-		
-		log("gotoLogin loginSuccess = " + success);
-		
-		if(success)
-		{
-			loginProxy.userId = userid;
-			loginProxy.token = token;
-			loginProxy.ntoken = token;
-			loginProxy.siteId = sessionStorage.getItem("siteid");
-			
-			dispatch({type: LOGIN_SUCCESS, user: {success: true}});
-		}
-		else
-		{
-			dispatch({type: LOGIN_SUCCESS, user: {success: false, error: 20027}});  //正在登录
-		}
-	});
-}
-
-export function toRedirect(data)
-{
-	return dispatch => {
-		dispatch({type: REDIRECT, data});
-	};
-}
-
 //---------------------------Reducer-------------------------------
 
-export default function loginReducer(state = {}, action) {
+export default function loginReducer(state = {}, action)
+{
 	switch(action.type)
 	{
 		case LOGIN_ONCANEL:
@@ -390,9 +318,6 @@ export default function loginReducer(state = {}, action) {
 			return Object.assign({}, state, {
 				user: undefined
 			});
-		case REDIRECT:
-			state.redirect = action.data;
-			return state;
 		
 		default:
 			return state;

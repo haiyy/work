@@ -204,10 +204,10 @@ class ChatData extends IChatChannel {
 	{
 		this._chatDataManager.onNotifyReceiveMessage(content);
 		
-		/*	if(this._chatDataManager.isCurrentView)
-			{
-				this._chatDataManager.markRead();
-			}*/
+	/*	if(this._chatDataManager.isCurrentView)
+		{
+			this._chatDataManager.markRead();
+		}*/
 	}
 	
 	onNotifyMessageDelivered(messageid, status)
@@ -292,11 +292,6 @@ class ChatData extends IChatChannel {
 	onNotifyCooperateAction(coopType, operation, targets, description)
 	{
 		this._chatDataManager.onNotifyCooperateAction(coopType, operation, targets, description);
-	}
-	
-	onNotifyFilterSensitiveWords(messageid, sensitiveWord, message, createdat)
-	{
-		this._chatDataManager.onNotifyFilterSensitiveWords(messageid, sensitiveWord, message, createdat);
 	}
 }
 

@@ -60,9 +60,9 @@ class QueueRulesReadOnly extends React.PureComponent {
 					<Switch disabled={true} checked={timeUseable === 1}/>
 					<span>{getLangTxt("setting_queue_rule_word3")}</span>
 					<InputNumber disabled min={1} max={120} precision={0} value={timeOut}/>
-					<Select disabled value={timeType} style={{width: "80px"}}>
-						<Option value={1}>{getLangTxt("minute")}</Option>
-						<Option value={0}>{getLangTxt("second")}</Option>
+					<Select disabled value={timeType + ''} style={{width: "80px"}}>
+						<Option value={1 + ''}>{getLangTxt("minute")}</Option>
+						<Option value={0 + ''}>{getLangTxt("second")}</Option>
 					</Select>
 					<span>{getLangTxt("setting_queue_rule_word4")}</span>
 				</div>

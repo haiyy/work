@@ -1,19 +1,21 @@
 import React from 'react';
-import { Form, Select, TreeSelect, Input, message } from 'antd';
+import { Form, Input, message } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import EditorAccount from './EditorAccount';
-import { getlListData, getNewUserInfo, getUserInfo, createUser, editUser, getUserType, getUserSkillTag } from './accountAction/sessionLabel';
+import { getlListData, getUserInfo, createUser, editUser } from './accountAction/sessionLabel';
 import './style/newCreateAccount.scss';
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import { bglen, stringLen } from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
+import TreeSelect from "../../public/TreeSelect";
+import TreeNode from "../../../components/antd2/tree/TreeNode";
+import Select from "../../public/Select";
 
 const FormItem = Form.Item;
 const Option = Select.Option;
 let onLine = null;
 
-const TreeNode = TreeSelect.TreeNode;
 
 class CreateAccount extends React.PureComponent {
 	constructor(props)
@@ -384,6 +386,44 @@ class CreateAccount extends React.PureComponent {
         return finalComp
     }
 
+    getUserTypeOption(userTypes)
+    {
+        if (userTypes && userTypes.length)
+            return userTypes.map(item =>
+            {
+                let {usertypeid, name} = item;
+
+                return <Option key={usertypeid}
+                        value={usertypeid.toString()}>{name}</Option>
+            });
+        return null
+    }
+
+    getRoleOption(roleDatas)
+    {
+        if (roleDatas && roleDatas.length)
+            return roleDatas.map((item) =>
+            {
+                let {roleid, rolename} = item;
+
+                return <Option key={roleid}
+                        value={roleid}>{rolename}</Option>
+
+            });
+        return null;
+    }
+
+    getSkillTagOption(userSkillTag)
+    {
+        if(userSkillTag)
+            return userSkillTag.map(item =>
+            {
+                let {tagid, tagname} = item;
+                return <Option key={tagid} value={tagid}>{tagname}</Option>
+            });
+        return null;
+    }
+
 	render()
 	{
 		let {
@@ -426,7 +466,7 @@ class CreateAccount extends React.PureComponent {
 		let judgeUserType = title ? (this.state.usertype !== null ? this.state.usertype : usertype) : this.state.usertype || 0;
 
 		return (
-			<NTModal title={this.props.title} visible={true} onOk={this.newHandleOk.bind(this)} width='5.7rem'
+			<Modal title={this.props.title} visible={true} onOk={this.newHandleOk.bind(this)} width='5.7rem'
 			         onCancel={this.handleCancel.bind(this)} okText={getLangTxt("sure")} cancelText={getLangTxt("cancel")}
 			         wrapClassName="accountRight scrollAreaStyle">
 				<div className="accountListScroll" id="scrollArea">
@@ -441,16 +481,8 @@ class CreateAccount extends React.PureComponent {
 									<Select
 										getPopupContainer={() => document.getElementById('scrollArea')}
 										onChange={this.getUserTypeNum.bind(this)}
-									>
-										{
-											userTypes ? userTypes.map((item) => {
-												return (
-													<Option key={item.usertypeid}
-													        value={item.usertypeid.toString()}>{item.name}</Option>
-												)
-											}) : null
-										}
-									</Select>
+                                        option={this.getUserTypeOption(userTypes)}
+									/>
 								)
 							}
 						</FormItem>
@@ -463,16 +495,9 @@ class CreateAccount extends React.PureComponent {
 										rules: [{required: true, message: getLangTxt("setting_account_note14")}]
 									})(
 									<Select showSearch optionFilterProp="children" mode="multiple"
-									        getPopupContainer={() => document.getElementById('scrollArea')}>
-										{
-											roleDatas && roleDatas.map((item) => {
-												return (
-													<Option key={item.roleid}
-													        value={item.roleid}>{item.rolename}</Option>
-												)
-											})
-										}
-									</Select>
+									        getPopupContainer={() => document.getElementById('scrollArea')}
+                                            option={this.getRoleOption(roleDatas)}
+                                    />
 								)
 							}
 						</FormItem>
@@ -483,14 +508,11 @@ class CreateAccount extends React.PureComponent {
 									rules: [{required: true, message: getLangTxt("setting_account_note15")}]
 								})(
 									<TreeSelect
-										dropdownStyle={{maxHeight: 230, overflowX: 'hidden', overflowY: 'auto'}}
+                                        treeDefaultExpandAll
 										onChange={this._onTreeChange.bind(this)}
 										getPopupContainer={() => document.getElementById('scrollArea')}
-									>
-										{
-											this._getTreeNode(groupData)
-										}
-									</TreeSelect>
+                                        treeNode={this._getTreeNode(groupData)}
+									/>
 								)
 							}
 						</FormItem>
@@ -524,15 +546,9 @@ class CreateAccount extends React.PureComponent {
 										rules: [{required: true, message: getLangTxt("setting_account_note16")}]
 									})(
 									<Select showSearch optionFilterProp="children" mode="multiple"
-									        getPopupContainer={() => document.getElementById('scrollArea')}>
-										{
-											userSkillTag && userSkillTag.map((item) => {
-												return (
-													<Option key={item.tagid} value={item.tagid}>{item.tagname}</Option>
-												)
-											})
-										}
-									</Select>
+									        getPopupContainer={() => document.getElementById('scrollArea')}
+                                            option={this.getSkillTagOption(userSkillTag)}
+                                    />
 								)
 							}
 						</FormItem>
@@ -547,7 +563,7 @@ class CreateAccount extends React.PureComponent {
 						               userMsg={editData ? expans : []}/>
 					</Form>
 				</div>
-			</NTModal>
+			</Modal>
 		)
 	}
 }

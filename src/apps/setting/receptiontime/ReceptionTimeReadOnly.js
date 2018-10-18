@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Radio, Input, Checkbox, Icon, Switch, Modal } from 'antd';
+import { Button, Radio, Input, Checkbox, Icon, Switch } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './style/receptiontime.scss'
@@ -8,6 +8,7 @@ import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
 import ScrollArea from 'react-scrollbar';
 import ReceptionTimeTable from "./ReceptionTimeTable";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const RadioButton = Radio.Button,
 	RadioGroup = Radio.Group,
@@ -115,7 +116,7 @@ class ReceptionTimeReadOnly extends React.Component {
 	{
 		if(this.progress === LoadProgressConst.LOAD_FAILED)
 		{
-			let modal = Modal.error({
+			let modal = error({
 				title: getLangTxt("tip1"),
 				iconType: 'exclamation-circle',
 				className: 'errorTip',
@@ -171,12 +172,9 @@ class ReceptionTimeReadOnly extends React.Component {
 						level === 0 ? this.getReceptionTable(items, content, true, contentUseable) : this.getUsersComp()
 					}
 				</ScrollArea>
-                <div className="footer">
-                    <Button className="receptionSaveBtn" type="primary" disabled>
-                        {getLangTxt("sure")}
-                    </Button>
-                </div>
-
+				<Button className="receptionSaveBtn" type="primary" disabled>
+					{getLangTxt("sure")}
+				</Button>
 				{
 					_getProgressComp(this.progress, 'submitStatus')
 				}

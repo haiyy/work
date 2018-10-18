@@ -1,6 +1,5 @@
 ﻿import React from 'react'
-import { Form, Input, Checkbox, Button, Table, Select, message, Modal, Tree, DatePicker, Popover, TreeSelect, Upload, Tooltip, Spin } from 'antd'
-import TreeNode from "../../../components/antd2/tree/TreeNode";
+import { Form, Input, Checkbox, Button, Table, message, Tree, DatePicker, Popover, Upload, Tooltip } from 'antd'
 import moment from 'moment'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -19,9 +18,13 @@ import Settings from '../../../utils/Settings';
 import { getLocalTime } from "../../../utils/MyUtil";
 import { upOrDown } from "../../../utils/MyUtil";
 import { getHyperMessageForJSON, isJsonString } from "../../../utils/HyperMediaUtils";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
+import { confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
+import Loading from "../../../components/xn/loading/Loading";
+import TreeSelect from "../../public/TreeSelect";
+import TreeNode from "../../../components/antd2/tree/TreeNode";
+const dateFormat = 'YYYY-MM-DD HH:mm:ss',
 
-const Option = Select.Option, confirm = Modal.confirm, dateFormat = 'YYYY-MM-DD HH:mm:ss',
 	FormItem = Form.Item;
 
 class FaqSettingCommon extends React.PureComponent {
@@ -110,7 +113,7 @@ class FaqSettingCommon extends React.PureComponent {
 						itemExistString = itemExist.join(","),
 						itemFailedString = itemFailed.join(",");
 
-					Modal.info({
+					info({
 						title: getLangTxt("import_tip"),
 						width: '320px',
 						iconType: 'exclamation-circle',
@@ -162,7 +165,7 @@ class FaqSettingCommon extends React.PureComponent {
 				}
 				else if(!res.success && res.result.code == 400)
 				{
-					Modal.error({
+					error({
 						title: getLangTxt("import_tip"),
 						width: '320px',
 						iconType: 'exclamation-circle',
@@ -173,7 +176,7 @@ class FaqSettingCommon extends React.PureComponent {
 				}
 				else
 				{
-					Modal.success({
+					success({
 						title: getLangTxt("import_tip"),
 						width: 320,
 						iconType: 'exclamation-circle',
@@ -630,7 +633,7 @@ class FaqSettingCommon extends React.PureComponent {
 				obj.groupId = editData.groupId;
 				obj.preParentId = editData.parentId;
                 obj.rank = editData.rank;
-                
+
 				if(changeGroup)
 				{
 					obj.parentId = parentId;
@@ -1062,7 +1065,7 @@ class FaqSettingCommon extends React.PureComponent {
 			return (
 				progress.right ?
 					<div style={{height: '100%', width: '100%', position: 'absolute', left: '0', top: '0'}}>
-                        <Spin style={{
+                        <Loading style={{
                             width: "100%",
                             height: "100%",
                             display: "flex",
@@ -1072,7 +1075,7 @@ class FaqSettingCommon extends React.PureComponent {
 					</div>
 					:
 					<div style={{position: 'absolute', top: '0', left: '0', width: '100%', height: '100%'}}>
-                        <Spin style={{
+                        <Loading style={{
                             width: "100%",
                             height: "100%",
                             display: "flex",
@@ -1118,7 +1121,7 @@ class FaqSettingCommon extends React.PureComponent {
 
 	savingErrorTips(msg, isGroup)
 	{
-		Modal.warning({
+		warning({
 			title: getLangTxt("err_tip"),
 			width: '320px',
 			iconType: 'exclamation-circle',
@@ -1273,6 +1276,7 @@ class FaqSettingCommon extends React.PureComponent {
 				faqnewlistparent.push(<TreeNode title={item.groupName} key={keyCount} value={item.groupId}
 				                                disabled={disabled}></TreeNode>);
 			});
+            faqnewlistparent.push(<TreeNode title={getLangTxt("noData3")} value=" "></TreeNode>)
 		}
 
 		//新建常见问题页渲染
@@ -1369,13 +1373,10 @@ class FaqSettingCommon extends React.PureComponent {
 						})(
 							<TreeSelect
 								style={{width: "100%"}}
-								dropdownStyle={{maxHeight: 300, overflowX: 'hidden', overflowY: 'auto'}}
 								onSelect={_this.choiceItemUpperGroup.bind(_this)}
-								treeDefaultExpandAll>
-								{
-									_this.loopUpperGroup(faqGroupData)
-								}
-							</TreeSelect>
+								treeDefaultExpandAll
+                                treeNode={_this.loopUpperGroup(faqGroupData)}
+                            />
 						)}
 					</FormItem>
 
@@ -1739,7 +1740,7 @@ class FaqSettingCommon extends React.PureComponent {
 					{companyType}
 				</div>
 
-				<NTModal visible={this.state.outputvisible} title={getLangTxt("import")} className="leadingInModel"
+				<Modal visible={this.state.outputvisible} title={getLangTxt("import")} className="leadingInModel"
 				         onCancel={this.handleClickOutputVisibleCancel.bind(this)}
 				         footer={[
 					         <Button key="back" style={{marginRight: "8px"}} type="ghost" size="large"
@@ -1755,11 +1756,11 @@ class FaqSettingCommon extends React.PureComponent {
 					<p>{getLangTxt("setting_import_note3")}</p>
 					<p>{getLangTxt("setting_import_note4")}</p>
 					<p>{getLangTxt("setting_import_note5")}</p>
-				</NTModal>
+				</Modal>
 
 				{
 					this.state.newfaq ?
-						<NTModal className="newfaq_alert_edit"
+						<Modal className="newfaq_alert_edit"
 						         visible={true}
 						         title={this.state.editItem ? getLangTxt("setting_faq_edit") : getLangTxt("setting_faq_add")}
 						         onCancel={this.handleClickNewFaqCancel.bind(this)}
@@ -1777,12 +1778,12 @@ class FaqSettingCommon extends React.PureComponent {
 									<ul className="newfaq_content">{faqNewList}</ul>
 								</Form>
 							</ScrollArea>
-						</NTModal> : null
+						</Modal> : null
 				}
 
 				{
 					this.state.newlist ?
-						<NTModal className="newfaq_alert_group" visible={true} title={this.state.newGroupName}
+						<Modal className="newfaq_alert_group" visible={true} title={this.state.newGroupName}
 						         onCancel={this.handleClickNewListCancel.bind(this)} footer={[
 							<Button key="back" type="ghost" size="large"
 							        onClick={this.handleClickNewListCancel.bind(this)}>{getLangTxt("cancel")}</Button>,
@@ -1825,22 +1826,17 @@ class FaqSettingCommon extends React.PureComponent {
 											})(
 												<TreeSelect
 													disabled={this.state.editGroup && editData.fastQuestionGroups && editData.fastQuestionGroups.length > 0}
-													dropdownStyle={{
-														maxHeight: 300, overflowX: 'hidden', overflowY: 'auto'
-													}}
 													size="large" style={{width: "100%"}}
 													onSelect={_this.choiceUpperGroup.bind(_this)}
 													treeDefaultExpandAll
-												>
-													{faqnewlistparent}
-													<TreeNode title={getLangTxt("noData3")} value=" "></TreeNode>
-												</TreeSelect>
+                                                    treeNode={faqnewlistparent}
+												/>
 											)
 										}
 									</FormItem>
 								</Form>
 							</ScrollArea>
-						</NTModal> : null
+						</Modal> : null
 				}
 			</div>
 		)

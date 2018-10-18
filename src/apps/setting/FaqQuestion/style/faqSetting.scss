@@ -244,9 +244,9 @@
     box-sizing: border-box;
     position: relative;
 }
-//.ant-modal-wrap {
-//    z-index: 10000;
-//}
+.ant-modal-wrap {
+    z-index: 1001;
+}
 
 .newfaq_alert_edit, .newfaq_alert_group{
     width: 4.6rem!important;

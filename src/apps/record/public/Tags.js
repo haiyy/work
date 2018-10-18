@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Modal, Popover } from 'antd';
+import { Tag, Popover } from 'antd';
 import {truncateToPop} from "../../../utils/StringUtils";
 
 class Tags extends React.PureComponent {

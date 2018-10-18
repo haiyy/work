@@ -1,12 +1,13 @@
 ﻿import React from 'react';
 import ReactDOM from 'react-dom';
-import { Steps, Button, Input, Modal, Form, Tooltip, Radio } from 'antd';
+import { Steps, Button, Input,  Form, Tooltip, Radio } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { makeUsers, editorCurstem, clearUserMsg } from './action/distribute';
 import Process from './Process';
 import './style/distributeType.scss';
 import { getLangTxt } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 let Step = Steps.Step,
 	FormItem = Form.Item,
@@ -83,7 +84,7 @@ class DistributeType extends React.PureComponent {
 			}
 		}
 
-		Modal.warning({
+		warning({
 			title: getLangTxt("setting_distribution"),
             iconType: 'exclamation-circle',
             className: 'warnTip',
@@ -239,7 +240,7 @@ class DistributeType extends React.PureComponent {
             rotatingItem = this.distributeData.find(item=>item.type === "rotating");
         if (typedata()[index].type === "random" && rotatingItem || typedata()[index].type === "rotating" && randomItem)
         {
-            Modal.info({
+            info({
                 title: getLangTxt("tip"),
                 width: '320px',
                 iconType: 'exclamation-circle',

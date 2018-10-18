@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Table, Tooltip, Modal } from 'antd';
+import { Button, Table, Tooltip } from 'antd';
 import {
 	getCompanyWeiBoList,
 	deleteWeiBoInfo
@@ -10,8 +10,8 @@ import WeiBoModel from "./WeiBoModel";
 import ScrollArea from 'react-scrollbar';
 import { formatTimestamp, getLangTxt, getProgressComp } from "../../../../utils/MyUtil";
 import { getAccountGroup } from "../../account/accountAction/sessionLabel";
-
-const confirm = Modal.confirm;
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
+//const confirm = Modal.confirm;
 
 class WeiboReadOnly extends React.Component {
 	

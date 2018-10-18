@@ -240,13 +240,6 @@ class AppSession {
 		GlobalEvtEmitter.emit(NtalkerEvent.CONSULT_RECEPTION, message);
 	}
 	
-	onNotifyNetWork(connectStatus, errorCode = -1)
-	{
-		let title = "网络", code = connectStatus;
-		
-		GlobalEvtEmitter.emit(NtalkerEvent.NETWORK_STATUS, {title, code});
-	}
-	
 	onNotifyGetDestroyConver(totalcount, pagenumbers, page, rp, customers)
 	{
 		GlobalEvtEmitter.emit(APPEvent.NOTIFY_GET_DESTROY_CONVER, {totalcount, pagenumbers, page, rp, customers});

@@ -36,7 +36,8 @@ import GlobalEvtEmitter from "../lib/utils/GlobalEvtEmitter";
 import { truncateToFit } from "./StringUtils";
 import Lang from "../im/i18n/Lang";
 import { name } from "../../package.json";
-import { Spin } from 'antd'
+import Loading from "../components/xn/loading/Loading";
+
 let _configProxy = null;
 
 export function configProxy()
@@ -45,7 +46,7 @@ export function configProxy()
 	{
 		_configProxy = Model.retrieveProxy(ConfigProxy.NAME)
 	}
-
+	
 	return _configProxy;
 }
 
@@ -68,13 +69,13 @@ export function getSource(key)
 	{
 		_userSourceProxy = Model.retrieveProxy(UserSourceProxy.NAME);
 	}
-
+	
 	let source = _userSourceProxy.getSourceItem(key);
 	if(!source)
 	{
 		source = _source;
 	}
-
+	
 	return source;
 }
 
@@ -82,11 +83,11 @@ export function getSourceUrl(userInfo)
 {
 	if(!userInfo || !userInfo.usertrail)
 		return "icon-input";
-
+	
 	let userTail = userInfo.usertrail,
 		deviceType = userTail.tml,
 		source = userTail.source;
-
+	
 	return getSourceForDevice(source, deviceType);
 }
 
@@ -94,9 +95,9 @@ export function getSourceForDevice(source, device)
 {
 	let deviceType = device,
 		userSource, url;
-
+	
 	deviceType = deviceType ? deviceType : "web";
-
+	
 	if(deviceType === DeviceType.PC || deviceType === DeviceType.WAP)
 	{
 		userSource = getSource(source);
@@ -105,7 +106,7 @@ export function getSourceForDevice(source, device)
 	{
 		userSource = getSource(DeviceType.getDevicetype(deviceType));
 	}
-
+	
 	if(userSource)
 	{
 		if(deviceType === DeviceType.PC)
@@ -116,16 +117,16 @@ export function getSourceForDevice(source, device)
 		{
 			url = userSource.wap_logo;
 		}
-
+		
 		if(!url)
 			return "icon-input";
-
+		
 		if(url.indexOf("http") >= 0)
 			return url;
-
+		
 		return ("icon-" + url) || "icon-input";
 	}
-
+	
 	return "icon-input";
 }
 
@@ -163,21 +164,21 @@ export function getWorkUrl(sourceUrl, guestUserInfo = null, chatData = null)
 {
 	if(!sourceUrl || sourceUrl.length < 0)
 		return "";
-
+	
 	let workUrl = sourceUrl;
-
+	
 	workUrl = replaceForWorkUrl(workUrl, kfParamsMap, loginUserProxy());
-
+	
 	if(guestUserInfo)
 	{
 		workUrl = replaceForWorkUrl(workUrl, guestParamsMap, guestUserInfo);
 	}
-
+	
 	if(chatData && chatData.chatDataVo)
 	{
 		workUrl = replaceForWorkUrl(workUrl, converParamsMap, chatData.chatDataVo);
 	}
-
+	
 	return workUrl;
 }
 
@@ -191,7 +192,7 @@ function replaceForWorkUrl(url, map, data)
 			url = url.replace(key, data[param]);
 		}
 	}
-
+	
 	return url;
 }
 
@@ -209,24 +210,24 @@ export function getFKWorkUrl(sourceUrl, userInfo, options = [])
 {
 	if(!sourceUrl || !userInfo)
 		return "";
-
+	
 	const {userId} = userInfo,
 		fkuserIdReplacer = "###USERID###";
-
+	
 	let workUrl = sourceUrl;
-
+	
 	if(workUrl.indexOf(fkuserIdReplacer) > -1)
 	{
 		workUrl = workUrl.replace(fkuserIdReplacer, userId);
 	}
-
+	
 	options.forEach(({replacer, content}) => {
 		if(replacer && workUrl.indexOf(replacer) > -1)
 		{
 			workUrl = workUrl.replace(replacer, content);
 		}
 	});
-
+	
 	return getWorkUrl(workUrl);
 }
 
@@ -268,20 +269,20 @@ export function shallowEqual(objA, objB, isAll = false, deep = -1)
 {
 	if(is(objA, objB))
 		return true;
-
+	
 	if(typeof objA !== 'object' || objA === null || typeof objB !== 'object' || objB === null)
 		return false;
-
+	
 	let keysA = Object.keys(objA),
 		keysB = Object.keys(objB);
-
+	
 	if(keysA.length !== keysB.length)
 		return false;
-
+	
 	let comparefn = (isAll && deep > 0) ? shallowEqual : is;
-
+	
 	deep--;
-
+	
 	// Test for A's keys different from B.
 	for(let i = 0; i < keysA.length; i++)
 	{
@@ -290,7 +291,7 @@ export function shallowEqual(objA, objB, isAll = false, deep = -1)
 			return false;
 		}
 	}
-
+	
 	return true;
 }
 
@@ -302,22 +303,23 @@ export function zeroFillTo2(number)
 /**
  * 毫秒数转化为hh:mm:ss >24小时显示超过24小时
  */
-export function getFormatTime(interval = 0,need = false)
+export function getFormatTime(interval = 0, need = false)
 {
 	interval = parseInt(interval / 1000);
 	if(!interval || interval == 0)
 	{
 		return need ? "" : "00:00:00";
 	}
-
-	if (interval <= 0) {
+	
+	if(interval <= 0)
+	{
 		return need ? "" : "00:00:00";
 	}
-
+	
 	let hours = Math.floor(interval / 3600),  //取得剩余小时数 60 * 60
 		minutes = parseInt(interval / 60) % 60,  //取得剩余分钟数
 		seconds = interval % 60;  //取得剩余秒数
-
+	
 	if(hours > 24)
 	{
 		return "超过24小时";
@@ -332,7 +334,7 @@ export function getFormatTime(interval = 0,need = false)
 		{
 			hours = "0" + hours;
 		}
-
+		
 		if(minutes == 0)
 		{
 			minutes = "00";
@@ -341,7 +343,7 @@ export function getFormatTime(interval = 0,need = false)
 		{
 			minutes = "0" + minutes;
 		}
-
+		
 		if(seconds == 0)
 		{
 			seconds = "00";
@@ -367,26 +369,26 @@ export function formatTimestamp(timestamp, isShowToday = false, noTime = false)
 {
 	if(!timestamp)
 		timestamp = new Date();
-
+	
 	if(typeof timestamp === "number")
 	{
 		timestamp = new Date(timestamp);
 	}
-
+	
 	if(!timestamp instanceof Date)
 		return;
-
+	
 	if(!timestamp.getFullYear)
 		return timestamp;
-
+	
 	let now = new Date(),
 		year = timestamp.getFullYear(),
 		month = timestamp.getMonth() + 1,
 		day = timestamp.getDate(),
-
+		
 		//判断是不是当天
 		notToday = (day != now.getDate() || month != (now.getMonth() + 1) || year != now.getFullYear());
-
+	
 	if(notToday || isShowToday)
 	{
 		let t = zeroFillTo2(timestamp.getHours()) + ":" + zeroFillTo2(timestamp.getMinutes()) + ":" + zeroFillTo2(timestamp.getSeconds())
@@ -395,7 +397,7 @@ export function formatTimestamp(timestamp, isShowToday = false, noTime = false)
 			//"YYYY-MM-DD"
 			return t;
 		}
-
+		
 		//"YYYY-MM-DD JJ:NN:SS"
 		return year + "-" + zeroFillTo2(month) + "-" + zeroFillTo2(day) + " " + t;
 	}
@@ -405,7 +407,7 @@ export function formatTimestamp(timestamp, isShowToday = false, noTime = false)
 		return zeroFillTo2(timestamp.getHours()) + ":" + zeroFillTo2(timestamp.getMinutes()) +
 			":" + zeroFillTo2(timestamp.getSeconds());
 	}
-
+	
 	return "";
 }
 
@@ -416,7 +418,7 @@ export function formatTime(interval, sep = false, omit = false)
 {
 	if(interval <= -1 || typeof interval !== "number")
 		return "";
-
+	
 	let days = Math.floor(interval / (3600 * 24)),
 		hours = Math.floor((interval - days * 3600 * 24) / 3600),  //取得剩余小时数 60 * 60
 		minutes = parseInt(interval / 60) % 60,  //取得剩余分钟数
@@ -425,7 +427,7 @@ export function formatTime(interval, sep = false, omit = false)
 		hsep = ":",
 		msep = ":",
 		ssep = "";
-
+	
 	if(days > 0)
 	{
 		if(sep)
@@ -437,7 +439,7 @@ export function formatTime(interval, sep = false, omit = false)
 		{
 			hsep = ""
 		}
-
+		
 		return zeroFillTo2(days) + dsep + zeroFillTo2(hours) + hsep;
 	}
 	else if(hours > 0)
@@ -452,7 +454,7 @@ export function formatTime(interval, sep = false, omit = false)
 		{
 			msep = ":"
 		}
-
+		
 		return zeroFillTo2(hours) + hsep + zeroFillTo2(minutes) + msep + zeroFillTo2(seconds) + ssep;
 	}
 	else
@@ -466,7 +468,7 @@ export function formatTime(interval, sep = false, omit = false)
 		{
 			ssep = "";
 		}
-
+		
 		if(omit)
 		{
 			if(minutes <= 0)
@@ -474,7 +476,7 @@ export function formatTime(interval, sep = false, omit = false)
 				return seconds + ssep;
 			}
 		}
-
+		
 		return zeroFillTo2(minutes) + msep + zeroFillTo2(seconds) + ssep;
 	}
 }
@@ -487,7 +489,7 @@ export function getFileSize(value)
 {
 	let mSize = Math.floor(value / (1024 * 1024)),
 		kbSize = Math.floor(value / 1024);
-
+	
 	if(mSize > 0)
 	{
 		return (value / (1024 * 1024)).toFixed(2) + " M";
@@ -504,30 +506,17 @@ export function getFileSize(value)
 
 export function formatTimes(value)
 {
-
 	let hours = parseInt((value % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
 		minutes = parseInt((value % (1000 * 60 * 60)) / (1000 * 60)),
 		seconds = parseInt((value % (1000 * 60)) / 1000),
-		times= "00" +" : " +"00" + " : " +"00";
-
-		if(value>0){
-
-		if(!hours || hours < 10){
-			hours="0"+hours;
-		}
-
-		if(!minutes || minutes < 10){
-			minutes="0"+minutes;
-		}
-
-		if(!seconds || seconds < 10){
-			seconds="0"+seconds;
-		}
-		times= hours +" : " +minutes + " : " +seconds
-
+		times = "00" + " : " + "00" + " : " + "00";
+	
+	if(value > 0)
+	{
+		times = zeroFillTo2(hours) + " : " + zeroFillTo2(minutes) + " : " + zeroFillTo2(seconds)
 	}
+	
 	return times;
-
 }
 
 /**
@@ -537,7 +526,7 @@ export function ntMd5(pwd)
 {
 	if(!pwd)
 		return "";
-
+	
 	return md5(pwd);
 }
 
@@ -574,65 +563,65 @@ export function createSentence(body, msgType, userInfo = null, translate = "")
 					sentence.messageBody = body;
 				}
 				break;
-
+			
 			case MessageType.MESSAGE_DOCUMENT_IMAGE:
 				sentence = new ImageChatSentence();
 				createImageOrFileSentence(sentence, body);
 				break;
-
+			
 			case MessageType.MESSAGE_DOCUMENT_AUDIO:
 				sentence = new AudioChatSentence();
 				sentence.deserialize(body);
 				break;
-
+			
 			case MessageType.MESSAGE_DOCUMENT_VIDEO:
 				sentence = new VideoChatSentence();
 				sentence.deserialize(body);
 				break;
-
+			
 			case MessageType.MESSAGE_DOCUMENT_FILE:
 				sentence = new FileTransChatSentence();
 				createImageOrFileSentence(sentence, body);
 				break;
-
+			
 			case MessageType.MESSAGE_DOCUMENT_HYPERMEDIA:
 				sentence = new HyperMediaChatSentence();
 				sentence.deserialize(body);
 				break;
-
+			
 			case MessageType.MESSAGE_DOCUMENT_SEPARATION:
 				sentence = new SeparationSentence();
 				sentence.deserialize(body);
 				break;
-
+			
 			case MessageType.MESSAGE_DOCUMENT_COMMAND:
 				sentence = new SystemSentence();
 				sentence.deserialize(body);
 				break;
-
+			
 			default:
 				return null;
-
+			
 		}
-
+		
 		if(!sentence.sentenceID)
 		{
 			sentence.sentenceID = createMessageId();
 			sentence.createTime = new Date().getTime() - serverTimeGap();
 		}
-
+		
 		if(userInfo)
 		{
 			sentence.userInfo = userInfo;
 		}
-
+		
 		return sentence;
 	}
 	catch(e)
 	{
 		log("createSentence stack: " + e.stack);
 	}
-
+	
 	return null;
 }
 
@@ -640,9 +629,9 @@ function createImageOrFileSentence(sentence, body)
 {
 	if(!body)
 		return;
-
+	
 	sentence.createTime = new Date().getTime() - serverTimeGap();
-
+	
 	if(body.file)
 	{
 		sentence.file = body.file;
@@ -663,7 +652,7 @@ function createImageOrFileSentence(sentence, body)
 	{
 		sentence.deserialize(body);
 	}
-
+	
 	if(body.loadData)
 	{
 		let loadData = body.loadData;
@@ -676,7 +665,7 @@ function createImageOrFileSentence(sentence, body)
 			sentence.imageUrl = loadData.url;
 			sentence.sourceUrl = loadData.sourceurl;
 		}
-
+		
 		sentence.size = loadData.size;
 		sentence.messageBody = loadData.oldfile;
 		sentence.extension = loadData.extension;
@@ -715,24 +704,24 @@ export function sendT2DEvent(data)
 export function getLoginCode()
 {
 	let loginCodeUrl = Settings.getLoginCodeUrl();
-
+	
 	log("getLoginCode getLoginCodeUrl = " + loginCodeUrl);
-
+	
 	return urlLoader(loginCodeUrl, {}, "application/json; charset=UTF-8", 1)
 	.then(({jsonResult}) => {
 		let {code, data} = jsonResult,
 			success = code === 200,
 			result = {success};
-
+		
 		log("getLoginCode getLoginCodeUrl = " + loginCodeUrl + ", success = " + success);
-
+		
 		if(success)
 		{
 			let loginUserProxy = Model.retrieveProxy(LoginUserProxy.NAME);
 			loginUserProxy.loginCode = data.code;
 			loginUserProxy.loginCodeKey = data.key;
 		}
-
+		
 		return Promise.resolve(result);
 	})
 }
@@ -749,12 +738,12 @@ export let UPLOAD_FILE_ACTION = "/file/all";
 export function upload(file, action = "/file/all", isBase64 = false)
 {
 	log(["upload file = ", JSON.stringify(file), ", action = " + action]);
-
+	
 	let formData = new FormData(),
 		uploadUrl = Settings.getUploadUrl() + action;
-
+	
 	formData.append("path", "/client");
-
+	
 	if(isBase64)
 	{
 		formData.append("base64String", file);
@@ -763,7 +752,7 @@ export function upload(file, action = "/file/all", isBase64 = false)
 	{
 		formData.append("file", file);
 	}
-
+	
 	return urlLoader(uploadUrl, {
 		body: formData,
 		method: "post"
@@ -775,25 +764,25 @@ export function uploadShortCut(dataUrl, chatData)
 	let tChatData = chatData,
 		id = createMessageId(),
 		name = id + ".png";
-
+	
 	if(tChatData && dataUrl)
 	{
 		tChatData.addSentenceToOutput(createSentence({
 			id, dataUrl, progress: 0, error: "", name
 		}, MessageType.MESSAGE_DOCUMENT_IMAGE));
-
+		
 		upload(dataUrl, UPLOAD_IMAGE_ACTION)
 		.then((res) => {
 			log(["uploadShortCut upload res = ", JSON.stringify(res)]);
-
+			
 			let jsonResult = res.jsonResult;
-
+			
 			if(!jsonResult)
 			{
 				//未知错误
 				return;
 			}
-
+			
 			tChatData.sendMessage(createSentence({
 				id, dataUrl, progress: 1, error: "", name, loadData: jsonResult
 			}, MessageType.MESSAGE_DOCUMENT_IMAGE));
@@ -813,18 +802,18 @@ export function uploadShortCut(dataUrl, chatData)
 export function callComponentMethod(componentName, methodName, params)
 {
 	let component = this.refs[componentName];
-
+	
 	if(component)
 	{
 		let realComponent = returnRealComponent(component);
-
+		
 		if(typeof realComponent[methodName] === "function")
 		{
 			realComponent[methodName](...params);
 			return true;
 		}
 	}
-
+	
 	return false;
 }
 
@@ -840,11 +829,11 @@ export function callComponentMethod(componentName, methodName, params)
 export function setProperty(componentName, propertyName, value)
 {
 	let component = this.refs[componentName];
-
+	
 	if(component)
 	{
 		let realComponent = returnRealComponent(component);
-
+		
 		realComponent[propertyName] = value;
 	}
 }
@@ -861,11 +850,11 @@ function returnRealComponent(component)
 		if(refs && refs["wrappedInstance"])
 		{
 			let realComponent = refs["wrappedInstance"];
-
+			
 			return realComponent ? realComponent : component;
 		}
 	}
-
+	
 	return component;
 }
 
@@ -881,14 +870,14 @@ export function getLoadData(url, body = null, method = "get", token = null, coun
 		if(!token && loginUserProxy().ntoken)
 			headers = {token: loginUserProxy().ntoken};
 	}
-
+	
 	if(token)
 	{
 		headers = token;
 	}
-
+	
 	log("getLoadData url = " + url);
-
+	
 	return urlLoader(url, {
 		method,
 		body,
@@ -897,7 +886,7 @@ export function getLoadData(url, body = null, method = "get", token = null, coun
 	.then((res) => {
 		let jsonResult = res.jsonResult,
 			result = jsonResult;
-
+		
 		if(jsonResult.code !== 200 && jsonResult.code !== undefined)  //=== undefined 对接完成去掉
 		{
 			if(count < 3)
@@ -908,11 +897,11 @@ export function getLoadData(url, body = null, method = "get", token = null, coun
 			{
 				result.error = 20033;
 				result.data = undefined;
-
+				
 				log("getLoadData url = " + url + ", 加载失败！！！");
 			}
 		}
-
+		
 		return Promise.resolve(result);
 	})
 }
@@ -926,13 +915,13 @@ export function playMsgAudio()
 {
 	if(VersionControl.SOUND_ON !== 1)
 		return;
-
+	
 	if(!audio)
 	{
 		audio = new Audio();
 		audio.src = require("../public/media/message.mp3");
 	}
-
+	
 	if(audio.paused)
 	{
 		audio.play();
@@ -947,17 +936,17 @@ export function forceOpenWindow()
 {
 	let ntalkerList = ntalkerListRedux(),
 		des = name;
-
+	
 	if(ntalkerList)
 	{
 		let count = ntalkerList.untreatedConverCount;
-
+		
 		if(count > 0)
 		{
 			des += "\n" + getLangTxt("notify", count)
 		}
 	}
-
+	
 	sendToMain(Channel.NEW_MESSAGE, VersionControl.FORCE_OPEN_WINDOW, des);
 }
 
@@ -970,13 +959,13 @@ export function forceOpenWindow()
 export function getMatrix(rotate, zoom)
 {
 	rotate = rotate % 360;
-
+	
 	let deg = rotate * Math.PI / 180,
 		cosVal = parseFloat(Math.cos(deg)
 		.toFixed(3)) * zoom,
 		sinVal = parseFloat(Math.sin(deg)
 		.toFixed(3)) * zoom;
-
+	
 	return "matrix(" + cosVal + "," + sinVal + "," + (-1 * sinVal) + "," + cosVal + ",0,0)";
 }
 
@@ -989,7 +978,7 @@ export function downloadByATag(src, fileName = "")
 	var $a = document.createElement('a');
 	$a.setAttribute("href", src);
 	$a.setAttribute("download", fileName);
-
+	
 	var evObj = document.createEvent('MouseEvents');
 	evObj.initMouseEvent("click", true, true, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
 	$a.dispatchEvent(evObj);
@@ -1033,17 +1022,18 @@ export function getProgressComp(progress)
 	{
 		return (
 			<div className="la-square-jelly-background">
-                <Spin style={{
+				<Loading style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",
 					justifyContent: "center",
-					alignItems: "center"
+					alignItems: "center",
+					//background: "#000"
 				}}/>
 			</div>
 		);
 	}
-
+	
 	return null;
 }
 
@@ -1071,7 +1061,7 @@ export function _getProgressComp(progress, className = "submitStatus")
 	{
 		return (
 			<div className="la-square-jelly-background">
-                <Spin style={{
+				<Loading style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",
@@ -1081,7 +1071,7 @@ export function _getProgressComp(progress, className = "submitStatus")
 			</div>
 		);
 	}
-
+	
 	return null;
 }
 
@@ -1091,12 +1081,12 @@ export function _getProgressComp(progress, className = "submitStatus")
 export function getDataFromResult(value)
 {
 	let data = value;
-
+	
 	if(value && value.hasOwnProperty("data"))
 	{
 		data = value.data;
 	}
-
+	
 	return Promise.resolve(data);
 }
 
@@ -1116,24 +1106,24 @@ export function by(propertyName)
 export function getModalContainer()
 {
 	return null;
-
+	
 	let modalContainers = document.getElementsByClassName('modalContainer');
-
+	
 	if(modalContainers && modalContainers.length > 0)
 	{
 		return modalContainers[0];
 	}
-
+	
 	let div = document.createElement("div"),
 		divattr = document.createAttribute("class");
-
+	
 	divattr.value = "modalContainer";
 	div.setAttributeNode(divattr);
-
+	
 	let _app = document.getElementsByClassName('AppCSS')[0];
-
+	
 	_app.appendChild(div);
-
+	
 	return div;
 }
 
@@ -1173,35 +1163,35 @@ export function notifyMe(count = 0)
 {
 	if(Type === 1)
 		return;
-
+	
 	if(notification)
 	{
 		notification.close();
 		notification.onclick = null;
 		notification = null;
 	}
-
+	
 	if(count <= 0)
 		return;
-
+	
 	// 先检查浏览器是否支持
 	if(!("Notification" in window))
 	{
 		log("This browser does not support desktop notification");
 	}
-
+	
 	// 检查用户是否同意接受通知
 	else if(Notification.permission === "granted")
 	{
 		// If it's okay let's create a notification
 		notification = sendNotify(count);
 	}
-
+	
 	// 否则我们需要向用户获取权限
 	else if(Notification.permission === 'denied' || Notification.permission === 'default')
 	{
 		log("Notification.permission = " + Notification.permission);
-
+		
 		Notification.requestPermission(function(permission) {
 			// 如果用户同意，就可以向他们发送通知
 			if(permission === "granted")
@@ -1218,7 +1208,7 @@ function sendNotify(count)
 {
 	notifications.forEach(value => value.close());
 	notifications = [];
-
+	
 	var notification = new Notification(getLangTxt("reminding"), {
 		body: getLangTxt("notify", count), icon: require("../public/images/log_128x128.png")
 	});
@@ -1227,9 +1217,9 @@ function sendNotify(count)
 		notification.onclick = null;
 		notification = null;
 	};
-
+	
 	notifications.push(notification);
-
+	
 	return notification;
 }
 
@@ -1242,17 +1232,17 @@ export function getFileTypeImgSrc(suffixName)
 {
 	if(!suffixName)
 		return require("../public/images/chatPage/unknown.png");
-
+	
 	if(suffixName === ".DOCX" || suffixName === ".DOC")
 	{
 		suffixName = ".DOCX";
 	}
-
+	
 	if(fileTypeArr.indexOf(suffixName) === -1)
 		return null;
-
+	
 	let fileUrl = require("../public/images/chatPage/" + suffixName.substring(1) + ".png");
-
+	
 	return fileUrl;
 }
 
@@ -1269,19 +1259,19 @@ export function getLocalTime(timestamp)
 {
 	if(!timestamp)
 		timestamp = new Date();
-
+	
 	if(typeof timestamp === "number")
 	{
 		timestamp = new Date(timestamp);
 	}
-
+	
 	if(!timestamp instanceof Date)
 		return "";
-
+	
 	let year = timestamp.getFullYear(),
 		month = timestamp.getMonth() + 1,
 		day = timestamp.getDate();
-
+	
 	//"YYYY-MM-DD"
 	return year + "-" + zeroFillTo2(month) + "-" + zeroFillTo2(day) + " " +
 		zeroFillTo2(timestamp.getHours()) + ":" + zeroFillTo2(timestamp.getMinutes());
@@ -1295,46 +1285,46 @@ export function upOrDown(dataList, checkedKeys, idName, type)
 {
 	if(checkedKeys.length < 1)
 		return;
-
+	
 	let changedItems = [];
-
+	
 	if(type > 0)
 	{
 		checkedKeys.reverse();
 	}
-
+	
 	for(var i = 0; i < checkedKeys.length; i++)
 	{
 		let index = dataList.findIndex(item => item[idName] === checkedKeys[i]);
-
+		
 		if(index === 0 && type === -1 || index === dataList.length - 1 && type === 1)
 			return;
-
+		
 		if(index <= -1 || index + type > dataList.length - 1 || index + type < 0)
 			return;
-
+		
 		let item = dataList[index],
 			target = dataList[index + type],
 			tempRank = item.rank,
 			tempIndex;
-
+		
 		if(item.index)
 		{
 			tempIndex = item.index;
 			item.index = target.index;
 			target.index = tempIndex;
 		}
-
+		
 		item.rank = target.rank;
 		target.rank = tempRank;
-
+		
 		dataList.sort((a, b) => a.rank - b.rank);
-
+		
 		if(!changedItems.includes(item))
 		{
 			changedItems.push(item);
 		}
-
+		
 		if(!changedItems.includes(target))
 		{
 			changedItems.push(target);
@@ -1370,7 +1360,7 @@ export function postMessage(message, targetOrigin = "*")
 	}
 	catch(e)
 	{
-
+	
 	}
 }
 
@@ -1380,7 +1370,7 @@ export function getATag(url, title, clsName = "")
 	{
 		return null;
 	}
-
+	
 	if(url)
 	{
 		title = title ? title : url;
@@ -1389,7 +1379,7 @@ export function getATag(url, title, clsName = "")
 	{
 		return <span>{truncateToFit(title, 8)}</span>;
 	}
-
+	
 	return <a className={clsName} href={url + ""} target="_blank">{truncateToFit(title, 8)}</a>
 }
 
@@ -1397,6 +1387,3 @@ export function getLangTxt(errorCode, ...substitutions)
 {
 	return Lang.getLangTxt(errorCode, ...substitutions);
 }
-
-export const get = (p, o) =>
-    p.reduce((xs, x) => (xs && xs[x]) ? xs[x] : null, o);

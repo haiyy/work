@@ -376,15 +376,6 @@ class ChatSession {
 		}
 	}
 	
-	onNotifyFilterSensitiveWords(sid, messageid, sensitiveWord, message, createdat)
-	{
-		let channel = this._chatChannelArray.get(sid);
-		if(channel)
-		{
-			channel.onNotifyFilterSensitiveWords(messageid, sensitiveWord, message, createdat);
-		}
-	}
-	
 	hasChannel(id)
 	{
 		return this._chatChannelArray.has(id);

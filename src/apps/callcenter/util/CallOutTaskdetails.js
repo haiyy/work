@@ -74,7 +74,7 @@ class CallOutTaskdetails extends React.Component {
 					if (getStatus() == PhoneStatus.DIS_CONNECT || !checkPhone(text) || status==1 || status==6) {
 						cursor = "not-allowed";
 					}
-					return (<div style={{minWidth:95}} className="aKeyToCall"><span>{text}</span><i onClick={this.callOut.bind(this, text, status)} className={cursor}/></div>);
+					return (<div style={{minWidth:95}} className="aKeyToCall"><span>{text}</span><i onClick={this.callOut.bind(this, text)} className={cursor}/></div>);
 				}
 			}, {
 				key: 'userName',
@@ -101,7 +101,7 @@ class CallOutTaskdetails extends React.Component {
 	}
 
     //一键外呼
-    callOut(phone, status, e) {
+    callOut(phone,e) {
 		e.stopPropagation();
 		if (getStatus() == PhoneStatus.DIS_CONNECT || !checkPhone(phone) || status==1 || status==6) return;
 		let {taskId} = this.props;

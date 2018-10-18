@@ -1,12 +1,12 @@
 import React from 'react';
-import {Form, Input, TreeSelect, Tree, Select} from 'antd';
-import NTModal from "../../../components/NTModal";
+import {Form, Input} from 'antd';
+import Modal from "../../../components/xn/modal/Modal";
 import { bglen } from "../../../utils/StringUtils";
-import TreeNode from "../../../components/antd2/tree/TreeNode";
 import { getLangTxt } from "../../../utils/MyUtil";
+import TreeSelect from "../../public/TreeSelect";
+import TreeNode from "../../../components/antd2/tree/TreeNode";
 
-const FormItem = Form.Item,
-	Option = Select.Option;
+const FormItem = Form.Item;
 
 class NewSourseType extends React.PureComponent {
 
@@ -68,23 +68,26 @@ class NewSourseType extends React.PureComponent {
         {
             item.disabled = item.source_type_id === editSorceId;
              return (
-                <TreeNode key={item.source_type_id} label={item.typename} value={item.source_type_id.toString()} title={<div>{item.typename}</div>} disabled={item.disabled}>
+                <TreeNode key={item.source_type_id} label={item.typename} value={item.source_type_id.toString()} title={item.typename} disabled={item.disabled}>
                     {item.children ? this._createTreeNodes(item.children, editSorceId) : null}
                 </TreeNode>
             );
         });
     };
 
-    render() {
+    render()
+    {
         const {getFieldDecorator} = this.props.form, newTypeName = this.props.newTypeName != getLangTxt("setting_source_add_type"),
             formItemLayout = {
                 labelCol: {span: 6},
                 wrapperCol: {span: 14}
             }, {editorData = {}, visitorTreeData=[]} = this.props,
-            currentGroup = this.props.selectedKey[0] || "";
+            currentGroup = this.props.selectedKey[0] || "",
+            treeNodes = this._createTreeNodes(visitorTreeData,editorData && newTypeName && editorData.source_type_id),
+            treeNodesAndEmpty = treeNodes.concat(<TreeNode value="0" title={<div>空</div>}/>);
 
         return (
-            <NTModal className='newsourses-type' title={this.props.newTypeName} visible={true} okText={getLangTxt("save")}
+            <Modal className='newsourses-type' title={this.props.newTypeName} visible={true} okText={getLangTxt("save")}
                 onOk={this.typeOk.bind(this)} onCancel={this.props.changeNewType.bind(this)}>
                 <div style={{marginTop:'14px'}}>
                     <Form horizontal>
@@ -103,13 +106,9 @@ class NewSourseType extends React.PureComponent {
                                     initialValue: editorData && newTypeName ? editorData.pid.toString() : currentGroup && currentGroup
                                 })(
                                 <TreeSelect style={{ width: "100%" }}
-                                    dropdownStyle={{ maxHeight: 400, overflowY: 'auto',overflowX: 'hidden' }}
-                                    onChange={this._getPid.bind(this)}>
-                                    {
-                                        this._createTreeNodes(visitorTreeData,editorData && newTypeName && editorData.source_type_id)
-                                    }
-                                    <TreeNode value="0" title={<div>空</div>}/>
-                                </TreeSelect>
+                                    onChange={this._getPid.bind(this)}
+                                    treeNode={treeNodesAndEmpty}
+                                />
                             )
                             }
                         </FormItem>
@@ -121,7 +120,7 @@ class NewSourseType extends React.PureComponent {
                         </FormItem>
                     </Form>
                 </div>
-            </NTModal>
+            </Modal>
         )
     }
 }

@@ -1,8 +1,9 @@
 import React from 'react';
-import { Modal, TreeSelect,Row, Col } from 'antd';
+import {  TreeSelect,Row, Col } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { getGroupNameBinding,getGroupCustomerUnbindList } from "../apps/callcenter/redux/reducers/bindOnAccoutReducer"
+import Modal from "../components/xn/modal/Modal";
 
 const TreeNode = TreeSelect.TreeNode;
 

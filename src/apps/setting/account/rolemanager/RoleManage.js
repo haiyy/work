@@ -1,5 +1,5 @@
 import React from 'react'
-import { Table, Button, Input, Switch, Modal, Popover, Tooltip } from 'antd'
+import { Table, Button, Input, Switch,  Popover, Tooltip } from 'antd'
 import { bindActionCreators } from 'redux'
 import ScrollArea from 'react-scrollbar'
 import { sendNewRoleManger, sendEditorRoleManger, deleteRoleManger, getRoleManager, sendEditorRoleMangerStatus } from './roleAction/roleManger'
@@ -8,8 +8,7 @@ import LoadProgressConst from "../../../../model/vo/LoadProgressConst";
 import './style/rolemanager.scss'
 import { getLangTxt, getProgressComp } from "../../../../utils/MyUtil";
 import { truncateToPop } from "../../../../utils/StringUtils";
-
-const confirm = Modal.confirm;
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
 
 class RoleManage extends React.PureComponent {
 
@@ -88,7 +87,7 @@ class RoleManage extends React.PureComponent {
 
 	savingErrorTips(msg)
 	{
-		Modal.warning({
+		warning({
 			title: getLangTxt("err_tip"),
 			width: '320px',
 			iconType: 'exclamation-circle',

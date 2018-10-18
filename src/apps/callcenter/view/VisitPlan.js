@@ -2,7 +2,7 @@ import React from "react"
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { getVisilPlanList, operationVisilPlanList, getTimesVisilPlanList, updateProgress, updateDate } from "../redux/reducers/visitPlanReducer";
-import { Button, Modal, Icon ,Tooltip} from 'antd';
+import { Button,  Icon ,Tooltip} from 'antd';
 import LoadProgressConst from "../../../model/vo/LoadProgressConst"
 import { ReFresh } from "../../../components/ReFresh";
 import DatePickerComponent from "../../record/public/DatePickerComponent"
@@ -17,8 +17,9 @@ import { PhoneStatus } from "../lib/Xn.PhoneCall";
 import { getTableTdContent } from "../../../utils/ComponentUtils";
 import TelephonyServiceRecord from "./telephenyScreen/TelephonyServiceRecord";
 import {truncateToPop, checkPhone} from "../../../utils/StringUtils";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-const confirm = Modal.confirm;
+//const confirm = Modal.confirm;
 
 class VisitPlan extends React.Component {
 
@@ -160,7 +161,7 @@ class VisitPlan extends React.Component {
 		const {progress, msg} = this.props;
 		if(progress == LoadProgressConst.SAVING_FAILED)
 		{
-			Modal.error({
+			error({
 				title: '提示',
 				content: msg,
 				okText: '确定'
@@ -169,7 +170,7 @@ class VisitPlan extends React.Component {
 		}
 		if(progress == LoadProgressConst.SAVING_SUCCESS)
 		{
-			Modal.success({
+			success({
 				title: '提示',
 				content: msg,
 				okText: '确定'

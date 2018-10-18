@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button } from 'antd';
 import { downloadByATag, getLangTxt } from "../utils/MyUtil";
+import Button from "./xn/Button";
 
 class ExportComponent extends React.PureComponent {
 	constructor(props)
@@ -15,14 +15,12 @@ class ExportComponent extends React.PureComponent {
 	
 	render()
 	{
-		let {url, clsName = "",isexportAll} = this.props;
+		let {url, clsName = "", isexportAll} = this.props;
 		
 		return (
 			<Button type="primary" className={clsName} onClick={this.handleExport.bind(this, url)}>
-				{isexportAll ?
-					getLangTxt("exportall")
-					
-				: getLangTxt("export")
+				{
+					isexportAll ? getLangTxt("exportall") : getLangTxt("export")
 				}
 			</Button>
 		);

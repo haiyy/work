@@ -237,7 +237,6 @@ class NumberItem extends React.PureComponent {
 	                                            getPopupContainer={() => document.getElementsByClassName('createRoleScroll')[0]}
 	                                            disabled={item.expression == null || item.expression == "="}
 	                                            dropdownStyle={{maxHeight: 300, overflow: 'auto'}}
-                                                dropdownClassName="limitGroupSelectDropDown"
 	                                            onChange={this.handleChange.bind(this, item)}
 	                                            loadData={this.getAccountListData.bind(this)}
 	                                >

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Modal, Popover } from 'antd';
+import { Tabs,  Popover } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import '../../../../public/styles/chatpage/asideNav.scss';
@@ -14,15 +14,13 @@ import HistoryList from "../../../record/consult/HistoryList";
 import { bglen, substr } from "../../../../utils/StringUtils";
 import NTIFrame from "../../../../components/NTIFrame";
 import { getWorkUrl, reoperation } from "../../../../utils/MyUtil";
-import RobotAssist from "./RobotAssist";
 
 const erp = "erp",
 	crm = "crm",
 	productinfo = "productinfo",
 	commonwords = "commonwords",
 	chatnotes = "chatnotes",
-	usertrail = "usertrail",
-    robotassist = "robotassist";
+	usertrail = "usertrail";
 
 const TabPane = Tabs.TabPane;
 
@@ -97,9 +95,6 @@ class AsideNav extends React.PureComponent {
 			case usertrail:
 				let {userId = ""} = guestInfo;
 				return <Trajectory ref="usertrail" ntid={userId}/>;
-
-            case robotassist:
-				return <RobotAssist chatDataVo={chatDataVo}/>;
 
 			default:
 				let url = getWorkUrl(data.url, guestInfo, chatData && chatData.chatDataVo),

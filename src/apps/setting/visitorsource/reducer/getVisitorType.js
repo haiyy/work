@@ -231,6 +231,7 @@ export function getVisitor(state = {}, action)
 			}
 		}) : null;
 	};
+
 	switch(action.type)
 	{
 		case GET_VISITOR:

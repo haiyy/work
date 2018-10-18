@@ -1,5 +1,5 @@
 import React from "react";
-import { Checkbox, Button, TimePicker, Input, Table, Modal, Icon, message } from 'antd';
+import { Checkbox, Button, TimePicker, Input, Table, Icon, message } from 'antd';
 import moment from "moment";
 import NTPureComponent from "../../../components/NTPureComponent";
 import { addReceptionItem, delReceptionItem, editReceptionItem } from "./reducer/receptionTimeReducer";
@@ -7,10 +7,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { stringLen } from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const CheckboxGroup = Checkbox.Group,
-	format = "HH:mm",
-	confirm = Modal.confirm;
+	format = "HH:mm";
+	//confirm = Modal.confirm;
 
 class ReceptionTimeTable extends NTPureComponent {
 	constructor(props)
@@ -183,6 +184,8 @@ class ReceptionTimeTable extends NTPureComponent {
 	render()
 	{
 		let {itemList, disabled} = this.props;
+		
+		console.log("ReceptionTimeTable render itemList = ", itemList);
 		
 		return (
 			<div>

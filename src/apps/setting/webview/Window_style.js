@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Radio } from 'antd';
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import { getLangTxt } from "../../../utils/MyUtil";
 
 const RadioGroup = Radio.Group;
@@ -99,12 +99,12 @@ class Window_style extends Component {
 					}
 				</FormItem>
 
-				<NTModal visible={this.state.isOpen} footer={null} onCancel={this.handleCancel.bind(this)}
+				<Modal visible={this.state.isOpen} footer={null} onCancel={this.handleCancel.bind(this)}
 				       closable={false} width={1020} wrapClassName="windowStyle">
 					<img alt="example" style={{width: '100%'}}
 					     src={this._getImgUrl(previewImage +  "-1")}/>
 					<i onClick={this.handleCancel.bind(this)} className="icon-guanbi1 iconfont cancelView"/>
-				</NTModal>
+				</Modal>
 			</div>
 		)
 	}

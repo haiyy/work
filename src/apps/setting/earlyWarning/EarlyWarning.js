@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Radio, Input, Button, Table, InputNumber, Modal, message } from 'antd';
+import { Switch, Radio, Input, Button, Table, InputNumber, message } from 'antd';
 import './style/earlyWarning.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -7,8 +7,8 @@ import { getEarlyWarningParams, setEarlyWarningParams, clearErrorProgress } from
 import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import ReFresh from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
 import { truncateToPop } from "../../../utils/StringUtils";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const RadioGroup = Radio.Group;
 
@@ -177,7 +177,7 @@ class EarlyWarning extends React.PureComponent {
         if(this.modal)
             return;
 
-        this.modal = Modal.warning({
+        this.modal = warning({
             title: getLangTxt("err_tip"),
             iconType: 'exclamation-circle',
             className: 'errorTip',
@@ -464,8 +464,10 @@ class EarlyWarning extends React.PureComponent {
                         /*<Input className={keyWordCls} value={keyWord} onChange={this.getKeyWordValue.bind(this, "keywordValue")}/>,*/
                         <span className="keyWordShow">{ellipsisVal && ellipsisVal.content || keyWord}</span>,
                         keyWord ?
-                            <i className=" iconfont icon-tianjia1 addKeyWordIcon"
-                                onClick={this.setKeyWordModal.bind(this)}/>
+                            <i className="common-iconfont icon-003tianjia"
+                                id = "addKeyWord"
+                                onClick={this.setKeyWordModal.bind(this)}
+                                style={{position: "absolute",top:"8px",left:"115px"}}/>
                             : <Button type="primary" onClick={this.setKeyWordModal.bind(this)}>{getLangTxt("setting_early_add_keywords")}</Button>
                     ];
                     break;
@@ -496,14 +498,14 @@ class EarlyWarning extends React.PureComponent {
                 <div className="company-footer">
                     <Button className="primary" type="primary" onClick={this.handleSubmit.bind(this)}>{getLangTxt("sure")}</Button>
                 </div>
-                <NTModal visible={isShowKeyModal} className="earlyWarinitKeyWordModal modalCommonStyle" title={getLangTxt("setting_early_add_keywords")}
+                <Modal visible={isShowKeyModal} className="earlyWarinitKeyWordModal modalCommonStyle" title={getLangTxt("setting_early_add_keywords")}
                     onCancel={this.setKeyWordModal.bind(this)}
                     onOk={this.setKeyWordVal.bind(this)}>
                     <Input type="textarea" className={keyWordCls} defaultValue={keyWord}
                         onChange={this.getKeyWordValue.bind(this, "keywordValue")}/>
                     <p className="attentionOne">{getLangTxt("setting_early_note4")}</p>
                     <p>{getLangTxt("setting_early_note5")}</p>
-                </NTModal>
+                </Modal>
                 {
                     _getProgressComp(this.progress)
                 }

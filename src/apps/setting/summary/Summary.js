@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Modal, Spin } from 'antd';
+import { Form } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { getSummaryAll, getSummaryAllItems, addSummaryType, editSummaryType, editSummaryTypeRank, removeSummaryType, getSummaryLeaf, isSetCommonOk, clearSetCommonMsg, addSummaryLeaf, editSummaryLeaf, removeSummaryLeaf, getSummaryLeafSearchData } from './action/summarySetting';
@@ -12,6 +12,8 @@ import './style/summary.scss';
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import { getLangTxt } from "../../../utils/MyUtil";
+import Loading from "../../../components/xn/loading/Loading";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class Summary extends React.PureComponent {
 
@@ -158,7 +160,7 @@ class Summary extends React.PureComponent {
 		{
 			return (
 				<div style={{height: '100%', width: '100%', position: 'absolute', top: "0", left: "0"}}>
-                    <Spin style={{
+                    <Loading style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",
@@ -198,7 +200,7 @@ class Summary extends React.PureComponent {
 
 	savingErrorTips(msg, isGroup)
 	{
-		Modal.warning({
+		warning({
 			title: getLangTxt("err_tip"),
 			width: '320px',
 			iconType: 'exclamation-circle',
@@ -213,7 +215,7 @@ class Summary extends React.PureComponent {
 
 	savingItemErrorTips = (msg) => {
 		let {selectedSummaryType, currentListPage = 1} = this.state;
-		Modal.warning({
+		warning({
 			title: getLangTxt("err_tip"),
 			width: '320px',
 			iconType: 'exclamation-circle',

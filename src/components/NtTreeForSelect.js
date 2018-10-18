@@ -1,8 +1,7 @@
 import React from 'react';
-import { TreeSelect } from 'antd';
 import { omit } from "../utils/MyUtil";
-
-const TreeNode = TreeSelect.TreeNode;
+import TreeSelect from "../apps/public/TreeSelect";
+import TreeNode from "./antd2/tree/TreeNode";
 
 /**
  * example:
@@ -344,16 +343,12 @@ class NtTreeForSelect extends React.PureComponent {
 
 		return (
 			<TreeSelect value={checkedKeys} multiple treeCheckable allowClear
-			            dropdownStyle={{maxHeight: 300, overflow: 'auto'}}
 			            onChange={this.onChange.bind(this)}
 			            loadData={this.onExpand.bind(this)}
 			            {...omit(this.props, ["groupInfo", "itemInfo", "containGroupKeys", "treeData"])}
 			            getPopupContainer={() => document.getElementsByClassName(popupContainer)[0]}
-			>
-				{
-					treeNodesComp
-				}
-			</TreeSelect>
+                        treeNode={treeNodesComp}
+			/>
 		);
 	}
 }

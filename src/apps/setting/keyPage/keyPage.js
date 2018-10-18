@@ -1,6 +1,6 @@
 import React from 'react'
 import './style/essentialPages.scss'
-import { Table, Button, Modal, Form, Input, message, Tooltip, Popover } from 'antd';
+import { Table, Button,  Form, Input, message, Tooltip, Popover } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -8,11 +8,11 @@ import { fetchRules, delKeyPage, editKeyPage, addKeyPage } from './action/essent
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
 import {truncateToPop} from "../../../utils/StringUtils";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const FormItem = Form.Item;
-const confirm = Modal.confirm;
+//const confirm = Modal.confirm;
 let keylevel;
 class KeyPage extends React.Component {
 
@@ -350,7 +350,7 @@ class KeyPage extends React.Component {
 
     savingErrorTips(errorMsg)
     {
-        Modal.info({
+        info({
             title: getLangTxt("err_tip"),
             width: '320px',
             iconType: 'exclamation-circle',
@@ -362,7 +362,6 @@ class KeyPage extends React.Component {
             }
         });
     }
-
     //关键页面列表渲染
     columns = [
         {
@@ -413,13 +412,13 @@ class KeyPage extends React.Component {
                 {
                     getProgressComp(progress)
                 }
-				<NTModal title={getLangTxt("setting_keypage_add")} visible={this.state.isAddKeyPageShow} onCancel={this.handleCancel.bind(this)}
+				<Modal title={getLangTxt("setting_keypage_add")} visible={this.state.isAddKeyPageShow} onCancel={this.handleCancel.bind(this)}
 				       wrapClassName="essentialAdd" width={520} footer='' className="essentialAddModal">
 					{
 						this.state.isAddKeyPageShow ? this.getNewPageComponent() : " "
 					}
-				</NTModal>
-				<NTModal title={getLangTxt("setting_keypage_test")} visible={this.state.isTestUrlRegShow}
+				</Modal>
+				<Modal title={getLangTxt("setting_keypage_test")} visible={this.state.isTestUrlRegShow}
 				       onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}
 				       wrapClassName="test" width={520} okText={getLangTxt("setting_keypage_test")} className="keyPageTestModal">
 					<Form >
@@ -435,7 +434,7 @@ class KeyPage extends React.Component {
                         <i className={"iconfont "+ icon} style={{ color: color, fontSize: "15px", paddingRight: "12px" }}/>
                         {testResult}
                     </span>
-				</NTModal>
+				</Modal>
 			</div>
 		)
 	}

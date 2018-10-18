@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TreeSelect, Form } from 'antd';
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import { getLangTxt } from "../../../utils/MyUtil";
 
 const TreeNode = TreeSelect.TreeNode,
@@ -69,7 +69,7 @@ class MigrateModalComp extends Component {
         let {accountGroupList = []} = this.props,
             formItemLayout = {labelCol: {span: 4}, wrapperCol: {span: 8}};
         return (
-            <NTModal title={getLangTxt("setting_account_multiple_move")} visible={true} width={570} okText={getLangTxt("save")} cancelText={getLangTxt("cancel")}
+            <Modal title={getLangTxt("setting_account_multiple_move")} visible={true} width={570} okText={getLangTxt("save")} cancelText={getLangTxt("cancel")}
                 wrapClassName="migrateModal"
                 onCancel={this.handleMigrateCancel.bind(this)}
                 onOk={this.handleMigrateOk.bind(this)}>
@@ -93,7 +93,7 @@ class MigrateModalComp extends Component {
                         }
                     </FormItem>
                 </Form>
-            </NTModal>
+            </Modal>
 		)
 	}
 }

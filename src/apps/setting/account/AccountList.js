@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button, Modal, Tabs, Popover, Form, Select, Input, Tooltip, message, Spin } from 'antd';
+import { Table, Button,Tabs, Popover, Form, Select, Input, Tooltip, message } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -12,12 +12,13 @@ import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import { bglen } from "../../../utils/StringUtils"
 import MigrateModalComp from "./MigrateModalComp";
-import NTModal from "../../../components/NTModal";
 import { truncateToPop } from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
+import Loading from "../../../components/xn/loading/Loading";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const TabPane = Tabs.TabPane,
-	confirm = Modal.confirm,
+	//confirm = Modal.confirm,
 	FormItem = Form.Item,
 	Option = Select.Option;
 
@@ -174,7 +175,7 @@ class AccountList extends React.PureComponent {
 			{
 				return (
 					<div className="accountListProgress">
-                        <Spin style={{
+                        <Loading style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",
@@ -191,7 +192,7 @@ class AccountList extends React.PureComponent {
 			}
 			else if(progress.right === LoadProgressConst.UNDELETED)
 			{//不可删除账户
-				Modal.warning({
+				warning({
 					title: getLangTxt("err_tip"),
 					width: '320px',
 					iconType: 'exclamation-circle',
@@ -226,7 +227,7 @@ class AccountList extends React.PureComponent {
 					errorMsg = getLangTxt("setting_account_note9");
 				}
 				this.reFreshFn(obj);
-				Modal.warning({
+				warning({
 					title: errorTitle,
 					content: errorMsg,
 					iconType: 'exclamation-circle',
@@ -373,7 +374,7 @@ class AccountList extends React.PureComponent {
 	{
 		let {selectedRowKeys = []} = this.state;
 		if(selectedRowKeys.length > 0)
-			Modal.confirm({
+			confirm({
 				title: getLangTxt("del_tip"),
 				width: '320px',
 				iconType: 'exclamation-circle',
@@ -576,7 +577,7 @@ class AccountList extends React.PureComponent {
 					</ScrollArea>
 					{
 						this.state.details ?
-							<NTModal title={getLangTxt("setting_account_check")}
+							<Modal title={getLangTxt("setting_account_check")}
 							         visible={true}
 							         wrapClassName="details"
 							         width={600}
@@ -585,11 +586,11 @@ class AccountList extends React.PureComponent {
 							         onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}
 							>
 								<AccountInfo user={this.state.record}/>
-							</NTModal> : null
+							</Modal> : null
 					}
 					{
 						this.state.permissions ?
-							<NTModal title={getLangTxt("setting_account_authority")}
+							<Modal title={getLangTxt("setting_account_authority")}
 							         visible={true}
 							         wrapClassName="permissions"
 							         width={723}
@@ -608,7 +609,7 @@ class AccountList extends React.PureComponent {
 									<TabPane tab={getLangTxt("setting_account_kf1")} key="2">Content of Tab Pane
 										2</TabPane>
 								</Tabs>
-							</NTModal> : null
+							</Modal> : null
 					}
 
 					{
@@ -626,7 +627,7 @@ class AccountList extends React.PureComponent {
 
 					{
 						this.state.changeGroup ?
-							<NTModal title={getLangTxt("setting_account_edit")} visible={true} width={723}
+							<Modal title={getLangTxt("setting_account_edit")} visible={true} width={723}
 							         okText={getLangTxt("save")} cancelText={getLangTxt("cancel")}
 							         wrapClassName="accountRight" style={{top: 150}}
 							         onCancel={this.handleCancel.bind(this)}
@@ -635,7 +636,7 @@ class AccountList extends React.PureComponent {
 									<EditorAccount link={this.state.link} changeState={this.changeState.bind(this)}
 									               title={this.state.name}/>
 								</div>
-							</NTModal> : null
+							</Modal> : null
 					}
 
 					{

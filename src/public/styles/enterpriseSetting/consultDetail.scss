@@ -201,30 +201,6 @@
             font-size: 18px;
         }
     }
-      .summaryDetailComp {
-          position: relative;
-          padding: 7px 40px 7px 30px;
-            .summaryContentCls {
-                width: calc(100% - 80px);
-                display: inline-block;
-                vertical-align: top;
-                margin-top: 4px;
-            }
-          .isExpandSummaryBtn {
-              position: absolute;
-              right: 12px;
-              top: 12px;
-              cursor: pointer;
-              color: #0674d6;
-          }
-      }
-      .expandStatus {
-
-      }
-      .hideLineStatus {
-          height: 32px;
-          overflow: hidden;
-      }
     .actionStrItem {
       padding: 10px;
       .actionStrIcon {

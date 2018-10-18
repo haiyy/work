@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Form, Input, TreeSelect, message, Modal } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import {
 	setWeiBoInfo,
 	getWeiboAccessInfo,
@@ -10,12 +10,14 @@ import {
 import { bindActionCreators } from 'redux';
 import copy from 'copy-to-clipboard';
 import ScrollArea from 'react-scrollbar';
-import { bglen } from "../../../../utils/StringUtils";
 import { getLangTxt } from "../../../../utils/MyUtil";
+import TreeSelect from "../../../public/TreeSelect";
+import TreeNode from "../../../../components/antd2/tree/TreeNode";
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
 
-const FormItem = Form.Item,
-	confirm = Modal.confirm,
-	TreeNode = TreeSelect.TreeNode;
+const FormItem = Form.Item;
+	//confirm = Modal.confirm,
+	//TreeNode = TreeSelect.TreeNode;
 
 class WeiBoModel extends React.Component {
 
@@ -235,13 +237,9 @@ class WeiBoModel extends React.Component {
 									initialValue: groupid ? groupid : undefined,
 									rules: [{required: true}]
 								})(
-									<TreeSelect placeholder={getLangTxt("请选择微博客服组")} dropdownStyle={{
-										maxHeight: 230, overflowX: 'hidden', overflowY: 'auto'
-									}}>
-										{
-											this._getWeiboGroupTreeNode(groupData)
-										}
-									</TreeSelect>
+									<TreeSelect placeholder={getLangTxt("请选择微博客服组")}
+                                        treeNode={this._getWeiboGroupTreeNode(groupData)}
+                                    />
 								)
 							}
 						</FormItem>

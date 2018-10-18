@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getRoleMangerLimitData, sendNewRoleManger, sendEditorRoleManger, clearRoleErrorProgress } from '../roleAction/roleManger'
 import { bglen, getHelp, truncateToPop } from "../../../../../utils/StringUtils";
-import { Form, Button, Radio, Input, Checkbox, Popover, Modal } from 'antd';
+import { Form, Button, Radio, Input, Checkbox, Popover } from 'antd';
 import '../style/createRole.scss'
 import { getAccountList, getAccountGroup } from "../../../../record/redux/consultReducer";
 import { getAccountGroupList } from "../../accountAction/sessionLabel";
@@ -14,6 +14,7 @@ import {getShopGroup} from "../../../shopAccount/reducer/shopAccountReducer";
 import {getProgressComp} from "../../../../../utils/MyUtil";
 import LoadProgressConst from "../../../../../model/vo/LoadProgressConst";
 import "../../style/CreateRoleComp.scss";
+import Modal,{ confirm, info, error, success, warning } from "../../../../../components/xn/modal/Modal";
 
 const FormItem = Form.Item, RadioGroup = Radio.Group;
 
@@ -488,7 +489,7 @@ class CreateRoleComp extends React.PureComponent {
 
     savingErrorTips(msg)
     {
-        Modal.warning({
+        warning({
             title: getLangTxt("err_tip"),
             width: '320px',
             iconType: 'exclamation-circle',

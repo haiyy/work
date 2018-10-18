@@ -8,9 +8,9 @@ import cloneDeep from "lodash.clonedeep";
 import { urlLoader } from "../../../../lib/utils/cFetch";
 import Settings from "../../../../utils/Settings";
 import { getDataFromResult, getLangTxt, token } from "../../../../utils/MyUtil";
-import NTModal from "../../../../components/NTModal";
 import { App } from "../../../App";
 import { bglen, substr } from "../../../../utils/StringUtils";
+import Modal from "../../../../components/xn/modal/Modal";
 
 class AsideNavSetting extends React.PureComponent {
 	
@@ -176,7 +176,7 @@ class AsideNavSetting extends React.PureComponent {
 		let styleRight = (Type === 1 && !App.isMaximizable) ? {right: '6px'} : {right: 0};
 		
 		return (
-			<NTModal wrapClassName="tabManage" style={styleRight} width={457}
+			<Modal wrapClassName="tabManage" style={styleRight} width={457}
 			         title={getLangTxt("rightpage_tab_manager")} visible
 			         footer={[
 				         <Button key="back" onClick={this.props.onCancel}>{getLangTxt("cancel")}</Button>,
@@ -188,7 +188,7 @@ class AsideNavSetting extends React.PureComponent {
 				<div className="asideSetting">
 					<Table pagination={false} columns={this.columns} dataSource={this.chatRightTabs}/>
 				</div>
-			</NTModal>
+			</Modal>
 		);
 	}
 	

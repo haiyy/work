@@ -5,7 +5,8 @@ import {customerService} from '../redux/customerServiceReducer'
 import {getSelectColumns} from '../redux/selectColumnsReducer'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import Loading from './Loading'
+//import Loading from './Loading'
+import Loading from "../../../components/xn/loading/Loading"
 import {getReportId} from './ExportTable'
 import ScrollArea from 'react-scrollbar'
 import LoadProgressConst from "../../../model/vo/LoadProgressConst"

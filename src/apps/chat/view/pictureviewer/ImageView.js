@@ -76,16 +76,18 @@ class ImageView extends React.PureComponent{
 
 	_zoomIn()
 	{
-		this.setState({
-			zoom: this.state.zoom * 1.25
-		});
+        let {zoom} = this.state;
+
+        if (zoom <= 40)
+		    this.setState({ zoom: this.state.zoom * 1.25});
 	}
 
 	_zoomOut()
 	{
-		this.setState({
-			zoom: this.state.zoom * 0.8
-		});
+        let {zoom} = this.state;
+
+        if (zoom >= 0.0625)
+		    this.setState({ zoom: this.state.zoom * 0.8});
 	}
 
 	_loadAll()
@@ -134,7 +136,7 @@ class ImageView extends React.PureComponent{
 	_onBoxMouseDown(event)
 	{
 		event.preventDefault();
-		
+
 		let imageBox = ReactDOM.findDOMNode(this.refs["image-box"]),
 			box = this.refs.box,
 			domBox = ReactDOM.findDOMNode(box);
@@ -162,7 +164,7 @@ class ImageView extends React.PureComponent{
 	{
         event.stopPropagation();
 		event.preventDefault();
-		
+
 		if(domBox)
 		{
 			let left = event.clientX - disX,
@@ -282,11 +284,11 @@ class ImageView extends React.PureComponent{
 	render()
 	{
         return (
-			<div ref="image-box" className="image-box">
+			<div ref="image-box" className="image-box" onWheel={this.onWheel.bind(this)}>
                 <div className="imageViewMask" style={{background:"rgba(0, 0, 0, 0.8)"}}></div>
 
 				<div className="box">
-					<div onMouseDown={this._onBoxMouseDown.bind(this)} onWheel={this.onWheel.bind(this)}>
+					<div onMouseDown={this._onBoxMouseDown.bind(this)}>
 						<LightBox ref="box" images={this._images} {...this.state}
 						          onGotoPrev={this._gotoPrev.bind(this)}
 						          onGotoNext={this._gotoNext.bind(this)}

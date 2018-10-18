@@ -1,16 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Form, Input, TreeSelect, Modal } from 'antd';
+import { Button, Form, Input } from 'antd';
 import './../style/thirdPartyAccess.scss';
-import ScrollArea from 'react-scrollbar';
 import { setWeChatInfo, getWechatInfo, editWeChatInfo } from '../reducer/weChatReducer';
 import { bglen } from "../../../../utils/StringUtils";
 import { getLangTxt } from "../../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
+import TreeSelect from "../../../public/TreeSelect";
+import TreeNode from "../../../../components/antd2/tree/TreeNode";
 
-const FormItem = Form.Item,
-	confirm = Modal.confirm,
-	TreeNode = TreeSelect.TreeNode;
+const FormItem = Form.Item;
+	//confirm = Modal.confirm,
+	//TreeNode = TreeSelect.TreeNode;
+
 
 class WeChatDevelopModel extends React.Component {
 
@@ -201,15 +204,10 @@ class WeChatDevelopModel extends React.Component {
 									initialValue: groupid ? groupid : undefined,
 									rules: [{required: true}]
 								})(
-									<TreeSelect placeholder={getLangTxt("setting_wechat_group")} dropdownStyle={{
-                                                    maxHeight: 230, overflowX: 'hidden', overflowY: 'auto'
-                                                }}
+									<TreeSelect placeholder={getLangTxt("setting_wechat_group")}
                                                 getPopupContainer={() => document.getElementsByClassName('developWeChatScroll')[0]}
-                                    >
-										{
-											this._getWeChatGroupTreeNode(groupData)
-										}
-									</TreeSelect>
+                                                treeNode={this._getWeChatGroupTreeNode(groupData)}
+                                    />
 								)
 							}
 						</FormItem>

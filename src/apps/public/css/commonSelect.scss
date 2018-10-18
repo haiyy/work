@@ -1,0 +1,47 @@
+
+.ant-select-dropdown.commonSelectDropDown {
+    top: 38px;
+    ul.ant-select-dropdown-menu {
+        max-height: 256px;
+        li {
+            padding: 0 22px;
+            margin: 0;
+            line-height: 32px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+}
+
+.commonTreeSelectDropDown {
+    ul.ant-select-tree {
+        max-height: 256px;
+        padding: 0;
+        margin: 0;
+        li {
+            margin: 0;
+            line-height: 32px;
+            position: relative;
+            .ant-select-tree-title {
+                display: inherit;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+            .ant-select-tree-switcher, .ant-select-tree-checkbox {
+                position: relative;
+                z-index: 999;
+            }
+            .ant-select-tree-node-content-wrapper {
+                position: absolute;
+                left: 0;
+                padding: 0 0 0 24px;
+                width: 100%;
+            }
+            .ant-select-tree-checkbox + .ant-select-tree-node-content-wrapper {
+                padding: 0 0 0 46px;
+            }
+        }
+    }
+}

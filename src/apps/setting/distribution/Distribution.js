@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Modal } from 'antd';
+import { Button } from 'antd';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux';
 import { getUserSkillTag, getAccountGroup } from '../account/accountAction/sessionLabel';
@@ -14,6 +14,7 @@ import './style/distribution.scss';
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class Distribution extends React.PureComponent {
 	constructor(props)
@@ -119,7 +120,7 @@ class Distribution extends React.PureComponent {
 		{
 			errTips = getLangTxt("20034");
 		}
-		Modal.error({
+		error({
 			title: getLangTxt("err_tip"),
             width: '320px',
             iconType: 'exclamation-circle',
@@ -191,7 +192,10 @@ class Distribution extends React.PureComponent {
 					<Button type="primary" onClick={this.makeDistribution.bind(this)}>{getLangTxt("setting_distribution_add")}</Button>
 					{/*<Button type="primary" onClick={this.showDistribute.bind(this)}>总览分配情况</Button>*/}
 				</div>
-				<div className="distribution-list">
+				<ScrollArea
+					speed={1}
+					horizontal={false}
+					style={{height: 'calc(100% - 40px)'}} smoothScrolling>
 					{
 						this.props.state && !this.state.usershow && !this.state.TypeShow && !this.state.customerShow && !this.state.distriShow
 							?
@@ -205,7 +209,7 @@ class Distribution extends React.PureComponent {
 							})
 							: null
 					}
-				</div>
+				</ScrollArea>
 				{
 					getProgressComp(progress)
 				}

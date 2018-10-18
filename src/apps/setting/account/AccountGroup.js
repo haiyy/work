@@ -2,7 +2,7 @@ import React from 'react';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Tree, Modal, Popover, Tooltip } from 'antd';
+import { Tree,  Popover, Tooltip } from 'antd';
 import TreeNode from "../../../components/antd2/tree/TreeNode";
 import { addGroup, editorGroup, removeGroup, getAccountGroup, clearErrorNewGroupProgress, editorGroupRank } from './accountAction/sessionLabel';
 import CreateGroup from './CreateGroup';
@@ -10,8 +10,9 @@ import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import { truncateToPop } from "../../../utils/StringUtils"
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-const confirm = Modal.confirm;
+//const confirm = Modal.confirm;
 
 class AccountGroup extends React.PureComponent {
 	
@@ -306,7 +307,7 @@ class AccountGroup extends React.PureComponent {
 				
 				this.props.clearErrorNewGroupProgress();
 				
-				Modal.warning({
+				warning({
 					title: getLangTxt("err_tip"),
 					iconType: 'exclamation-circle',
 					className: classname,

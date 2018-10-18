@@ -2,12 +2,13 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
-import { Button, Table, Modal, Switch } from 'antd';
+import { Button, Table,  Switch } from 'antd';
 import "./style/customTab.scss";
 import { getCustomerTabList, delTab, editCustomerStatus } from "./tabReducer/customerTabReducer";
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class CustomTab extends React.PureComponent {
 	
@@ -86,7 +87,7 @@ class CustomTab extends React.PureComponent {
 			}
 			else
 			{
-				Modal.warning({
+				warning({
 					title: getLangTxt("err_tip"),
 					iconType: 'exclamation-circle',
 					className: 'errorTip',
@@ -124,7 +125,7 @@ class CustomTab extends React.PureComponent {
 			tabList = customerTabData.getIn(["tabList"]) || [],
 			totalCount = customerTabData.getIn(["total"]) || 0,
 			{currentPage = 0} = this.state;
-		Modal.confirm(
+		confirm(
 			{
 				title: getLangTxt("del_tip"),
 				width: '320px',
@@ -149,7 +150,7 @@ class CustomTab extends React.PureComponent {
 						}
 						else
 						{
-							Modal.warning({
+							warning({
 								title: getLangTxt("err_tip"),
 								iconType: 'exclamation-circle',
 								className: 'errorTip',

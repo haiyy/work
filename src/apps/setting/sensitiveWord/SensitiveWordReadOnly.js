@@ -60,7 +60,7 @@ class SensitiveWordReadOnly extends Component {
                     <span>
                       <a>
                           <Tooltip placement="bottom" title={getLangTxt("edit")}>
-                            <i className="iconfont icon-bianji"/>
+                            <i className="iconfont icon-bianji" />
                           </Tooltip>
                       </a>
 

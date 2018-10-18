@@ -1,11 +1,11 @@
 import React  from 'react';
-import { Form, Button, Table, Select, Input, Tooltip, Modal, Popover } from 'antd';
+import { Form, Button, Table, Select, Input, Tooltip,  Popover } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import NTModal from "../../../components/NTModal";
 import { bglen, truncateToPop } from "../../../utils/StringUtils";
 import './style/createShop.less';
 import {addShopAccount, editShopAccount, delShopAccount} from "./reducer/shopAccountReducer";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const FormItem = Form.Item;
 
@@ -56,7 +56,7 @@ class ShopAccount extends React.PureComponent {
     {
         let {siteid, userid} = record;
 
-        Modal.confirm({
+        confirm({
             title: '删除提示',
             width: '320px',
             iconType: 'exclamation-circle',
@@ -112,7 +112,7 @@ class ShopAccount extends React.PureComponent {
 
 
         if (modalType)
-            return <NTModal className='modalCommonStyle shopAccountModal'
+            return <Modal className='modalCommonStyle shopAccountModal'
                         visible={true} okText="保存"
                         title={modalTitle}
                         onOk={this.handleSubmitNewAccount.bind(this)}
@@ -174,7 +174,7 @@ class ShopAccount extends React.PureComponent {
                                 }
                             </FormItem>
                         </Form>
-                    </NTModal>
+                    </Modal>
     }
 
     get shopAccountList()

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Form, Radio, Input, Modal } from 'antd';
+import { Button, Form, Radio, Input } from 'antd';
 import { getInfomation, setInfomation, clearInformationProgress } from './action/personalSetting';
 import Upload from "./Upload";
 import { getLangTxt, upload, UPLOAD_IMAGE_ACTION } from "../../../utils/MyUtil";
@@ -10,7 +10,7 @@ import { Map } from "immutable";
 import { getProgressComp, _getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const FormItem = Form.Item, RadioGroup = Radio.Group;
 
@@ -77,7 +77,7 @@ class Information extends Component {
 
     getSavingErrorMsg()
     {
-        Modal.error({
+        error({
             title: getLangTxt("tip1"),
             iconType: 'exclamation-circle',
             className: 'errorTip',
@@ -268,7 +268,7 @@ class Information extends Component {
 
     savingErrorTips()
     {
-        Modal.warning({
+        warning({
             title:getLangTxt("err_tip"),
             iconType: 'exclamation-circle',
             className: 'errorTip',
@@ -348,7 +348,7 @@ class Information extends Component {
 
 					{
 						this.state.visible ?
-							<NTModal title={title} style={{height: "550px"}} footer={null} okText={getLangTxt("save")}
+							<Modal title={title} style={{height: "550px"}} footer={null} okText={getLangTxt("save")}
 							       className="model-upload" width={820} visible={true}
 							       onCancel={this.handleCancel.bind(this)}>
 								<Upload getCroperImage={this.getCroperImage.bind(this)}
@@ -357,7 +357,7 @@ class Information extends Component {
 								        imagesInfo={ this.state.imagesInfo }
                                         minCropBoxSize={minCropBoxSize}
                                 />
-							</NTModal> : null
+							</Modal> : null
 					}
 
 					<FormItem className="userInfoFormItem" {...formItemLayout} label={getLangTxt("personalset_internal_name")} help={getLangTxt("personalset_internal_name_note")}>

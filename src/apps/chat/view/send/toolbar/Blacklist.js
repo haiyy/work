@@ -6,8 +6,8 @@ import React from "react";
 import { Tooltip, Form, Input, DatePicker } from 'antd';
 import LogUtil from "../../../../../lib/utils/LogUtil";
 import "../../../../../public/styles/chatpage/send/blackList.scss";
-import NTModal from "../../../../../components/NTModal";
 import moment from 'moment';
+import Modal from "../../../../../components/xn/modal/Modal";
 
 const {TextArea} = Input,
 	FormItem = Form.Item,
@@ -99,7 +99,7 @@ class Blacklist extends React.Component {
 			let signature_help = this.state.signature_help || blackReasonCount + "/50";
 
 			return (
-				<NTModal title="加入黑名单" visible onCancel={this.onCancel.bind(this)} onOk={this.onOk.bind(this)}
+				<Modal title="加入黑名单" visible onCancel={this.onCancel.bind(this)} onOk={this.onOk.bind(this)}
 				         width={524} okText="确定" cancelText="取消" wrapClassName="blackListModal">
 					<Form>
 						<FormItem
@@ -134,7 +134,7 @@ class Blacklist extends React.Component {
 							}
 						</FormItem>
 					</Form>
-				</NTModal>
+				</Modal>
 			);
 		}
 

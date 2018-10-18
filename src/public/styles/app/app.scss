@@ -406,7 +406,8 @@ body {
   top: 50% !important;
   left: 50% !important;
   padding: 0 !important;
-  margin-left: -423px !important;
+  transform: translate(-50%,-50%) !important;
+  //margin-left: -423px !important;
 }
 
 /*敏感词Modal样式*/

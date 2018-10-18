@@ -6,7 +6,7 @@ import ScrollArea from 'react-scrollbar';
 import { bglen } from "../../../utils/StringUtils";
 import './style/createShop.less';
 import ShopAccount from "./ShopAccount";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import {addShopItem, editShopItem, getShopAccountList, getShopAccountListEmpty} from "./reducer/shopAccountReducer";
 import {getNewUserInfo} from "../account/accountAction/sessionLabel";
 import {_getProgressComp} from "../../../utils/MyUtil";
@@ -145,7 +145,7 @@ class CreateShop extends React.PureComponent {
             bindClass = modalType === 1 ? ".shopInfo" : ".levelSelected";
 
 		return (
-            <NTModal className={modalClass} id="scrollArea" width={640} title={modalTitle} visible={true} okText="保存"
+            <Modal className={modalClass} id="scrollArea" width={640} title={modalTitle} visible={true} okText="保存"
                 onOk={this.handleSaveNewShop.bind(this)} onCancel={this.handleCancel.bind(this)}>
                 <div className="createShop">
                     <Form className="shopInfo" hideRequiredMark={true}>
@@ -243,7 +243,7 @@ class CreateShop extends React.PureComponent {
                 {
                     _getProgressComp(this.progress, "submitStatus shopAccountStatus")
                 }
-            </NTModal>
+            </Modal>
         )
 	}
 }

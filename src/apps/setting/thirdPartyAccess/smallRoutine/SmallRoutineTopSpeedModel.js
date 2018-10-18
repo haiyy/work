@@ -2,19 +2,23 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import './../style/thirdPartyAccess.scss';
-import { Button, Form, Input, TreeSelect, message, Modal } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import { setWeChatInfo, getWechatAccessInfo, getWechatInfo, editWeChatInfo } from '../reducer/smallRoutineReducer';
 import copy from 'copy-to-clipboard';
 import { bglen } from "../../../../utils/StringUtils";
 import ScrollArea from 'react-scrollbar';
 import { getLangTxt } from "../../../../utils/MyUtil";
+import TreeSelect from "../../../public/TreeSelect";
+import TreeNode from "../../../../components/antd2/tree/TreeNode";
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
 
-const FormItem = Form.Item,
-	confirm = Modal.confirm,
-	TreeNode = TreeSelect.TreeNode;
+
+const FormItem = Form.Item;
+	//confirm = Modal.confirm,
+	//TreeNode = TreeSelect.TreeNode;
 
 class SmallRoutineTopSpeedModel extends React.Component {
-	
+
 	constructor(props)
 	{
 		super(props);
@@ -22,14 +26,14 @@ class SmallRoutineTopSpeedModel extends React.Component {
 			copyText: ''
 		}
 	}
-	
+
 	componentDidMount()
 	{
 		let {isNew, getWechatAccessInfo, getWechatInfo, openId} = this.props;
-		
+
 		isNew ? getWechatAccessInfo() : getWechatInfo(openId);
 	}
-	
+
 	/******保存开发模式******/
 	saveTopspeedModelFun()
 	{
@@ -37,11 +41,11 @@ class SmallRoutineTopSpeedModel extends React.Component {
 			{getFieldsValue} = form,
 			obj = getFieldsValue(['name', 'openId', 'appId', 'appSecret', 'token', 'url', 'encodingAESKey', 'groupId']),
 			info = JSON.stringify(obj);
-		
+
 		form.validateFields((errors) => {
 			if(errors)
 				return false;
-			
+
 			if(!isNew)
 			{
 				this.props.editWeChatInfo({mode: 1, info})
@@ -58,11 +62,11 @@ class SmallRoutineTopSpeedModel extends React.Component {
 			}
 		});
 	}
-	
+
 	resultFun(result)
 	{
 		let errorMsg = getLangTxt("20034");
-		
+
 		if(result && result.code === 200)
 		{
 			this.props.closePage();
@@ -71,7 +75,7 @@ class SmallRoutineTopSpeedModel extends React.Component {
 		{
 			if(result && result.msg)
 				errorMsg = result.msg;
-			
+
 			confirm({
 				title: getLangTxt("tip"),
 				width: '320px',
@@ -81,7 +85,7 @@ class SmallRoutineTopSpeedModel extends React.Component {
 			});
 		}
 	}
-	
+
 	/*行政组树渲染*/
 	_getSmallRouGroupTreeNode(treeData)
 	{
@@ -89,7 +93,7 @@ class SmallRoutineTopSpeedModel extends React.Component {
 			return treeData.map(item => {
 				let {templateid, name} = item;
 				templateid = String(templateid);
-				
+
 				if(item.children && item.children.length > 0)
 				{
 					return (
@@ -104,19 +108,19 @@ class SmallRoutineTopSpeedModel extends React.Component {
 			});
 		return <TreeNode value="groupid" title={getLangTxt("setting_wechat_admin_group_change")} disabled/>;
 	}
-	
+
 	/*点击取消按钮*/
 	handleCancel()
 	{
 		this.props.closePage();
 	}
-	
+
 	/*点击上一步*/
 	handlePrevStep()
 	{
 		this.props.closePage(true);
 	}
-	
+
 	copyFun(content)
 	{
 		try
@@ -133,15 +137,15 @@ class SmallRoutineTopSpeedModel extends React.Component {
 		{
 			message.error(getLangTxt("setting_hypermedia_note2"));
 		}
-		
+
 		copy(content);
-		
+
 		this.setState({copyText: content});
-		
+
 		if(content != this.state.copyText)
 			message.success(getLangTxt("setting_hypermedia_note3"));
 	}
-	
+
 	textValidator(textLen, rule, value, callback)
 	{
 		let accountNameRe = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
@@ -151,17 +155,17 @@ class SmallRoutineTopSpeedModel extends React.Component {
 		}
 		callback(" ");
 	}
-	
+
 	render()
 	{
 		let {smallRoutineReducer, weChatData, groupData, isNew} = this.props,
 			{url = "", token = "", encodingAESKey = ""} = weChatData,
 			progress = smallRoutineReducer.getIn(['progress']);
-		
+
 		weChatData = isNew ? {} : weChatData;
-		
+
 		let {name = "", openid = "", appid = "", appsecret = "", groupid = ""} = weChatData;
-		
+
 		const {getFieldDecorator} = this.props.form,
 			formItemLayout = {
 				labelCol: {
@@ -173,7 +177,7 @@ class SmallRoutineTopSpeedModel extends React.Component {
 					sm: {span: 21}
 				}
 			};
-		
+
 		return (
 			<div className="topspeedModelContent">
 				<ScrollArea speed={1} horizontal={false} smoothScrolling style={{height: 'calc(100% - 70px)'}}>
@@ -257,13 +261,9 @@ class SmallRoutineTopSpeedModel extends React.Component {
 									initialValue: groupid ? groupid : undefined,
 									rules: [{required: true}]
 								})(
-									<TreeSelect placeholder={getLangTxt("setting_smallroutine_group")} dropdownStyle={{
-										maxHeight: 230, overflowX: 'hidden', overflowY: 'auto'
-									}}>
-										{
-											this._getSmallRouGroupTreeNode(groupData)
-										}
-									</TreeSelect>
+									<TreeSelect placeholder={getLangTxt("setting_smallroutine_group")}
+                                        treeNode={this._getSmallRouGroupTreeNode(groupData)}
+                                    />
 								)
 							}
 						</FormItem>
@@ -286,7 +286,7 @@ function mapStateToProps(state)
 	const smallRoutineReducer = state.smallRoutineReducer,
 		weChatData = smallRoutineReducer.get("weChatData") || {},
 		groupData = state.distributeReducer.data || [];
-	
+
 	return {
 		smallRoutineReducer, weChatData, groupData
 	};

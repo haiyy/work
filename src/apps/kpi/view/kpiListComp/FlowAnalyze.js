@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Modal } from 'antd';
 import LoadProgressConst from "../../../../model/vo/LoadProgressConst";
 import KpiCommonTabs from "./KpiCommonTabs";
 import LoadReportData from "../kpiService/LoadReportData";

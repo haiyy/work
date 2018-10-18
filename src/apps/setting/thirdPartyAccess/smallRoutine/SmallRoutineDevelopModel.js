@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Form, Input, TreeSelect, Modal } from 'antd';
+import { Button, Form, Input, TreeSelect } from 'antd';
 import { setWeChatInfo, getWechatInfo, editWeChatInfo } from '../reducer/smallRoutineReducer';
 import ScrollArea from 'react-scrollbar';
 import { bglen } from "../../../../utils/StringUtils";
 import { getLangTxt } from "../../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
 
 const FormItem = Form.Item,
-	confirm = Modal.confirm,
+	//confirm = Modal.confirm,
 	TreeNode = TreeSelect.TreeNode;
 
 class SmallRoutineDevelopModel extends React.Component {

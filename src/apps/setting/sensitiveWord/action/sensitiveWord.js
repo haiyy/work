@@ -57,6 +57,7 @@ export function setSensitive(data)
 {
 	return dispatch =>
 	{
+
         dispatch(getAction(SET_SENSITIVEWORD, "left", LoadProgressConst.SAVING));
 
         let loginUserProxy = Model.retrieveProxy("LoginUserProxy"),
@@ -67,20 +68,14 @@ export function setSensitive(data)
         let settingUrl = Settings.querySettingUrl("/sensitiveWords/",siteid, "");
 
         return urlLoader(settingUrl, {method: "PUT", headers: {token: ntoken},body: JSON.stringify(data)})
-            .then(roleMangerCode).then(result=>
-            {
-                let success = result.success,
-                    progress = success ? LoadProgressConst.SAVING_SUCCESS : LoadProgressConst.SAVING_FAILED,
-                    resultData = result && result.data;
-
+            .then(roleMangerCode).then(result=>{
+                let progress = result.success ? LoadProgressConst.SAVING_SUCCESS : LoadProgressConst.SAVING_FAILED;
                 dispatch({
                     type:SET_SENSITIVEWORD,
                     "left":progress,
-                    data:resultData,
+                    data:data,
                     success:result.success
-                });
-                
-                return Promise.resolve(result)
+                })
             });
 	}
 }

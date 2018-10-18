@@ -1,7 +1,7 @@
 import React from 'react' ;
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Input, Form, TreeSelect, Select, InputNumber, message } from 'antd';
+import { Button, Input, Form, InputNumber, message } from 'antd';
 import moment from 'moment';
 import Tags from "../public/Tags";
 import TagData from "../data/TagData";
@@ -12,10 +12,13 @@ import NtTreeForSelect from "../../../components/NtTreeForSelect";
 import ConsultSelectedComponent from "./ConsultSelectedComponent";
 import { createMessageId } from "../../../lib/utils/Utils";
 import { bglen } from "../../../utils/StringUtils";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import { getConsultList, getAccountGroup, getAccountList, getVisitorSourceGroup, getVisitorSourceList, updateCommonUsedConditions, updateSelectedConditions, saveCommonUsedConditions, deleteCommonUsedConditions } from "../redux/consultReducer";
+import TreeSelect from "../../public/TreeSelect";
+import TreeNode from "../../../components/antd2/tree/TreeNode";
+import Select from "../../public/Select";
 
-let FormItem = Form.Item, TreeNode = TreeSelect.TreeNode, Option = Select.Option;
+let FormItem = Form.Item, Option = Select.Option;
 
 class AdvancedSearchRefactor extends React.PureComponent
 {
@@ -290,7 +293,6 @@ class AdvancedSearchRefactor extends React.PureComponent
             sValue = selectValue == undefined ? selectedValue : selectValue;
 
         if(typeof onOk === "function")
-
             onOk(selectedConditions, startTamp, endTamp, sValue);
     }
 
@@ -618,7 +620,7 @@ class AdvancedSearchRefactor extends React.PureComponent
             selectValue,
             searchTime: [moment(startTamp), moment(endTamp)]
         })
-        
+
     }
 
     //点击展开筛选条件列表
@@ -903,20 +905,22 @@ class AdvancedSearchRefactor extends React.PureComponent
             commonComp;
 
         commonComp = [
-            <Select className="dialogSelect" size="large" value={sign} onChange={this.handleSignChange.bind(this, valueType, typeCName, "sign")}>
-                <Option key={0} value=">"> 大于 </Option>
-                <Option key={1} value="<"> 小于 </Option>
-            </Select>,
+            <Select className="dialogSelect" size="large"
+                value={sign} onChange={this.handleSignChange.bind(this, valueType, typeCName, "sign")}
+                option={[<Option key={0} value=">"> 大于 </Option>,
+                <Option key={1} value="<"> 小于 </Option>]}
+            />,
             <InputNumber min={0} max={9999} precision={0} value={value} className="dialogIpt" onChange={this.handleSignChange.bind(this, valueType, typeCName, 'value')}/>
         ];
 
         if(isTimeType)
         {
             commonComp.push(
-                <Select className="dialogSelect" size="large" value={type} onChange={this.handleSignChange.bind(this, valueType, typeCName, 'type')}>
-                    <Option key={3} value="秒"> 秒 </Option>
-                    <Option key={4} value="分"> 分 </Option>
-                </Select>
+                <Select className="dialogSelect" size="large" value={type}
+                    onChange={this.handleSignChange.bind(this, valueType, typeCName, 'type')}
+                    option={[<Option key={3} value="秒"> 秒 </Option>,
+                    <Option key={4} value="分"> 分 </Option>]}
+                />
             )
         }
         else
@@ -1122,13 +1126,12 @@ class AdvancedSearchRefactor extends React.PureComponent
                             getPopupContainer={() => document.querySelector(".dataWrap")}
                             placeholder="请选择"
                             onSelect={this.handleSelectCustomerProps.bind(this, "customerPropsSelected")}
-                        >
-                            <Option value="customername">访客名称</Option>
-                            <Option value="customerid">访客ID</Option>
-                            <Option value="customerip">访客IP</Option>
-                            <Option value="customerConverID">会话ID</Option>
-                            <Option value="customerKeyword">会话详情关键词</Option>
-                        </Select>
+                            option={[<Option value="customername">访客名称</Option>,
+                            <Option value="customerid">访客ID</Option>,
+                            <Option value="customerip">访客IP</Option>,
+                            <Option value="customerConverID">会话ID</Option>,
+                            <Option value="customerKeyword">会话详情关键词</Option>]}
+                        />
                         <Input className="customerPropsValue" value={this.state[customerPropsSelectedVal]}
                             onChange={this.onCustomerPropsChange.bind(this, "customerPropsSelected")}/>
                         <i className={propsIcon} onClick={this.handleSelectValue.bind(this, "customerPropsSelected", customerPropsSelectedVal)}/>
@@ -1184,14 +1187,10 @@ class AdvancedSearchRefactor extends React.PureComponent
                         <div className="perSelect responsibilityKFSelect">
                             <label className="marginLabel">客服组</label>
                             <TreeSelect value={this.distributeValue} multiple treeCheckable
-                                dropdownStyle={{maxHeight: 300, overflow: 'auto'}}
                                 onChange={this.onDistributeChange.bind(this)}
                                 getPopupContainer={() => document.getElementsByClassName("perSelect")[0]}
-                            >
-                                {
-                                    this.getDistributeNode()
-                                }
-                            </TreeSelect>
+                                treeNode={this.getDistributeNode()}
+                            />
                         </div>
                         <div className="perSelect responsibilityKFSelect">
                             <label className="marginLabel">参与客服</label>
@@ -1252,11 +1251,10 @@ class AdvancedSearchRefactor extends React.PureComponent
                                 getPopupContainer={() => document.querySelector(".perSelect")}
                                 placeholder="请选择"
                                 onSelect={this.handleSelectCustomerProps.bind(this, "customerPagesSelected")}
-                            >
-                                <Option value="startpageurl">咨询发起页</Option>
-                                <Option value="sourcepage">来源页</Option>
-                                <Option value="landpage">着陆页</Option>
-                            </Select>
+                                option={[<Option value="startpageurl">咨询发起页</Option>,
+                                <Option value="sourcepage">来源页</Option>,
+                                <Option value="landpage">着陆页</Option>]}
+                            />
                             <Input className="customerPropsValue customerPageValue" value={this.state[customerPagesSelectedVal]} onChange={this.onCustomerPropsChange.bind(this, 'customerPagesSelected')}/>
                             <i className={pagesIcon} onClick={this.handleSelectValue.bind(this, "customerPagesSelected", customerPagesSelectedVal)}/>
                         </div>
@@ -1430,7 +1428,7 @@ class AdvancedSearchRefactor extends React.PureComponent
                             getWidth={this.getWidth.bind(this)}/> : null
                 }
 
-                <NTModal title="设置常用搜索"
+                <Modal title="设置常用搜索"
                     visible={commonUsedVisible}
                     width={540}
                     wrapClassName='addCommonUsed'
@@ -1455,7 +1453,7 @@ class AdvancedSearchRefactor extends React.PureComponent
                             {isUsedWarned ? <p className="commonUsedWarned">该常用搜索名称已存在！</p> : null}
                         </FormItem>
                     </Form>
-                </NTModal>
+                </Modal>
             </div>
         );
     }

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { setPageRoute, getLeaveMsgList, getLeaveDetail, clearMessageTip, updateSelectedConditions, updateCommonUsedConditions, queryCommonUsedConditions, deleteCommonUsedConditions } from "../redux/leaveMsgReducer";
 import HeadBreadcrumb from '../../../components/HeadBreadcrumb.js';
 import NTTableWithPageRecord from "../../../components/NTTableWithPageRecord";
-import { Popover, Modal } from 'antd';
+import { Popover } from 'antd';
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import { getProgressComp, formatTimestamp, getLangTxt } from "../../../utils/MyUtil";
@@ -23,6 +23,7 @@ import LeaveExportComponent from "./LeaveExportComponent";
 import {getConversationCount} from "../redux/consultReducer";
 import {setRecordCommonTime} from "../redux/recordTimeReducer";
 import {shallowEqual} from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class LeaveMsgList extends React.Component {
 
@@ -639,7 +640,7 @@ class LeaveMsgList extends React.Component {
     /*删除常用话术tag*/
     delCommonUsedTag(key)
     {
-        Modal.confirm({
+        confirm({
             title: getLangTxt("del_tip"),
             width: '320px',
             iconType: 'exclamation-circle',

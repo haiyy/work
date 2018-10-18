@@ -1018,17 +1018,6 @@ class ChatDataManager extends IChatChannel {
 		this.delayToChange();
 	}
 	
-	onNotifyFilterSensitiveWords(messageid, sensitiveWord, message, createdat)
-	{
-		if(this.chatDataVo && sensitiveWord && sensitiveWord.length)
-		{
-			let message = this.chatDataVo.getMessage(messageid);
-			message.sensitiveWord = sensitiveWord;
-			
-			this.delayToChange();
-		}
-	}
-	
 	sendSystemPromptSentence(msg, msgId, errorType = 1, msgTime = 0)
 	{
 		let sentence = new SystemSentence();

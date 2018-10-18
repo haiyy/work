@@ -1,5 +1,5 @@
 import React from 'react'
-import { Switch, Radio, Input, Button, Table, InputNumber, Modal, message } from 'antd';
+import { Switch, Radio, Input, Button, Table, InputNumber, message } from 'antd';
 import './style/earlyWarning.scss';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'

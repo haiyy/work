@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { getCallRecord, getSitRecord, getTableHeaders, getCallRecordExprot, taskCallOutTask, getDisplayColumn, updateDate } from "../redux/reducers/callRecordReducer";
 import { getCallRecordDetails, setBraedCrumbFlag } from "../redux/reducers/telephonyScreenReducer";
-import { Button, Modal, Checkbox, Popover} from 'antd';
+import { Button, Checkbox, Popover} from 'antd';
 import LoadProgressConst from "../../../model/vo/LoadProgressConst"
 import { ReFresh } from "../../../components/ReFresh";
 import DatePickerComponent, { getTime } from "../../record/public/DatePickerComponent"
@@ -16,9 +16,9 @@ import { getProgressComp } from "../../../utils/MyUtil";
 import ExportComponent from "../../../components/ExportComponent";
 import Settings from "../../../utils/Settings";
 import { on, removeListener } from "../../../utils/PhoneUtils";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const CheckboxGroup = Checkbox.Group;
-const confirm = Modal.confirm;
 
 class CallRecord extends React.Component {
 	

@@ -8,7 +8,7 @@ import { fetchRules, delKeyPage, editKeyPage, addKeyPage } from './action/essent
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import {truncateToPop} from "../../../utils/StringUtils";
 
 const FormItem = Form.Item;
@@ -254,7 +254,7 @@ class KeyPageReadOnly extends React.Component {
                 {
                     getProgressComp(progress)
                 }
-				<NTModal title={getLangTxt("setting_keypage_test")} visible={this.state.isTestUrlRegShow}
+				<Modal title={getLangTxt("setting_keypage_test")} visible={this.state.isTestUrlRegShow}
 				       onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}
 				       wrapClassName="test" width={520} okText={getLangTxt("setting_keypage_test")} className="keyPageTestModal">
 					<Form >
@@ -270,7 +270,7 @@ class KeyPageReadOnly extends React.Component {
                         <i className={"iconfont "+ icon} style={{ color: color, fontSize: "15px", paddingRight: "12px" }}/>
                         {testResult}
                     </span>
-				</NTModal>
+				</Modal>
 			</div>
 		)
 	}

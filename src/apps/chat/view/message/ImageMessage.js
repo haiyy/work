@@ -86,7 +86,7 @@ class ImageMessage extends React.PureComponent {
 		let message = this.props.message;
 		
 		return (
-			<div className="maxImg">
+			<div className="maxImg">.
 				{
 					this._getUI(message)
 				}

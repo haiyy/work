@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
-import { Button, Form, Input, Icon, Modal, message } from 'antd';
+import { Button, Form, Input, Icon,  message } from 'antd';
 import "./style/customTab.scss";
 import ParamSetting from "./ParamSetting";
 import { addTab, editTab, getCustomerTabParams } from "./tabReducer/customerTabReducer";
@@ -10,6 +10,7 @@ import { addTab, editTab, getCustomerTabParams } from "./tabReducer/customerTabR
 const FormItem = Form.Item;
 import { bglen, stringLen } from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class NewCustomTab extends React.PureComponent {
 	
@@ -160,7 +161,7 @@ class NewCustomTab extends React.PureComponent {
 					{
 						if(result.code === 404)
 							saveErrorMsg = getLangTxt("setting_custom_tab_note3");
-						Modal.warning({
+						warning({
 							title: getLangTxt("err_tip"),
 							iconType: 'exclamation-circle',
 							className: 'errorTip',
@@ -184,7 +185,7 @@ class NewCustomTab extends React.PureComponent {
 					{
 						if(result.code === 404)
 							saveErrorMsg = getLangTxt("setting_custom_tab_note3");
-						Modal.warning({
+						warning({
 							title: getLangTxt("err_tip"),
 							iconType: 'exclamation-circle',
 							className: 'errorTip',

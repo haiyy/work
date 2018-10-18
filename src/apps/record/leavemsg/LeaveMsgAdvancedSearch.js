@@ -14,7 +14,7 @@ import { createMessageId } from "../../../lib/utils/Utils";
 import NTButtonGroup from "../../../components/NTButtonGroup";
 import TagData from "../data/TagData";
 import { bglen } from "../../../utils/StringUtils";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import { getLangTxt } from "../../../utils/MyUtil";
 
 let FormItem = Form.Item;
@@ -650,7 +650,7 @@ class LeaveMsgAdvancedSearch extends React.PureComponent {
                     </Button>
                 </div>
 
-                <NTModal title={getLangTxt("record_common_search")}
+                <Modal title={getLangTxt("record_common_search")}
                     visible={commonUsedVisible}
                     width={540}
                     wrapClassName='addCommonUsed'
@@ -676,7 +676,7 @@ class LeaveMsgAdvancedSearch extends React.PureComponent {
                             {isOverCount ?  <p className="commonUsedWarned">{getLangTxt("record_common_note1")}</p> : null}
                         </FormItem>
                     </Form>
-                </NTModal>
+                </Modal>
             </div>
         );
 	}

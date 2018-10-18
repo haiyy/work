@@ -198,7 +198,7 @@ class NIMMessageState2 extends NIMMessageDeal {
 		{
 			/**
 			 * 2018-09-18 liuguanglun
-			 * 会话版本号失效
+			 * 会话版本号不为失效
 			 * */
 			if(this._nimHttpCon && sessionId == this._nimHttpCon._sessionId && code == 2001)
 			{
@@ -216,8 +216,6 @@ class NIMMessageState2 extends NIMMessageDeal {
 	startToPull(forcePull = false)
 	{
 		this.stopPull();
-		
-		log("startToPull...");
 		
 		if(this.mode === 2) //作为辅助模式，禁止拉取
 			return;
@@ -240,8 +238,6 @@ class NIMMessageState2 extends NIMMessageDeal {
 	
 	stopPull()
 	{
-		log("stopPull...");
-		
 		clearInterval(this.pullId);
 		this.pullId = null;
 	}

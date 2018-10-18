@@ -1,11 +1,13 @@
 import React  from 'react';
-import { Form, Input, TreeSelect } from 'antd';
+import { Form, Input } from 'antd';
 import AccountGroup from "./AccountGroup";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import { bglen, stringLen } from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
+import TreeSelect from "../../public/TreeSelect";
+import TreeNode from "../../../components/antd2/tree/TreeNode";
 
-const TreeNode = TreeSelect.TreeNode, FormItem = Form.Item;
+const FormItem = Form.Item;
 
 class CreateGroup extends React.PureComponent {
 
@@ -120,7 +122,9 @@ class CreateGroup extends React.PureComponent {
             formItemLayout = {
             labelCol: {span: 6},
             wrapperCol: {span: 15}
-        };
+        },
+            treeNodes = this._getTreeNode(treeData,  title === getLangTxt("setting_account_group_edit") && info.groupid),
+            treeNodesAndEmpty = treeNodes.concat(<TreeNode title={<div>空</div>} value="null"/>);
 
 		if(model === AccountGroup.EDIT_GROUP)
 		{
@@ -145,20 +149,16 @@ class CreateGroup extends React.PureComponent {
                     })(
                         <TreeSelect className="myCls"
                                     treeDefaultExpandAll
-                                    dropdownStyle={{ maxHeight: 300, overflowY: 'auto', overflowX: 'hidden' }}
-                                    onChange={this._onTreeChange.bind(this)}>
-                            {
-                                this._getTreeNode(treeData,  title === getLangTxt("setting_account_group_edit") && info.groupid)
-                            }
-                            <TreeNode title={<div>空</div>} value="null"/>
-                        </TreeSelect>
+                                    onChange={this._onTreeChange.bind(this)}
+                                    treeNode={treeNodesAndEmpty}
+                        />
                     )}
                 </FormItem>
             </div>
         );
 
 		return (
-            <NTModal className='newsourses-type' visible={true} okText={getLangTxt("save")}
+            <Modal className='newsourses-type' visible={true} okText={getLangTxt("save")}
                      title={<h4>{getLangTxt("add_group")}</h4>}
                    onOk={this.groupDataOk.bind(this)} onCancel={this.groupDataCancel.bind(this)}>
                 <div className="CreateGroup">
@@ -181,7 +181,7 @@ class CreateGroup extends React.PureComponent {
                         }
                     </Form>
                 </div>
-            </NTModal>
+            </Modal>
         )
 	}
 }

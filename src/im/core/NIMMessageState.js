@@ -366,8 +366,6 @@ class NIMMessageState extends NIMMessageDeal {
 	{
 		super.destroy();
 		
-		log("destroy _intervalPullId = " + this._intervalPullId);
-		
 		clearInterval(this._intervalPullId);
 	}
 }

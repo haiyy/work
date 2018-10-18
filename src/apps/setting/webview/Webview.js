@@ -92,18 +92,14 @@ class Webview extends React.PureComponent {
 			sdkArr = [
                 {label: getLangTxt("setting_webview_smile"), value: "enable_face"},
                 {label: getLangTxt("setting_webview_image"), value: "enable_picture"},
-                {label: getLangTxt("setting_webview_file"), value: "enable_file"},
+                // {label: getLangTxt("setting_webview_file"), value: "enable_file"},
                 {label: getLangTxt("setting_webview_evalue"), value: "enable_evaluate"},
-                {label: getLangTxt("setting_webview_pos"), value: "enable_position"},
+                // {label: getLangTxt("setting_webview_pos"), value: "enable_position"},
                 {label: getLangTxt("setting_webview_audio1"), value: "enable_voiceInfo"},
                 {label: getLangTxt("setting_webview_voice_recog"), value: "enable_voice_recognition"},
                 {label: getLangTxt("setting_webview_video"), value: "enable_smallVideo"},
-                {label: getLangTxt("setting_faq"), value: "common_problems"},
-                {label: getLangTxt("setting_webview_robot_to_people"), value: "enable_staffservice"},
-                {label: getLangTxt("setting_webview_realTime_voice"), value: "enable_realTime_voice"},
-                {label: getLangTxt("setting_webview_realTime_video"), value: "enable_realTime_video"},
-                {label: getLangTxt("setting_webview_input_guide"), value: "enable_input_guide"},
-                {label: getLangTxt("setting_webview_remote_assistance"), value: "enable_remote_assistance"}
+                // {label: getLangTxt("setting_faq"), value: "common_problems"},
+                {label: getLangTxt("setting_webview_robot_to_people"), value: "enable_staffservice"}
             ],
 			sdkarr = [],
 			sdkValue = getFieldValue("settingSDK"), sdk = {},

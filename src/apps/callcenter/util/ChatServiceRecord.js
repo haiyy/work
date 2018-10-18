@@ -1,6 +1,6 @@
 import React from 'react';
-import { Modal } from 'antd';
-import '../view/style/visitplan.less'
+import '../view/style/visitplan.less';
+import Modal from "../../../components/xn/modal/Modal";
 
 class ChatServiceRecord extends React.Component {
     constructor(props)

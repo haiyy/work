@@ -4,7 +4,7 @@ import Tags from "../public/Tags";
 import SelectedTagsData from "../data/SelectedTagsData";
 import { omit, shallowEqual } from "../../../utils/MyUtil";
 import ScrollArea from 'react-scrollbar';
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 
 class ConsultSelectedComponent extends React.PureComponent {
 
@@ -110,7 +110,7 @@ class ConsultSelectedComponent extends React.PureComponent {
 			{modalProps = {}} = this.props;
 
 		return (
-			<NTModal {...omit(modalProps, ["onCancel", "onOk"])} visible onCancel={this.onCancel} onOk={this.onOk}>
+			<Modal {...omit(modalProps, ["onCancel", "onOk"])} visible onCancel={this.onCancel} onOk={this.onOk}>
 				<div className="consultSelectedContent">
 					<div className="tagModalBox">
 						<span className="selectedRegin">已选条件</span>
@@ -124,7 +124,7 @@ class ConsultSelectedComponent extends React.PureComponent {
 						</ScrollArea>
 					</div>
 				</div>
-			</NTModal>
+			</Modal>
 		);
     }
 }

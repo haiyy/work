@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Modal, Switch, Alert, Table, Input, Form, Tooltip } from 'antd';
+import { Switch, Alert, Table, Input, Form, Tooltip } from 'antd';
 import { getSensitive, setSensitive } from './action/sensitiveWord';
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-const FormItem = Form.Item, confirm = Modal.confirm;
+const FormItem = Form.Item;
 
 class SensitiveWord extends Component {
 	constructor(props)
@@ -63,15 +63,14 @@ class SensitiveWord extends Component {
 	handleOk()
 	{
 		let value = this.props.form.getFieldValue("name"),
-			word = value.split(/[,，]/g);
-        // let isSingleLetter = /^[A-Za-z]+$/,
-        // singleLetterItem = word.find(item => item.length === 1 && isSingleLetter.test(item));
+			word = value.split(/[,，]/g),
+            isSingleLetter = /^[A-Za-z]+$/;
 
 		word = this.uniqueValue(word);
 
+        let singleLetterItem = word.find(item => item.length === 1 && isSingleLetter.test(item));
 
-		if(word.length > 20000 || value.length - word.length + 1 >= 40000)
-
+		if(word.length > 50 || value.length - word.length + 1 >= 200 || singleLetterItem)
 		{
 			this.setState({
 				warning: true
@@ -87,23 +86,7 @@ class SensitiveWord extends Component {
 				"words": word || ""
 			}
 		};
-
-		this.props.setSensitive(data).then(result =>
-        {
-            let {success, msg} = result;
-
-            if (!success)
-                this.errorModal = Modal.error({
-                    title: '错误提示',
-                    iconType: 'exclamation-circle',
-                    content: msg,
-                    okText: '确定',
-                    width: '320px',
-                    onOk:() => {
-                        this.errorModal = null;
-                    }
-                });
-        });
+		this.props.setSensitive(data);
 		this.setState({
 			visible1: false,
 			warning: false
@@ -200,7 +183,7 @@ class SensitiveWord extends Component {
 					<span>
                       <a>
                           <Tooltip placement="bottom" title={getLangTxt("edit")}>
-                            <i onClick={this.showModal.bind(this)} className="iconfont icon-bianji"/>
+                            <i onClick={this.showModal.bind(this)} className="iconfont icon-bianji" style={{color:"rgb(154, 154, 154)"}}/>
                           </Tooltip>
                       </a>
 
@@ -243,7 +226,7 @@ class SensitiveWord extends Component {
 
 				{
 					this.state.visible1 ?
-						<NTModal title={getLangTxt("edit")} visible={true} wrapClassName="sensitiveWord"
+						<Modal title={getLangTxt("edit")} visible={true} wrapClassName="sensitiveWord"
 						         className="sensitiveWordModal"
 						         onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}>
 							{
@@ -262,10 +245,9 @@ class SensitiveWord extends Component {
 									</FormItem>
 								</Form>
 								<p className="attentionOne">{getLangTxt("setting_early_note4")}</p>
-								<p className="attentionOne">{getLangTxt("setting_early_note4_1")}</p>
 								<p>{getLangTxt("setting_early_note5")}</p>
 							</div>
-						</NTModal> : null
+						</Modal> : null
 				}
 
 			</div>

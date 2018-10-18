@@ -2,7 +2,7 @@ import React from 'react';
 import {bindActionCreators} from 'redux';
 import ScrollArea from 'react-scrollbar';
 import {connect} from 'react-redux';
-import { Table, Tree, message, Popover, Tooltip, Button, Spin} from 'antd';
+import { Table, Tree, message, Popover, Tooltip, Button} from 'antd';
 import TreeNode from "../../../components/antd2/tree/TreeNode";
 import { visitorItems, getVisitorData } from './action/visitorSourceSetting';
 import './style/visitorSource.scss';
@@ -10,6 +10,7 @@ import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import { bglen, truncateToPop } from "../../../utils/StringUtils"
 import { getLangTxt } from "../../../utils/MyUtil";
+import Loading from "../../../components/xn/loading/Loading";
 
 class VisitorSourceReadOnly extends React.PureComponent {
 
@@ -22,11 +23,8 @@ class VisitorSourceReadOnly extends React.PureComponent {
     }
 
     componentDidMount() {
-        this.props.visitorItems().then(result =>
-        {
-            if (result && result.success)
-                this.props.getVisitorData(-1);
-        });
+        this.props.visitorItems();
+        this.props.getVisitorData(-1);
     }
 
     onSelect(selectedKey,info) {
@@ -129,7 +127,7 @@ class VisitorSourceReadOnly extends React.PureComponent {
             return (
                 progress.right ?
                     <div style={{height:'460px'}}>
-                        <Spin style={{
+                        <Loading style={{
                             width: "100%",
                             height: "100%",
                             display: "flex",
@@ -138,7 +136,7 @@ class VisitorSourceReadOnly extends React.PureComponent {
                         }}/>
                     </div>
                     :
-                    <Spin style={{
+                    <Loading style={{
                         width: "100%",
                         height: "100%",
                         display: "flex",

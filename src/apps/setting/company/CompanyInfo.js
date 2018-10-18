@@ -9,7 +9,7 @@ import {getCompanyInfomation, modifyCompanyInfo} from "./redux/companyInfoReduce
 import './style/infomation.scss';
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import {ReFresh} from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import Uploads from "../personal/Upload";
 import {bglen, getHelp, ruleForLenght} from "../../../utils/StringUtils";
 
@@ -150,7 +150,8 @@ class CompanyInfo extends Component {
         callback(" ");
     }
 
-    render() {
+    render()
+    {
         let {getFieldDecorator} = this.props.form,
             {imgTips, isAvatarModalShow} = this.state,
             {companyInfo = Map()} = this.props,
@@ -196,7 +197,7 @@ class CompanyInfo extends Component {
 
                             {
                                 isAvatarModalShow ?
-                                    <NTModal title={title} style={{height: "550px"}} footer={null}
+                                    <Modal title={title} style={{height: "550px"}} footer={null}
                                              okText={getLangTxt("save")}
                                              className="model-upload companyInfoAvastar" width={820} visible={true}
                                              onCancel={this.handleAvatarCancel.bind(this)}>
@@ -206,7 +207,7 @@ class CompanyInfo extends Component {
                                                  imagesInfo={this.state.imagesInfo}
                                                  minCropBoxSize={minCropBoxSize}
                                         />
-                                    </NTModal> : null
+                                    </Modal> : null
                             }
 
                             <span style={{

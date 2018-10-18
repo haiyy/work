@@ -7,12 +7,13 @@ import { bindActionCreators } from 'redux'
 import { getReportId } from './ExportTable'
 import { gridData } from './kpiService/gridData'
 import LoadProgressConst from "../../../model/vo/LoadProgressConst"
-import Loading from './Loading'
+//import Loading from './Loading'
+import Loading  from "../../../components/xn/loading/Loading"
 import SelectData from './SelectData'
 import NoData from './NoData'
 import getQuery from './kpiService/getQuery';
-import NTModal from "../../../components/NTModal";
 import { getLangTxt } from "../../../utils/MyUtil";
+import Modal from "../../../components/xn/modal/Modal";
 
 //import './scss/reportDetails.scss'
 
@@ -78,14 +79,14 @@ class LineDetailsData extends Component {
 			lineDetails = this.props.lineDetails;
 		
 		return (
-			<NTModal title={getLangTxt("kpi_detail")} footer="" width="925px" wrapClassName="datailes" visible={showDetails}
+			<Modal title={getLangTxt("kpi_detail")} footer="" width="925px" wrapClassName="datailes" visible={showDetails}
 			         onCancel={this.handleCancel.bind(this)}>
 				{this._getProgress(progress)}
 				{
 					lineDetails && lineDetails.hasOwnProperty('columns') ?
 						this._returnTable(lineDetails.columns, lineDetails.rows) : <NoData height="99%"/>
 				}
-			</NTModal>
+			</Modal>
 		)
 	}
 }

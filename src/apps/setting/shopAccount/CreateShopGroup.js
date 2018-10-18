@@ -3,7 +3,7 @@ import { Form, Input, TreeSelect } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import ShopGroup from "./ShopGroup";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import { bglen, stringLen } from "../../../utils/StringUtils";
 
 const TreeNode = TreeSelect.TreeNode, FormItem = Form.Item;
@@ -158,7 +158,7 @@ class CreateShopGroup extends React.PureComponent {
         );
 
 		return (
-            <NTModal className='newsourses-type createShopGroupModal' visible={true} okText="保存"
+            <Modal className='newsourses-type createShopGroupModal' visible={true} okText="保存"
                    onOk={this.groupDataOk.bind(this)} onCancel={this.groupDataCancel.bind(this)}>
                 <div className="CreateGroup">
                     <Form horizontal>
@@ -179,7 +179,7 @@ class CreateShopGroup extends React.PureComponent {
                         }
                     </Form>
                 </div>
-            </NTModal>
+            </Modal>
         )
 	}
 }

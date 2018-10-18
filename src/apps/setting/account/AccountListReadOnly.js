@@ -1,19 +1,20 @@
 import React  from 'react';
-import {Table, Button, Modal, Tabs, Popover, Form, Select, Input, Tooltip, message, Spin} from 'antd';
+import {Table, Button, Tabs, Popover, Form, Select, Input, Tooltip, message } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import AccountInfo from './AccountInfo';
-import {delAccountList, getlListData, getNewUserInfo, clearDeleteProgress, getUserType, getSearchData, migrateAccounts, delAccounts, getUserSkillTag} from './accountAction/sessionLabel';
+import {delAccountList, getlListData, getNewUserInfo, clearDeleteProgress, getUserType, getSearchData, migrateAccounts, delAccounts} from './accountAction/sessionLabel';
 import './style/accountRight.scss';
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import {ReFresh} from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
 import {truncateToPop} from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
+import Loading from "../../../components/xn/loading/Loading";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const TabPane = Tabs.TabPane,
-    confirm = Modal.confirm,
+    //confirm = Modal.confirm,
     FormItem = Form.Item,
     Option = Select.Option;
 
@@ -46,7 +47,6 @@ class AccountListReadOnly extends React.PureComponent {
     componentDidMount() {
         this.props.getNewUserInfo();
         this.props.getUserType();
-        this.props.getUserSkillTag();
         this.setState({currentPage: 1});
     }
 
@@ -161,7 +161,7 @@ class AccountListReadOnly extends React.PureComponent {
             {
                 return (
                     <div className="accountListProgress">
-                        <Spin style={{
+                        <Loading style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",
@@ -175,7 +175,7 @@ class AccountListReadOnly extends React.PureComponent {
                 return <ReFresh reFreshStyle={{width: "calc(100% - 2.03rem)"}} reFreshFn={this.reFreshFn.bind(this,obj)}/>;
             }
             else if (progress.right === LoadProgressConst.UNDELETED) {//不可删除账户
-                Modal.warning({
+                warning({
                     title: getLangTxt("err_tip"),
                     width: '320px',
                     iconType: 'exclamation-circle',
@@ -210,7 +210,7 @@ class AccountListReadOnly extends React.PureComponent {
                     errorMsg = getLangTxt("setting_account_note9");
                 }
                 this.reFreshFn(obj);
-                Modal.warning({
+                warning({
                     title: errorTitle,
                     content: errorMsg,
                     iconType: 'exclamation-circle',
@@ -350,7 +350,7 @@ class AccountListReadOnly extends React.PureComponent {
     {
         let { selectedRowKeys = [] } = this.state;
         if (selectedRowKeys.length > 0)
-            Modal.confirm({
+            confirm({
                 title: getLangTxt("del_tip"),
                 width: '320px',
                 iconType: 'exclamation-circle',
@@ -536,7 +536,7 @@ class AccountListReadOnly extends React.PureComponent {
                     </ScrollArea>
                     {
                         this.state.details ?
-                            <NTModal title={getLangTxt("setting_account_check")}
+                            <Modal title={getLangTxt("setting_account_check")}
                                 visible={true}
                                 wrapClassName="details"
                                 width={600}
@@ -544,7 +544,7 @@ class AccountListReadOnly extends React.PureComponent {
                                 onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}
                             >
                                 <AccountInfo user={this.state.record}/>
-                            </NTModal> : null
+                            </Modal> : null
                     }
 
                 </div>
@@ -701,7 +701,7 @@ function mapStateToProps(state) {
     };
 }
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({delAccountList, getlListData, getNewUserInfo, clearDeleteProgress, getUserType, getSearchData, migrateAccounts, delAccounts, getUserSkillTag}, dispatch);
+    return bindActionCreators({delAccountList, getlListData, getNewUserInfo, clearDeleteProgress, getUserType, getSearchData, migrateAccounts, delAccounts}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountListReadOnly);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Table, Tooltip, Modal, TreeSelect, Form } from 'antd';
+import { Button, Table, Tooltip, Form } from 'antd';
 import {
 	getCompanyWeiBoList,
 	deleteWeiBoInfo,
@@ -12,12 +12,13 @@ import WeiBoModel from "./WeiBoModel";
 import ScrollArea from 'react-scrollbar';
 import { formatTimestamp, getLangTxt, getProgressComp } from "../../../../utils/MyUtil";
 import { distribute } from "../../distribution/action/distribute";
-import NTModal from "../../../../components/NTModal";
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
+import TreeSelect from "../../../public/TreeSelect";
+import TreeNode from "../../../../components/antd2/tree/TreeNode";
 
-const confirm = Modal.confirm,
-    warning = Modal.warning,
-    TreeNode = TreeSelect.TreeNode,
-    FormItem = Form.Item;
+// const confirm = Modal.confirm,
+//     warning = ewarning,
+const FormItem = Form.Item;
 
 class Weibo extends React.Component {
 
@@ -248,7 +249,7 @@ class Weibo extends React.Component {
 
                 {
                     isModify ?
-                        <NTModal visible
+                        <Modal visible
                             title={getLangTxt("setting_wechat_group_change")} onOk={this.handleModifyOK.bind(this)}
                             onCancel={this.handleModifyCancel.bind(this)}
                             width={400} wrapClassName="weChatGroupModal"
@@ -260,19 +261,16 @@ class Weibo extends React.Component {
                                             initialValue: groupid ? groupid : undefined,
                                             rules: [{required: true}]
                                         })(
-                                            <TreeSelect placeholder={getLangTxt("setting_wechat_group")} dropdownStyle={{
-										maxHeight: 230, overflowX: 'hidden', overflowY: 'auto'
-									}}>
-                                                {
-                                                    this._getWeiBoGroupTreeNode(groupData)
-                                                }
-                                            </TreeSelect>
+                                            <TreeSelect
+                                                placeholder={getLangTxt("setting_wechat_group")}
+                                                treeNode={this._getWeiBoGroupTreeNode(groupData)}
+                                            />
                                         )
                                     }
                                 </FormItem>
                             </Form>
 
-                        </NTModal> : null
+                        </Modal> : null
                 }
 
 				{

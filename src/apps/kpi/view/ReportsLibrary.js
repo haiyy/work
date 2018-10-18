@@ -4,7 +4,8 @@ import { attentionReportList, subscribe, unsubscribe } from '../redux/attentionR
 import { loadReport } from '../redux/loadReportData'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Loading from './Loading'
+//import Loading from './Loading'
+import Loading from "../../../components/xn/loading/Loading"
 import ShowKpiData from './ShowKpiData'
 import LoadProgressConst from "../../../model/vo/LoadProgressConst"
 import NoData from './NoData'

@@ -1,5 +1,5 @@
 import React from 'react'
-import {Breadcrumb, Button, Table, Spin, BackTop, Anchor} from 'antd'
+import {Breadcrumb, Button, Table,  BackTop, Anchor} from 'antd'
 import ScrollArea from 'react-scrollbar';
 import {loadReport} from '../../redux/loadReportData'
 import {requestReport} from '../../redux/requestReportData'
@@ -9,7 +9,8 @@ import {bindActionCreators} from 'redux'
 import {getReportId} from '../ExportTable'
 import {gridData} from '../kpiService/gridData'
 import LoadProgressConst from "../../../../model/vo/LoadProgressConst"
-import Loading from '../Loading'
+//import Loading from '../Loading'
+import Loading from "../../../../components/xn/loading/Loading"
 import NoData from '../NoData'
 import ShowScreen from '../ShowScreen'
 import getQuery, {dateTime} from '../kpiService/getQuery'

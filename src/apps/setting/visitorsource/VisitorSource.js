@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
-import { Button, Table, Checkbox, Modal, Tree, message, Popover, Tooltip, Spin } from 'antd';
+import { Button, Table, Checkbox, Tree, message, Popover, Tooltip } from 'antd';
 import TreeNode from "../../../components/antd2/tree/TreeNode";
 import { visitorItems, newVisitorType, editorVisitorType, removeVisitorType, getVisitorData, newVisitor, editorVisitor, removeVisitor, clearVisitorItemProgress } from './action/visitorSourceSetting';
 import NewSourse from './NewSourse';
@@ -12,11 +12,13 @@ import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import { bglen, substr, truncateToPop } from "../../../utils/StringUtils"
 import { getLangTxt } from "../../../utils/MyUtil";
+import Loading from "../../../components/xn/loading/Loading";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-const confirm = Modal.confirm;
+//const confirm = Modal.confirm;
 
-class VisitorSource extends React.PureComponent {
-
+class VisitorSource extends React.PureComponent
+{
 	constructor(props)
 	{
 		super(props);
@@ -261,7 +263,7 @@ class VisitorSource extends React.PureComponent {
 		{
 			return (
 				progress.right ?
-                        <Spin style={{
+                        <Loading style={{
                             width: "100%",
                             height: "100%",
                             display: "flex",
@@ -272,7 +274,7 @@ class VisitorSource extends React.PureComponent {
                             top: "0"
                         }}/>
 					:
-                    <Spin style={{
+                    <Loading style={{
                         width: "100%",
                         height: "100%",
                         display: "flex",
@@ -291,7 +293,7 @@ class VisitorSource extends React.PureComponent {
                 errorMsg = getLangTxt("setting_source_ename_repeat");
                 type = "right";
             }
-            Modal.warning({
+            warning({
                 title: getLangTxt("err_tip"),
                 width: '320px',
                 iconType: 'exclamation-circle',

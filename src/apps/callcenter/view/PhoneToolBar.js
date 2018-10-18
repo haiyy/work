@@ -10,7 +10,6 @@ import { phoneCallChange, setscreenFlag, updateCustomId } from "../redux/reducer
 import { getPhoneScreenRecord } from "../redux/reducers/phonePlayScreenReducer";
 import "../lib/PhoneCall.css";
 import GlobalEvtEmitter from "../../../lib/utils/GlobalEvtEmitter";
-import { serverTimeGap } from "../../../utils/ConverUtils";
 
 class PhoneToolBar extends React.Component {
 	
@@ -75,7 +74,7 @@ class PhoneToolBar extends React.Component {
 		if(!data.isinner && [PhoneStatus.INCOMING, PhoneStatus.CALLOUT].includes(data.oprate))
 		{
 			this.props.phoneCallChange(data);
-			this.props.getPhoneScreenRecord({...data, dateTime: (new Date().getTime() - serverTimeGap())});
+			this.props.getPhoneScreenRecord({...data, dateTime: new Date().getTime()});
 			this.props.setscreenFlag(true);
 		}
 	}

@@ -16,10 +16,10 @@ const toolbarData = [{label: getLangTxt("setting_webview_smile"), id: "enable_fa
  {label: "新消息声音", id: "enable_voice"}*/
 
 class SettingWebReadOnly extends React.Component {
-
+	
 	link = true;
 	windowPositionBtn = "0";
-
+	
 	constructor(props)
 	{
 		super(props);
@@ -34,10 +34,10 @@ class SettingWebReadOnly extends React.Component {
 			content: null,
 			linkSelect: true
 		};
-
+		
 		this.styles = {
 			div0: {boxSizing: 'border-box', padding: '0 18px 0 10px', display: 'flex'},
-			div0_0: {flex: 1, padding: '16px 0'},
+			div0_0: {flex: 1, padding: '16px 0', borderRight: '1px solid #e9e9e9'},
 			tabs: {
 				border: "1px solid rgb(233, 233, 233)", background: "#fff", position: "absolute",
 				zIndex: "999", width: "300px", padding: "12px 0", borderRadius: "8px", boxShadow: "0px 0px 6px #ccc"
@@ -65,11 +65,11 @@ class SettingWebReadOnly extends React.Component {
 			yPos: {width: '70px', height: '24px', margin: "0 8px", borderRadius: '5px'}
 		}
 	}
-
+	
 	componentWillReceiveProps(nextProps)
 	{
 		let {state} = nextProps;
-
+		
 		if(state && state.web && state.web.tabs)
 		{
 			this.setState({
@@ -78,12 +78,12 @@ class SettingWebReadOnly extends React.Component {
 			})
 		}
 	}
-
+	
 	error(data)
 	{
 		message.error(data);
 	}
-
+	
 	render()
 	{
 		let state = (this.props.state && this.props.state.web) ? this.props.state.web : null,
@@ -96,21 +96,21 @@ class SettingWebReadOnly extends React.Component {
 			tabarr = [],
 			webTab = [],
 			num = ['0', '1', '2', '3', '4', '5', '6', '7', '8'];
-
+		
 		if(state)
 		{
-
+			
 			let toolbar = state.toolbar;
 			test = toolbarData.filter(item => toolbar[item.id] == 1)
 			.map(item => item.label);
-
+			
 			state.tabs.tab = state.tabs.tab.sort(by("id"));
-
+			
 			state.tabs.tab.map(item => {
 				tabarr.push(item.name);
 				if(item.onoff) webTab.push(item.name)
 			});
-
+			
 			if(state.position.selected)
 			{
 				state.position.offset.map((item, index) => {
@@ -125,7 +125,7 @@ class SettingWebReadOnly extends React.Component {
 				})
 			}
 		}
-
+		
 		if(this.link && state && !state.position.selected)
 		{
 			this.windowPositionBtn = state.position.type;
@@ -140,9 +140,9 @@ class SettingWebReadOnly extends React.Component {
 				}
 			})
 		}
-
+		
 		let selected = state ? state.position.selected == 1 : false;
-
+		
 		return (
 			<div style={this.styles.div0}>
 				<div style={this.styles.div0_0}>
@@ -155,7 +155,7 @@ class SettingWebReadOnly extends React.Component {
 								)
 							}
 						</FormItem>
-
+						
 						<FormItem className="web-tabs sameWebBox" style={{position: "relative"}}>
 							<span className="sameWebTitle" style={this.styles.list}>{getLangTxt("setting_webview_webtag")}</span>
 							{
@@ -164,7 +164,7 @@ class SettingWebReadOnly extends React.Component {
 								)
 							}
 						</FormItem>
-
+						
 						<FormItem className="sameWebBox">
 							<span className="sameWebTitle" style={this.styles.list}>{getLangTxt("setting_webview_newmsg_tip")}</span>
 							{
@@ -176,7 +176,7 @@ class SettingWebReadOnly extends React.Component {
 								)
 							}
 						</FormItem>
-
+						
 						{/*<FormItem className="sameWebBox">
 							<span className="sameWebTitle" style={this.styles.list}>聊窗的打开方式</span>
 							{
@@ -188,7 +188,7 @@ class SettingWebReadOnly extends React.Component {
 								)
 							}
 						</FormItem>*/}
-
+						
 						<FormItem className="sameWebBox">
 							<span className="sameWebTitle" style={this.styles.list}>{getLangTxt("setting_webview_sidebar")}</span>
 							{
@@ -200,7 +200,7 @@ class SettingWebReadOnly extends React.Component {
 								)
 							}
 						</FormItem>
-
+						
 						<div className="sameWebBox">
 							<span className="sameWebTitle" style={this.styles.list}>{getLangTxt("setting_webview_absolute")}</span>
 							<FormItem className="positionStyle" style={{
@@ -217,13 +217,13 @@ class SettingWebReadOnly extends React.Component {
 								}
 								<span style={{paddingRight: '15px'}}>{getLangTxt("setting_webview_location")}</span>
 							</FormItem>
-
+							
 							<FormItem className="positionStyle"
 							          style={{display: "inline-block", width: "160px", marginBottom: "0"}}>
 								<Switch disabled checked={selected}/>
 								<span>{getLangTxt("setting_webview_relative")}</span>
 							</FormItem>
-
+							
 							<div style={{height: "142px"}}>
 								<div className="clearFix" style={!selected ? this.styles.div0_0_0 : {display: 'none'}}>
 									<div style={this.styles.div0_0_0_0}>
@@ -239,7 +239,7 @@ class SettingWebReadOnly extends React.Component {
 											)
 										}
 									</div>
-
+									
 									<div style={this.styles.div0_0_0_0_pos}>
 										<FormItem>
 											<div style={{marginBottom: '20px'}}>
@@ -251,7 +251,7 @@ class SettingWebReadOnly extends React.Component {
 												}
 												<span>{getLangTxt("setting_webview_pixel")}</span>
 											</div>
-
+											
 											<div>
 												<span>{getLangTxt("setting_webview_y_offset")}</span>
 												{
@@ -264,7 +264,7 @@ class SettingWebReadOnly extends React.Component {
 										</FormItem>
 									</div>
 								</div>
-
+								
 								<div style={selected ? {display: 'block'} : {display: 'none'}}>
 									<div style={{width: '350px', height: '130px', float: 'left'}}>
 										<FormItem>
@@ -303,7 +303,7 @@ class SettingWebReadOnly extends React.Component {
 														}
 													</FormItem>
 												</div>
-
+												
 												<div style={{marginTop: '16px'}}>
 													<FormItem style={this.styles.select}>
 														{
@@ -329,7 +329,7 @@ class SettingWebReadOnly extends React.Component {
 									</div>
 								</div>
 							</div>
-
+						
 						</div>
 					</div>
 				</div>

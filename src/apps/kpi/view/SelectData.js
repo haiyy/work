@@ -5,8 +5,9 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import ScrollArea from 'react-scrollbar'
 import LoadProgressConst from "../../../model/vo/LoadProgressConst"
-import Loading from './Loading'
-import NTModal from "../../../components/NTModal";
+//import Loading from './Loading'
+import Loading from "../../../components/xn/loading/Loading"
+import Modal from "../../../components/xn/modal/Modal";
 import TreeNode from "../../../components/antd2/tree/TreeNode";
 import { getLangTxt } from "../../../utils/MyUtil";
 
@@ -408,7 +409,7 @@ class SelectData extends React.Component {
 		});
 
 		return (
-			<NTModal title={getLangTxt("kpi_select_content")} visible={true}
+			<Modal title={getLangTxt("kpi_select_content")} visible={true}
 			         wrapClassName="showDataTitle" onOk={this.handleOk.bind(this)}
 			         onCancel={this.handleCancel.bind(this)}
 			>
@@ -468,7 +469,7 @@ class SelectData extends React.Component {
 					</div>
 				</div>
 				{this._getProgress(this.props.allColumns, this.props.selectColumns)}
-			</NTModal>
+			</Modal>
 		)
 	}
 }

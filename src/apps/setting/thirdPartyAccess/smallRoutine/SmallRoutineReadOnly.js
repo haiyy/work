@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { Button, Table, Tooltip, Modal } from 'antd';
+import { Button, Table, Tooltip } from 'antd';
 import SmallRoutineDevelopModel from "./SmallRoutineDevelopModel";
 import SmallRoutineTopSpeedModel from "./SmallRoutineTopSpeedModel";
 import { formatTimestamp, getLangTxt } from "../../../../utils/MyUtil";
@@ -12,9 +12,9 @@ import {
 } from '../reducer/smallRoutineReducer';
 import SelectModel from "../public/SelectModel";
 import {getAccountGroup} from "../../account/accountAction/sessionLabel";
-
-const confirm = Modal.confirm,
-    modeComponentMap = {
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal"
+//const confirm = Modal.confirm,
+const modeComponentMap = {
         1: SmallRoutineTopSpeedModel,
         2: SmallRoutineDevelopModel
     };

@@ -1,10 +1,11 @@
 import React from 'react'
-import { Form, Input, Button, Card, Modal, Tooltip } from 'antd';
+import { Form, Input, Button, Card, Tooltip } from 'antd';
 import GroupItem from './GroupItem';
 import { connect } from 'react-redux';
 import { getLangTxt, upOrDown } from "../../../utils/MyUtil";
 import { bglen } from "../../../utils/StringUtils";
 import "./style/GroupCard.scss";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const FormItem = Form.Item;
 
@@ -139,7 +140,7 @@ class GroupCard extends React.PureComponent {
 	
 	delGroup(gid)
 	{
-		Modal.confirm({
+		confirm({
 			title: getLangTxt("del_tip"),
 			width: '320px',
 			iconType: 'exclamation-circle',

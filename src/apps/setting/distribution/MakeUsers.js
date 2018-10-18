@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Steps, Button, Input, Form, message, Modal } from 'antd';
+import { Steps, Button, Input, Form, message } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import UserFilterList from './UserFilterList';
@@ -7,6 +7,7 @@ import { editorCurstem, makeUsers, getType, getdata, clearUserMsg, checkoutExist
 import './style/makeUsers.scss';
 import { bglen } from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const Step = Steps.Step, FormItem = Form.Item;
 
@@ -126,7 +127,7 @@ class MakeUsers extends React.PureComponent {
                 .then(exist => {
                     if(exist)
                     {
-                        Modal.error({
+                        error({
                             title: getLangTxt("tip"),
                             iconType: 'exclamation-circle',
                             className: 'errorTip',
@@ -228,7 +229,7 @@ class MakeUsers extends React.PureComponent {
                 .then(exist => {
                     if(exist)
                     {
-                        Modal.error({
+                        error({
                             title: getLangTxt("tip"),
                             iconType: 'exclamation-circle',
                             className: 'errorTip',

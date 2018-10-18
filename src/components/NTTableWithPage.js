@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Popover ,Icon,Tooltip} from 'antd';
+import { Table} from 'antd';
 import '../public/styles/enterpriseSetting/tableAndTurnpage.scss';
 import { formatTime, formatTimestamp ,formatTimes} from "../utils/MyUtil";
 import { truncateToPop, formatint, phonetype, checkPhone } from "../utils/StringUtils";
@@ -17,11 +17,6 @@ class NTTableWithPage extends React.PureComponent {
 		super(props);
 
 		this.state = {selectedRows: []};
-	}
-
-	componentDidMount()
-	{
-
 	}
 
 	pageChange(thePage)

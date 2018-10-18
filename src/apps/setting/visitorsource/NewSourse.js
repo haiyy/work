@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Form, Input, TreeSelect, Upload, Tree } from 'antd';
+import { Form, Input, Upload, Tree } from 'antd';
 import { getLangTxt, upload, UPLOAD_IMAGE_ACTION } from "../../../utils/MyUtil";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
+import TreeSelect from "../../public/TreeSelect";
 import TreeNode from "../../../components/antd2/tree/TreeNode";
-
 const FormItem = Form.Item;
 
 class NewSourse extends React.PureComponent {
@@ -159,6 +159,24 @@ class NewSourse extends React.PureComponent {
 
 	}
 
+    getSourceTypeGroupTree(groupData)
+    {
+        if(groupData)
+            return groupData.map(item =>
+            {
+                let {key, label, value, children} = item;
+                return (
+                    <TreeNode
+                        key={key} title={label}
+                        value={value}
+                    >
+                        {children && children.length ? this.getSourceTypeGroupTree(children) : null}
+                    </TreeNode>
+                );
+            });
+        return null;
+    }
+
 	render()
 	{
 
@@ -183,152 +201,155 @@ class NewSourse extends React.PureComponent {
 			};
 
 		return (
-			<NTModal className='newsourses' title={this.props.sourceName} visible={true} okText={getLangTxt("save")}
+			<Modal className='newsourses' title={this.props.sourceName} visible={true} okText={getLangTxt("save")}
 			         width="5.7rem" height="5.66rem" onOk={this.sourseOk.bind(this)}
-			         onCancel={this.props.changeNewSourse.bind(this)}>
-				<Form className="newsoursesForm">
-					<FormItem {...formItemLayout} label={getLangTxt("setting_source_type")}>
-						{getFieldDecorator('pk_sourcetype', {
-							initialValue: editorData && editorData.source_type_id && sourceName ? editorData.source_type_id : currentGroup && parseInt(currentGroup),
-							rules: [{required: true, message: " "}]
-						})(
-							<TreeSelect
-								style={{width: "100%"}}
-								dropdownStyle={{maxHeight: 400, overflowY: 'auto', overflowX: 'hidden'}}
-								treeData={state}
-								onChange={this.selectFather.bind(this)}
-								treeDefaultExpandAll/>
-						)}
-					</FormItem>
+			         onCancel={this.props.changeNewSourse.bind(this)}
+					 wrapClassName="accountRight scrollAreaStyle">
+				<div className="accountListScroll" > 
+					<Form className="newsoursesForm">
+						<FormItem {...formItemLayout} label={getLangTxt("setting_source_type")}>
+							{getFieldDecorator('pk_sourcetype', {
+								initialValue: editorData && editorData.source_type_id && sourceName ? editorData.source_type_id : currentGroup && parseInt(currentGroup),
+								rules: [{required: true, message: " "}]
+							})(
+								<TreeSelect
+									style={{width: "100%"}}
+									onChange={this.selectFather.bind(this)}
+									treeDefaultExpandAll
+									treeNode={this.getSourceTypeGroupTree(state)}
+								/>
+							)}
+						</FormItem>
 
-					<FormItem {...formItemLayout} label={getLangTxt("setting_source_cname")} hasFeedback>
-						{getFieldDecorator('cname', {
-							initialValue: editorData && sourceName ? editorData.cname : null,
-							rules: [{required: true, message: " "},
-								{validator: this.judgeSpace.bind(this, false)}]
-						})(
-							<Input/>
-						)}
-					</FormItem>
+						<FormItem {...formItemLayout} label={getLangTxt("setting_source_cname")} hasFeedback>
+							{getFieldDecorator('cname', {
+								initialValue: editorData && sourceName ? editorData.cname : null,
+								rules: [{required: true, message: " "},
+									{validator: this.judgeSpace.bind(this, false)}]
+							})(
+								<Input/>
+							)}
+						</FormItem>
 
-					<FormItem {...formItemLayout} label={getLangTxt("setting_source_ename")} hasFeedback>
-						{getFieldDecorator('ename', {
-							initialValue: editorData && sourceName ? editorData.ename : null,
-							rules: [{required: true, message: " "},
-								{validator: this.judgeSpace.bind(this, true)}]
-						})(
-							<Input/>
-						)}
-					</FormItem>
+						<FormItem {...formItemLayout} label={getLangTxt("setting_source_ename")} hasFeedback>
+							{getFieldDecorator('ename', {
+								initialValue: editorData && sourceName ? editorData.ename : null,
+								rules: [{required: true, message: " "},
+									{validator: this.judgeSpace.bind(this, true)}]
+							})(
+								<Input/>
+							)}
+						</FormItem>
 
-					<FormItem className="imgHelpStyle" {...formItemLayout} label="web logo" hasFeedback>
-						{getFieldDecorator('webLogo', {
-							initialValue: isEdit ? editorData && editorData.source_logo : "",
-							rules: [{required: true, message: " "}]
-						})(
-							<div className="clearfix">
-								{
-									fileListWebUrl || sourceName ?
-										<span className="fileList" style={{border: "1px solid #ccc"}}>
-                                    {fileListWebUrl ?
-	                                    <img src={fileListWebThumbUrl}/> :
-	                                    (
-		                                    editorData.sourceHttp == 1 ?
-			                                    <img src={editorData.source_logo}/> :
-			                                    <i className={"icon iconfont icon-" + editorData.source_logo} style={{
-				                                    fontSize: "60px", color: "#3a7dda", position: "absolute",
-				                                    top: "12px"
-			                                    }}/>
-	                                    )}
-											<span className="change-image">
-                                        <Upload {...props}
-                                                onChange={this.handleChange.bind(this, this.web)}>{getLangTxt("modify")}</Upload>
-                                    </span>
-                                </span> :
-										<Upload {...props} className="avatar" style={{cursor: "pointer"}}
-										        onChange={this.handleChange.bind(this, this.web)}>
-											{uploadButton}
-										</Upload>
-								}
-								<span className="img-size">{getLangTxt("setting_source_word1")}</span>
-							</div>
-						)}
+						<FormItem className="imgHelpStyle" {...formItemLayout} label="web logo" hasFeedback>
+							{getFieldDecorator('webLogo', {
+								initialValue: isEdit ? editorData && editorData.source_logo : "",
+								rules: [{required: true, message: " "}]
+							})(
+								<div className="clearfix">
+									{
+										fileListWebUrl || sourceName ?
+											<span className="fileList" style={{border: "1px solid #ccc"}}>
+										{fileListWebUrl ?
+											<img src={fileListWebThumbUrl}/> :
+											(
+												editorData.sourceHttp == 1 ?
+													<img src={editorData.source_logo}/> :
+													<i className={"icon iconfont icon-" + editorData.source_logo} style={{
+														fontSize: "60px", color: "#3a7dda", position: "absolute",
+														top: "12px"
+													}}/>
+											)}
+												<span className="change-image">
+											<Upload {...props}
+													onChange={this.handleChange.bind(this, this.web)}>{getLangTxt("modify")}</Upload>
+										</span>
+									</span> :
+											<Upload {...props} className="avatar" style={{cursor: "pointer"}}
+													onChange={this.handleChange.bind(this, this.web)}>
+												{uploadButton}
+											</Upload>
+									}
+									<span className="img-size">{getLangTxt("setting_source_word1")}</span>
+								</div>
+							)}
 
-					</FormItem>
+						</FormItem>
 
-					<FormItem {...formItemLayout} className="logoItem" label="wap logo" hasFeedback>
-						{getFieldDecorator('wapLogo', {
-							initialValue: isEdit ? editorData && editorData.wap_logo : "",
-							rules: [{required: true, message: " "}]
-						})(
-							<div className="clearfix">
-								{
-									fileListWapUrl || sourceName ?
-										<span className="fileList" style={{border: "1px solid #ccc"}}>
-                                    {
-	                                    fileListWapUrl ?
-		                                    <img src={fileListWapThumbUrl}/> :
-		                                    (editorData.wapHttp == 1 ?
-				                                    <img src={editorData.wap_logo}/> :
-				                                    <i className={"icon iconfont icon-" + editorData.wap_logo} style={{
-					                                    fontSize: "60px", color: "#3a7dda", position: "absolute",
-					                                    top: "12px"
-				                                    }}/>
-		                                    )
-                                    }
-											<span className="change-image">
-                                        <Upload {...props}
-                                                onChange={this.handleChange.bind(this, this.wap)}>{getLangTxt("modify")}</Upload>
-                                    </span>
-                                </span>
-										:
-										<Upload {...props} className="avatar" style={{cursor: "pointer"}}
-										        onChange={this.handleChange.bind(this, this.wap)}>
-											{uploadButton}
-										</Upload>
-								}
-								<span className="img-size">{getLangTxt("setting_source_word1")}</span>
-							</div>
-						)}
-					</FormItem>
+						<FormItem {...formItemLayout} className="logoItem" label="wap logo" hasFeedback>
+							{getFieldDecorator('wapLogo', {
+								initialValue: isEdit ? editorData && editorData.wap_logo : "",
+								rules: [{required: true, message: " "}]
+							})(
+								<div className="clearfix">
+									{
+										fileListWapUrl || sourceName ?
+											<span className="fileList" style={{border: "1px solid #ccc"}}>
+										{
+											fileListWapUrl ?
+												<img src={fileListWapThumbUrl}/> :
+												(editorData.wapHttp == 1 ?
+														<img src={editorData.wap_logo}/> :
+														<i className={"icon iconfont icon-" + editorData.wap_logo} style={{
+															fontSize: "60px", color: "#3a7dda", position: "absolute",
+															top: "12px"
+														}}/>
+												)
+										}
+												<span className="change-image">
+											<Upload {...props}
+													onChange={this.handleChange.bind(this, this.wap)}>{getLangTxt("modify")}</Upload>
+										</span>
+									</span>
+											:
+											<Upload {...props} className="avatar" style={{cursor: "pointer"}}
+													onChange={this.handleChange.bind(this, this.wap)}>
+												{uploadButton}
+											</Upload>
+									}
+									<span className="img-size">{getLangTxt("setting_source_word1")}</span>
+								</div>
+							)}
+						</FormItem>
 
-					<FormItem {...formItemLayout} label={getLangTxt("setting_source_domain")} hasFeedback>
-						{getFieldDecorator('domain', {
-							initialValue: editorData && sourceName ? editorData.domain : null,
-							rules: [{required: true, message: " "},
-								{validator: this.judgeDomainSpace.bind(this)}]
-						})(
-							<Input/>
-						)}
-					</FormItem>
+						<FormItem {...formItemLayout} label={getLangTxt("setting_source_domain")} hasFeedback>
+							{getFieldDecorator('domain', {
+								initialValue: editorData && sourceName ? editorData.domain : null,
+								rules: [{required: true, message: " "},
+									{validator: this.judgeDomainSpace.bind(this)}]
+							})(
+								<Input/>
+							)}
+						</FormItem>
 
-					<FormItem {...formItemLayout} label={getLangTxt("setting_source_keyword_rule")} hasFeedback>
-						{getFieldDecorator('ref_word_rex', {initialValue: editorData && sourceName ? editorData.ref_word_rex : null})(
-							<Input type="textarea"/>
-						)}
-					</FormItem>
+						<FormItem {...formItemLayout} label={getLangTxt("setting_source_keyword_rule")} hasFeedback>
+							{getFieldDecorator('ref_word_rex', {initialValue: editorData && sourceName ? editorData.ref_word_rex : null})(
+								<Input type="textarea"/>
+							)}
+						</FormItem>
 
-					<FormItem {...formItemLayout} label={getLangTxt("setting_source_encode")} hasFeedback>
-						{getFieldDecorator('encode', {
-							initialValue: editorData && sourceName ? editorData.encode : null
-						})(
-							<Input/>
-						)}
-					</FormItem>
+						<FormItem {...formItemLayout} label={getLangTxt("setting_source_encode")} hasFeedback>
+							{getFieldDecorator('encode', {
+								initialValue: editorData && sourceName ? editorData.encode : null
+							})(
+								<Input/>
+							)}
+						</FormItem>
 
-					<FormItem {...formItemLayout} label={getLangTxt("setting_source_rule_set")} hasFeedback>
-						{getFieldDecorator('url_reg', {initialValue: editorData && sourceName ? editorData.url_reg : null})(
-							<Input type="textarea"/>
-						)}
-					</FormItem>
+						<FormItem {...formItemLayout} label={getLangTxt("setting_source_rule_set")} hasFeedback>
+							{getFieldDecorator('url_reg', {initialValue: editorData && sourceName ? editorData.url_reg : null})(
+								<Input type="textarea"/>
+							)}
+						</FormItem>
 
-					<FormItem {...formItemLayout} label={getLangTxt("setting_source_instruction")} hasFeedback>
-						{getFieldDecorator('sourceexplain', {initialValue: editorData && sourceName ? editorData.sourceexplain : null})(
-							<Input type="textarea"/>
-						)}
-					</FormItem>
-				</Form>
-			</NTModal>
+						<FormItem {...formItemLayout} label={getLangTxt("setting_source_instruction")} hasFeedback>
+							{getFieldDecorator('sourceexplain', {initialValue: editorData && sourceName ? editorData.sourceexplain : null})(
+								<Input type="textarea"/>
+							)}
+						</FormItem>
+					</Form>
+				</div>
+			</Modal>
 		)
 	}
 }

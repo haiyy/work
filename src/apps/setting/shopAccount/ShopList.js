@@ -1,18 +1,19 @@
 import React  from 'react';
-import {Cascader, Button, Modal, Tabs, Table, Switch, Form, Select, Input, Tooltip, message} from 'antd';
+import {Cascader, Button, Tabs, Table, Switch, Form, Select, Input, Tooltip, message} from 'antd';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import moment from 'moment';
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import {ReFresh} from "../../../components/ReFresh";
 import { bglen } from "../../../utils/StringUtils"
-import NTModal from "../../../components/NTModal";
 import {truncateToPop} from "../../../utils/StringUtils";
 import CreateShop from "./CreateShop";
 import {delShopItem, enableShopItem, getShopItem, getSearchShopItem, clearErrorNewItemProgress} from "./reducer/shopAccountReducer";
+import Loading from "../../../components/xn/loading/Loading";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const TabPane = Tabs.TabPane,
-    confirm = Modal.confirm,
+    //confirm = Modal.confirm,
     FormItem = Form.Item,
     Option = Select.Option,
     Search = Input.Search;
@@ -139,7 +140,7 @@ class ShopList extends React.PureComponent {
             {pageData, isSearch} = this.state,
             finalPage;
 
-        Modal.confirm({
+        confirm({
             title: '删除提示',
             width: '320px',
             iconType: 'exclamation-circle',
@@ -201,7 +202,7 @@ class ShopList extends React.PureComponent {
             {
                 return (
                     <div className="shopAccountProgress">
-                        <Spin style={{
+                        <Loading style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",
@@ -227,7 +228,7 @@ class ShopList extends React.PureComponent {
 
                 this.props.clearErrorNewItemProgress();
 
-                this.errorModal = Modal.error({
+                this.errorModal = error({
                     title: "操作失败",
                     iconType: 'exclamation-circle',
                     className: "errorTip",

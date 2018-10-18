@@ -1,12 +1,13 @@
 import React, {PropTypes} from 'react'
-import {Tree, Modal, Popover, Tooltip} from 'antd';
+import {Tree, Popover, Tooltip} from 'antd';
 import TreeNode from "../../../components/antd2/tree/TreeNode";
 import ScrollArea from 'react-scrollbar';
 import { getLangTxt, upOrDown } from "../../../utils/MyUtil";
 import {truncateToPop} from "../../../utils/StringUtils";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-const confirm = Modal.confirm,
-    defaultProps = {
+//const confirm = Modal.confirm,
+const  defaultProps = {
     summaryTypeTree: []
 };
 

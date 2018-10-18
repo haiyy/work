@@ -10,7 +10,7 @@ export function bglen(str)
 {
 	if(!str)
 		return 0;
-
+	
 	var len = 0;
 	for(var i = 0; i < str.length; i++)
 	{
@@ -23,7 +23,7 @@ export function bglen(str)
 			len++;
 		}
 	}
-
+	
 	return len;
 }
 
@@ -34,7 +34,7 @@ export function stringLen(str)
 {
 	if(!str)
 		return 0;
-
+	
 	return Math.round(bglen(str) / 2);
 }
 
@@ -42,14 +42,14 @@ export function substr(str, substrLen)
 {
 	if(!str)
 		return str;
-
+	
 	substrLen = substrLen * 2;
-
+	
 	var len = 0, substring = "";
 	for(var i = 0; i < str.length; i++)
 	{
 		substring += str.charAt(i);
-
+		
 		if(str.charCodeAt(i) > 127 || str.charCodeAt(i) == 94)
 		{
 			len += 2;
@@ -58,13 +58,13 @@ export function substr(str, substrLen)
 		{
 			len++;
 		}
-
+		
 		if(len >= substrLen)
 		{
 			return substring;
 		}
 	}
-
+	
 	return str;
 }
 
@@ -72,14 +72,14 @@ export function replaceLinkForText(text)
 {
 	if(!text)
 		return "";
-
+	
 	return text.replace(/((\w+):\/\/)?([\w-]+\.)([\w-]+\.)([a-zA-Z\-_\.]+)([^$\s,\"\u4E00-\u9FA5]*)?/ig, function() {
 		if(arguments.length <= 2)
 			return arguments[0];
-
+		
 		let oldurl = arguments[0],
 			index = oldurl.indexOf("http");
-
+		
 		if(index <= -1)
 		{
 			oldurl = "http://" + oldurl;
@@ -88,7 +88,7 @@ export function replaceLinkForText(text)
 		{
 			oldurl = oldurl.substring(index);
 		}
-
+		
 		return "<a href='" + oldurl + "' target='_blank'>" + arguments[0] + "</a>";
 	});
 }
@@ -102,42 +102,42 @@ export function replaceLinkForText(text)
 export function truncateToFit(str, len, replaceValue = "...")
 {
 	let strLen = bglen(str);
-
+	
 	if(strLen <= len)
 		return str;
-
+	
 	return str.substr(0, len) + replaceValue;
 }
 
 export function replaceLink(block, raw)
 {
 	let text = block.text;
-
+	
 	if(!text)
 		return raw;
-
+	
 	let entityMap = raw.entityMap,
 		entityRanges = block.entityRanges;
-
+	
 	text.replace(/((\w+):\/\/)?([\w-]+\.)([\w-]+\.)([a-zA-Z\-_\.]+)([^$\s,\"\u4E00-\u9FA5]*)?/ig, function() {
 		if(arguments.length <= 2)
 			return arguments[0];
-
+		
 		let oldurl = arguments[0];
-
+		
 		if(oldurl.indexOf("http") <= -1)
 		{
 			oldurl = "http://" + oldurl;
 		}
-
+		
 		let url = oldurl,
 			offset = arguments[arguments.length - 2],
 			entityKey = Entity.create("LINK", "MUTABLE", {url, target: "_blank"}),
 			entityRange = {key: entityKey, length: url.length, offset};
-
+		
 		entityMap[entityKey] = Entity.get(entityKey);
 		entityRanges.push(entityRange);
-
+		
 		return url;
 	});
 }
@@ -146,7 +146,7 @@ export function getQueryString(search)
 {
 	var url = search; //获取url中"?"符后的字串
 	var theRequest = new Object(), strs;
-
+	
 	if(url.indexOf("?") != -1)
 	{
 		var str = url.substr(1);
@@ -156,10 +156,8 @@ export function getQueryString(search)
 			theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
 		}
 	}
-
-	let keys = Object.keys(theRequest);
-
-	return keys.length && theRequest || null;
+	
+	return theRequest;
 }
 
 /**
@@ -173,13 +171,13 @@ export function truncateToPop(value, width, fontsize = 12)
 {
 	if(!value)
 		return value;
-
+	
 	let fontNum = Math.floor(width / fontsize),
 		len = bglen(value),
 		content = value,
 		popString = value,
 		show = false;
-
+	
 	if(fontNum * 2 < len)
 	{
 		content = substr(value, fontNum - 2) + "...";
@@ -190,13 +188,31 @@ export function truncateToPop(value, width, fontsize = 12)
 	return {popString, show, content};
 }
 
+export function parseSearch(str)
+{
+	if(str == undefined) return
+	str = str.substr(1)
+	var arr = str.split("&"),
+		obj = {},
+		newArr = [];
+	
+	arr.map(function(value, index, arr) {
+		newArr = value.split("=")
+		if(newArr[0] != undefined)
+		{
+			obj[newArr[0]] = newArr[1]
+		}
+	})
+	return obj;
+}
+
 const delTag = /<\/?.+?>/g;
 
 export function delHTMLTag(value)
 {
 	if(!value)
 		return value;
-
+	
 	return value.replace(delTag, "");
 }
 
@@ -215,7 +231,7 @@ export function ruleForLenght(limit, rule, value, callback)
 		callback();
 		return;
 	}
-
+	
 	callback(" ");
 }
 
@@ -225,7 +241,7 @@ export function getHelp(curStr, limit)
 	{
 		return stringLen(curStr) + "/" + parseInt(limit / 2);
 	}
-
+	
 	return bglen(curStr) + "/" + limit;
 }
 
@@ -237,16 +253,16 @@ export function formatint(n)
 {
 	if(isNaN(n))
 		return "";
-
+	
 	let intval = parseInt(n)
 		.toString(),
 		intlength = intval.length;
-
+	
 	if(intlength <= 3)
 		return intval;
-
+	
 	let newintval = intlength % 3;
-
+	
 	return newintval > 0 ?
 		intval.slice(0, newintval) + " " + intval.slice(newintval, intlength)
 		.match(/\d{3}/g)
@@ -260,7 +276,7 @@ export function phonetype(val)
 {
 	if(!val)
 		return "未知";
-
+	
 	if(typeof val !== String)
 	{
 		val = val.toString()
@@ -272,10 +288,10 @@ export function phonetype(val)
 export function generateSiteId(siteId)
 {
 	siteId = siteId.trim();
-
+	
 	if(!siteId)
 		return "";
-
+	
 	let underlineIndex = siteId.indexOf("_");
 	if(underlineIndex >= 0)
 	{
@@ -307,7 +323,7 @@ export function generateSiteId(siteId)
 			}
 		}
 	}
-
+	
 	return "";
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Table, Modal, Input, Form } from 'antd';
+import { Button, Table, Input, Form } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getQualityTest, newQualityTest, editorQualityTest, removeQualityTest } from './action/qualityTest';
@@ -7,9 +7,9 @@ import './style/qualityTesting.scss';
 import { getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-let confirm = Modal.confirm, FormItem = Form.Item;
+let  FormItem = Form.Item;
 
 class QualityTesting extends React.PureComponent {
 	constructor(props)
@@ -190,7 +190,7 @@ class QualityTesting extends React.PureComponent {
 				</div>
 
 				{this.state.isNewModelShow ?
-					<NTModal style={{ height: "314px", marginTop: "-157px", top: "50%" }}
+					<Modal style={{ height: "314px", marginTop: "-157px", top: "50%" }}
 					       className="quality-testing-new" title={ modalName } visible={true}
 					       onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}>
 						<div className='quality-new-body'>
@@ -221,7 +221,7 @@ class QualityTesting extends React.PureComponent {
                                 }
 							</FormItem>
 						</div>
-					</NTModal> : null
+					</Modal> : null
                 }
 
                 {

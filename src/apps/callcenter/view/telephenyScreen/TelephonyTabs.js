@@ -80,11 +80,11 @@ class TelephonyTabs extends React.Component {
 	
 	render()
 	{
-		let {isDetails, height, width} = this.props;
+		let {isDetails, height} = this.props;
 		console.log("test height1:",height);
 
 		return (
-			<div style={{ width: width, float: 'left'}}>
+			<div style={{ width: 'calc(62% - 2px)', float: 'left'}}>
 				<Tabs type="card" style={{marginTop: 20}}>
 					<TabPane tab="用户信息" key="1">
 						<CrmInfo customerId={this.customerId} height={height?height:700} phone={this.phonenumber}/>

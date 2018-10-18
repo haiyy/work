@@ -7,6 +7,7 @@ import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import {getHyperMessageForJSON, isJsonString} from "../../../utils/HyperMediaUtils";
 import { bglen, stringLen } from "../../../utils/StringUtils";
+import { confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const FormItem = Form.Item;
 
@@ -53,7 +54,7 @@ class Answer extends Component {
 
     getSavingErrorMsg()
     {
-        Modal.error({
+        error({
             title: getLangTxt("tip1"),
             iconType: 'exclamation-circle',
             className: 'errorTip',
@@ -219,7 +220,7 @@ class Answer extends Component {
                                     rules:[{validator: this.judgeAnswerSpace.bind(this, greeting.useable == 1)}]
 								})(
 									<Input onChange={this.getTextAreaContent.bind(this, greeting)} type="textarea" id="textarea" className="textarea" name="textarea"
-									       style={{resize: "none"}}/>
+									       style={{resize: "none"}}  placeholder={getLangTxt("setting_autoreply_welcome2")}/>
 								)
 							}
 						</FormItem>

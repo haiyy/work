@@ -29,12 +29,10 @@ class ConsultReceptRedux extends Component {
 		
 		this._handleEvent = this._handleEvent.bind(this);
 		this._onT2DEventHandler = this._onT2DEventHandler.bind(this);
-		this._onNetWorkHandler = this._onNetWorkHandler.bind(this);
 		
 		GlobalEvtEmitter.on(SessionEvent.CONNECT_STATUS, this._onConnectStatus.bind(this));
 		
 		GlobalEvtEmitter.on(NtalkerEvent.CONSULT_RECEPTION, this._handleEvent);
-		GlobalEvtEmitter.on(NtalkerEvent.NETWORK_STATUS, this._onNetWorkHandler);
 		GlobalEvtEmitter.on(NtalkerEvent.T2D, this._onT2DEventHandler);
 	}
 	
@@ -141,7 +139,6 @@ class ConsultReceptRedux extends Component {
 		GlobalEvtEmitter.removeListener(SessionEvent.CONNECT_STATUS, this._onConnectStatus.bind(this));
 		
 		GlobalEvtEmitter.removeListener(NtalkerEvent.CONSULT_RECEPTION, this._handleEvent);
-		GlobalEvtEmitter.removeListener(NtalkerEvent.NETWORK_STATUS, this._onNetWorkHandler);
 		GlobalEvtEmitter.removeListener(NtalkerEvent.T2D, this._onT2DEventHandler);
 	}
 }

@@ -147,12 +147,7 @@ class Settings {
 		
 		return loginCodeUrl;
 	};
-
-	static getLoginCheckUrl()
-	{
-		return configProxy().nAccountUrl + "/login/checkLogin";
-	};
-
+	
 	static getBlacklistUrl()
 	{
 		return configProxy().nTAccountCenter_Visitant + "/guest/blacklist";
@@ -400,7 +395,7 @@ class Settings {
 	//------------------------计算引擎---------------------------
 	static getPantherUrl()
 	{
-// 		return "http://192.168.31.149:8081";
+		return "http://192.168.31.149:8081";
 		
 		if(!pantherUrl)
 		{

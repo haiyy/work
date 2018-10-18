@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button, Input, Checkbox,Modal,Tooltip} from 'antd';
+import { Table, Button, Input, Checkbox, Tooltip} from 'antd';
 import './style/searchListComp.less'
 import './style/Receptiongroup.less'
 import { connect } from "react-redux";
@@ -12,9 +12,10 @@ import { getProgressComp } from "../../../utils/MyUtil";
 import ReceptiongroupComponent from "../util/ReceptiongroupComponent"
 import { getTableTdContent } from "../../../utils/ComponentUtils";
 import moment from "moment";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const Search = Input.Search;
-const confirm = Modal.confirm;
+
 class Receptiongroup extends React.Component {
 	constructor(props)
 	{

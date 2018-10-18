@@ -1,5 +1,5 @@
 import React  from 'react'
-import { Card, Radio, Button, Modal } from 'antd';
+import { Card, Radio, Button } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Immutable from "immutable"
@@ -7,6 +7,7 @@ import { fetchTheme, themeSetting, clearThemeProgress } from './action/personalS
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const RadioGroup = Radio.Group;
 
@@ -58,7 +59,7 @@ class SkinSetting extends React.Component {
 
     getSavingErrorMsg()
     {
-        Modal.error({
+        error({
             title: getLangTxt("tip1"),
             iconType: 'exclamation-circle',
             className: 'errorTip',

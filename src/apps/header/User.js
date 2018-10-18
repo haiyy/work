@@ -2,7 +2,7 @@ import React from 'react'
 import { logoutUser, mineInfoUpdate } from '../login/redux/loginReducer';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Menu, Select, Modal, Tabs, Dropdown } from 'antd';
+import { Menu, Select, Tabs, Dropdown, Modal } from 'antd';
 import SkinSetting from '../setting/personal/SkinSetting';
 import Information from '../setting/personal/Information';
 import Answer from '../setting/personal/Answer';
@@ -26,13 +26,12 @@ import { getAllLevel } from "../setting/configLevel/configLevel";
 import { setInfomation, getInfomation, fetchTheme } from "../setting/personal/action/personalSetting";
 import { getUserInfo } from "../setting/account/accountAction/sessionLabel";
 import GlobalEvtEmitter from "../../lib/utils/GlobalEvtEmitter";
-import NTModal from "../../components/NTModal";
 import ConnectStatus from "../../im/connect/ConnectStatus";
 import NIMCode from "../../im/error/NIMCode";
+import { confirm, info, error, success, warning } from "../../components/xn/modal/Modal";
 
 const Option = Select.Option,
 	TabPane = Tabs.TabPane,
-	confirm = Modal.confirm,
 	MenuItem = Menu.Item,
 	style = {padding: '0px', lineHeight: '42px', height: '12.5%'},
 	menuSettings = [
@@ -204,10 +203,7 @@ class User extends React.PureComponent {
 		this.userStatus = this.loginUser.status;
 		this.userStatus = this.userStatus !== undefined ? this.userStatus.toString() : UserStatus.AWAY.toString();
 
-		if(this.userStatus != 0)
-		{
-			this.userStatus && sessionStorage.setItem("loginStatus", this.userStatus);
-		}
+		console.log("User _updateUserInfo userStatus = ", this.userStatus);
 	}
 
 	_handleChange(value)
@@ -331,15 +327,8 @@ class User extends React.PureComponent {
 
 	logoutUser()
 	{
-		sessionStorage.clear();
-
 		setTimeout(() => {
 			this.props.logoutUser();
-			/**
-			 * 2018-10-15 10:00
-			 * 退出时清空cookie中xn_token字段，广州银行需求
-			 * */
-			document.cookie="xn_token=xn_token;expires=" + new Date().toGMTString();
 		}, 100);
 	}
 
@@ -390,7 +379,7 @@ class User extends React.PureComponent {
 	{
 		let {key: tabKey} = this.state;
 
-		Modal.confirm({
+		confirm({
 			width: "320px",
 			title: getLangTxt("personalset_leave_page"),
 			content: getLangTxt("personalset_save"),
@@ -455,8 +444,7 @@ class User extends React.PureComponent {
 
 	_getTabSettigs(currentStyle)
 	{
-		let {visible = false, name = "", key: activeKey = 0} = this.state,
-            {switcher} = this.props;
+		let {visible = false, name = "", key: activeKey = 0} = this.state;
 
 		if(!visible || !menuSettings[activeKey])
 			return null;
@@ -464,7 +452,7 @@ class User extends React.PureComponent {
 		name = menuSettings[activeKey].name;
 
 		return (
-			<NTModal wrapClassName="settings individuationSettings" visible footer="" onOk={this._show.bind(this)}
+			<Modal wrapClassName="settings individuationSettings" visible footer="" onOk={this._show.bind(this)}
 			         onCancel={this._show.bind(this)}
 			         title={
 				         <span>
@@ -476,7 +464,7 @@ class User extends React.PureComponent {
 					<Tabs activeKey={activeKey} tabPosition={'left'} onChange={this._change.bind(this)}>
 						{
 							menuSettings.map((menuData, index) => {
-									if(!menuData.enable || !switcher.includes(menuData.id))
+									if(menuData.enable === 0)
 										return null;
 
 									return <TabPane key={index} tab={
@@ -503,7 +491,7 @@ class User extends React.PureComponent {
 						}
 					</Tabs>
 				</div>
-			</NTModal>
+			</Modal>
 		);
 	}
 

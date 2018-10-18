@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Modal} from 'antd';
+import { Button} from 'antd';
 import './style/CallRecord.less';
 import './style/searchListComp.less';
 import { connect } from "react-redux";
@@ -17,8 +17,7 @@ import ExportComponent from "../../../components/ExportComponent";
 import {truncateToPop} from "../../../utils/StringUtils";
 import PhoneTaskStatus from "../../../model/vo/PhoneTaskStatus";
 import { ReFresh } from "../../../components/ReFresh";
-
-const confirm = Modal.confirm;
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class CalloutTask extends React.Component {
 	constructor(props)

@@ -2,7 +2,7 @@ import React from 'react';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Tree, Modal, Popover, Tooltip } from 'antd';
+import { Tree, Popover, Tooltip } from 'antd';
 import TreeNode from "../../../components/antd2/tree/TreeNode";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
@@ -10,8 +10,9 @@ import { truncateToPop } from "../../../utils/StringUtils"
 import {getProgressComp} from "../../../utils/MyUtil";
 import CreateShopGroup from "./CreateShopGroup";
 import {getShopGroup, addShopGroup, editShopGroup, delShopGroup, getShopItem, clearErrorNewGroupProgress} from "./reducer/shopAccountReducer";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-const confirm = Modal.confirm;
+//const confirm = Modal.confirm;
 
 class ShopGroup extends React.PureComponent {
 
@@ -313,7 +314,7 @@ class ShopGroup extends React.PureComponent {
                 this.props.clearErrorNewGroupProgress();
 
 
-                this.errorModal = Modal.error({
+                this.errorModal = error({
                     title: '错误提示',
                     iconType: 'exclamation-circle',
                     className: classname,

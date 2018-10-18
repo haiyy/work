@@ -9,6 +9,7 @@ import ImageView from "../../chat/view/pictureviewer/ImageView";
 import NTDragView from "../../../components/NTDragView";
 import copy from 'copy-to-clipboard';
 import Portal from "../../../components/Portal";
+import "../../../public/styles/font/common_iconfont.css";
 
 class MagicBox extends React.PureComponent {
 

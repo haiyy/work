@@ -14,7 +14,7 @@ import NtTreeForSelect from "../../../components/NtTreeForSelect";
 import ConsultSelectedComponent from "./ConsultSelectedComponent";
 import { createMessageId } from "../../../lib/utils/Utils";
 import { bglen } from "../../../utils/StringUtils";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import { getConsultList, getAccountGroup, getAccountList, getVisitorSourceGroup, getVisitorSourceList, updateCommonUsedConditions, updateSelectedConditions, saveCommonUsedConditions, deleteCommonUsedConditions } from "../../../apps/record/redux/consultReducer";
 
 let FormItem = Form.Item;
@@ -815,7 +815,7 @@ class AdvancedSearch extends React.PureComponent {
 						                          loadDataFn={this.sourceLoadDataFn}/> : null
 				}
 
-                <NTModal title="设置常用搜索"
+                <Modal title="设置常用搜索"
                     visible={commonUsedVisible}
                     width={540}
                     wrapClassName='addCommonUsed'
@@ -839,7 +839,7 @@ class AdvancedSearch extends React.PureComponent {
                             {isOverCount ?  <p className="commonUsedWarned">常用搜索最多创建50条！</p> : null}
                         </FormItem>
                     </Form>
-                </NTModal>
+                </Modal>
 			</div>
 		);
 	}

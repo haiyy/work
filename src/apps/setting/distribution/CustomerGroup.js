@@ -1,6 +1,5 @@
 import React from 'react'
-import { Tabs, Steps, Button, Input, Select, Form, message, Radio, TreeSelect } from 'antd';
-import ScrollArea from 'react-scrollbar';
+import { Tabs, Steps, Button, Input, Form, message, Radio } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CustomerTable from './CustomerTable';
@@ -9,9 +8,11 @@ import { getUserSkillTag } from '../account/accountAction/sessionLabel';
 import { getCustomerGroupData, getSkillTagCustomerGroupData, makeUsers, editorCurstem, clearCustomerData, clearUserMsg } from './action/distribute';
 import { bglen } from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
+import TreeSelect from "../../public/TreeSelect";
+import TreeNode from "../../../components/antd2/tree/TreeNode";
+import Select from "../../public/Select";
 
-const Step = Steps.Step, TabPane = Tabs.TabPane, Option = Select.Option, FormItem = Form.Item, RadioGroup = Radio.Group,
-	TreeNode = TreeSelect.TreeNode;
+const Step = Steps.Step, TabPane = Tabs.TabPane, Option = Select.Option, FormItem = Form.Item, RadioGroup = Radio.Group;
 
 class CustomerGroup extends React.PureComponent {
 
@@ -446,6 +447,20 @@ class CustomerGroup extends React.PureComponent {
 			});
 	}
 
+    getTagTreeNodes(selectTreeData, isNode)
+    {
+        if(selectTreeData && selectTreeData.length)
+            return selectTreeData.map(item =>
+            {
+                let {tagid, tagname} = item;
+                if (isNode)
+                    return <TreeNode key={tagid} value={tagid} title={tagname}/>;
+
+                return <Option key={tagid} value={tagid}> {tagname} </Option>
+            });
+        return null
+    }
+
 	render()
 	{
 		let {getFieldDecorator} = this.props.form,
@@ -544,20 +559,8 @@ class CustomerGroup extends React.PureComponent {
 																		onFocus={this.onFocusSelect.bind(this, 1)}
 																		onChange={this.selectSkillTag.bind(this)}
 																		getPopupContainer={() => document.getElementById("scrollAreaCustomer")}
-																	>
-																		{
-																			selectTreeData.map((item) => {
-																				return (
-																					<Option
-																						key={item.tagid}
-																						value={item.tagid}
-																					>
-																						{item.tagname}
-																					</Option>
-																				)
-																			})
-																		}
-																	</Select>
+                                                                        option={this.getTagTreeNodes(selectTreeData)}
+																	/>
 																)
 															}
 														</FormItem>
@@ -577,17 +580,12 @@ class CustomerGroup extends React.PureComponent {
 																	})(
 																	<TreeSelect allowClear multiple treeDefaultExpandAll
 																	            className="customerSelectGroup" treeNodeFilterProp="title"
-																	            dropdownStyle={{
-																		            maxHeight: 340, overflowX: 'hidden',
-																		            overflowY: 'auto'
-																	            }} showSearch
+																	            showSearch
 																	            onClick={this.onFocusSelect.bind(this, 2)}
 																	            onChange={this.selectAccountGroup.bind(this)}
-																	            getPopupContainer={() => document.getElementById("scrollAreaCustomer")}>
-																		{
-																			this.getAccountTree(selectTreeData)
-																		}
-																	</TreeSelect>
+																	            getPopupContainer={() => document.getElementById("scrollAreaCustomer")}
+                                                                                treeNode={this.getAccountTree(selectTreeData)}
+                                                                    />
 																)
 															}
 														</FormItem>
@@ -600,11 +598,12 @@ class CustomerGroup extends React.PureComponent {
 																value={customerFilterType}
 																onChange={this.selectCustomerFilterType.bind(this)}
 																getPopupContainer={() => document.getElementById("scrollAreaCustomer")}
+                                                                option={[
+                                                                    <Option key={1} value="accountGroup"> {getLangTxt("setting_account_group")} </Option>,
+																    <Option key={2} value="skillTag"> {getLangTxt("setting_account_skilltag")} </Option>
+                                                                ]}
 															>
-																<Option key={1}
-																        value="accountGroup">{getLangTxt("setting_account_group")}</Option>
-																<Option key={2}
-																        value="skillTag">{getLangTxt("setting_account_skilltag")}</Option>
+
 															</Select>
 															{
 																getFieldDecorator('customer',
@@ -617,33 +616,14 @@ class CustomerGroup extends React.PureComponent {
 																		}]
 																	})(
 																	<TreeSelect allowClear multiple treeNodeFilterProp="title"
-
-
 																	            className="customerSelectGroup"
-																	            dropdownStyle={{
-																		            maxHeight: 340, overflowX: 'hidden',
-																		            overflowY: 'auto'
-																	            }} showSearch
+																	            showSearch
 																	            optionFilterProp="children"
 																	            onClick={this.onFocusSelect.bind(this, 0)}
 																	            onChange={this.selectCustomer.bind(this, customerFilterType)}
-																	            getPopupContainer={() => document.getElementById("scrollAreaCustomer")}>
-																		{
-																			customerFilterType === "accountGroup" ?
-																				this.getAccountTree(selectTreeData)
-																				:
-																				selectTreeData.map((item) => {
-																					return (
-																						<TreeNode
-																							key={item.tagid}
-																							value={item.tagid}
-																							title={item.tagname}
-																						>
-																						</TreeNode>
-																					)
-																				})
-																		}
-																	</TreeSelect>
+																	            getPopupContainer={() => document.getElementById("scrollAreaCustomer")}
+                                                                                treeNode={customerFilterType === "accountGroup" ? this.getAccountTree(selectTreeData) : this.getTagTreeNodes(selectTreeData, true)}
+                                                                    />
 																)
 															}
 														</FormItem>

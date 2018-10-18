@@ -1,12 +1,13 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {Modal, Form, Input, TreeSelect, Tree} from 'antd';
+import {Form, Input, TreeSelect, Tree} from 'antd';
 import {connect} from "react-redux";
 import {bindActionCreators} from 'redux';
 import {stringLen} from "../../../utils/StringUtils";
 import {Map, fromJS} from 'immutable';
 import {getGroupList}  from "../redux/reducers/receptiongroupReducer";
 import "../view/style/formContent.less";
+import Modal from "../../../components/xn/modal/Modal";
 const FormItem = Form.Item;
 const {TextArea} = Input;
 const TreeNode = Tree.TreeNode;
@@ -19,7 +20,7 @@ class ReceptiongroupComponent extends React.Component { //子组件
             visible: props.visible,
             confirmDirty: false,
             ruleNumLength: 0,
-            value: [],
+            value: '',
         }
 
     }
@@ -68,6 +69,9 @@ class ReceptiongroupComponent extends React.Component { //子组件
     }
 
     onGroupChange(value, label, extra) {
+        if (value == "false") {
+            return;
+        }
         this.setState({
             value: value,
         });
@@ -113,7 +117,7 @@ class ReceptiongroupComponent extends React.Component { //子组件
                 treeDefaultExpandAll: false,
                 dropdownMatchSelectWidth: true,
                 treeNodeFilterProp:"title",
-                getPopupContainer:() => document.querySelector(".ant-layout-aside"),
+         
                 style: {
                     width: 447,
                     minHeight: 30,
@@ -129,8 +133,7 @@ class ReceptiongroupComponent extends React.Component { //子组件
                 {
                     modalShow ?
                         <Modal visible={visible} id="ModalBox" title={actionsType == 'edit' ? "编辑接待组" : "新建接待组"} okText="保存"   width="600px"  style={{maxWidth:600, top:300}} onOk={this.handleSubmit.bind(this)} onCancel={this.props.handleCancel.bind(this)}>
-                            <Form onSubmit={this.handleSubmit.bind(this)}> 
-                                <FormItem {...formItemLayout} label="接待组名称" >
+                            <Form onSubmit={this.handleSubmit.bind(this)}> <FormItem{...formItemLayout} label="接待组名称" >
                                 {
                                     getFieldDecorator('templateName', {
                                         initialValue: actionsType == 'edit' ? templateName : '' ,
@@ -143,9 +146,9 @@ class ReceptiongroupComponent extends React.Component { //子组件
                                         }],
                                     })(<Input style={{width:'85%'}}  onChange={this.onDescribe.bind(this)}/>)}
                                 <span className="CallOut-num">{stringLen(tempName)}/30</span> </FormItem>
-                                <FormItem {...formItemLayout} label="负责坐席">
+                                <FormItem{...formItemLayout} label="负责坐席">
                                     {getFieldDecorator('userIds', {
-                                        initialValue: actionsType == 'edit' ? this.initGroupName : [],
+                                        initialValue: actionsType == 'edit' ? this.initGroupName : '',
                                         rules: [{
                                             required: true,
                                             message:" "

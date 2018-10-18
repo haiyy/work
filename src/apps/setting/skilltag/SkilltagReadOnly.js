@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table, Modal, Input, Form, Popover, Tooltip } from 'antd';
+import { Button, Table, Input, Form, Popover, Tooltip } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,9 +9,9 @@ import './style/skillTag.scss';
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-let confirm = Modal.confirm;
+//let confirm = Modal.confirm;
 
 class SkilltagReadOnly extends React.PureComponent {
     constructor(props)
@@ -226,12 +226,12 @@ class SkilltagReadOnly extends React.PureComponent {
                     </div>
                     {
                         this.state.isTagDetailShow ?
-                            <NTModal title={getLangTxt("kpi_detail")} footer={false} width={544}
+                            <Modal title={getLangTxt("kpi_detail")} footer={false} width={544}
                                 className="quality-testing-remove quality-testing-remove_first" visible
                                 onCancel={this.hideTagDetail.bind(this)}>
                                 <Table columns={this.columnCheck} dataSource={userList} pagination={false}
                                     scroll={{x: "hidden", y: 367}}/>
-                            </NTModal> : null
+                            </Modal> : null
                     }
 
                     {

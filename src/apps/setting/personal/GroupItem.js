@@ -1,7 +1,8 @@
 import React from 'react'
-import { Form, Input, Modal, Tooltip } from 'antd';
+import { Form, Input,  Tooltip } from 'antd';
 import { getLangTxt, loginUser } from "../../../utils/MyUtil";
 import { bglen } from "../../../utils/StringUtils";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const FormItem = Form.Item;
 
@@ -65,7 +66,7 @@ class GroupItem extends React.PureComponent {
 	//删除个人话术条目
 	delTips(obj)
 	{
-		Modal.confirm({
+		confirm({
 			title: getLangTxt("del_tip"),
 			width: '320px',
 			iconType: 'exclamation-circle',

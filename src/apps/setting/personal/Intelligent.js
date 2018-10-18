@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from "react-dom";
-import { Select, Button, Form, Modal } from 'antd';
+import { Select, Button, Form } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getIntelligent, setIntelligent, clearIntelligentProgress } from './action/personalSetting';
@@ -8,6 +8,7 @@ import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
 import Keyboard from "../../../utils/Keyboard";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const Option = Select.Option,
 	noContainKeys = ["Shift", "Alt", "Control", "Enter"];
@@ -77,7 +78,7 @@ class Intelligent extends React.Component {
 	
 	getSavingErrorMsg()
 	{
-		Modal.error({
+		error({
 			title: getLangTxt("tip1"),
 			iconType: 'exclamation-circle',
 			className: 'errorTip',

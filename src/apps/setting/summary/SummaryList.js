@@ -1,6 +1,6 @@
 import React from 'react'
 import moment from 'moment';
-import { Table, Form, Switch, Modal, Popover, Button, Upload, Tooltip } from 'antd';
+import { Table, Form, Switch, Popover, Button, Upload, Tooltip } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import ListHead from './ListHead';
 import { connect } from 'react-redux';
@@ -11,10 +11,10 @@ import { downloadByATag, getLangTxt } from "../../../utils/MyUtil";
 import { loginUserProxy } from "../../../utils/MyUtil";
 import { upOrDown } from "../../../utils/MyUtil";
 import Settings from "../../../utils/Settings";
-import NTModal from "../../../components/NTModal";
 import { truncateToPop } from "../../../utils/StringUtils";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-const confirm = Modal.confirm;
+//const confirm = Modal.confirm;
 
 class SummaryList extends React.PureComponent {
 	constructor(props)
@@ -156,7 +156,7 @@ class SummaryList extends React.PureComponent {
 						groupFailedString = groupFailed.join(","),
 						itemFailedString = itemFailed.join(",");
 					
-					Modal.info({
+					info({
 						title: getLangTxt("import_tip"),
 						width: '320px',
 						iconType: 'exclamation-circle',
@@ -187,7 +187,7 @@ class SummaryList extends React.PureComponent {
 				}
 				else if(!res.success && res.result.code == 400)
 				{
-					Modal.error({
+					error({
 						title: getLangTxt("import_tip"),
 						width: '320px',
 						iconType: 'exclamation-circle',
@@ -198,7 +198,7 @@ class SummaryList extends React.PureComponent {
 				}
 				else
 				{
-					Modal.success({
+					success({
 						title: getLangTxt("import_tip"),
 						width: '320px',
 						iconType: 'exclamation-circle',
@@ -438,7 +438,7 @@ class SummaryList extends React.PureComponent {
 					</ScrollArea>
 				</div>
 				
-				<NTModal visible={this.state.importVisible} className="usualTipsRightModal" title={getLangTxt("import")}
+				<Modal visible={this.state.importVisible} className="usualTipsRightModal" title={getLangTxt("import")}
 				         onCancel={this.importVisibleCancel.bind(this)}
 				         footer={
 					         [
@@ -456,7 +456,7 @@ class SummaryList extends React.PureComponent {
 					<p>{getLangTxt("setting_import_note3")}</p>
 					<p>{getLangTxt("setting_import_note4")}</p>
 					<p>{getLangTxt("setting_import_note5")}</p>
-				</NTModal>
+				</Modal>
 			</div>
 		)
 	}

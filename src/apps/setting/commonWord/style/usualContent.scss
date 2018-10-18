@@ -233,9 +233,9 @@
         float: left;
         width: 75%;
         .ant-btn-primary {
-            margin-left: 0.09rem;
-            height: 0.28rem;
-            line-height: 0.28rem;
+            margin-left: 10px;
+           /* height: 0.28rem;
+            line-height: 0.28rem;*/
         }
         .rangeBtn {
             vertical-align: middle;
@@ -255,7 +255,7 @@
         margin-right: 11px;
         .searchIpt {
             display: block;
-            height: 32px;
+            height: 26px;
             width: 174px;
             position: absolute;
             left: 0;
@@ -329,30 +329,9 @@
             margin-right: 0.15rem;
         }
     }
-    .ant-table-content .ant-table-body table{
-        table-layout: fixed;
-        width:100%;
-        .ant-table-thead {
-            tr th {
-                padding: 0.07rem 0.08rem;
-            }
-            .ant-table-selection-column {
-                width: 30px;
-            }
-        }
-        tr td{
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            word-break: break-word;
-            padding: 0.079rem 0.079rem;
-        }
-
-    }
-    .ant-spin-container {
-        .ant-table-pagination {
-            margin: 0.05rem 0;
-        }
+    .ant-table-content .ant-table-body table {
+      table-layout: fixed;
+      width: 100%;
     }
 }
 

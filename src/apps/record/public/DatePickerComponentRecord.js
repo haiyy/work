@@ -1,7 +1,8 @@
 import React from 'react';
-import { DatePicker, Select } from 'antd';
+import { DatePicker } from 'antd';
 import moment from 'moment';
 import { getLangTxt } from "../../../utils/MyUtil";
+import Select from "../../public/Select";
 
 const {RangePicker} = DatePicker;
 const Option = Select.Option;
@@ -184,15 +185,19 @@ class DatePickerComponentRecord extends React.Component {
 
 				<div className="leftDatePickerContainer">
 					<Select value={selectValue} onSelect={this.selectDateChange.bind(this)} style={{width: '100%'}}
-					        getPopupContainer={() => document.querySelector(".ant-layout-aside")}>
-						<Option value="今天">{getLangTxt("today")}</Option>
-						<Option value="昨天">{getLangTxt("yesterday")}</Option>
-						<Option value="本周">{getLangTxt("this_week")}</Option>
-						<Option value="上周">{getLangTxt("last_week")}</Option>
-						<Option value="本月">{getLangTxt("this_month")}</Option>
-						<Option value="上月">{getLangTxt("last_month")}</Option>
-						<Option value="近三天">{getLangTxt("nearly_three_days")}</Option>
-						<Option value="近七天">{getLangTxt("nearly_seven_days")}</Option>
+					        getPopupContainer={() => document.querySelector(".ant-layout-aside")}
+                            option={[
+                                <Option value="今天">{getLangTxt("today")}</Option>,
+                                <Option value="昨天">{getLangTxt("yesterday")}</Option>,
+                                <Option value="本周">{getLangTxt("this_week")}</Option>,
+                                <Option value="上周">{getLangTxt("last_week")}</Option>,
+                                <Option value="本月">{getLangTxt("this_month")}</Option>,
+                                <Option value="上月">{getLangTxt("last_month")}</Option>,
+                                <Option value="近三天">{getLangTxt("nearly_three_days")}</Option>,
+                                <Option value="近七天">{getLangTxt("nearly_seven_days")}</Option>
+                            ]}
+                    >
+
 					</Select>
 				</div>
 			</div>

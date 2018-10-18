@@ -7,6 +7,7 @@ const zh_cn = {
     noData3: "无",
     noData4: "无会话",
     noData5: "暂无",
+	searchNoData: "未搜索到内容",
 
     edit: "编辑",
     all_select: "全选",
@@ -149,7 +150,6 @@ const zh_cn = {
     20024: "登录异常，请稍后重试！(20024)", //key失效
     20025: "登录异常，请稍后重试！(20025)", //获取UserDo对象失败
     20026: "站点已关闭，如有问题请联系管理员！(20026)",
-    20027: "登录Token超时(20027)",
 
     //-----------------升级----------------------------------------------
     20011: "升级失败，请联系管理员！",
@@ -527,7 +527,7 @@ const zh_cn = {
 
     //--->>>>----------------咨询类型------------------------
     setting_sensitive_words: "敏感词",
-    setting_shield_sensitive_words: "屏蔽访客敏感词",
+    setting_shield_sensitive_words: "屏蔽客服敏感词",
     setting_word_library: "词库内容",
     setting_word_library1: "敏感词词库",
     setting_word_note1: "最多支持50个词或200个字且不可为单个英文字母",
@@ -562,9 +562,8 @@ const zh_cn = {
     setting_early_note1: "请正确填写关键词内容！",
     setting_early_note2: "关键词输入内容过长！",
     setting_early_note3: "操作失败！",
-    setting_early_note4: "注 : 1、每个词以中文或英文逗号分隔、最多支持2万个词或4万个字",
-    setting_early_note4_1: "2、敏感词请尽量避免使用长句、短语或单字，以免影响业务交谈。",
-    setting_early_note5: "3、重复预警词添加后，将自动过滤删除",
+    setting_early_note4: "注 : 1、每个词以中文或英文逗号分隔、最多支持50个词或200个字",
+    setting_early_note5: "2、重复预警词添加后，将自动过滤删除",
     setting_early_add_keywords: "添加关键词",
 
     setting_early_error_msg: "请输入大于0的整数",
@@ -910,10 +909,6 @@ const zh_cn = {
     setting_webview_newmsg: "新消息声音",
     setting_webview_record: "聊天记录",
     setting_webview_robot_to_people: "机器人转人工",
-    setting_webview_realTime_voice: "实时语音",
-    setting_webview_realTime_video: "实时视频",
-    setting_webview_input_guide: "输入引导",
-    setting_webview_remote_assistance: "远程协助",
     setting_webview_webtag: "访客端页签",
     setting_webview_company: "关于企业",
     setting_webview_tagname: "标签名称",
@@ -954,6 +949,7 @@ const zh_cn = {
     setting_autoreply_word1: "访客未回复时间超过",
     setting_autoreply_word2: "分钟，访客收到提示",
     setting_autoreply_welcome: "欢迎语",
+    setting_autoreply_welcome2:"请输入欢迎语",
     setting_autoreply_word3: "访客等待时间超过",
     setting_autoreply_word4: "，访客收到提示",
     setting_autoreply_word5: "访客未回复时间至少为1！",

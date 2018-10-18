@@ -1,5 +1,5 @@
 ﻿import React from 'react'
-import { Form, Input, Button, Table, Select, message, Modal, Tree, Popover, Upload, Tooltip, Spin } from 'antd'
+import { Form, Input, Button, Table, Select, message, Tree, Popover, Upload, Tooltip } from 'antd'
 import TreeNode from "../../../components/antd2/tree/TreeNode";
 import moment from 'moment'
 import { connect } from 'react-redux'
@@ -17,9 +17,10 @@ import Settings from '../../../utils/Settings';
 import { getLocalTime } from "../../../utils/MyUtil";
 import { upOrDown } from "../../../utils/MyUtil";
 import { getHyperMessageForJSON, isJsonString } from "../../../utils/HyperMediaUtils";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
+import Loading from "../../../components/xn/loading/Loading";
 
-const Option = Select.Option, confirm = Modal.confirm;
+const Option = Select.Option;
 
 class FaqSettingCommonReadOnly extends React.PureComponent {
 	constructor(props)
@@ -449,7 +450,7 @@ class FaqSettingCommonReadOnly extends React.PureComponent {
 			return (
 				progress.right ?
 					<div style={{height: '100%', position: 'relative'}}>
-                        <Spin style={{
+                        <Loading style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",
@@ -459,7 +460,7 @@ class FaqSettingCommonReadOnly extends React.PureComponent {
 					</div>
 					:
 					<div style={{position: 'absolute', top: '0', width: '100%', height: '100%'}}>
-                        <Spin style={{
+                        <Loading style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",

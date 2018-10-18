@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Radio, Select, Form, Input, Tree, TreeSelect } from 'antd';
+import { Radio, Form, Input, Tree } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchRules } from '../keyPage/action/essentialPages';
@@ -8,9 +8,10 @@ import { getCity, getProvince, getRegion, getData, getUserRegionData } from "../
 import { is, List, Map } from "immutable";
 import TreeNode from "../../../components/antd2/tree/TreeNode";
 import { getLangTxt } from "../../../utils/MyUtil";
+import Select from "../../public/Select";
+import TreeSelect from "../../public/TreeSelect";
 
-const RadioButton = Radio.Button, Option = Select.Option,
-	SHOW_PARENT = TreeSelect.SHOW_PARENT, FormItem = Form.Item;
+const RadioButton = Radio.Button, Option = Select.Option, FormItem = Form.Item;
 
 let userDimensionsData = [
 	{title: getLangTxt("select_dimension"), value: "", disabled: false},
@@ -525,11 +526,9 @@ class UserFilterList extends React.Component {
 				placeholder={getLangTxt("kpi_placeholder")}
 				onChange={this.onValueChange.bind(this, currentFilterData)}
 				loadData={this.onLoadData.bind(this)}
-				style={_regionStyle}>
-				{
-					treeNodes
-				}
-			</TreeSelect>
+				style={_regionStyle}
+                treeNode={treeNodes}
+            />
 		)
 	}
 
@@ -619,6 +618,16 @@ class UserFilterList extends React.Component {
 	 * @param currentFilterData = {} 当前操作筛选条件条目值
 	 * */
 
+    getSelectOption(data)
+    {
+        if (data && data.length)
+            return data.map(item =>
+            {
+                let {itemKey, itemValue, itemContent} = item;
+                return <Option key={itemKey} value={itemValue}>{itemContent}</Option>
+            })
+    }
+
 	getSelectComponent(currentFilterData, _style)
 	{
 		let data = [];
@@ -677,14 +686,9 @@ class UserFilterList extends React.Component {
 				        showSearch optionFilterProp="children"
 				        getPopupContainer={() => document.getElementsByClassName('iptScrollContainer')[0]}
 				        value={currentFilterData.value || []} style={_style}
-				        onChange={this.changeKeyPage.bind(this, currentFilterData)}>
-					    {
-						data.map(item => {
-							return (
-								<Option key={item.itemKey} value={item.itemValue}>{item.itemContent}</Option>
-							)
-						})}
-				</Select>
+				        onChange={this.changeKeyPage.bind(this, currentFilterData)}
+                        option={this.getSelectOption(data)}
+                />
 			)
 		}
 
@@ -692,15 +696,9 @@ class UserFilterList extends React.Component {
 			<Select className="selectIptStyle"
 			        getPopupContainer={() => document.getElementsByClassName('iptScrollContainer')[0]}
 			        value={currentFilterData.value[0] || ""} style={_style}
-			        onChange={this.changeKeyPage.bind(this, currentFilterData)}>
-				{
-					data.map(item => {
-						return (
-							<Option key={item.itemKey} value={item.itemValue}>{item.itemContent}</Option>
-						)
-					})
-				}
-			</Select>
+			        onChange={this.changeKeyPage.bind(this, currentFilterData)}
+                    option={this.getSelectOption(data)}
+            />
 		)
 	}
 
@@ -762,17 +760,15 @@ class UserFilterList extends React.Component {
 								<span className='queueList-border'/>
 								<Select size="large" style={{width: 150}} value={currentFilterData.type}
 								        getPopupContainer={() => document.getElementsByClassName('iptScrollContainer')[0]}
-								        onChange={this.handleChange.bind(this, currentFilterData)}>
-									{
-										this.getTreeNode(allFilterData)
-									}
-								</Select>
+								        onChange={this.handleChange.bind(this, currentFilterData)}
+                                        option={this.getTreeNode(allFilterData)}
+                                />
 								<Select size="large" getPopupContainer={() => document.getElementsByClassName('iptScrollContainer')[0]}
 								        value={currentFilterData.include} style={{width: 88, margin: "0 20px"}}
-								        onChange={this.changeInclude.bind(this, currentFilterData)}>
-									<Option key="include" value="include">{getLangTxt("contain")}</Option>
-									<Option key="exclude" value="exclude">{getLangTxt("no_contain")}</Option>
-								</Select>
+								        onChange={this.changeInclude.bind(this, currentFilterData)}
+                                        option={[<Option key="include" value="include">{getLangTxt("contain")}</Option>,
+									            <Option key="exclude" value="exclude">{getLangTxt("no_contain")}</Option>]}
+                                />
 								{
 									this._getDimensionsValue(currentFilterData)
 								}

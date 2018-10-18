@@ -65,16 +65,6 @@ class ConclusionView extends React.PureComponent {
 
 	}
 
-    componentDidUpdate()
-    {
-        let {summaryHeight} = this.state,
-            summaryComp = this.refs.conclusionSelected,
-            sumHei = summaryComp && summaryComp.clientHeight;
-
-        if (summaryHeight != sumHei)
-            this.setState({summaryHeight: sumHei});
-    }
-
 	getSummariesData(converId)
 	{
 		if(this.props.getSummariesData)
@@ -205,13 +195,13 @@ class ConclusionView extends React.PureComponent {
 			})
 		}
 
-        return (
-            <div ref="conclusionSelected" className="chatsummary_tree_selected_items_wrapper">
-                {
-                    selectedItems
-                }
-            </div>
-        );
+		return (
+			<div className="chatsummary_tree_selected_items_wrapper">
+				{
+					selectedItems
+				}
+			</div>
+		);
 	}
 
 	deleteSelectedKeys(e)
@@ -263,7 +253,7 @@ class ConclusionView extends React.PureComponent {
 					<span style={style}>{leaf.content}</span>;
 
 				formatLeaf.value = id;
-				//formatLeaf.disabled = len >= 3 && !selected;
+				formatLeaf.disabled = len >= 3 && !selected;
 
 				formatLeafs.push(formatLeaf);
 
@@ -397,7 +387,7 @@ class ConclusionView extends React.PureComponent {
 
 			nodes.forEach(value => {
 				let index = keys.findIndex(id => id === value.summaryid);
-				index > -1 && keys.splice(index, 1);
+				keys.splice(index, 1);
 			});
 		}
 
@@ -428,29 +418,30 @@ class ConclusionView extends React.PureComponent {
 
 		return false;
 	}
-
+	
 	onGroupSelected(selectedKeys, {node, selected})
 	{
 		let// {leafs} = this.state,
 			{summaryId} = node.props;
-
+		
 		this.dealSelect(selectedKeys, summaryId, selected);
 		this.setState({groupSelectedKeys: selectedKeys});
-
+		
 		/*if(Array.isArray(leafs) && leafs.length > 0)
 		{
 			this.setState({groupSelectedKeys: selectedKeys});
 		}
 		else
 		{
-
-
+			
+			
 			this.setState({groupSelectedKeys: selectedKeys});
 		}*/
 	}
 
 	onChange(e)
 	{
+		console.log(e);
 		this.setState({
 			searchValue: e.target.value
 		});
@@ -571,49 +562,30 @@ class ConclusionView extends React.PureComponent {
 		);
 	}
 
-    isExpandSummaryList()
-    {
-        let {isExpand} = this.state;
-
-        this.setState({isExpand: !isExpand})
-    }
-
 	render()
 	{
 		let summaryGroupNode = this.getSummaryGroupNode(this.props.summaryAll, ""),
-			{expandedKeys, groupSelectedKeys, isExpand, selectedKeys = [], summaryHeight} = this.state,
+			{expandedKeys, groupSelectedKeys} = this.state,
 			{history = Map(), historyHide} = this.props,
 			historyArr = history.get("history") || [],
 			{rosterUser} = this.props,
-			{userId} = rosterUser || {},
-            expandName = isExpand ? "收起" : "展开",
-            selectedSummaryCls = isExpand ? "conclusionSelected selectedSummaryPage" : "conclusionSelected unExpandPage",
-            isShowExBtn = summaryHeight > 30 ;
+			{userId} = rosterUser || {};
 
 		this.props.getResult(this.getSubmitInfo());
-
 		return (
 			<div className="chatsummary">
 				<Row>
 					{
 						this.getHistoryView(historyHide, userId, historyArr)
 					}
+
 					<Col span={14}>
-						<Row>
-                            <div className="summaryCheckedTitle">您已选择</div>
-                            {
-                                isShowExBtn ? <div className="isExpandSummary" onClick={this.isExpandSummaryList.bind(this)}>{expandName}</div> : null
-                            }
-
-                        </Row>
-                        {
-                            selectedKeys.length ? <Row className={selectedSummaryCls}>
-                                {
-                                    this.getSelectedItemLabel()
-                                }
-                            </Row> : null
-                        }
-
+						<Row>您已选择</Row>
+						<Row style={{minHeight: "0.427rem", marginTop: "0.058rem"}} className="conclusionSelected">
+							{
+								this.getSelectedItemLabel()
+							}
+						</Row>
 
 						<Row className="searchInput">
 							<Input placeholder="请输入关键字" onChange={this.onChange.bind(this)}/>

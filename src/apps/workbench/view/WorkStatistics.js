@@ -9,11 +9,10 @@ import WorkBenchOptions from "./WorkBenchOptions";
 import LogUtil from "../../../lib/utils/LogUtil";
 import { getLangTxt, shallowEqual } from "../../../utils/MyUtil";
 import { is, List, Map } from "immutable";
-import { Modal } from 'antd';
-import NTModal from "../../../components/NTModal";
 import SessionEvent from "../../event/SessionEvent";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-const warning = Modal.warning;
+//const warning = Modal.warning;
 
 class WorkStatistics extends React.Component {
 
@@ -250,7 +249,7 @@ class WorkStatistics extends React.Component {
 						<span>+</span>
 					</div>
 
-					<NTModal wrapClassName="items" title={getLangTxt("workstatistics_select_opt")}
+					<Modal wrapClassName="items" title={getLangTxt("workstatistics_select_opt")}
 					         visible={this.state.itemShow} width={545}
 					         footer={""} className="selectShowData" onCancel={this._onCloseAllOptions.bind(this)}>
                         {
@@ -261,7 +260,7 @@ class WorkStatistics extends React.Component {
 
                         }
 
-					</NTModal>
+					</Modal>
 
 					{/*<Menu className="queueNumber" style={{display: listShow}}>*/}
 					{/*{*/}

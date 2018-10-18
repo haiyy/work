@@ -1,7 +1,7 @@
 import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Form, Modal, Input, Button, Table, Icon, DatePicker, Upload, Popover, Tooltip } from 'antd';
+import { Form, Input, Button, Table, Icon, DatePicker, Upload, Popover, Tooltip } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import moment from 'moment';
 import "./style/blackList.scss"
@@ -11,9 +11,9 @@ import { getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { bglen } from "../../../utils/StringUtils";
 import { ReFresh } from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
-const Search = Input.Search, confirm = Modal.confirm, FormItem = Form.Item, dateFormat = 'YYYY-MM-DD HH:mm:ss';
+const Search = Input.Search,  FormItem = Form.Item, dateFormat = 'YYYY-MM-DD HH:mm:ss';
 
 class BlackList extends React.PureComponent {
 
@@ -254,7 +254,7 @@ class BlackList extends React.PureComponent {
             this.modal = null;
         }
         if(progress === LoadProgressConst.DUPLICATE)
-            this.modal = Modal.info({
+            this.modal = info({
                 title: getLangTxt("err_tip"),
                 width: '320px',
                 iconType: 'exclamation-circle',
@@ -268,7 +268,7 @@ class BlackList extends React.PureComponent {
 
         if(progress === LoadProgressConst.SAVING_FAILED)
         {
-            this.modal = Modal.info({
+            this.modal = info({
                 title: getLangTxt("err_tip"),
                 width: '320px',
                 iconType: 'exclamation-circle',
@@ -351,7 +351,7 @@ class BlackList extends React.PureComponent {
 						       pagination={pagination}/* rowSelection={rowSelection}*//>
 					</ScrollArea>
 				</div>
-				<NTModal
+				<Modal
 					className="newBlackModal"
 					visible={isShowAddModal}
 					title={getLangTxt("setting_blacklist_add_tag")}
@@ -422,8 +422,8 @@ class BlackList extends React.PureComponent {
 							<span className="reasonIptCount">{blackReasonCount}/50</span>
 						</FormItem>
 					</Form>
-				</NTModal>
-				<NTModal
+				</Modal>
+				<Modal
 					className="importModal"
 					visible={importModal}
 					title={getLangTxt("import")}
@@ -447,7 +447,7 @@ class BlackList extends React.PureComponent {
 						<p>{getLangTxt("blacklist_note5")}</p>
 						<p>{getLangTxt("blacklist_note6")}</p>
 					</div>
-				</NTModal>
+				</Modal>
 				{
 					getProgressComp(progress)
 				}

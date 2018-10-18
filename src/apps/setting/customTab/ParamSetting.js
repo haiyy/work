@@ -1,9 +1,11 @@
 import React, { PropTypes } from 'react'
-import { Radio, Select, Form, Input, Tooltip } from 'antd';
+import { Radio, Form, Input, Tooltip } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {getCustomerTabParams} from "./tabReducer/customerTabReducer";
 import { getLangTxt } from "../../../utils/MyUtil";
+import Select from "../../public/Select";
+
 const RadioButton = Radio.Button, Option = Select.Option, FormItem = Form.Item;
 
 let uuid = 0;
@@ -161,7 +163,7 @@ class ParamSetting extends React.Component {
             let lastIpt = document.getElementsByClassName("filterValueIpt")[0];
 
             afterRemoveData = [{"data": 0, "tabKey": "", "tabValue": ""}];
-            
+
             if (lastIpt)
                 lastIpt.value = "";
 
@@ -222,11 +224,12 @@ class ParamSetting extends React.Component {
                             }
                             <div className="dimensionsOptions">
                                 <span className='queueList-border'/>
-                                <Select size="large" style={{width: 226}} value={currentParamData.tabKey || getLangTxt("setting_custom_tab_params")}
+                                <Select size="large" style={{width: 226}}
+                                    value={currentParamData.tabKey || getLangTxt("setting_custom_tab_params")}
                                     getPopupContainer={() => document.getElementsByClassName('dimensionsOptions')[0]}
-                                    onChange={this.handleChange.bind(this, currentParamData)}>
-                                    {this.getParamOption(allParamData)}
-                                </Select>
+                                    onChange={this.handleChange.bind(this, currentParamData)}
+                                    option={this.getParamOption(allParamData)}
+                                />
                                 <span style={{margin:'0 10px'}}>=</span>
                                 {this.getIptComponent(currentParamData)}
                                 <Tooltip placement="bottom" title={getLangTxt("del")}>

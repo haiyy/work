@@ -1,13 +1,13 @@
 import React from 'react';
-import {Form, Input, Checkbox, Select, Button, Modal} from 'antd';
+import {Form, Input, Checkbox, Select, Button} from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../css/exportModal.less';
-import NTModal from "../../../components/NTModal";
 import {bglen} from "../../../utils/StringUtils";
 import { configProxy, token, downloadByATag, getLangTxt } from "../../../utils/MyUtil";
 import {getUserDefinedExport} from "../redux/userDefinedExportReducer";
 import UserDefinedComp from "./UserDefinedComp";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const Option = Select.Option;
 
@@ -47,7 +47,7 @@ class UserDefinedExport extends React.PureComponent {
 
         if (!columnFieldIds.length)
         {
-            Modal.warning({
+            warning({
                 title: getLangTxt("err_tip"),
                 iconType: 'exclamation-circle',
                 className: 'errorTip',
@@ -102,11 +102,11 @@ class UserDefinedExport extends React.PureComponent {
             ];
 
         return (
-            <NTModal title={getLangTxt("export")} visible width={1000} wrapClassName="consultExportModal" onCancel={this.handleCancel.bind(this)} footer={modalFooter}>
+            <Modal title={getLangTxt("export")} visible width={1000} wrapClassName="consultExportModal" onCancel={this.handleCancel.bind(this)} footer={modalFooter}>
                 <div className="userDefinedExportWrapper">
                     <UserDefinedComp isExport={true} exportOption={this.exportData} getCheckedValue={this.getCheckedValue.bind(this)}/>
                 </div>
-            </NTModal>
+            </Modal>
         );
     }
 }

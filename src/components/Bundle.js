@@ -1,10 +1,9 @@
-{/*
+/**
  // 调用示例
  <Bundle load={require('bundle-loader?lazy!./somefile.js')}>
- {(Cmp) => <Cmp></Cmp>}
+    {(Cmp) => <Cmp></Cmp>}
  </Bundle>
  */
-}
 import React, { Component } from 'react'
 
 class Bundle extends Component {

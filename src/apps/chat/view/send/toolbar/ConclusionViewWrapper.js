@@ -4,13 +4,14 @@ import { CLOSE } from "../../../../event/TabEvent";
 import SessionEvent from "../../../../event/SessionEvent";
 import { getTabDataByUserId } from "../../../../../utils/ConverUtils";
 import ConclusionView from "./ConclusionView";
-import { Button, Checkbox, Modal } from 'antd';
+import { Button, Checkbox } from 'antd';
 import GlobalEvtEmitter from "../../../../../lib/utils/GlobalEvtEmitter";
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { saveConsultationSummary } from "../../../redux/reducers/consultationSummaryReducer";
 import { tabClosed } from "../../../redux/reducers/eventsReducer";
+import Modal,{ confirm, info, error, success, warning } from "../../../../../components/xn/modal/Modal";
 
 class ConclusionViewWrapper extends React.PureComponent {
 	
@@ -125,7 +126,7 @@ class ConclusionViewWrapper extends React.PureComponent {
 					}
 					else
 					{
-						Modal.warning({
+						warning({
 							title: '错误提示',
 							width: '320px',
 							iconType: 'exclamation-circle',

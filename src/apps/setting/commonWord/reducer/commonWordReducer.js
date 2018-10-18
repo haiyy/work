@@ -139,7 +139,7 @@ export function getTips(state = {}, action) {
 
                 Tips ? Tips.map((item, index)=> {
                     let parseItem;
-                    if(item.response && isJsonString(item.response)){
+                    if(item.response && item.response.slice(0,1) === "{"){
                         parseItem = JSON.parse(item.response);
 
                     }else{
@@ -171,7 +171,7 @@ export function getTips(state = {}, action) {
 
                 Tips ? Tips.map((item, index)=> {
                     let parseItem;
-                    if(item.response && isJsonString(item.response)){
+                    if(item.response && item.response.slice(0,1) === "{"){
                         parseItem = JSON.parse(item.response);
 
                     }else{
@@ -205,7 +205,6 @@ export function getTips(state = {}, action) {
                     if(isJsonString(item.response))
                     {
                         parseItem = JSON.parse(item.response);
-
                     }else{
                         parseItem = item.response;
                     }

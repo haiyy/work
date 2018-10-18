@@ -1,10 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Steps, Button, Radio, Checkbox, InputNumber, Switch, Modal, message } from 'antd';
+import { Steps, Button, Radio, Checkbox, InputNumber, Switch, message } from 'antd';
 import './style/queueManage.scss';
 import { addQueue, editQueue } from "./reducer/queueManageReducer";
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const Step = Steps.Step, RadioGroup = Radio.Group, CheckboxGroup = Checkbox.Group;
 
@@ -115,7 +116,7 @@ class DefineQueuePlan extends React.PureComponent {
 		{
 			let content = result.code === 404 ? result.msg : getLangTxt("20034");
 			
-			Modal.warning({
+			warning({
 				title: getLangTxt("err_tip"),
 				width: '320px',
 				iconType: 'exclamation-circle',

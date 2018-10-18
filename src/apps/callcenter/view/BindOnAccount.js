@@ -1,8 +1,8 @@
 import React from "react";
-import { Button, Input, Modal } from 'antd';
+import { Button, Input } from 'antd';
 import './style/searchListComp.less'
 import './style/bindonaccount.less'
-import OnAccountchild from "../../../components/OnAccountchild"
+import OnAccountchild from "./OnAccountchild"
 import { connect } from "react-redux";
 import { bindActionCreators } from 'redux';
 import { getBindOnAccoutList, deleteBindOnAccout, putBindOnAccout, updateProgress } from "../redux/reducers/bindOnAccoutReducer"
@@ -12,8 +12,7 @@ import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import {bglen} from "../../../utils/StringUtils";
 import {getTableTdContent} from "../../../utils/ComponentUtils";
-
-const confirm = Modal.confirm;
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class BindOnAccount extends React.Component {
 	constructor(props)
@@ -235,7 +234,7 @@ class BindOnAccount extends React.Component {
 	//错误提示弹框
 	errorTip(msg)
 	{
-		Modal.error({
+		error({
 			title: '提示',
 			content: msg,
 			okText: '确定'

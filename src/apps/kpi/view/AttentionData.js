@@ -3,14 +3,15 @@ import { attentionReportList, unsubscribe, changeAttention, resetProgress } from
 import { loadReport } from '../redux/loadReportData'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import Loading from './Loading'
+//import Loading from './Loading'
+import Loading from "../../../components/xn/loading/Loading"
 import ShowKpiData from './ShowKpiData'
 import LoadProgressConst from "../../../model/vo/LoadProgressConst"
 import NoData from './NoData'
 import { ReFresh } from "../../../components/ReFresh"
 import getQuery from './kpiService/getQuery'
-import { Modal } from 'antd';
 import { getLangTxt } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class AttentionData extends Component {
 
@@ -131,7 +132,7 @@ class AttentionData extends Component {
 		}
 		else if(progress === LoadProgressConst.SAVING_FAILED)
 		{
-			Modal.error({
+			error({
 				title: getLangTxt("kpi_concerned_data"),
                 iconType: 'exclamation-circle',
                 className: 'errorTip',

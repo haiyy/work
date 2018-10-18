@@ -1,10 +1,11 @@
-import React, { Component } from 'react'
-import echarts from 'echarts'
-import { Table, Spin, } from 'antd'
-import LoadProgressConst from "../../../model/vo/LoadProgressConst"
-import NoData from './NoData'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { Component } from 'react';
+import echarts from 'echarts';
+import { Table } from 'antd';
+import LoadProgressConst from "../../../model/vo/LoadProgressConst";
+import NoData from './NoData';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import Loading from "../../../components/xn/loading/Loading";
 
 class ShowKpiData extends Component {
 	
@@ -93,7 +94,7 @@ class ShowKpiData extends Component {
 		this.isEnterDetail = true;
 	}
 	
-	getScrollX(columns=[], item)
+	getScrollX(columns, item)
 	{
 		let scrollX = columns.reduce((acc, cur) => acc + cur.width, 0);
 		
@@ -210,7 +211,7 @@ class ShowKpiData extends Component {
 		if(!chartData || progress === LoadProgressConst.LOADING || !item.progress)
 		{
 			return (
-				<Spin id="spin" style={{
+				<Loading id="spin" style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",

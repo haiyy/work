@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal } from 'antd';
+//import Modal from "../components/xn/modal/Modal";
 
 class NTModal extends React.Component {
 
@@ -10,7 +11,7 @@ class NTModal extends React.Component {
 
     render()
     {
-        return <Modal {...this.props} mask={this.props.mask || NTModal.mask}/>
+        return <Modal {...this.props} mask={this.props.mask || NTModal.mask} />
     }
 }
 

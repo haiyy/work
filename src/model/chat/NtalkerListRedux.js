@@ -382,20 +382,19 @@ class NtalkerListRedux extends Component {
 							index = toolFuncsData && toolFuncsData.findIndex(item => "summary" === item.get("name") && item.get("enable") === 1) || -1;
 						
 						this._tabSelected(tabName);
+						tabData.forceClose = true;
+						index > -1 && !sendedSummary && GlobalEvtEmitter.emit(OPEN_SUMMARY, {tabData, isCurrent: true});
+						sendedSummary = true;
 						
-						if(index > -1)
-						{
-							tabData.forceClose = true;
-							!sendedSummary && GlobalEvtEmitter.emit(OPEN_SUMMARY, {tabData, isCurrent: true});
-							sendedSummary = true;
-							return;
-						}
+						return;
 					}
 					
 					!sendedSummary && this._deleteTabData(tabData);
 				}
 			
 			}
+			
+			console.log("NtalkerListRedux sendedSummary = ", sendedSummary)
 			
 			!sendedSummary && this._nextSelected(closeSelectedIndex);
 		}

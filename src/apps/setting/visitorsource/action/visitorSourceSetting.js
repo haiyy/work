@@ -40,7 +40,6 @@ export function visitorItems(data)
 {
 	return dispatch =>
 	{
-
 		dispatch(getAction(GET_VISITORDATA, "left", LoadProgressConst.LOADING));
 		let loginUserProxy = Model.retrieveProxy("LoginUserProxy"),
 			{siteId: siteid, ntoken} = loginUserProxy;

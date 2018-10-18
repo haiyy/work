@@ -1,13 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Table, Switch, Modal, Tooltip, InputNumber } from 'antd';
+import { Table, Switch, Tooltip, InputNumber } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import './style/queueManage.scss';
 import {getQueueManageList, editQueue, delQueue} from "./reducer/queueManageReducer";
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import ReFresh from "../../../components/ReFresh";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
+
 class QueuePlanList extends React.PureComponent {
 
 	constructor(props)
@@ -40,7 +42,7 @@ class QueuePlanList extends React.PureComponent {
         {
             if (!result.success)
             {
-                Modal.error({
+                error({
                     title: getLangTxt("err_tip"),
                     width: '320px',
                     iconType: 'exclamation-circle',
@@ -72,7 +74,7 @@ class QueuePlanList extends React.PureComponent {
     //删除排队
     delQueuePage(record)
     {
-        Modal.confirm({
+        confirm({
             title: getLangTxt("del_tip"),
             width: '320px',
             iconType: 'exclamation-circle',
@@ -101,7 +103,7 @@ class QueuePlanList extends React.PureComponent {
                         this.props.getQueueManageList(getListObj)
                     }else
                     {
-                        Modal.error({
+                        error({
                             title: getLangTxt("err_tip"),
                             width: '320px',
                             iconType: 'exclamation-circle',
@@ -129,7 +131,7 @@ class QueuePlanList extends React.PureComponent {
         {
             if (!result.success)
             {
-                Modal.error({
+                error({
                     title: getLangTxt("err_tip"),
                     width: '320px',
                     iconType: 'exclamation-circle',

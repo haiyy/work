@@ -1,17 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Form, Input, message, TreeSelect, Modal } from 'antd';
+import { Button, Form, Input, message } from 'antd';
 import './../style/thirdPartyAccess.scss';
 import { setWeChatInfo, getWechatAccessInfo, getWechatInfo, editWeChatInfo } from '../reducer/weChatReducer';
 import copy from 'copy-to-clipboard';
 import { bglen } from "../../../../utils/StringUtils";
 import ScrollArea from 'react-scrollbar';
 import { getLangTxt } from "../../../../utils/MyUtil";
+import TreeSelect from "../../../public/TreeSelect";
+import TreeNode from "../../../../components/antd2/tree/TreeNode";
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
 
-const FormItem = Form.Item,
-	confirm = Modal.confirm,
-	TreeNode = TreeSelect.TreeNode;
+const FormItem = Form.Item;
+	//confirm = Modal.confirm,
+	//TreeNode = TreeSelect.TreeNode;
 
 class WXTopSpeedModel extends React.Component {
 
@@ -41,7 +44,7 @@ class WXTopSpeedModel extends React.Component {
 		form.validateFields((errors) => {
 			if(errors)
 				return false;
-            
+
 			if (!isNew)
             {
                 this.props.editWeChatInfo({mode: 1, info}).then(result => {
@@ -60,7 +63,7 @@ class WXTopSpeedModel extends React.Component {
     resultFun(result)
     {
         let errorMsg = getLangTxt("20034");
-        
+
         if(result && result.code === 200)
         {
             this.props.closePage();
@@ -69,7 +72,7 @@ class WXTopSpeedModel extends React.Component {
         {
             if (result && result.msg)
                 errorMsg = result.msg;
-            
+
             confirm({
                 title: getLangTxt("tip"),
                 width: '320px',
@@ -79,7 +82,7 @@ class WXTopSpeedModel extends React.Component {
             });
         }
     }
-    
+
 	/*点击取消按钮*/
 	handleCancel()
 	{
@@ -249,13 +252,10 @@ class WXTopSpeedModel extends React.Component {
 									initialValue: groupid ? groupid : undefined,
 									rules: [{required: true}]
 								})(
-									<TreeSelect placeholder={getLangTxt("setting_wechat_group")} dropdownStyle={{
-										maxHeight: 230, overflowX: 'hidden', overflowY: 'auto'
-									}}>
-										{
-											this._getWeChatGroupTreeNode(groupData)
-										}
-									</TreeSelect>
+									<TreeSelect
+                                        placeholder={getLangTxt("setting_wechat_group")}
+                                        treeNode={this._getWeChatGroupTreeNode(groupData)}
+                                    />
 								)
 							}
 						</FormItem>

@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
-import { Button, Table, Modal, Switch } from 'antd';
+import { Button, Table,  Switch } from 'antd';
 import "./style/customTab.scss";
 import { getCustomerTabList } from "./tabReducer/customerTabReducer";
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";

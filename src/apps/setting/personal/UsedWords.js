@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Button, Modal, Upload } from 'antd';
+import { Form, Button, Upload } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -16,8 +16,8 @@ import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import { getProgressComp } from "../../../utils/MyUtil";
 import { upOrDown } from "../../../utils/MyUtil";
-import NTModal from "../../../components/NTModal";
 import Nodata from "../../../public/images/dataNo.png";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 import "./style/UsedWord.scss";
 
 class UsedWords extends React.PureComponent {
@@ -92,7 +92,7 @@ class UsedWords extends React.PureComponent {
 
 	getErrorMsgComp(errorMsg)
 	{
-		Modal.error({
+		error({
 			title: getLangTxt("err_tip"),
 			iconType: 'exclamation-circle',
 			className: 'errorTip',
@@ -156,7 +156,7 @@ class UsedWords extends React.PureComponent {
 						itemExistString = itemExist.join(","),
 						itemFailedString = itemFailed.join(",");
 
-					Modal.info({
+					info({
 						title: getLangTxt("import_tip"),
 						width: '320px',
 						iconType: 'exclamation-circle',
@@ -179,7 +179,7 @@ class UsedWords extends React.PureComponent {
 				}
 				else if(!res.success && res.result.code == 400)
 				{
-					Modal.error({
+					error({
 						title: getLangTxt("import_tip"),
 						iconType: 'exclamation-circle',
 						className: 'errorTip',
@@ -190,7 +190,7 @@ class UsedWords extends React.PureComponent {
 				}
 				else if(res.success && res.result.code == 200)
 				{
-					Modal.success({
+					success({
 						title: getLangTxt("import_tip"),
 						content: getLangTxt("setting_import_content6"),
 						iconType: 'exclamation-circle',
@@ -203,7 +203,7 @@ class UsedWords extends React.PureComponent {
 				}
 				else
 				{
-					Modal.error({
+					error({
 						title: getLangTxt("import_tip"),
 						iconType: 'exclamation-circle',
 						className: 'errorTip',
@@ -328,12 +328,12 @@ class UsedWords extends React.PureComponent {
 										);
 									}) :
 									<div className="NoData">
-                                        <p style={{textAlign:"center"}}><img src={Nodata} style={{width:"40px",height:"40px"}}/></p>
-										<p style={{textAlign: "center", color: "#999"}}> 暂无数据</p>
+                                        <p><img src={Nodata}/></p>
+										<p style={{paddingTop: "20px", textAlign: "center", color: "#999"}}> 暂无数据</p>
 									</div>
 							}
 						</div>
-						<NTModal visible={this.state.isImportShow} title={getLangTxt("import")}
+						<Modal visible={this.state.isImportShow} title={getLangTxt("import")}
 						         style={{position: "relative", top: "50%", marginTop: "-112px"}}
 						         onCancel={this.cancelImport.bind(this)}
 						         footer={
@@ -352,7 +352,7 @@ class UsedWords extends React.PureComponent {
 							<p>{getLangTxt("setting_import_note3")}</p>
 							<p>{getLangTxt("setting_import_note4")}</p>
 							<p>{getLangTxt("setting_import_note5")}</p>
-						</NTModal>
+						</Modal>
 					</ScrollArea>
 				</div>
 				{

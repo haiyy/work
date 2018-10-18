@@ -1,6 +1,6 @@
 import NTPureComponent from "../../components/NTPureComponent";
 import React from 'react';
-import { Button, Modal } from 'antd';
+import { Button } from 'antd';
 import CheckoutUpdate from "./CheckUpdate";
 import { sendToMain } from "../../core/ipcRenderer";
 import Channel from "../../model/vo/Channel";
@@ -8,6 +8,7 @@ import LogUtil from "../../lib/utils/LogUtil";
 import "./style/updateModal.less";
 import "../../public/styles/app/app.scss";
 import { getLangTxt } from "../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../components/xn/modal/Modal";
 
 class UpdateView extends NTPureComponent {
 	
@@ -185,7 +186,7 @@ class UpdateView extends NTPureComponent {
 	{
 		if(isShowErrorModal)
 		{
-			Modal.confirm({
+			confirm({
 				title: getLangTxt("err_tip"),
 				content: getLangTxt("down_failed"),
 				iconType: 'exclamation-circle',

@@ -163,7 +163,7 @@ class AutoAnswer extends Component {
 								initialValue: greetJSON.message,
 								rules: [{validator: this.judgeAnswerSpace.bind(this)}]
 							})(
-								<Input type="textarea" className="cardTextarea"
+								<Input type="textarea" className="cardTextarea" 
 								       onChange={this.getTextAreaContent.bind(this, greeting)}/>
 							)
 						}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table, Modal, Input, Form, Popover, Tooltip } from 'antd';
+import { Button, Table, Input, Form, Popover, Tooltip } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -9,9 +9,10 @@ import './style/skillTag.scss';
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
-import NTModal from "../../../components/NTModal";
 
-let FormItem = Form.Item, confirm = Modal.confirm;
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
+
+let FormItem = Form.Item;
 
 class Skilltag extends React.PureComponent {
     constructor(props)
@@ -45,7 +46,7 @@ class Skilltag extends React.PureComponent {
     {
         if (this.state.editStatus)
         {
-            let modal = Modal.error({
+            let modal = error({
                 title: getLangTxt("tip1"),
                 iconType: 'exclamation-circle',
                 className: 'errorTip',
@@ -152,7 +153,7 @@ class Skilltag extends React.PureComponent {
             if (errors)
             {
                 this.setState({editStatus: true});
-                let modal = Modal.error({
+                let modal = error({
                     title: getLangTxt("tip1"),
                     iconType: 'exclamation-circle',
                     className: 'errorTip',
@@ -374,7 +375,7 @@ class Skilltag extends React.PureComponent {
             return <ReFresh reFreshFn={this.reFreshFn.bind(this)}/>;
 
         if(progress === LoadProgressConst.DUPLICATE)
-            Modal.info({
+            info({
                 title: getLangTxt("err_tip"),
                 width: '320px',
                 iconType: 'exclamation-circle',
@@ -389,7 +390,7 @@ class Skilltag extends React.PureComponent {
 
         if(progress === LoadProgressConst.SAVING_FAILED)
         {
-            Modal.info({
+            info({
                 title: getLangTxt("err_tip"),
                 width: '320px',
                 iconType: 'exclamation-circle',
@@ -419,7 +420,7 @@ class Skilltag extends React.PureComponent {
                     </div>
                     {
                         this.state.isNewTagShow ?
-                            <NTModal className="quality-testing-new newQualityTesting" title={getLangTxt("setting_skill_tag_add")} visible
+                            <Modal className="quality-testing-new newQualityTesting" title={getLangTxt("setting_skill_tag_add")} visible
                                 onOk={this.handleOk.bind(this)} onCancel={this.handleCancel.bind(this)}>
                                 <div className='quality-new-body' style={{marginBottom: "20px"}}>
                                     <p>{getLangTxt("setting_skill_tag_name")}</p>
@@ -433,16 +434,16 @@ class Skilltag extends React.PureComponent {
                                         }
                                     </FormItem>
                                 </div>
-                            </NTModal> : null
+                            </Modal> : null
                     }
                     {
                         this.state.isTagDetailShow ?
-                            <NTModal title={getLangTxt("kpi_detail")} footer={false} width={544}
+                            <Modal title={getLangTxt("kpi_detail")} footer={false} width={544}
                                 className="quality-testing-remove quality-testing-remove_first" visible
                                 onCancel={this.hideTagDetail.bind(this)}>
                                 <Table columns={this.columnCheck} dataSource={userList} pagination={false}
                                     scroll={{x: "hidden", y: 367}}/>
-                            </NTModal> : null
+                            </Modal> : null
                     }
 
                     {

@@ -83,9 +83,7 @@ class ConfigProxy extends Proxy {
 	get flashServerUrl()
 	{
 		let {siteId} = Model.retrieveProxy(LoginUserProxy.NAME);
-		
-		siteId = siteId || sessionStorage.getItem("siteid");
-		
+
 		if(Type === 3)
 		{
 			return "{{GETFLASHSERVERADDR}}/api/gate/kf/" + siteId;

@@ -1,11 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Button, InputNumber, Switch, Select, message } from 'antd';
+import { Button, InputNumber, Switch, message } from 'antd';
 import './style/queueManage.scss';
 import {getQueueRules, setQueueRules} from "./reducer/queueManageReducer";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
+import Select from "../../public/Select";
+
+const Option = Select.Option;
 
 class QueueRules extends React.PureComponent {
 
@@ -136,10 +139,11 @@ class QueueRules extends React.PureComponent {
                         value={timeOut}
                         onChange={this.onQueueTimeChange.bind(this)}
                     />
-                    <Select value={timeType} style={{ width: "80px" }} onChange={this.onTimeTypeChange.bind(this)}>
-                        <Option value={1}>{getLangTxt("minute")}</Option>
-                        <Option value={0}>{getLangTxt("second")}</Option>
-                    </Select>
+                    <Select value={timeType} style={{ width: "80px" }}
+                        onChange={this.onTimeTypeChange.bind(this)}
+                        option={[<Option value={1}>{getLangTxt("minute")}</Option>,
+                        <Option value={0}>{getLangTxt("second")}</Option>]}
+                    />
                     <span>{getLangTxt("setting_queue_rule_word4")}</span>
                 </div>
                 <div className="queueGroupFooter">

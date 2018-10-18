@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Table, Tooltip, Modal, TreeSelect, Form } from 'antd';
+import { Button, Table, Tooltip, TreeSelect, Form } from 'antd';
 import ScrollArea from 'react-scrollbar';
 import './../style/thirdPartyAccess.scss';
 import {
@@ -16,11 +16,11 @@ import WeChatAuthorization from "./WeChatAuthorization";
 import SelectModel from "../public/SelectModel";
 import { formatTimestamp, getLangTxt, getProgressComp } from "../../../../utils/MyUtil";
 import { distribute } from "../../distribution/action/distribute";
-import NTModal from "../../../../components/NTModal";
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
 
-const confirm = Modal.confirm,
-	warning = Modal.warning,
-	TreeNode = TreeSelect.TreeNode,
+// const confirm = Modal.confirm,
+// 	warning = Modal.warning,
+const TreeNode = TreeSelect.TreeNode,
 	FormItem = Form.Item,
 	modeComponentMap = {
 		1: WeChatTopSpeedModel,
@@ -301,7 +301,7 @@ class WeChat extends React.Component {
 				
 				{
 					isModify ?
-						<NTModal visible
+						<Modal visible
 						         title={getLangTxt("setting_wechat_group_change")} onOk={this.handleModifyOK.bind(this)}
 						         onCancel={this.handleModifyCancel.bind(this)}
 						         width={400} wrapClassName="weChatGroupModal"
@@ -326,7 +326,7 @@ class WeChat extends React.Component {
 								</FormItem>
 							</Form>
 						
-						</NTModal> : null
+						</Modal> : null
 				}
 				
 				{

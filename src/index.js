@@ -1,13 +1,13 @@
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { BrowserRouter, Switch, Route, HashRouter, MemoryRouter } from "react-router-dom";
+import { BrowserRouter, Switch, Route, HashRouter } from "react-router-dom";
 import configureStore from "./store/configureStore";
 import LogUtil from "./lib/utils/LogUtil";
 import Model from "./utils/Model";
 import LoginUserProxy from "./model/proxy/LoginUserProxy";
 import ConfigProxy from "./model/proxy/ConfigProxy";
-//import test from "./apps/chat/test";
+import test from "./apps/chat/test";
 import { initIpcRenderer } from "./core/ipcRenderer";
 import UserInfo from "./model/vo/UserInfo";
 import RosterUser from "./model/vo/RosterUser";
@@ -72,6 +72,12 @@ window.onload = function() {
 
 	//超媒体消息交互
 	window.addEventListener("message", onMessage);
+	
+	window.addEventListener("beforeunload", ()=>{
+		sessionStorage.setItem("oo", new Date().getTime());
+		
+		return "";
+	})
 };
 
 let untreatedIntervalID = -1;
@@ -89,6 +95,8 @@ function onChange()
 			return;
 
 		let title = "新消息来了！";
+
+		
 		document.title = title;
 		untreatedIntervalID = setInterval(() => {
 			document.title === title ? (document.title = "在线智能客服平台") : (document.title = title);
@@ -100,6 +108,7 @@ function onChange()
 		untreatedIntervalID = -1;
 	}
 }
+
 
 function onMessage(event)
 {
@@ -141,6 +150,7 @@ function onMessage(event)
 	}
 }
 
+
 NT_DEBUG(true);
 
 Model.registerProxy(new LoginUserProxy())
@@ -155,14 +165,14 @@ const user = new UserInfo(),
 
 loginProxy.loginUser = rosterUser;
 
-/*window.test = function() {
+window.test = function() {
 	test(window);
-};*/
+};
 
 initIpcRenderer();
 
 const store = configureStore();
-var Router = HashRouter;//Type === 1 ? HashRouter : BrowserRouter;
+var Router = Type === 1 ? HashRouter : BrowserRouter;
 
 render(
 	<Provider store={store}>

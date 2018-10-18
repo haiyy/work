@@ -197,19 +197,14 @@ class AutoAnswerReadOnly extends Component {
 
 	_getAccountSetComp()
 	{
-        let {switcher = []} = this.props;
-
-        if(switcher.includes("answer"))
-            return (<p className="usersSetCompWrapper">
-                <Icon className="autoAnswerConfigure" type="exclamation-circle-o"
-                      style={{fontSize: '0.18rem', marginRight: 11, position: 'relative', top: '6'}}/>
-                <span>{getLangTxt("note1")}</span>
-                <span className="autoAnswerConfigure" onClick={this._goToPersonSetting.bind(this)}
-                      style={{cursor: "pointer"}}>{getLangTxt("personal_note6")}</span>npm 
-                <span>{getLangTxt("note3")}</span>
-            </p>);
-        
-        return null;
+		return (<p className="usersSetCompWrapper">
+			<Icon className="autoAnswerConfigure" type="exclamation-circle-o"
+			      style={{fontSize: '0.18rem', marginRight: 11, position: 'relative', top: '6'}}/>
+			<span>{getLangTxt("note1")}</span>
+			<span className="autoAnswerConfigure" onClick={this._goToPersonSetting.bind(this)}
+			      style={{cursor: "pointer"}}>{getLangTxt("personal_note6")}</span>
+			<span>{getLangTxt("note3")}</span>
+		</p>);
 	}
 
     onchange({target})

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Select, InputNumber, Radio, Input, Button, Modal } from 'antd'
+import { Form, Select, InputNumber, Radio, Input, Button } from 'antd'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import './style/personalcall.less'

@@ -201,11 +201,9 @@ class TelephonyScreen extends React.Component {
 		let {ModalShow, Visible} = this.state,
 			{callid, caller, callee, type} = this.phoneCallInfo;
 		
-		let width = document.querySelector(".mailCon") ? document.querySelector(".mailCon").clientWidth : 811,
-			w1 = width*0.38 < 380 ? 380 : '38%', w2 = width*0.38 < 380 ? 'calc(100% - 380px)' : 'calc(62% - 2px)';
 		return (
 			<div className="TelephonyScreen">
-				<div className="TelephonyScreen-left" style={{width:w1}}>
+				<div className="TelephonyScreen-left">
 					<h6>通话信息</h6>
 					<div className="TelephonyScreen-left-Message">
 						<p><span>通话ID</span>
@@ -225,8 +223,8 @@ class TelephonyScreen extends React.Component {
 					<PhoneConclusionView callId={callid}/>
 				</div>
 				
-				<div className="TelephonyScreen-border" style={{minHeight: this.props.height,left:w1}}/>
-				<TelephonyTabs height={this.props.height} width={w2}/>
+				<div className="TelephonyScreen-border" style={{minHeight: this.props.height}}/>
+				<TelephonyTabs height={this.props.height}/>
 				
 				<TelephonVisitPlanComponent onformData={this.onFormDatachange.bind(this)}
 				                            PhoneNumber={getPropsPhone(type, caller, callee)}

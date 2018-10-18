@@ -149,7 +149,7 @@ class LeaveMessageReadOnly extends React.PureComponent {
                                     <span className="leave-title">{getLangTxt("setting_msgset_on")}</span>
                                     <Switch disabled checked={useable == 1} style={{margin:'8px 20px 15px'}}/>
                                 </div>
-                                <div>
+                                <div style={{paddingLeft: "5px"}}>
                                     <span className="leave-title">{getLangTxt("setting_msgset_scheme_default")}</span>
                                     <Switch disabled checked={plan == 1} defaultChecked={plan == 1}/>
                                     <span className="leave-title" style={{width:"5%"}}>{getLangTxt("setting_msgset_scheme_custom")}</span>

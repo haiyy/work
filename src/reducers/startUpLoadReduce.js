@@ -117,8 +117,8 @@ export function getCallCenterPermission(){
 				let {jsonResult} = result,
 					{data,code} = jsonResult,
 					progress = code === 200 ? LoadProgressConst.LOAD_COMPLETE : LoadProgressConst.LOAD_FAILED;
-
-
+					
+				
                 dispatch({type:GET_RECORD_CENTER_PERMISSION,data});
             })
     }
@@ -158,20 +158,11 @@ export default function startUpLoadData(state = initState, action)
 			return state.set("toolFuncsData", action.data);
 
 		case GET_CHATRIGHTTABS_COMPLETE:
-
-            // action.data.push({
-            //     enabled: 1,
-            //     id: "robotassist",
-            //     name: "辅助人工",
-            //     show: 66,
-            //     showname: "辅助人工"
-            // });
-
 			return state.set("chatRightTabs", action.data);
 
 		case GET_LOGO_COMPLETE:
 			return state.set("logourl", action.data);
-
+		
 		case GET_RECORD_CENTER_PERMISSION:
 			return state.set("callcenter", action.data)
 

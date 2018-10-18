@@ -3,7 +3,7 @@
  * 单例
  * */
 import React from 'react'
-import { Map as ImmutableMap, is } from "immutable";
+import { Map, is } from "immutable";
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import AsideNav from './view/aside/AasideNav'
@@ -14,7 +14,7 @@ import ConsultInfoView from './view/ConsultInfoView'
 import UserTabs from './view/UserTabs';
 import '../../public/styles/chatpage/chatPage.scss';
 import '../../public/styles/chatpage/chatMessage.scss';
-import { setProperty, callComponentMethod, getLangTxt, get, sendT2DEvent } from '../../utils/MyUtil';
+import { setProperty, callComponentMethod, getLangTxt } from '../../utils/MyUtil';
 import { requestCooperateAction } from './redux/reducers/eventsReducer';
 import { chatDataChanged, chatDataClear, connectStatus } from "./redux/reducers/chatPageReducer";
 import CooperateUI from "./view/CooperateUI";
@@ -22,7 +22,7 @@ import Keyboard from "../../utils/Keyboard";
 import GlobalEvtEmitter from "../../lib/utils/GlobalEvtEmitter";
 import KeyboardEvent from "../event/KeyboardEvent";
 import NIMCode from "../../im/error/NIMCode";
-import { Modal, Button } from "antd";
+import { Button } from "antd";
 import EnterFrameComp from "../../components/EnterFrameComp";
 import Model from "../../utils/Model";
 import NtalkerListRedux from "../../model/chat/NtalkerListRedux";
@@ -32,9 +32,8 @@ import { logoutUser } from "../login/redux/loginReducer";
 import TranslateProxy from "../../model/chat/TranslateProxy";
 import KFsView from "./view/KFsView";
 import { ntalkerListRedux } from "../../utils/ConverUtils";
-import { getQueryString } from "../../utils/StringUtils";
-import SessionEvent from "../event/SessionEvent";
-import UserInfo from "../../model/vo/UserInfo";
+import Modal,{ confirm, info, error, success, warning } from "../../components/xn/modal/Modal";
+
 
 class ChatPage extends EnterFrameComp {
 
@@ -239,7 +238,7 @@ class ChatPage extends EnterFrameComp {
 
 		if(!this._modal)
 		{
-			this._modal = Modal.error({
+			this._modal = error({
 				title: getLangTxt("tip"),
 				width: '320px',
 				iconType: 'exclamation-circle',
@@ -251,50 +250,6 @@ class ChatPage extends EnterFrameComp {
 				onOk: this.handleOk.bind(this)
 			});
 		}
-	}
-
-	componentDidUpdate(prevProps)
-	{
-		let location = this.props.location,
-			{state, search} = location;
-
-		if(!state && !search)
-			return;
-
-		let query = getQueryString(search) || state && state.query || {},
-			{ntid, cid, tid} = query;
-
-		if(!ntid || !cid || !tid)
-			return;
-
-		let ntalkerList = ntalkerListRedux();
-		if(ntalkerList && ntalkerList.getTabDataByUserId(ntid))
-		{
-			let href = get(["location", "href"], window);
-
-			if(href)
-			{
-				let index = href.indexOf("?");
-				window.location = href.substr(0, index);
-			}
-			return;
-		}
-
-		let userInfo = new UserInfo(),
-			sessionInfo = {converid: cid, customerid: ntid},
-			members = new Map();
-
-		members.set(ntid, userInfo);
-		userInfo.userId = ntid;
-		userInfo.userName = ntid;
-		userInfo.type = 1;
-
-		location.state = {};
-
-		sendT2DEvent({
-			listen: SessionEvent.REQUEST_CHAT,
-			params: [ntid, cid, 1, sessionInfo, members, tid] //干系人ID, 会话ID, type会话类型
-		});
 	}
 
 	render()
@@ -337,7 +292,7 @@ class ChatPage extends EnterFrameComp {
 					<div className={sendBoxClsName} style={isConversation ? {
 						background: 'rgba(255,255,255,0.5)', display: 'block'
 					} : {display: 'none'}}>
-						<KFsView kfs={chatDataVo.kfMembers}/>
+                        <KFsView kfs={chatDataVo.kfMembers}/>
 						<Toolbar click={this._onOpenFontTool} getChooseEmiji={this._insertImage}
 						         openType={chatData && chatData.openType}
 						         chatDataVo={chatDataVo} updateTime={this.state.updateTime}/>
@@ -364,7 +319,7 @@ export function getRobotID()
 {
 	if(_instance)
 	{
-		return _instance.robotId || "";
+		return _instance.robotId;
 	}
 
 	return "";
@@ -376,7 +331,7 @@ function mapStateToProps(state)
 			chatPageReducer,
 			personalReducer
 		} = state,
-		intelligent = personalReducer.get("intelligent") || ImmutableMap(),
+		intelligent = personalReducer.get("intelligent") || Map(),
 		chatData = chatPageReducer.get("chatData") || {},
 		hasConver = chatPageReducer.get("hasConver") || false,
 		connectData = chatPageReducer.get("connectData") || {};

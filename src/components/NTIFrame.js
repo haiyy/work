@@ -6,7 +6,7 @@ import { getWorkUrl, shallowEqual } from "../utils/MyUtil";
 import LogUtil from "../lib/utils/LogUtil";
 import NTPureComponent from "./NTPureComponent";
 import ScrollArea from 'react-scrollbar';
-import { Spin } from 'antd'
+import Loading from "./xn/loading/Loading";
 
 /*
  * eg:
@@ -50,7 +50,7 @@ class NTIFrame extends NTPureComponent {
 		return (
 			<div style={{position: 'absolute', width: '100%', height: '100%', top: '0', left: '0'}}>
 				<div className="la-square-jelly-background">
-                    <Spin style={{
+                    <Loading style={{
 					width: "100%",
 					height: "100%",
 					display: "flex",

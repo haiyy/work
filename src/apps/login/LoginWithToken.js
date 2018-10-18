@@ -7,7 +7,7 @@ import { requestCancel, requestLoginWithToken } from './redux/loginReducer';
 import '../../public/styles/login/login.scss';
 import LoginResult from "../../model/vo/LoginResult";
 import ReFresh from "../../components/ReFresh";
-import { getQueryString } from "../../utils/StringUtils";
+import { parseSearch } from "../../utils/StringUtils";
 import { getLangTxt } from "../../utils/MyUtil";
 
 class LoginWithToken extends React.PureComponent {
@@ -57,7 +57,7 @@ class LoginWithToken extends React.PureComponent {
 	{
 		let {user, location = {}} = this.props,
 			{search = ""} = location,
-			query = getQueryString(search) || {},
+			query = parseSearch(search) || {},
 			{token, siteid} = query;
 		
 		if(user.success === LoginResult.LOGINING)

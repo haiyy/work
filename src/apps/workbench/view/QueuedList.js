@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { getQueueList, getSelectedColumns, setSelectedColumns } from "../redux/queueListReducer";
 import { List, is, fromJS } from "immutable";
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import Nodata from "../../.././public/images/dataNo.png";
 
 class QueuedList extends React.PureComponent {
@@ -107,7 +107,7 @@ class QueuedList extends React.PureComponent {
 			return null;
 		
 		return (
-			<NTModal title="选择字段" wrapClassName="grid-options" visible={this.state.visible} footer={""}
+			<Modal title="选择字段" wrapClassName="grid-options" visible={this.state.visible} footer={""}
 			       style={{top: '225px'}} onCancel={this.handleCancel.bind(this)}>
 				{
 					isWarn ?
@@ -126,7 +126,7 @@ class QueuedList extends React.PureComponent {
 						);
 					})
 				}
-			</NTModal>
+			</Modal>
 		);
 	}
 	

@@ -15,6 +15,7 @@ import { getReceptionTime, setReceptionTime, sureCooperate } from "../receptiont
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { Modal } from "antd/lib/index";
 import { bglen, stringLen } from "../../../utils/StringUtils";
+import { confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const TabPane = Tabs.TabPane, FormItem = Form.Item,
 	{TextArea} = Input;
@@ -435,7 +436,7 @@ class UserGroupSetting extends React.PureComponent {
 	{
 		if(this.progress === LoadProgressConst.SAVING_FAILED && !this.modal)
 		{
-			this.modal = Modal.error({
+			this.modal = error({
 				title: getLangTxt("tip1"),
 				iconType: 'exclamation-circle',
 				className: 'errorTip',
@@ -485,18 +486,17 @@ class UserGroupSetting extends React.PureComponent {
 
 		return (
 			<div className="receptionComp">
-				<div className="receptionUserScrollArea">
+				<ScrollArea speed={1} horizontal={false} className="receptionUserScrollArea">
 					<ReceptionTimeTable itemList={items} templateid={templateid} isNew={this.onCanSave.bind(this)}
                         disabled={diabled} cansave={this.cansave}/>
 					<Checkbox className="announceIO" defaultChecked={contentUseable} disabled={diabled}
 					          onChange={this.onContentCheckBoxChange.bind(this)}>{getLangTxt("notice")}</Checkbox>
-                    <div className="receptionTimeTextArea">
-                        <TextArea className={textIllegalStatus} defaultValue={content}
-                            disabled={contentUseable == 0 || diabled}
-                            onChange={this.judgeAnnounceLen.bind(this)}/>
-                        <span className={textLenStatus}>{announceLen + "/500"}</span>
-                    </div>
-				</div>
+
+					<TextArea className={textIllegalStatus} defaultValue={content}
+					          disabled={contentUseable == 0 || diabled}
+					          onChange={this.judgeAnnounceLen.bind(this)}/>,
+					<span className={textLenStatus}>{announceLen + "/500"}</span>
+				</ScrollArea>
 				{
 					this.errorMessage
 				}

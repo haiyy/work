@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Steps, Button, Form, Input, Modal, message } from 'antd';
+import { Steps, Button, Form, Input, message } from 'antd';
 import './style/queueManage.scss';
 import UserFilterList from "../distribution/UserFilterList";
 import {addQueue, editQueue} from "./reducer/queueManageReducer";
 import {bglen} from "../../../utils/StringUtils";
 import { getLangTxt, getProgressComp } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 const Step = Steps.Step, FormItem = Form.Item;
 class DefineQueueGroup extends React.PureComponent {
@@ -129,7 +130,7 @@ class DefineQueueGroup extends React.PureComponent {
             this.props.handleKillCreatePage();
         }else if (result.code === 404)
         {
-            Modal.warning({
+            warning({
                 title: getLangTxt("err_tip"),
                 width: '320px',
                 iconType: 'exclamation-circle',
@@ -139,7 +140,7 @@ class DefineQueueGroup extends React.PureComponent {
             });
         }else
         {
-            Modal.error({
+            error({
                 title: getLangTxt("err_tip"),
                 width: '320px',
                 iconType: 'exclamation-circle',

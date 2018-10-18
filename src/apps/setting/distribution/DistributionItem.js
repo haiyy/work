@@ -1,8 +1,9 @@
 import React from 'react'
-import {Card, Switch, Popconfirm, message, Button, Modal, Popover, Tooltip} from 'antd';
+import {Card, Switch, Popconfirm, message, Button, Popover, Tooltip} from 'antd';
 import './style/distributionItem.scss';
 import {truncateToPop} from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
+import  Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class DistributionItem extends React.PureComponent {
 	constructor(props)
@@ -38,7 +39,7 @@ class DistributionItem extends React.PureComponent {
 
 	removeUsers()
 	{
-        Modal.confirm({
+        confirm({
             title: getLangTxt("del_tip"),
             width: '320px',
             iconType: 'exclamation-circle',

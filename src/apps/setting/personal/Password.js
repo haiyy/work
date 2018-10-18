@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 import './style/modifyPassword.scss';
-import {Form, Switch, Input, Button, Modal} from 'antd';
+import {Form, Switch, Input, Button} from 'antd';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Model from "../../../utils/Model";
@@ -8,6 +8,8 @@ import LoginUserProxy from "../../../model/proxy/LoginUserProxy";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import {editPassWord, clearPasswordErrorMsg} from '../account/accountAction/sessionLabel';
 import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
+
 const FormItem = Form.Item;
 
 class Password extends React.Component {
@@ -104,7 +106,7 @@ class Password extends React.Component {
     getSavingErrorMsg(progress)
     {
         let content = progress === LoadProgressConst.ERROR_PASSWORD ? getLangTxt("personalset_pwd1_note1") : getLangTxt("20034");
-        Modal.error({
+        error({
             title: getLangTxt("tip1"),
             iconType: 'exclamation-circle',
             className: 'errorTip',

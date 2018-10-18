@@ -15,7 +15,6 @@ class TextChatSentence extends AbstractChatSentence {
 		super(message);
 		
 		this.messageType = MessageType.MESSAGE_DOCUMENT_TXT;
-		this.sensitiveWord = [];
 	}
 	
 	serialize()
@@ -67,10 +66,9 @@ class TextChatSentence extends AbstractChatSentence {
 			
 			this._htmlMessage = stateToHTML(contentState, options);
 			
-			this.sensitiveWord = ["2", "456"];
+			console.log("TextChatSentence htmlMessage = ", this._htmlMessage);
 			
-			this._htmlMessage = this._htmlMessage.replace(SmileyDict.reg, this._createSmileImg)
-			.replace(new RegExp(this.sensitiveWord.join("|"), "ig"), this.changeSensitiveWordBgColor);
+			this._htmlMessage = this._htmlMessage.replace(SmileyDict.reg, this._createSmileImg);
 			
 			return this._htmlMessage;
 		}
@@ -144,11 +142,6 @@ class TextChatSentence extends AbstractChatSentence {
 		});
 		
 		return repTxt;
-	}
-	
-	changeSensitiveWordBgColor(text)
-	{
-		return `<span style="background-color: red;color:white;">${text}</span>`;
 	}
 	
 	deserialize(data)

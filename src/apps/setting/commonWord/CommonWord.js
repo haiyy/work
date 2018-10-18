@@ -2,7 +2,7 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import ScrollArea from 'react-scrollbar';
 import { connect } from 'react-redux';
-import { Button, Table, Modal, Tree, Input, Form, Upload, Popover, Tooltip } from 'antd';
+import {Tree, Input, Form, Upload, Popover, Tooltip } from 'antd';
 import TreeNode from "../../../components/antd2/tree/TreeNode";
 import {
 	getAllTipsData, getSearchTipsData, getTipsGroup, newTipsGroup, editTipsGroup, removeTipsGroup,
@@ -17,10 +17,13 @@ import { ReFresh } from "../../../components/ReFresh";
 import { loginUserProxy, downloadByATag, upOrDown } from '../../../utils/MyUtil';
 import Settings from '../../../utils/Settings';
 import { bglen, truncateToPop } from "../../../utils/StringUtils";
-import NTModal from "../../../components/NTModal";
 import {getProgressComp} from "../../../utils/MyUtil";
+import Modal,{ info, error, warning, confirm, success } from "../../../components/xn/modal/Modal";
+import Button from "../../../components/xn/Button";
+import Table from "../../../components/xn/Table";
 
-const confirm = Modal.confirm, FormItem = Form.Item;
+//const confirm = Modal.confirm, 
+const FormItem = Form.Item;
 class CommonWorld extends React.PureComponent {
 	static NEW_TIP = 1;
 	static EDIT_TIP = 2;
@@ -385,7 +388,7 @@ class CommonWorld extends React.PureComponent {
 		let type = UPLOAD_FILE_ACTION, {file, fileList} = info;
 		if(!file)
 		{
-			Modal.error({
+			error({
 				title: getLangTxt("import_tip"),
 				iconType: 'exclamation-circle',
 				className: 'errorTip',
@@ -413,7 +416,7 @@ class CommonWorld extends React.PureComponent {
 						itemExistString = itemExist.join(","),
 						itemFailedString = itemFailed.join(",");
 
-					Modal.info({
+					info({
 						title: getLangTxt("import_tip"),
 						width: '320px',
 						iconType: 'exclamation-circle',
@@ -459,7 +462,7 @@ class CommonWorld extends React.PureComponent {
 				}
 				else if(!res.success && res.result.code == 400)
 				{
-					Modal.error({
+					error({
 						title: getLangTxt("import_tip"),
 						iconType: 'exclamation-circle',
 						className: 'errorTip',
@@ -470,7 +473,7 @@ class CommonWorld extends React.PureComponent {
 				}
 				else
 				{
-					Modal.success({
+					success({
 						title: getLangTxt("import_tip"),
 						width: '320px',
 						iconType: 'exclamation-circle',
@@ -501,7 +504,7 @@ class CommonWorld extends React.PureComponent {
 
 	savingErrorTips(msg, isGroup)
 	{
-		Modal.warning({
+		warning({
 			title: getLangTxt("err_tip"),
 			width: '320px',
 			iconType: 'exclamation-circle',
@@ -817,7 +820,7 @@ class CommonWorld extends React.PureComponent {
 
 				<div className='usualTipsRight'
 				     style={this.state.display ? {padding: '0.05rem 0 0 1.97rem'} : {padding: '0.05rem 0 0 0.07rem'}}>
-					<NTModal visible={this.state.importVisible} className="usualTipsRightModal" title={getLangTxt("import")}
+					<Modal visible={this.state.importVisible} className="usualTipsRightModal" title={getLangTxt("import")}
 					         onCancel={this.importVisibleCancel.bind(this)}
 					         footer={
 						         [
@@ -835,7 +838,7 @@ class CommonWorld extends React.PureComponent {
 						<p>{getLangTxt("setting_import_note3")}</p>
 						<p>{getLangTxt("setting_import_note4")}</p>
 						<p>{getLangTxt("setting_import_note5")}</p>
-					</NTModal>
+					</Modal>
 
 					{
 						progress.right === LoadProgressConst.LOAD_FAILED ?
@@ -894,7 +897,8 @@ class CommonWorld extends React.PureComponent {
 										<div className="searchBox">
 											<Form>
 												<FormItem>
-													{getFieldDecorator('search')(
+													{
+														getFieldDecorator('search')(
 														<Input onKeyUp={this.onSearch.bind(this)}
 														       className="searchIpt"/>
 													)}

@@ -1,14 +1,14 @@
 import React from 'react';
-import {Form, Input, Checkbox, Select, Button, Modal} from 'antd';
+import {Form, Input, Checkbox, Select, Button} from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../css/exportModal.less';
-import NTModal from "../../../components/NTModal";
 import { configProxy, token, downloadByATag } from "../../../utils/MyUtil";
 import {getUserDefinedExport} from "../redux/userDefinedExportReducer";
 import {updateTableHeader, getConsultList} from "../redux/consultReducer";
 import UserDefinedComp from "./UserDefinedComp";
 import {getLangTxt} from "../../../utils/MyUtil";
+import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
 
 class UserDefinedExport extends React.PureComponent {
     constructor(props)
@@ -38,7 +38,7 @@ class UserDefinedExport extends React.PureComponent {
         let {checkedFieldVal = []} = this.state;
 
         if (!checkedFieldVal.length)
-            Modal.warning({
+            warning({
                 title: getLangTxt("err_tip"),
                 iconType: 'exclamation-circle',
                 className: 'errorTip',
@@ -106,11 +106,11 @@ class UserDefinedExport extends React.PureComponent {
             ];
 
         return (
-            <NTModal title="选择显示内容" visible width={1000} wrapClassName="consultExportModal" onCancel={this.handleCancel.bind(this)} footer={modalFooter}>
+            <Modal title="选择显示内容" visible width={1000} wrapClassName="consultExportModal" onCancel={this.handleCancel.bind(this)} footer={modalFooter}>
                 <div className="userDefinedExportWrapper">
                     <UserDefinedComp exportOption={this.exportData} getCheckedValue={this.getCheckedValue.bind(this)}/>
                 </div>
-            </NTModal>
+            </Modal>
         );
     }
 }

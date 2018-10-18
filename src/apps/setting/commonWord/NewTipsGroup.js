@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Input } from 'antd';
-import NTModal from "../../../components/NTModal";
+import Modal from "../../../components/xn/modal/Modal";
 import { bglen } from "../../../utils/StringUtils";
 import { getLangTxt } from "../../../utils/MyUtil";
 
@@ -81,7 +81,7 @@ class NewTipsGroup extends React.PureComponent {
 			operateType = newGroupName !== 1;
 		
 		return (
-			<NTModal className='newTipsTypeStyle' title={modalTitle} visible={true} okText={getLangTxt("save")}
+			<Modal className='newTipsTypeStyle' title={modalTitle} visible={true} okText={getLangTxt("save")}
 			         onOk={this.newTypeOk.bind(this)} onCancel={this.props.changeNewGroup.bind(this)}>
 				<div>
 					<Form>
@@ -99,7 +99,7 @@ class NewTipsGroup extends React.PureComponent {
 						</FormItem>
 					</Form>
 				</div>
-			</NTModal>
+			</Modal>
 		)
 	}
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Button, Table, Tooltip, Modal} from 'antd';
+import {Button, Table, Tooltip} from 'antd';
 import ScrollArea from 'react-scrollbar';
 import './../style/thirdPartyAccess.scss';
 import {
@@ -14,9 +14,10 @@ import WeChatAuthorization from "./WeChatAuthorization";
 import SelectModel from "../public/SelectModel";
 import { formatTimestamp, getLangTxt, getProgressComp } from "../../../../utils/MyUtil";
 import {getAccountGroup} from "../../account/accountAction/sessionLabel";
+import Modal,{ confirm, info, error, success, warning } from "../../../../components/xn/modal/Modal";
 
-const confirm = Modal.confirm,
-    modeComponentMap = {
+//const confirm = Modal.confirm,
+const modeComponentMap = {
         1: WeChatTopSpeedModel,
         2: WeChatDevelopModel,
         3: WeChatAuthorization
