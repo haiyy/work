@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Form, Input } from 'antd';
-import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
+import {  getLangTxt } from "../../../utils/MyUtil";
 import CascaderReadOnly from './CascaderReadOnly';
 import { is, Map } from "immutable";
 import { getCompanyInfomation } from "./redux/companyInfoReducer";
 import './style/infomation.scss';
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
+import { _getProgressComp } from "../../../utils/ComponentUtils";
 
 let FormItem = Form.Item;
 

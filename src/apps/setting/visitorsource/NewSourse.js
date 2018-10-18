@@ -191,7 +191,7 @@ class NewSourse extends React.PureComponent {
 				labelCol: {span: 6},
 				wrapperCol: {span: 14}
 			}, uploadButton = (
-				<span className="avatar">
+				<span className="avatar" style={{border:"1px dashed #d9d9d9"}}>
 				<i className="icon-tianjia1 iconfont"/>
 				<p>上传</p>
 			</span>

@@ -90,6 +90,7 @@ const zh_cn = {
     other1: "other",
     save_success: "保存成功",
     save_failed: "保存失败",
+    load_failed:"加载失败",
     reminding: "智能提醒",
     notify: "您有{0}条会话包含未读消息",
 

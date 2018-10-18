@@ -1,12 +1,12 @@
 /**
  * 1.接收visible字段控制提示框的显示和隐藏;
- * 2.接收type字段判断提示框类型，普通--info--色值(#8dc85f);警告--warning--色值(#e7ab60)；危险--danger--色值(ea7160);
- * 3.title设置提示框标题;
- * 4.okText设置确定按钮的文字内容，字符串,cancelText设置取消按钮的文字内容，字符串;
- * 5.width设置提示框宽度;
- * 7.style设置样式;
- * 8.onOK 成功的回调;
- * 9.onCancel 取消的回调;
+ * 2.title设置提示框标题;
+ * 3.okText设置确定按钮的文字内容，字符串,cancelText设置取消按钮的文字内容，字符串;
+ * 4.width设置提示框宽度;
+ * 5.style设置样式;
+ * 6.onOK 成功的回调;
+ * 7.onCancel 取消的回调;
+ * 8.iconType 头部icon;
  */
 
 import { Modal as AModal, Button, Icon } from 'antd';
@@ -32,38 +32,38 @@ class Modal extends Component {
 		this.state = {visible: true};
 	}
 	
-	setTitle()
-	{
-		let {title, type, icon} = this.props,
-			titleColor = "#8dc85f";
+	// setTitle()
+	// {
+	// 	let {title, icon, type} = this.props,
+	// 		titleColor = "#8dc85f";
 		
-		switch(type)
-		{
-			case "warning":
-				titleColor = "#e7ab60";
-				break;
+	// 	switch(type)
+	// 	{
+	// 		case "warning":
+	// 			titleColor = "#e7ab60";
+	// 			break;
 			
-			case "danger":
-				titleColor = "#ea7160";
-				break;
+	// 		case "danger":
+	// 			titleColor = "#ea7160";
+	// 			break;
 			
-			case "error":
-				titleColor = "#eb705e";
-				icon = icon || <i className="iconfont icon-009cuowu" style={{color: titleColor}}/>;
-				break;
-		}
+	// 		case "error":
+	// 			titleColor = "#eb705e";
+	// 			icon = icon || <i className="iconfont icon-009cuowu" style={{color: titleColor}}/>;
+	// 			break;
+	// 	}
 		
-		return (
-			<div className="title">
-				{icon || <Icon type="exclamation-circle" theme="outlined" style={{color: titleColor}}/>}
-				<span>
-                    {
-	                    title || getLangTxt("tip")
-                    }
-                </span>
-			</div>
-		)
-	}
+	// 	return (
+	// 		<div className="title">
+	// 			{icon || <Icon type="exclamation-circle" theme="outlined" style={{color: titleColor}}/>}
+	// 			<span>
+    //                 {
+	//                     title || getLangTxt("tip")
+    //                 }
+    //             </span>
+	// 		</div>
+	// 	)
+	// }
 	
 	getFooter()
 	{
@@ -136,10 +136,12 @@ class Modal extends Component {
 		if(!this.state.visible)
 			return null;
 		
-		let tempProps = omit(this.props, ["title","footer"]);
+		let tempProps = omit(this.props, ["title","footer"]),
+			{ title, iconType } = this.props;
 
 		return (
-			<AModal width={this.props.width } title={this.setTitle()}
+			<AModal width={this.props.width } title={ title || getLangTxt("tip")}
+			 	   iconType = { iconType || ""}
 				   visible={this.props.visible || this.state.visible} 
 				   footer={this.getFooter()}
 				   onCancel={this.showModal.bind(this, false)} 

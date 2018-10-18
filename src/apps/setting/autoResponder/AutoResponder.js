@@ -7,11 +7,12 @@ import AutoGreetings from './AutoGreetings';
 import AutoAnswer from './AutoAnswer';
 import { autoResponse, autoResponseGreet, getAutowelcomelevel, getResponselevel,resetAnswerProgress } from "./action/autoResponse";
 import { editConfigLevel } from "../configLevel/configLevel";
-import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
+import { getLangTxt } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
 import AutoGreetingsReadOnly from "./AutoGreetingsReadOnly";
 import AutoAnswerReadOnly from "./AutoAnswerReadOnly";
+import { _getProgressComp } from "../../../utils/ComponentUtils";
 
 const TabPane = Tabs.TabPane;
 
@@ -101,6 +102,7 @@ class AutoResponder extends Component {
 		if(autoProgress === LoadProgressConst.LOAD_FAILED)
 			return <ReFresh reFreshFn={this.reFreshFn.bind(this)}/>;
 
+		console.log(this.props);
 		return (
 			<div className="autoResponder">
 				<div className="autoTabs">

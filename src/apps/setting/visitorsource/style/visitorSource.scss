@@ -170,6 +170,10 @@
         display: block;
         padding: 0 8px 0 25px;
         line-height: 38px;
+        background: none !important;
+    }
+    .ant-tree li span.ant-tree-node-selected{
+        background: none !important;
     }
     .ant-tree-node-content-wrapper .ant-tree-title span {
         display: none;
@@ -286,7 +290,6 @@
         display: inline-block;
         width: 60px;
         height: 60px;
-        border: 1px dashed #d9d9d9;
         text-align: center;
         border-radius: 6px;
         float: left;

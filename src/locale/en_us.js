@@ -89,6 +89,7 @@ const en_us= {
 	other1: "other",
 	save_success: "Save successfully",
 	save_failed: "Save failed",
+	load_failed:"Load failed",
 	reminding: "Smart reminder",
 	notify: "You have {0} conversations with unread messages",
 

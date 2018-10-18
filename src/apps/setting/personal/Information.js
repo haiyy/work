@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button, Form, Radio, Input } from 'antd';
+import { Form, Radio, Input } from 'antd';
 import { getInfomation, setInfomation, clearInformationProgress } from './action/personalSetting';
 import Upload from "./Upload";
 import { getLangTxt, upload, UPLOAD_IMAGE_ACTION } from "../../../utils/MyUtil";
 import "./style/personalInformation.scss";
 import { Map } from "immutable";
-import { getProgressComp, _getProgressComp } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
-import Modal,{ confirm, info, error, success, warning } from "../../../components/xn/modal/Modal";
+import Modal,{  error, warning } from "../../../components/xn/modal/Modal";
+import Button from "../../../components/xn/Button";
+import { getProgressCompWithState } from "../../../utils/ComponentUtils";
 
 const FormItem = Form.Item, RadioGroup = Radio.Group;
 
@@ -424,7 +425,7 @@ class Information extends Component {
 					</FormItem>
 				</Form>
                 {
-                    _getProgressComp(progress, "submitStatus userSaveStatus")
+	                getProgressCompWithState(progress, "userSaveStatus")
                 }
 			</div>
 		)

@@ -28,14 +28,27 @@
     }
     .formIptStyle {
         height: 32px;
+        width: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        //position: relative;
         .ant-input {
             height: 32px;
+            width: 200px;
         }
         .ant-input-disabled {
             cursor: default!important;
+            //width: 200px;
         }
         .ant-form-item {
             margin-bottom: 0;
+            width: 200px;
+        }
+        i{
+            // position: absolute;
+            // top:5px;
+            // left:50px;
         }
     }
     .ant-table-expanded-row {

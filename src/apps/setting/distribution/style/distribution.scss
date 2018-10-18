@@ -389,6 +389,7 @@
             position: absolute;
             left: 90px;
             bottom: 75px;
+            color:#999;
             p {
                 span {
                     margin-right: 20px;
@@ -481,7 +482,7 @@
                             display: inline-block;
                             width: 135px;
                             height: 32px;
-                            color: #34df75;
+                            color: #067ad8;
                             background: url('../../../../public/images/gar-1.png') no-repeat;
                             .word-top {
                                 display: inline-block;
@@ -496,7 +497,7 @@
                                 width: 15px;
                                 height: 15px;
                                 border-radius: 50%;
-                                background: #34df75;
+                                background: #067ad8;
                                 position: absolute;
                                 right: 60px;
                                 bottom: 23px;
@@ -557,7 +558,7 @@
                 border-left: 0;
                 .changeRobotStyle{
                     position: absolute;
-                    bottom: -52px;
+                    bottom: -42px;
                     margin-left: 10px;
                 }
                 li {

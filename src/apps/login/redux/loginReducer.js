@@ -21,8 +21,7 @@ export function requestLogin(formData, requestId)
 {
 	log("requestLogin requestId = " + requestId);
 	
-	return dispatch =>
-	{
+	return dispatch => {
 		try
 		{
 			if(!formData)
@@ -46,8 +45,7 @@ export function requestLogin(formData, requestId)
 			dispatch({type: LOGIN_REQUEST, user: {success: -1}});  //正在登录
 			
 			getLoginCode()
-			.then(result =>
-			{
+			.then(result => {
 				if(result.success)
 				{
 					let pwd = ntMd5(userPwd + loginProxy.loginCode);
@@ -56,8 +54,7 @@ export function requestLogin(formData, requestId)
 					body.key = loginProxy.loginCodeKey;
 					
 					gotoLogin(loginUrl, body, loginProxy)
-					.then(result =>
-					{
+					.then(result => {
 						if(result)
 						{
 							if(result.success)
@@ -87,8 +84,7 @@ export function requestLoginWithToken(value, siteid)
 {
 	log("requestLoginWithToken token = " + value + ", siteid = " + siteid);
 	
-	return dispatch =>
-	{
+	return dispatch => {
 		dispatch({type: LOGIN_REQUEST, user: {success: -1}});  //正在登录
 		
 		let configProxy = Model.retrieveProxy(ConfigProxy.NAME),
@@ -99,15 +95,13 @@ export function requestLoginWithToken(value, siteid)
 		dispatch({type: "LOGIN_REQUEST", user: {success: -1}});  //正在登录
 		
 		configProxy.getFlashServer()
-		.then(success =>
-		{
+		.then(success => {
 			if(success)
 			{
 				urlLoader(Settings.getLoginWithTokenUrl(), {
 					body: JSON.stringify({token: value, siteid}), method: "post"
 				})
-				.then(({jsonResult}) =>
-				{
+				.then(({jsonResult}) => {
 					let {error, code, data} = jsonResult;
 					
 					let success = code === 200;
@@ -145,8 +139,7 @@ export function requestCancel(cannel)
 {
 	log("requestCancel cannel = " + cannel);
 	
-	return dispatch =>
-	{
+	return dispatch => {
 		let onCancel = {};
 		onCancel[cannel] = cannel;
 		
@@ -158,8 +151,7 @@ function updateStorage(siteId, password, userName, remember)
 {
 	let loginView = Array.from(JSON.parse(localStorage.getItem('loginView')) || []);
 	
-	let siteIdIndex = loginView.findIndex(value =>
-		{
+	let siteIdIndex = loginView.findIndex(value => {
 			if(value && value.length > 0)
 			{
 				return value[0].siteId === siteId;
@@ -195,9 +187,9 @@ function gotoLogin(loginUrl, body, loginProxy)
 	return urlLoader(loginUrl, {
 		body: JSON.stringify(body),
 		method: "post",
+		credentials:'include'
 	})
-	.then((response) =>
-	{
+	.then((response) => {
 		let jsonResult = response.jsonResult;
 		if(!jsonResult)
 			return Promise.resolve();
@@ -224,6 +216,11 @@ function gotoLogin(loginUrl, body, loginProxy)
 			result.error = jsonResult.code || 20003;
 		}
 		
+		urlLoader("http://usercenter-release.ntalker.com/login/token",
+			{
+				credentials:'include'
+			});
+		
 		return Promise.resolve(result);
 	});
 }
@@ -232,8 +229,7 @@ function gotoLogin(loginUrl, body, loginProxy)
 // user = {success:true,access_token:"token"}
 export function loginSuccess(user)
 {
-	return dispatch =>
-	{
+	return dispatch => {
 		dispatch({
 			type: LOGIN_SUCCESS,
 			user
@@ -243,16 +239,14 @@ export function loginSuccess(user)
 
 export function dispatchAction(value)
 {
-	return dispatch =>
-	{
+	return dispatch => {
 		dispatch(value);
 	};
 }
 
 export function mineInfoUpdate()
 {
-	return dispatch =>
-	{
+	return dispatch => {
 		dispatch({
 			type: LOGIN_USERINFO_UPATE,
 		});
@@ -261,8 +255,7 @@ export function mineInfoUpdate()
 
 export function logoutUser()
 {
-	return dispatch =>
-	{
+	return dispatch => {
 		let loginProxy = Model.retrieveProxy(LoginUserProxy.NAME);
 		if(!loginProxy)
 			return;
@@ -282,8 +275,7 @@ export function logoutUser()
 
 //---------------------------Reducer-------------------------------
 
-export default function loginReducer(state = {}, action)
-{
+export default function loginReducer(state = {}, action) {
 	switch(action.type)
 	{
 		case LOGIN_ONCANEL:

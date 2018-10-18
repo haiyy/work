@@ -1,7 +1,8 @@
-import React from 'react'
-import { Table, Input, InputNumber } from 'antd';
+import React,{ Fragment } from 'react'
+import { Table, Input, InputNumber,Popover } from 'antd';
 import { getLangTxt, shallowEqual } from "../../../utils/MyUtil";
 import { connect } from 'react-redux';
+import { truncateToPop } from "../../../utils/StringUtils";
 
 class CustomerTable extends React.Component {
 	constructor(props)
@@ -15,7 +16,28 @@ class CustomerTable extends React.Component {
             selectedRowKeys: []
         };
         this._selectedRows = [];
-	}
+        this.showPopover = this.showPopover.bind(this);
+    }
+    
+    showPopover()
+    {
+        let val = '';
+        for(let i = 0; i < arguments.length; i++){
+           val +=  arguments[i]
+        }
+
+        let contentInfo = truncateToPop(val, 100, 14);
+
+        if(contentInfo.show == true){
+           return (<div>
+               <Popover placement="topLeft"  content={contentInfo.popString} arrowPointAtCenter>
+                {contentInfo.content}
+               </Popover>
+           </div>)
+        }else{
+            return contentInfo.popString
+        }
+    }
 
     columns = [
         {
@@ -27,7 +49,9 @@ class CustomerTable extends React.Component {
                     record.externalname
                         ?
                         <span>
-                            {record.nickname}({record.externalname})
+                            {
+                                this.showPopover(record.nickname,record.externalname)
+                            }
                         </span>:<span></span>
                 )
             }
@@ -51,7 +75,11 @@ class CustomerTable extends React.Component {
                     });
                 });
 
-                return ( <span>{tagNameArr.join(",")}</span> )
+                return ( <span>
+                {
+                     this.showPopover(tagNameArr.join(","))
+                }
+                </span> )
             }
         },
         {

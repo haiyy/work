@@ -38,7 +38,7 @@ export function setInfomation(data)
 		let settingUrl = Settings.queryPathSettingUrl("/enterprise/" + siteId + "/user/" + userId);
 		urlLoader(settingUrl, {method: "PUT", body, headers: {token: ntoken}})
 		.then(getCode)
-		.then(dispatchAction.bind(null, dispatch, GET_INFOMATION, false, {data, code: 200}));
+		.then(dispatchAction.bind(null, dispatch, GET_INFOMATION, false, data));
 	};
 }
 
@@ -234,10 +234,15 @@ function getCode(response)
 	return Promise.resolve(jsonResult);
 }
 
-function dispatchAction(dispatch, type, load, result)
+function dispatchAction(dispatch, type, load, result, result1)
 {
 	let progress = 2,
 		success = result && result.code == 200;
+	
+	if(result1)
+	{
+		success = result1 && result1.code == 200;
+	}
 
 	if(load)
 	{
@@ -248,7 +253,7 @@ function dispatchAction(dispatch, type, load, result)
 		progress = success ? LoadProgressConst.SAVING_SUCCESS : LoadProgressConst.SAVING_FAILED;
 	}
 
-	dispatch(getAction(type, progress, result.data));
+	dispatch(getAction(type, progress, result.data || result));
 
 	return Promise.resolve({success, result: result})
 }

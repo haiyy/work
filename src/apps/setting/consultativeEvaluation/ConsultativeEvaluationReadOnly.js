@@ -9,10 +9,10 @@ import { editConfigLevel } from "../configLevel/configLevel";
 import { getEvaluation, editEvaluation, clearEvaluationProgress } from './action/consultativeEvaluation';
 import { Map } from "immutable";
 import ConfigItemsLevel from "../../../model/vo/ConfigItemsLevel";
-import { _getProgressComp, getLangTxt } from "../../../utils/MyUtil";
+import { getLangTxt } from "../../../utils/MyUtil";
 import LoadProgressConst from "../../../model/vo/LoadProgressConst";
 import { ReFresh } from "../../../components/ReFresh";
-
+import { _getProgressComp } from "../../../utils/ComponentUtils";
 const TabPane = Tabs.TabPane;
 
 class ConsultativeEvaluationReadOnly extends React.PureComponent {

@@ -235,8 +235,12 @@ function getColumn()
 					       onBlur={this.onBlur.bind(this, record)}
 					       defaultValue={defaultName}
 					       disabled={this.disabled}/> :
-					<span key={"span" + index}
-					      onDoubleClick={this.onDoubleClick.bind(this, record)}>{defaultName}</span>
+					<span key={"span" + index} style={{position:"relative"}}>
+						{defaultName}
+						<i  className="iconfont icon-shouqi1" onClick={this.onDoubleClick.bind(this, record)}
+							style={{position:"absolute",left:"30px",top:"-2px"}}
+						></i>
+					</span>
 				
 			}
 		},

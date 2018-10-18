@@ -295,7 +295,7 @@ class QueueManageWord extends React.PureComponent {
 					</div>
 				</div>
                 <div className="queue-footer">
-					<Button className="primary" type="primary" onClick={this.setQueneClick.bind(this)}>{getLangTxt("sure")}</Button>
+					<Button className="primary" type="primary" onClick={this.setQueneClick.bind(this)}>{getLangTxt("save")}</Button>
 				</div>
                 {
                     _getProgressComp(progress, "submitStatus queueStatus")

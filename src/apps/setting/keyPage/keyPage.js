@@ -36,8 +36,8 @@ class KeyPage extends React.Component {
 	componentWillMount()
 	{
 		this.props.fetchRules();
-	}
-
+    }
+    
     //点击弹出新增关键页面框
     showAddKeyPage(record, e)
 	{
@@ -130,15 +130,15 @@ class KeyPage extends React.Component {
     //input框失去焦点保存修改数据
 	onBlur(name, record, e)
 	{
-		let text = e.target.value;
-        if (record[name] != text)
-        {
-            record[name] = text;
-            this.props.editKeyPage(record);
-        }
-		this.setState({
-            currentKey : ''
-		})
+		// let text = e.target.value;
+        // if (record[name] != text)
+        // {
+        //     record[name] = text;
+        //     this.props.editKeyPage(record);
+        // }
+		// this.setState({
+        //     currentKey : ''
+		// })
 	}
 
     updateIptValue(fieldValue, e)
@@ -198,7 +198,7 @@ class KeyPage extends React.Component {
                         keyNameWidth = keyPageWidth * 0.23,
                         keyNameInfo = truncateToPop(text, keyNameWidth) || {};
 
-                    return <div className="formIptStyle" onDoubleClick={this.doubleClick.bind(this, key, name, record)}>
+                    return <div className="formIptStyle">
                                 {
                                     key == this.state.currentKey && name === this.state.editType ?
 
@@ -222,13 +222,12 @@ class KeyPage extends React.Component {
                                                 }
                                                 placement="top"
                                             >
-                                                <Input value={keyNameInfo.content} disabled={this.state.inputDisabled}/>
+                                                <Input value={keyNameInfo.content} disabled={this.state.inputDisabled} />
                                             </Popover>
                                             :
-                                            <Input value={text} disabled={this.state.inputDisabled}/>
-
-
+                                            <Input value={text} disabled={this.state.inputDisabled} ref="formIptStyle"/>
                                 }
+                                <i  className="iconfont icon-shouqi1" onClick={this.doubleClick.bind(this, key, name, record)}></i>
                             </div>
                 }
             },
@@ -243,7 +242,7 @@ class KeyPage extends React.Component {
                         urlregWidth = keyPageWidth * 0.47,
                         urlregInfo = truncateToPop(text, urlregWidth) || {};
 
-                    return <div className="formIptStyle" onDoubleClick={this.doubleClick.bind(this, key, name)}>
+                    return <div className="formIptStyle">
                         {
                             key == this.state.currentKey && name === this.state.editType ?
                                 <FormItem hasFeedback>
@@ -269,6 +268,7 @@ class KeyPage extends React.Component {
                                     :
                                 <Input value={text} disabled={this.state.inputDisabled}/>
                         }
+                        <i className="iconfont icon-shouqi1" onClick={this.doubleClick.bind(this, key, name)}></i>
                     </div>
                 }
             },

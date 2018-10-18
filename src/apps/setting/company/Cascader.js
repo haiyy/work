@@ -8,6 +8,7 @@ import { getLangTxt, shallowEqual } from "../../../utils/MyUtil";
 import { stringLen, bglen, ruleForLenght, getHelp } from "../../../utils/StringUtils";
 import '../autoResponder/style/autoAnswer.scss';
 import Select from "../../public/Select";
+import checkLength from "../../../components/checkLength";
 
 const Option = Select.Option,
     FormItem = Form.Item;
@@ -123,6 +124,7 @@ class Cascader extends React.Component {
         const address = {...this.state.address, street: value};
         this.getAddress({street: value});
         this.setState({...address});
+       
     }
 
     _getProvince()
@@ -133,6 +135,11 @@ class Cascader extends React.Component {
         if(province.size > 0)
             return;
         this.props.getProvince(countryId);
+    }
+
+    normalizeAll(value)
+    {
+        return checkLength(value,40)
     }
 
     getRegionOption(treeData, treeDataSuccess, isProvince)
@@ -165,7 +172,7 @@ class Cascader extends React.Component {
             {street: stt} = this.state,
             streetStr = !stt ? (address.get("street") || "") : stt;
 
-        const {getFieldDecorator, getFieldValue} = this.props.form;
+        const {getFieldDecorator, getFieldValue, getFieldsValue} = this.props.form;
 
         return (
             <div style={{display: "inline-block", position: "relative"}}>
@@ -218,9 +225,10 @@ class Cascader extends React.Component {
                     <FormItem help={getHelp(streetStr, 40)}>
                         {getFieldDecorator('selectFou', {
                             initialValue: streetStr,
-                            rules: [{validator: ruleForLenght.bind(this, 40)}]
+                            rules: [{validator: ruleForLenght.bind(this, 40)}],
+                            normalize: this.normalizeAll,
                         })(
-                            <Input style={{width: '276px'}} onChange={this._onChange.bind(this)}/>
+                            <Input style={{width: '276px'}} onChange={this._onChange.bind(this)}  />
                         )}
                     </FormItem>
                 </Form>

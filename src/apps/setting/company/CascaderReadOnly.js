@@ -149,7 +149,7 @@ class CascaderReadOnly extends React.Component {
 						{getFieldDecorator('selectFou', {
 							initialValue: streetStr
 						})(
-							<Input style={{width:'276px'}} disabled/>
+							<Input style={{width:'276px'}} disabled />
 						)}
 					</FormItem>
 				</Form>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {Button, Form, Input} from 'antd';
-import {upload, UPLOAD_IMAGE_ACTION, _getProgressComp, getLangTxt} from "../../../utils/MyUtil";
+import {upload, UPLOAD_IMAGE_ACTION, getLangTxt} from "../../../utils/MyUtil";
 import Cascader from './Cascader';
 import {is, Map} from "immutable";
 import {getCompanyInfomation, modifyCompanyInfo} from "./redux/companyInfoReducer";
@@ -12,6 +12,8 @@ import {ReFresh} from "../../../components/ReFresh";
 import Modal from "../../../components/xn/modal/Modal";
 import Uploads from "../personal/Upload";
 import {bglen, getHelp, ruleForLenght} from "../../../utils/StringUtils";
+import checkLength from "../../../components/checkLength";
+import { _getProgressComp } from "../../../utils/ComponentUtils";
 
 let FormItem = Form.Item;
 
@@ -53,7 +55,7 @@ class CompanyInfo extends Component {
             this._address = info.toObject();
         }
     }
-
+    
     submit(e) {
         e.preventDefault();
 
@@ -93,8 +95,15 @@ class CompanyInfo extends Component {
     };
 
     setNameHelp({target: {value}}) {
+        let setValue="", { setFieldsValue } = this.props.form
         this.setState({name_help: getHelp(value || "", 40)});
+        if(bglen(value) > 40){
+            setFieldsValue({
+                "name": checkLength(value,40)
+            })
+        }
     }
+
 
     reFreshFn() {
         this.props.getCompanyInfomation();
@@ -146,13 +155,13 @@ class CompanyInfo extends Component {
             callback();
             return;
         }
-
         callback(" ");
+
     }
 
     render()
     {
-        let {getFieldDecorator} = this.props.form,
+        let {getFieldDecorator, getFieldsValue, setFieldValue} = this.props.form,
             {imgTips, isAvatarModalShow} = this.state,
             {companyInfo = Map()} = this.props,
             info = companyInfo.get("companyInfo") || Map(),
@@ -189,7 +198,7 @@ class CompanyInfo extends Component {
                                         </span>
                                     </div>
                                     :
-                                    <div className="avatar" onClick={this.handleUploadAvatar.bind(this)}>
+                                    <div className="avatar" onClick={this.handleUploadAvatar.bind(this)} >
                                         <i className="iconfont icon-tianjia1 uploadPlus"/>
                                         <div className="ant-upload-text">Upload</div>
                                     </div>

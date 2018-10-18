@@ -448,14 +448,14 @@ class SummaryModel extends React.PureComponent {
 	{
 		const styles = {display: 'inline-block', width: '83px', textAlign: 'center'},
 			formItemLayoutSummary = {
-				labelCol: {span: 3},
-				wrapperCol: {span: 10}
-			}, formItemLayoutSummaryName = {
-				labelCol: {span: 3},
-				wrapperCol: {span: 10}
-			}, formItemLayoutSummaryTime = {
 				labelCol: {span: 6},
-				wrapperCol: {span: 10}
+				wrapperCol: {span: 14}
+			}, formItemLayoutSummaryName = {
+				labelCol: {span: 6},
+				wrapperCol: {span: 14}
+			}, formItemLayoutSummaryTime = {
+				labelCol: {span: 12},
+				wrapperCol: {span: 12}
 			}, {getFieldDecorator} = this.props.form;
 		let editStartTime = moment(editSummaryInfo.startTime)
 			.format('YYYY-MM-DD HH:mm:ss'),
@@ -620,7 +620,7 @@ class SummaryModel extends React.PureComponent {
 
 		return (
 			<Modal
-				width={845}
+				width={845} //845
 				title={modeltitle}
 				className="summaryModel"
 				//style={{marginTop: -modalHeight / 2 + 'px'}}
