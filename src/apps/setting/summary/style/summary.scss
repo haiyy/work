@@ -1,0 +1,682 @@
+﻿/*
+* @Author: lijingting
+* @Date:   2016-11-04 17:35:12
+* @Last Modified by:   lijingting
+* @Last Modified time: 2016-11-07 17:56:08
+*/
+.clearFix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.summary {
+    position: relative;
+    height: 100%;
+    .summary-head {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        width: 100%;
+        padding: 15px 0 0 25px;
+        border-bottom: 1px solid #e8e8e8;
+        box-sizing: border-box;
+        .head-name {
+            display: inline-block;
+            width: 130px;
+            line-height: 33px;
+        }
+    }
+    .summary-container {
+        box-sizing: border-box;
+        height: 100%;
+        position: relative;
+        .newLoadImg {
+            width: 100%;
+            height: 100%;
+            background: url("../../../../public/images/componentLoading.gif") no-repeat center;
+        }
+        .summary-tree {
+            width: 265px;
+            height: 100%;
+            position: absolute;
+            border-right: 1px solid #e8e8e8;
+            left: 0;
+            z-index: 1;
+            .summary-type-box {
+                height: 100%;
+            }
+            .summary-button {
+                position: absolute;
+                top: 30%;
+                right: 0;
+                width: 7px;
+                height: 50px;
+                cursor: pointer;
+                line-height: 50px;
+            }
+            .summary-button-open {
+                right: -8px;
+            }
+            .tree-head {
+                width: 100%;
+                height: 0.34rem;
+                padding: 0 0.1rem 0 0.12rem;
+                line-height: 0.34rem;
+                border-bottom: 1px solid #e8e8e8;
+                .tree-icon {
+                    float: right;
+                    height: 0.34rem;
+                    i {
+                        display: inline-block;
+                        width: 0.2rem;
+                        text-align: center;
+                        cursor: pointer;
+                        font-size: 14px;
+                    }
+                }
+            }
+            .tree-con {
+                height: calc(100% - 55px);
+                width: 100%;
+                .ant-tree {
+                    margin: 0;
+                    padding: 0;
+                    .ant-tree-checkbox {
+                        position: absolute;
+                        left: 18px;
+                        top: 13px;
+                        z-index: 1000;
+                    }
+
+                }
+
+                ul li {
+                    min-height: 40px;
+                    line-height: 40px;
+                    margin: 0;
+                    padding: 0;
+                    position: relative;
+                    .ant-tree-switcher {
+                        position: absolute;
+                        top: 8px;
+                        left: 0;
+                        z-index: 1000;
+                    }
+                    .ant-tree-node-content-wrapper {
+                        height: 40px;
+                        width: 100%;
+                        line-height: 40px;
+                        padding: 0 12px 0 40px;
+                    }
+                    .ant-tree-node-content-wrapper .ant-tree-title .operateBox {
+                        display: none;
+                    }
+                    .ant-tree-node-content-wrapper:hover .ant-tree-title .operateBox {
+                        display: block;
+                    }
+                }
+                .scrollarea .scrollbar-container {
+                    z-index: 999;
+                }
+                .groupContent {
+                    display: inline-block;
+                    width: 100px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .summaryTypeNameBox {
+                    position: relative;
+                    width: 100%;
+                    height: 35px;
+                    padding: 0 48px 0 0;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    .operateBox {
+                        float: right;
+                        position: absolute;
+                        right: 0;
+                        top: 2px;
+                        i {
+                            color: #a9b7b7;
+                        }
+                        i:nth-child(1) {
+                            margin-right: 0.08rem;
+                        }
+                    }
+                }
+
+            }
+        }
+        .summary-list {
+            width: 100%;
+            height: 100%;
+            padding: 0 0 0 265px;
+            position: relative;
+            .ant-table-tbody table {
+                table-layout: fixed;
+                width: 100%;
+            }
+            .ant-table-tbody > tr {
+                height: 45px;
+                td {
+                    padding: 7px 8px;
+                }
+                td:nth-child(1) {
+                    text-align: center;
+                }
+            }
+            .ant-switch {
+                margin: 0;
+            }
+            .ant-pagination {
+                margin-right: 15px;
+            }
+            .summaryListContainer {
+                height: 100%;
+                .ant-form-item {
+                    width: 70px;
+                    display: inline-block;
+                    margin: 14px 10px 0 0;
+                }
+                .ant-search-input {
+                    width: 140px;
+                    height: 30px;
+                    margin-top: 12px;
+                    display: inline-block;
+                    .ant-input-group-wrap {
+                        float: right;
+                        margin-right: 32px;
+                    }
+                    .ant-btn:not(.ant-btn-circle):not(.ant-btn-circle-outline).ant-btn-icon-only {
+                        padding: 2px 6px;
+                        margin-top: 2px;
+                    }
+                }
+                .list-btn {
+                    padding-right: 0.08rem;
+                    .ant-btn {
+                        margin-left: 0.09rem;
+                        height: 0.28rem;
+                        line-height: 0.28rem;
+                    }
+                    .summaryListBtn {
+                        float: left;
+                        width: 75%;
+                    }
+
+                    .contentOpera {
+                        float: right;
+                        width: 25%;
+                        padding-right: 0.08rem;
+                        .searchBox {
+                            height: 32px;
+                            width: 174px;
+                            position: relative;
+                            float: right;
+                            margin-right: 0px;
+                            .searchIpt {
+                                display: block;
+                                height: 32px;
+                                width: 174px;
+                                position: absolute;
+                                left: 0;
+                                top: -14px;
+                                padding-right: 35px;
+                            }
+                            .searchBtn {
+                                position: absolute;
+                                right: 0;
+                                top: 0;
+                                height: 32px;
+                                border-radius: 0 4px 4px 0;
+                            }
+                        }
+                    }
+
+                    .rangeBtn {
+                        vertical-align: middle;
+                    }
+                }
+            }
+            .list-con {
+                position: relative;
+                height: calc(100% - 0.38rem);
+                .summaryScrollArea {
+                    height: 100%;
+                    margin-top: 0.05rem;
+                    padding: 0 0.08rem 0 0.06rem;
+                }
+                table{
+                    table-layout: fixed;
+                    width: 100%;
+                    .ant-table-selection-column {
+                        width: 30px;
+                    }
+                    .ant-table-thead {
+                        tr th {
+                            padding: 0.07rem 0.08rem;
+                        }
+                    }
+                    tr > td {
+                        padding: 0 0.08rem;
+                        .summaryTimeBox {
+                            position: relative;
+                            .startTimeBox, .endTimeBox {
+                                min-width: 112px;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                white-space: nowrap;
+                            }
+                        }
+                        .summaryOperateBox {
+                            i {
+                                cursor: pointer;
+                            }
+                            i:nth-child(1) {
+                                margin-right: 0.15rem;
+                            }
+                        }
+                    }
+                }
+                .ant-spin-container {
+                    .ant-table-pagination {
+                        margin: 0.04rem 0 0.03rem 0;
+                    }
+                }
+                .consultContent {
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    word-break: break-word;
+                }
+                .listParentType {
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    word-break: break-word;
+                }
+                .overDue {
+                    display: block;
+                    width: 56px;
+                    height: 39px;
+                    background-image: url("../../../../public/images/faqSetting/overDue.png");
+                    position: absolute;
+                    left: 56px;
+                    top: 0;
+
+                }
+                .due {
+                    display: none;
+                }
+            }
+        }
+    }
+
+}
+
+
+
+.ant-modal .summaryModel .ant-modal-footer {
+    text-align: right;
+    border: 0;
+
+}
+
+.chatsummary_tree_wrapper {
+    width: 100%;
+    height: 2.05rem;
+    .scrollarea-content{
+        padding: 0!important;
+    }
+}
+
+.ant-col-9 .chatsummary_tree_wrapper{
+    background-color: #fafafa;
+    border-radius: 6px;
+}
+
+.chatsummary_tree_leafs_wrapper {
+    margin: 0.07rem 0 0 0.07rem;
+    text-align: left;
+    .ant-checkbox-group{
+        .ant-checkbox-wrapper{
+            span:nth-child(2){
+                display: inline-block;
+                width: 80%;
+                padding-left: 12px;
+                vertical-align: middle;
+            }
+        }
+    }
+
+}
+
+.chatsummary .content {
+    width: 100%;
+}
+
+.chatsummary_tree_selected_items_wrapper button {
+    margin: 6px 10px 0 0;
+}
+
+.chatsummary .ant-checkbox-group {
+    width: 100%;
+}
+
+.chatsummary .ant-checkbox-group label {
+    width: 46%;
+    margin: 0;
+}
+
+.chatsummary .ant-tree {
+    text-align: left;
+}
+
+.chatsummary .scrollarea .scrollbar-container.vertical {
+    width: 8px;
+    border-radius: 5px;
+}
+
+.chatsummary .scrollarea .scrollbar-container.vertical .scrollbar {
+    width: 6px;
+    border-radius: 5px;
+}
+
+.chatsummary .ant-input {
+    border-radius: 6px 6px 0 0;
+}
+
+//.chatsummary .ant-tree li:first-child {
+//    display: none;
+//    margin-left: -10px;
+//}
+
+.conclusion .ant-table, .ant-table-small, .ant-table-scroll-position-left {
+    border-radius: 0;
+}
+
+.summaryTypeGroup {
+    border:1px solid transparent;
+    .superiorSummaryType {
+        display: inline-block;
+        width: 300px;
+        margin-left: 20px;
+        .sourceTree {
+            position: relative;
+            width: 100%;
+            padding: 0 90px 0 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+    .ant-select-tree li span.ant-select-tree-switcher {
+        line-height: 24px;
+    }
+    .ant-col-16 {
+        height: 32px;
+        width: 270px;
+    }
+    .ant-col-6 {
+        height: 32px;
+        width: 100px;
+    }
+    .ant-card-body{
+        .ant-form-item-with-help {
+            margin-bottom: 10px;
+            height: 32px;
+        }
+        .summaryGroupName {
+            display: inline-block;
+            .ant-form-item-control-wrapper {
+                .ant-form-item-control {
+                    .ant-input {
+                        padding-right: 36px;
+                    }
+                }
+            }
+            .summaryTypeName {
+                width: 275px;
+            }
+
+
+        }
+        .ant-form-item {
+            margin-bottom: 10px;
+        }
+    }
+}
+.ant-card:not(.ant-card-no-hovering):hover {
+    box-shadow: none;
+    border-color: transparent;
+}
+.summaryItem {
+    .ant-select-tree li span.ant-select-tree-switcher {
+        line-height: 24px
+    }
+    .parentGroupStyle {
+        .groupSelect {
+            width: 100%;
+            .sourceTree {
+                position: relative;
+                width: 100%;
+                padding: 0 90px 0 0;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
+        }
+    }
+    .summaryInfo {
+        .ant-col-10 {
+            height: 32px;
+        }
+        .summaryDatePicker {
+            .ant-calendar-picker-icon {
+                line-height: 13px;
+            }
+        }
+        .summaryNameStyle {
+            .ant-form-explain {
+                position: relative;
+                right: -320px;
+                top: -30px;
+            }
+        }
+    }
+
+    .summaryTimeStyle {
+        width: 50%;
+        float: left;
+        .ant-form-item-control {
+            .ant-calendar-picker-clear{
+                right: 8px
+            }
+            .ant-calendar-picker{
+                min-width: 160px;
+                .ant-calendar-picker-icon {
+                    right: 8px;
+                }
+            }
+
+        }
+        .has-feedback:after {
+            display: none;
+        }
+        .ant-input {
+            padding: 7px 12px;
+        }
+    }
+
+    .summaryEndTimeStyle {
+        margin-left: -100px;
+    }
+
+    .ant-card-body{
+
+        .parentName{
+            .ant-form-item-with-help {
+                height: 32px;
+                margin-bottom: 24px;
+            }
+        }
+
+    }
+}
+
+.commonsummary {
+    .ant-table-row-expand-icon {
+        display: none;
+    }
+}
+/*弹框样式*/
+.ant-modal-wrap.chatSummarModal{
+    .ant-modal-body{
+        padding: 24px;
+    }
+    .ant-modal-footer{
+        padding: 16px 24px 16px;
+    }
+}
+.chatsummary{
+    .leftSelectedDiv{
+        margin-bottom: 0.044rem;
+        padding-left: 0.066rem;
+    }
+    .leftDialogDiv{
+        margin-top: 0.07rem;
+        margin-bottom: 0.044rem;
+        padding-left: 0.066rem;
+    }
+    .chatSummaryScrollArea{
+        width: 2.327rem;
+        height: 2.28rem;
+        border: 1px solid #d8d8d8;
+        border-radius: 4px;
+        .retweetUserName{
+            display: inline-block;
+            max-width: 114px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    }
+    .chatsummaryContent{
+        border: 1px solid #D3D9DC;
+        border-top: 0;
+        border-radius: 0 0 6px 6px;
+        height: 2.06rem;
+        .ant-col-9{
+            border-right: 1px solid #D3D9DC;
+            ul.ant-tree{
+                padding-right: 0.058rem;
+                a, span.ant-tree-node-content-wrapper{
+                    width: calc(100% - 16px);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    background-color: #fafafa;
+                }
+            }
+        }
+    }
+    .chatsummary_tree_selected_items_wrapper{
+        .ant-tag{
+            margin-top: 3px;
+        }
+    }
+    .searchInput{
+        margin-top: 0.058rem;
+        .ant-input{
+            padding-right: 53px;
+        }
+        i.icon-sousuo{
+            font-size: 18px;
+            border-left: 1px solid #d2d8db;
+            position: absolute;
+            right: 0;
+            height: 27px;
+            width: 44px;
+            text-align: center;
+        }
+    }
+    .chatSummaryRemark{
+        margin-top: 0.14rem;
+        textarea.ant-input{
+            height: 34px;
+            resize: none;
+            border-radius: 6px;
+            padding: 7px 12px;
+        }
+    }
+}
+
+/*咨询接待Modal弹框样式*/
+.chatSummarModalDiv{
+    width: 6.82rem;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,.2);
+    z-index: 1000;
+    font-style: normal;
+    border-radius: 4px;
+    .chatSummarClose{
+        display: block;
+        width: 0.35rem;
+        height: 0.35rem;
+        position: absolute;
+        right: 0;
+        top: 0;
+        font-size: 14px;
+        line-height: 0.35rem;
+        vertical-align: baseline;
+        text-align: center;
+        color: rgba(0,0,0,.43);
+        font-weight: 700;
+    }
+    .chatSummarClose:before{
+        content: "\E633";
+        font-family: anticon!important;
+        display: block;
+    }
+    .chatSummarClose:hover{
+        color: #444;
+    }
+    .chatSummarHeader{
+        padding: 0 0.17rem;
+        height: 0.36rem;
+        border-radius: 4px 4px 0 0;
+        border-bottom: 1px solid #e9e9e9;
+        background-color: #fff;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 0.365rem;
+        color: rgba(0,0,0,.85);
+    }
+    .chatSummarBody{
+        padding: 0.1rem 0.17rem;
+        font-size: 12px;
+        height: 3.8rem;
+    }
+    .chatSummarfooter{
+        border-top: 1px solid #e9e9e9;
+        border-radius: 0 0 4px 4px;
+        padding: 0 0.17rem;
+        text-align: right;
+        height: 0.49rem;
+        line-height: 0.49rem;
+        .ant-btn {
+            padding: 0.058rem 0.11rem;
+        }
+        .ant-btn-primary {
+            margin-left: 0.058rem;
+        }
+    }
+}

@@ -1,0 +1,591 @@
+﻿input {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+.loginContainer {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  -webkit-app-region: drag;
+  .loginContent {
+    width: 7.42rem;
+    height: 5.21rem;
+    //background: url('../../images/login/loginBackG.png') no-repeat;
+    background: url('../../images/login/loginBgNoLogo.png') no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -2.605rem;
+    margin-left: -3.71rem;
+    padding-left: 0.83rem;
+    padding-top: 1rem;
+    .loginTextP {
+      font-size: 0.23rem;
+      padding-left: 0.029rem;
+      color: #121212;
+    }
+    .loginTextW {
+      width: 3.25rem;
+      line-height: 28px;
+      font-size: 0.11rem;
+      padding-left: 0.029rem;
+      color: #626262;
+    }
+    .dropDownNoDrag {
+      -webkit-app-region: no-drag;
+    }
+    .languagesSelect {
+      -webkit-app-region: no-drag;
+      width: 0.87rem;
+      .ant-select-selection {
+        border: none;
+      }
+      .ant-select-focused .ant-select-selection,
+      .ant-select-selection:focus,
+      .ant-select-selection:active {
+        box-shadow: none;
+      }
+      .ant-select-selection-selected-value {
+        font-size: 0.11rem;
+        float: right;
+        padding-left: 18px;
+      }
+    }
+    .login-content-box {
+      -webkit-app-region: no-drag;
+      width: 2.2rem;
+    }
+    .loginMessage {
+      width: 2.21rem;
+      margin-top: 0.22rem;
+      .login-item {
+        height: 0.33rem;
+        background-color: #f7f5fb;
+        border-radius: 50px;
+        margin-bottom: 0.1rem;
+        position: relative;
+        .ant-form-item {
+          margin-bottom: 0;
+          height: 100%;
+          margin-left: 0.58rem;
+          .ant-form-item-control-wrapper {
+            height: 100%;
+            .ant-form-item-control {
+              height: 100%;
+              .ant-select {
+                height: 100%;
+                .ant-select-selection {
+                  height: 100%;
+                  background: rgba(0, 0, 0, 0);
+                  outline: none;
+                  border: 0;
+                  width: 1.34rem;
+                  box-shadow: none;
+                  .ant-select-selection__rendered {
+                    height: 100%;
+                    margin: 0;
+                  }
+                }
+              }
+            }
+          }
+          .ant-select-combobox input.ant-select-search__field {
+            color: #3d3c3e;
+            width: 1.34rem;
+          }
+        }
+        .has-success.has-feedback:after, .has-warning.has-feedback:after,
+        .has-error.has-feedback:after, .is-validating.has-feedback:after {
+          height: 100%;
+          line-height: 0.33rem;
+        }
+        .login-icon {
+          display: inline-block;
+          position: absolute;
+          top: 50%;
+          left: 0.22rem;
+        }
+        .login-icon.home {
+          width: 16px;
+          height: 16px;
+          margin-top: -8px;
+          background: url('../../images/login/home.png') no-repeat center;
+        }
+        .login-icon.user {
+          width: 15px;
+          height: 18px;
+          margin-top: -9px;
+          background: url('../../images/login/user.png') no-repeat center;
+        }
+        .login-icon.lock {
+          width: 13px;
+          height: 18px;
+          margin-top: -9px;
+          background: url('../../images/login/lock.png') no-repeat center;
+        }
+        .login-item-passwordInput {
+          width: 1.34rem;
+          padding: 0;
+          border: none;
+          height: 100%;
+        }
+        .login-item-passwordInput:focus {
+          box-shadow: none;
+          border: none;
+        }
+      }
+      .loginBtnFormItem {
+        margin-top: 0.33rem;
+        padding: 0;
+        margin-bottom: 0.05rem;
+        font-size: 0.14rem;
+        .loginBtn {
+          width: 1.1rem;
+          height: 0.33rem;
+          border-radius: 30px;
+          border: none;
+          background: -webkit-linear-gradient(left, #2784ec, #657ff0); /* Safari 5.1 - 6.0 */
+          background: -o-linear-gradient(right, #2784ec, #657ff0); /* Opera 11.1 - 12.0 */
+          background: -moz-linear-gradient(right, #2784ec, #657ff0); /* Firefox 3.6 - 15 */
+          background: linear-gradient(to right, #2784ec, #657ff0); /* 标准的语法 */
+        }
+        .loginBtn:hover, .loginBtn:focus {
+          box-shadow: 0 0 8px rgba(72, 99, 214, 0.6);
+        }
+      }
+      .rememberPasswordFormItem {
+        margin: 0;
+        color: #121212;
+        width: 1.06rem;
+        display: inline-block;
+        .ant-checkbox-inner {
+          border-radius: 50%;
+        }
+      }
+      .loginStateFormItem {
+        width: 66px;
+        margin: 0;
+        display: inline-block;
+        color: #121212;
+        .ant-select-selection-selected-value {
+          outline: none;
+          img {
+            vertical-align: middle;
+            margin-right: 4px;
+          }
+        }
+        .ant-select-selection {
+          border: none;
+          box-shadow: none;
+        }
+        .pullDownArrow {
+          width: 9px;
+          height: 6px;
+          background: url('../../images/login/pullDownArrow.png') no-repeat center;
+          position: absolute;
+          top: 50%;
+          margin-top: -3px;
+          right: 0;
+          z-index: 2;
+        }
+        .ant-select-selection__rendered {
+          margin: 0;
+        }
+        .ant-select-arrow {
+          display: none;
+        }
+      }
+    }
+    .versionNumber {
+      color: #fff;
+      position: absolute;
+      right: 0.5rem;
+      bottom: 0.42rem;
+    }
+  }
+  .loginToolWrapper {
+    width: 0.56rem;
+    height: 0.2rem;
+    line-height: 0.2rem;
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    background-color: #4e36e2;
+    border-bottom-left-radius: 25px;
+    border-top-right-radius: 8px;
+    -webkit-app-region: no-drag;
+    .toolImg {
+      background: none;
+      border: none;
+      cursor: pointer;
+      height: 0.2rem;
+      width: 0.2rem;
+      float: right;
+      position: relative;
+      img {
+        position: absolute;
+        top: 50%;
+        margin-top: -7px;
+        left: 50%;
+        margin-left: -7px;
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+    .closeImgBtn {
+      margin-right: 0.03rem;
+    }
+    .miniImgBtn {
+      margin-right: 0.01rem;
+    }
+  }
+
+}
+
+.statesTwo {
+  -webkit-app-region: no-drag;
+  border: 1px solid #f0f0f0;
+  .ant-select-dropdown-menu-item-selected {
+    background-color: #fff;
+  }
+  .ant-select-dropdown-menu {
+    .ant-select-dropdown-menu-item {
+      background-color: #fff;
+      color: #323232;
+      border-top: 1px solid #eee;
+      width: 100px;
+      height: 32px;
+      .ant-select-dropdown-menu-item-select {
+        background-color: #fff;
+      }
+    }
+    .ant-select-dropdown-menu-item:first-child {
+      border-top: 0;
+    }
+    .ant-select-dropdown-menu-item-active {
+      background-color: #d9ebff;
+    }
+  }
+  .stateIcon {
+    position: absolute;
+    top: 50%;
+    margin-top: -4px;
+  }
+  .stateSpan {
+    vertical-align: middle;
+    display: inline-block;
+    padding-left: 13px;
+    width: 100%;
+  }
+}
+
+.loginContainer {
+  .ant-select-selection {
+    box-shadow: 0 0 0 0;
+  }
+  .ant-select-selection:focus, .ant-select-selection:active {
+    box-shadow: 0 0 0 0;
+  }
+
+  .ant-select-selection {
+    border-radius: 0;
+  }
+
+  .ant-input:focus {
+    border: 1px;
+    box-shadow: 0 0 0 2px rgba(45, 183, 245, 0.2);
+  }
+  .has-error .ant-input {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0);
+  }
+}
+
+.loginWaring {
+  -webkit-app-region: no-drag;
+
+  .ant-modal-body {
+    p {
+      margin-left: 40px;
+    }
+  }
+
+  .ant-modal {
+    top: 50%;
+    margin-top: -86px;
+  }
+}
+
+.login-item {
+  .passwordFormItem {
+    .has-error .ant-form-explain {
+      display: block;
+    }
+    .ant-form-explain {
+      margin-top: 3px;
+    }
+  }
+  .has-error .ant-form-explain {
+    margin-right: 22px;
+  }
+  .ant-select-combobox .ant-select-search--inline {
+    width: 93%;
+  }
+
+  .ant-select-selection__placeholder {
+    color: #ccc;
+  }
+}
+
+//************************加载动画的样式************************
+.loadWrap {
+  width: 800px;
+  height: 450px;
+  background-color: #e7e7e9;
+  position: absolute;
+  left: 50%;
+  margin-left: -400px;
+  top: 50%;
+  margin-top: -225px;
+  .ant-btn-primary {
+    width: 108px;
+    height: 30px;
+    position: absolute;
+    left: 50%;
+    margin-left: -54px;
+    top: 70%;
+  }
+}
+
+.la-square-jelly-box,
+.la-square-jelly-box > div {
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.la-square-jelly-box {
+  display: block;
+  font-size: 0;
+}
+
+.la-square-jelly-box.la-dark {
+  color: #333;
+}
+
+.la-square-jelly-box > div {
+  display: inline-block;
+  float: none;
+  background-color: currentColor;
+  border: 0 solid currentColor;
+}
+
+.la-square-jelly-background {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  .newLoadImg {
+    width: 100%;
+    height: 100%;
+    background: url("../../images/componentLoading.gif") no-repeat center;
+  }
+}
+
+.la-square-jelly-box {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -35px;
+  margin-top: -35px;
+}
+
+.la-square-jelly-box > div:nth-child(1),
+.la-square-jelly-box > div:nth-child(2) {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+
+.la-square-jelly-box > div:nth-child(1) {
+  top: -25%;
+  z-index: 1;
+  height: 100%;
+  border-radius: 10%;
+  -webkit-animation: square-jelly-box-animate .6s -.1s linear infinite;
+  -moz-animation: square-jelly-box-animate .6s -.1s linear infinite;
+  -o-animation: square-jelly-box-animate .6s -.1s linear infinite;
+  animation: square-jelly-box-animate .6s -.1s linear infinite;
+}
+
+.la-square-jelly-box > div:nth-child(2) {
+  bottom: -9%;
+  height: 10%;
+  background: #000;
+  border-radius: 50%;
+  opacity: .2;
+  -webkit-animation: square-jelly-box-shadow .6s -.1s linear infinite;
+  -moz-animation: square-jelly-box-shadow .6s -.1s linear infinite;
+  -o-animation: square-jelly-box-shadow .6s -.1s linear infinite;
+  animation: square-jelly-box-shadow .6s -.1s linear infinite;
+}
+
+/*
+ * Animations
+ */
+@-webkit-keyframes square-jelly-box-animate {
+  17% {
+    border-bottom-right-radius: 10%;
+  }
+  25% {
+    -webkit-transform: translateY(25%) rotate(22.5deg);
+    transform: translateY(25%) rotate(22.5deg);
+  }
+  50% {
+    border-bottom-right-radius: 100%;
+    -webkit-transform: translateY(50%) scale(1, .9) rotate(45deg);
+    transform: translateY(50%) scale(1, .9) rotate(45deg);
+  }
+  75% {
+    -webkit-transform: translateY(25%) rotate(67.5deg);
+    transform: translateY(25%) rotate(67.5deg);
+  }
+  100% {
+    -webkit-transform: translateY(0) rotate(90deg);
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@-moz-keyframes square-jelly-box-animate {
+  17% {
+    border-bottom-right-radius: 10%;
+  }
+  25% {
+    -moz-transform: translateY(25%) rotate(22.5deg);
+    transform: translateY(25%) rotate(22.5deg);
+  }
+  50% {
+    border-bottom-right-radius: 100%;
+    -moz-transform: translateY(50%) scale(1, .9) rotate(45deg);
+    transform: translateY(50%) scale(1, .9) rotate(45deg);
+  }
+  75% {
+    -moz-transform: translateY(25%) rotate(67.5deg);
+    transform: translateY(25%) rotate(67.5deg);
+  }
+  100% {
+    -moz-transform: translateY(0) rotate(90deg);
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@-o-keyframes square-jelly-box-animate {
+  17% {
+    border-bottom-right-radius: 10%;
+  }
+  25% {
+    -o-transform: translateY(25%) rotate(22.5deg);
+    transform: translateY(25%) rotate(22.5deg);
+  }
+  50% {
+    border-bottom-right-radius: 100%;
+    -o-transform: translateY(50%) scale(1, .9) rotate(45deg);
+    transform: translateY(50%) scale(1, .9) rotate(45deg);
+  }
+  75% {
+    -o-transform: translateY(25%) rotate(67.5deg);
+    transform: translateY(25%) rotate(67.5deg);
+  }
+  100% {
+    -o-transform: translateY(0) rotate(90deg);
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@keyframes square-jelly-box-animate {
+  17% {
+    border-bottom-right-radius: 10%;
+  }
+  25% {
+    -webkit-transform: translateY(25%) rotate(22.5deg);
+    -moz-transform: translateY(25%) rotate(22.5deg);
+    -o-transform: translateY(25%) rotate(22.5deg);
+    transform: translateY(25%) rotate(22.5deg);
+  }
+  50% {
+    border-bottom-right-radius: 100%;
+    -webkit-transform: translateY(50%) scale(1, .9) rotate(45deg);
+    -moz-transform: translateY(50%) scale(1, .9) rotate(45deg);
+    -o-transform: translateY(50%) scale(1, .9) rotate(45deg);
+    transform: translateY(50%) scale(1, .9) rotate(45deg);
+  }
+  75% {
+    -webkit-transform: translateY(25%) rotate(67.5deg);
+    -moz-transform: translateY(25%) rotate(67.5deg);
+    -o-transform: translateY(25%) rotate(67.5deg);
+    transform: translateY(25%) rotate(67.5deg);
+  }
+  100% {
+    -webkit-transform: translateY(0) rotate(90deg);
+    -moz-transform: translateY(0) rotate(90deg);
+    -o-transform: translateY(0) rotate(90deg);
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@-webkit-keyframes square-jelly-box-shadow {
+  50% {
+    -webkit-transform: scale(1.25, 1);
+    transform: scale(1.25, 1);
+  }
+}
+
+@-moz-keyframes square-jelly-box-shadow {
+  50% {
+    -moz-transform: scale(1.25, 1);
+    transform: scale(1.25, 1);
+  }
+}
+
+@-o-keyframes square-jelly-box-shadow {
+  50% {
+    -o-transform: scale(1.25, 1);
+    transform: scale(1.25, 1);
+  }
+}
+
+@keyframes square-jelly-box-shadow {
+  50% {
+    -webkit-transform: scale(1.25, 1);
+    -moz-transform: scale(1.25, 1);
+    -o-transform: scale(1.25, 1);
+    transform: scale(1.25, 1);
+  }
+}
+
+//*****************账户中心的加载图的样式
+.la-square-jelly-box_accountGroup {
+  margin-left: -20px;
+  margin-top: -20px;
+}
+
+.la-square-jelly-box_accountList {
+  margin-left: -200px;
+}
+
+/*登录页面Modal的样式*/
+.login-model {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  padding: 0 !important;
+  margin-left: -208px !important;
+  margin-top: -86px !important;
+  -webkit-app-region: no-drag;
+}

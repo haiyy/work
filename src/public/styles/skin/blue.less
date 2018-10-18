@@ -1,0 +1,38 @@
+@charset "utf-8";
+
+@import url(./skinUtil.less);
+
+/*
+* @bgBeginColor：渐变色的起始颜色 #0684ea
+* @bgEndColor：渐变色的结束颜色 #0684ea
+* @headerBorderColor：头部导航栏缝隙描边色值 #2598f2
+* @defaultColor：主要颜色 #0684ea
+* @minorColor：次要颜色（例如：客服气泡、咨询接待右侧轨迹背景） #e4f7fd
+* @passColor：鼠标经过颜色（例如：下拉框、导航栏）#e4f7fd
+* @btnHoverColor：鼠标经过按钮的颜色 #49a9ee
+* @btnDownColor：鼠标点击按钮的颜色 #056dc1
+* @bodyBorderColor：咨询接待三大块的边框值 #ede3fe
+* @middleBorderColor：咨询接待中间会话底部边框的颜色 #ede3fe
+* @shadowColor：input框聚焦的时候的模糊边框 rgba(6, 132, 234, 0.3)
+* @toolBackgroundColor: 右上角工具条的背景颜色 #18459b
+* @skinType: 皮肤类型 blue
+*/
+
+@skinType: "blue";
+
+.blue{
+    .change(#0684ea, #0684ea, #2598f2, #0684ea, #e4f7fd, #e4f7fd, #49a9ee, #056dc1, #ede3fe,#ede3fe, rgba(6, 132, 234, 0.3), #18459b, @skinType);
+
+    /*头部导航栏左右背景图*/
+    .header{
+        background: #0684ea url("../../images/fresh/topbg.png") no-repeat right !important;
+    }
+    .logoTrigger {
+        .ant-layout-sider{
+            background: #0684ea;
+        }
+    }
+    .now-page {
+        color: #017def;
+    }
+}

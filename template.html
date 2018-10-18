@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <!-- 当网站添加到主屏快速启动方式，可隐藏地址栏，仅针对safari -->
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <!-- 将网站添加到主屏快速启动方式，仅针对safari顶端状态条的样式 -->
+    <meta content="black" name="apple-mobile-web-app-status-bar-style">
+    <!-- 禁止将页面中的数字识别为电话号码 -->
+    <meta content="telephone=no" name="format-detection">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="shortcut icon" href="./js/favicon.ico"/>
+    <script type="text/javascript">
+		"use strict";
+
+		var init = function(doc, win) {
+			var docEl = doc.documentElement,
+				recalc = function() {
+					var clientWidth = docEl.clientWidth;
+					if(!clientWidth) return;
+
+					if(clientWidth <= 1024)
+					{
+						docEl.style.fontSize = '100px';
+					}
+					else if(clientWidth >= 1024 && clientWidth <= 1390)
+					{
+						docEl.style.fontSize = 100 * (clientWidth / 1024) + 'px';
+					}
+					else
+					{
+						docEl.style.fontSize = 100 * (1390 / 1024) + 'px';
+					}
+				};
+
+			if (!doc.addEventListener) return;
+			win.addEventListener('resize', recalc, false);
+			doc.addEventListener('DOMContentLoaded', recalc, false);
+		};
+
+		init(document, window);
+
+		function loadScript(url, callback)
+		{
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
+			script.src = url;
+			document.body.appendChild(script);
+			if(script.readyState)
+			{   //IE
+				script.onreadystatechange = function() {
+					if(script.readyState == 'complete' || script.readyState == 'loaded')
+					{
+						script.onreadystatechange = null;
+						setTimeout(callback, 500);
+					}
+				}
+			}
+			else
+			{    //非IE
+				script.onload = function() {
+					setTimeout(callback, 500);
+				}
+			}
+		}
+    </script>
+
+    <style>
+        #app {
+            -webkit-app-region: no-drag;
+            width: 100%;
+            height: 100%;
+            /*min-width: 1024px;
+            min-height: 637px;*/
+            z-index: 1;
+        }
+    </style>
+
+</head>
+<body style="-webkit-app-region: no-drag; background: transparent; font-size: 12px;font-family: Microsoft YaHei;">
+<div id="app"/>
+<%= htmlWebpackPlugin.options.electronRender %>
+<!--<%= htmlWebpackPlugin.options.bundle %>-->
+</body>
+</html>

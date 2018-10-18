@@ -1,0 +1,39 @@
+@charset "utf-8";
+
+@import url(./skinUtil.less);
+
+/*
+* @bgBeginColor：渐变色的起始颜色 #ffb505
+* @bgEndColor：渐变色的结束颜色 #f49731
+* @headerBorderColor：头部导航栏缝隙描边色值 #fed885
+* @defaultColor：主要颜色 #ffb506
+* @minorColor：次要颜色（例如：客服气泡、咨询接待右侧轨迹背景） #fff0cd
+* @passColor：鼠标经过颜色（例如：下拉框、导航栏）#ffe5a8
+* @btnHoverColor：鼠标经过按钮的颜色 #f9a41e
+* @btnDownColor：鼠标点击按钮的颜色 #f49731
+* @bodyBorderColor：咨询接待三大块的边框值 #ede3fe
+* @middleBorderColor：咨询接待中间会话底部边框的颜色 #ede3fe
+* @shadowColor：input框聚焦的时候的模糊边框 rgba(254, 205, 108, 0.3)
+* @toolBackgroundColor: 右上角工具条的背景颜色 #ee8b23
+* @skinType: 皮肤类型 orange
+*/
+
+@base-url: "../../images/skin";/*引入图片文件的前缀*/
+@skinType: "orange";
+
+.orange{
+    .change(#ffb505, #f49731, #fed885, #ffb506, #fff0cd, #ffe5a8, #f9a41e, #f49731, #ede3fe, #ede3fe, rgba(254, 205, 108, 0.3), #ee8b23, @skinType);
+
+    .headerMiddle{
+        background: url("@{base-url}/userBackground_@{skinType}.png") no-repeat 6.6rem 0;
+        background-size: 0.95rem 0.31rem;
+    }
+
+    .logoTrigger {
+        .ant-layout-sider{
+            background: url("@{base-url}/menuNavBackground_@{skinType}1.png") no-repeat bottom left,
+            url("@{base-url}/menuNavBackground_@{skinType}2.png") no-repeat right 1.66rem ;
+            background-size: 0.96rem 0.84rem, 1.06rem 2.32rem;
+        }
+    }
+}

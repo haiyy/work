@@ -1,0 +1,137 @@
+﻿.sendSide {
+    position: relative;
+    height: 32px;
+    padding: 0 20px;
+    .sendSideIcon {
+        position: absolute;
+        bottom: -2px;
+        width: 25px;
+        left: 20px;
+    }
+    .sendSideBth {
+        position: absolute;
+        right: 20px;
+    }
+    .sendtButton {
+        border: none;
+        border-radius: 5px;
+        width: 0.8rem;
+        height: 0.29rem;
+        max-height: 32px;
+        color: #fff;
+        outline: none;
+        text-align: center;
+        cursor: pointer;
+        padding-right: 10px;
+        float: right;
+    }
+
+    .closeButton {
+        border: 1px solid #E6E6E6;
+        border-radius: 5px;
+        background: #fff;
+        width: 0.77rem;
+        height: 0.29rem;
+        max-height: 32px;
+        margin-right: 0.16rem;
+        outline: none;
+        float: right;
+        cursor: pointer;
+    }
+
+    .icon {
+        margin-top: 9px;
+        float: left;
+    }
+    .consultPhone {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        padding: 0 270px 0 45px;
+        float: left;
+        margin-top: 12px;
+        margin-right: 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        color: #a0a0a0;
+        cursor: default;
+    }
+}
+
+.infoRight .send-box {
+    height: calc(1.41rem + 56px);
+    position: relative;
+    margin-top: 1px;
+    .sendSide {
+        position: absolute;
+        width: 100%;
+        bottom: 6px;
+        .sendSideBth {
+            .sendEnable {
+                background: #eee;
+                border-color: #eee;
+            }
+            .closeEnable {
+                background: #eee;
+                border-color: #eee;
+            }
+        }
+    }
+    .inputtingTranslate {
+        position: relative;
+        height: 56px;
+        word-break: break-all;
+        .transBg {
+            opacity: 0.2;
+            height: 100%;
+            width: 100%;
+        }
+        .inputText {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            height: 100%;
+            padding: 0 20px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+        }
+    }
+    .scrollBarStyle::-webkit-scrollbar
+    {
+        width: 5px;
+        height: 5px;
+    }
+
+    .scrollBarStyle::-webkit-scrollbar-track
+    {
+        background-color: transparent;
+    }
+
+    .scrollBarStyle::-webkit-scrollbar-thumb
+    {
+        background-color: #bdbdbd;
+        border-radius: 4px;
+    }
+}
+
+.send-box.send-without-trans {
+    height: 1.41rem;
+}
+
+/*输入框的提示框样式*/
+.inputViewFile{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-bottom: 1px solid #ecedef;
+}
+.inputViewFile:last-child{
+    border-bottom: 0;
+}

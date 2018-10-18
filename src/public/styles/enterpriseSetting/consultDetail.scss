@@ -1,0 +1,322 @@
+.contentMainLeftComp {
+  float: left;
+  width: 60%;
+  height: 100%;
+  .consultDetail {
+    font-family: "Microsoft YaHei";
+    color: black;
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    .leftOfConsult {
+      float: left;
+      padding-left: 20px;
+      color: #161661;
+      font-size: 14px;
+    line-height: 30px;
+      cursor: pointer;
+    }
+    button {
+      float: right;
+      margin-right: 20px;
+      line-height: 20px;
+      i {
+        font-size: 16px;
+      }
+    }
+      .reFreshBtn {
+          margin-top: 4px;
+      }
+      .exportBtn {
+          width: 70px;
+      }
+    .rightOfConsult {
+      float: right;
+    }
+    .iconStyle {
+      font-size: 16px;
+      padding-left: 10px;
+      cursor: pointer;
+    }
+    .backIcon {
+      padding: 0;
+    }
+    .backText {
+      font-size: 14px;
+      color: #616161;
+    }
+    .reloadContainer {
+      padding: 0 20px;
+      cursor: pointer;
+      .reload {
+        padding: 0;
+      }
+      .reloadText {
+        font-size: 16px;
+      }
+    }
+  }
+  .consultDetailContent {
+    font-family: "Microsoft YaHei";
+    padding: 5px 0 0 20px;
+    .contentHead {
+      padding: 5px 0 6px;
+      height: 55px;
+      .contentHeadLeft {
+        height: 44px;
+        position: relative;
+        width: 60%;
+        .userVisitorLogo {
+          position: absolute;
+          top: 50%;
+          margin-top: -17px;
+        }
+        .theImg {
+          height: 0.4rem;
+          width: 0.4rem;
+          border-radius: 30px;
+        }
+        .constuom {
+          margin-left: 0.41rem;
+          font-size: 0.11rem;
+          color: #616161;
+          position: absolute;
+          top: 50%;
+          margin-top: -9px;
+        }
+      }
+    }
+    .contentMain {
+      position: relative;
+      .contentMainLeft {
+        //float: left;
+        //width: 60%;
+        position: relative;
+        top: 0;
+        padding: 10px 0;
+        height: 100%;
+        .scrollarea .scrollbar-container {
+          z-index: 2;
+        }
+      }
+    }
+  }
+}
+
+.contentMainRight {
+  float: left;
+  width: 40%;
+  height: 100%;
+  border-left: 1px solid #ccc;
+  .consultTabContent > .ant-tabs-bar {
+    margin-bottom: 0;
+    .ant-tabs-nav-container {
+      height: 51px;
+      .ant-tabs-nav-wrap {
+        height: 51px;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        align-items: center;
+      }
+      .ant-tabs-nav-scroll {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        .ant-tabs-tab {
+          border: none;
+          background: #fff;
+        }
+        .ant-tabs-tab-active {
+          background: #f2f2f2;
+        }
+      }
+    }
+  }
+  .ant-tabs {
+    height: 100%;
+    .ant-tabs-content {
+      height: calc(100% - 50px);
+      .ant-tabs-tabpane {
+        height: 100%;
+        .trajectory {
+          height: 100%;
+          padding-top: 0;
+          .traTab {
+            height: 100%;
+            .ant-tabs {
+              height: 100%;
+              .ant-tabs-content {
+                height: calc(100% - 52px);
+                .ant-tabs-tabpane {
+                  height: 100%;
+                  .traOrders {
+                    height: 100%;
+                    .scrollarea {
+                      height: 100%;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+  }
+
+  .contentHeadRightText {
+    color: #0091ea;
+    border: 1px solid #ccc;
+    background-color: white;
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .contentInfoContainer {
+    .ant-collapse-item {
+      border: none;
+      .ant-collapse-header {
+        color: #0485eb;
+      }
+    }
+    p {
+      background: #ebf4fd;
+      padding: 14px 30px;
+      font-size: 14px;
+      font-weight: 900;
+    }
+    .itemContent {
+      font-family: "Microsoft YaHei";
+      padding: 7px 30px;
+        .icon-zixunzongjie {
+            color: #3991ce;
+            vertical-align: middle;
+            font-size: 18px;
+        }
+    }
+    .actionStrItem {
+      padding: 10px;
+      .actionStrIcon {
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 5px;
+        margin-right: 10px;
+      }
+      .actionStrIcon0 {
+        background: #199ed8;
+      }
+      .actionStrIcon1 {
+        background: #ff0000;
+      }
+      .actionStrIcon2 {
+        background: #bcbcbc;
+      }
+      .actionStrCon {
+        margin-right: 10px;
+      }
+    }
+      .actionStrItemElse{
+          padding: 10px;
+          .actionStrIcon {
+              float: left;
+              margin: 4px 10px 0 0;
+          }
+          .actionConComp {
+              width: calc(100% - 20px);
+              float: right;
+          }
+      }
+  }
+  //.contentInfoContainer{
+  //    background-color: white;
+  //    color: black;
+  //    .item{
+  //        border-bottom: 1px solid #ccc;
+  //        padding: 5px;
+  //        .itemTile {
+  //            padding-left: 25px;
+  //            padding-bottom: 10px;
+  //            font-size: 14px;
+  //        }
+  //        .itemContent{
+  //            font-family: "Microsoft YaHei";
+  //            padding-left: 35px;
+  //            margin: 5px 0;
+  //            span, i{
+  //                vertical-align: middle;
+  //            }
+  //        }
+  //    }
+  //}
+  .collapseContent {
+    font-size: 14px;
+  }
+}
+
+@mixin clear-float {
+  content: '';
+  display: block;
+  clear: both;
+  visibility: hidden;
+}
+
+.consultDetail:after {
+  @include clear-float;
+}
+
+.consultDetailContent:after {
+  @include clear-float;
+}
+
+.contentHead:after {
+  @include clear-float;
+}
+
+.contentMainLeft {
+  .hyPerMediaMessageWrapper {
+    position: relative;
+  }
+  .fileMessage {
+    position: relative;
+    width: 100%;
+    height: 39px;
+    .suffix {
+      width: 39px;
+      height: 39px;
+      line-height: 39px;
+      font-size: 16px;
+      text-align: center;
+      float: left;
+      font-weight: 600;
+      border-radius: 8px;
+      background-color: #fff;
+      margin-right: 12px;
+      overflow: hidden;
+    }
+    .fileMsgBox {
+      float: left;
+      text-align: left;
+      p {
+        display: block;
+        font-size: 13px;
+        padding: 0;
+      }
+    }
+    .downloadBox {
+      position: absolute;
+      bottom: 9px;
+      right: 10px;
+      a {
+        text-decoration: none;
+      }
+    }
+  }
+}

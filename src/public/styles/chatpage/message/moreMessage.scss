@@ -1,0 +1,97 @@
+﻿.MoreMessage {
+  text-align: center;
+  margin-top: 20px;
+  .msTypeZero {
+    i {
+      margin-right: 10px;
+    }
+  }
+  .msTypeOne {
+    b {
+      font-weight:normal;
+      font-size: 18px;
+    }
+    b,strong {
+      font-weight:normal;
+    }
+    span {
+      width:80%;
+      display: inline-block;
+      border-top: 1px solid #ddd;
+      margin-bottom:5px;
+      margin-left: 10px;
+    }
+  }
+  .msTypeTwo {
+    b {
+      font-weight:normal;
+    }
+    b,strong {
+      font-weight:normal;
+    }
+    span {
+      margin-left: 20px;
+      cursor:pointer;
+    }
+  }
+  .msTypeThree {
+    b {
+      font-weight:normal;
+    }
+    b,strong {
+      font-weight:normal;
+    }
+    span {
+      cursor: pointer;
+    }
+    .msAccept {
+      margin-left: 30%;
+      margin-right: 10px;
+    }
+  }
+  .msTypeFour {
+    color: #666;
+    b {
+      font-weight:normal;
+      font-size: 14px;
+    }
+    b,strong {
+      font-weight:normal;
+    }
+    span {
+      width:20%;
+      display: inline-block;
+      border-top: 1px dotted #ddd;
+      margin-bottom:5px;
+      margin: 0 10px 5px 10px;
+    }
+  }
+
+}
+.msTypeFive {
+  display: table;
+  height: 80px;
+  .msContent {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .anticon {
+    font-size: 24px;
+  }
+  span {
+    position: relative;
+    bottom:5px;
+    left:30px;
+  }
+}
+.ant-notification-notice-icon {
+  top:40px !important;
+  left: 34px;
+}
+.notifiBtn .ant-btn-primary {
+  background-color: #067AD8;
+  border-color: #067AD8;
+}
+.notifiBtn .ant-btn-primary:hover, .ant-btn-primary:focus {
+  border-color: #067AD8;
+}

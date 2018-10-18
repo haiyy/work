@@ -1,0 +1,81 @@
+.clearFix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.accountRight{
+    .has-error .ant-form-explain{
+        display: inline;
+        margin-left: 0;
+    }
+    .ant-form-item-with-help,.ant-form-item{
+        margin-bottom: 0.09rem;
+    }
+}
+.scrollAreaStyle{
+    .ant-modal-content{
+        height: 100%;
+        .ant-modal-body{
+            height: calc(100% - 96px);
+        }
+        .has-success.has-feedback:after, .has-error.has-feedback:after {
+            display: none
+        }
+    }
+}
+.accountRight {
+    .ant-input-wrapper{
+        display: inline-block;
+    }
+
+    .ant-form-explain{
+        display: inline;
+    }
+
+    .ant-col-9{
+        width: 81%;
+        .ant-select-lg, .ant-input{
+            width: 2.3rem;
+        }
+        .ant-form-explain{
+            margin-left: 0.09rem;
+        }
+    }
+}
+
+.accountRight.scrollAreaStyle{
+
+    .ant-modal{
+        height:100%;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        .ant-modal-body {
+            padding: 0;
+        }
+        .accountListScroll {
+            height: 100%;
+            overflow: auto;
+            padding: 16px 0 0 16px;
+            position: relative;
+        }
+
+        .accountListScroll::-webkit-scrollbar
+        {
+            width: 8px;
+            height: 8px;
+        }
+
+        .accountListScroll::-webkit-scrollbar-thumb
+        {
+            background-color: #bdbdbd;
+            border-radius: 4px;
+        }
+    }
+}

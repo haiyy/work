@@ -1,0 +1,38 @@
+.systemMessageView{
+    width: 100%;
+    position: absolute;
+    top: 0;
+    z-index: 2;
+    .anticon.anticon-cross{
+        font-size: 0.12rem;
+    }
+    .ant-alert-warning .ant-alert-icon{
+        font-size: 0.13rem;
+        color: #ffb905;
+        top: 50%;
+        margin-top: -0.065rem;
+    }
+    .ant-alert{
+        color: #666467;
+        padding: 0.05rem 0.35rem 0.05rem 0.33rem;
+    }
+    .ant-alert.ant-alert-warning{
+        background-color: #fffaec;
+    }
+  .ant-alert.ant-alert-no-icon{
+    padding: 0.073rem 0.35rem 0.073rem 0.11rem;
+  }
+  .ant-alert{
+   border-radius: 0;
+  }
+  .ant-alert-close-icon{
+      top: 50%;
+      margin-top: -0.06rem;
+      height: 0.12rem!important;
+      line-height: 0.12rem!important;
+      i:before{
+          color: #ff635d;
+          font-weight: 700;
+      }
+  }
+}

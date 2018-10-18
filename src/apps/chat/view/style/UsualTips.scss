@@ -1,0 +1,47 @@
+$mouseHoverColor: #e4f7fd; /*鼠标经过颜色块*/
+$bgColor:#ebe4ff;
+
+.mailCon{
+    .usualTIpsStyle{
+        padding-left: 0;
+        .usualTIpsStyleLeft{
+            .searchValueBox{
+                padding: 0 0 0 10px;
+            }
+        }
+        .usualTIpsStyleRight{
+            .ant-tree{
+                padding:0;
+                li{
+                    span.ant-tree-switcher{
+                        margin: 0 0 0 10px;
+                       // width: 100%;
+                    }
+                    span.ant-tree-node-content-wrapper{
+                        //margin: 0 0 0 3px;
+                       // width: 100%;
+                    }
+                    ul{
+                        padding: 0;
+                        li{
+                            padding: 0;
+                            .ant-tree-switcher{
+                                margin: -3px 0 0 28px;
+                            }
+                            .ant-tree-node-content-wrapper{
+                                padding: 0 0 0 28px; 
+                                margin: 0 0 0 18px;
+                                width: calc(100%-18px);
+                                background:  transparent !important;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .ant-checkbox-wrapper{
+            margin: 0 0 0 12px;
+        }
+    }
+}
+

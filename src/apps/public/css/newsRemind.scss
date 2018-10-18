@@ -1,0 +1,24 @@
+.newsRemindWrapper{
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 0.39rem;
+    right: 0;
+    background: url("../../../public/images/newsRemind.png") no-repeat;
+    background-size: 100% 100%;
+    z-index: 10;
+    cursor: pointer;
+    .count{
+        width: 0.14rem;
+        height: 0.14rem;
+        line-height: 0.14rem;
+        border-radius: 50%;
+        background-color: #f04234;
+        color: #fff;
+        position: absolute;
+        top: 0.24rem;
+        right: 0.15rem;
+        text-align: center;
+    }
+}

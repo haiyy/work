@@ -1,0 +1,15 @@
+.noData {
+    height:100%;
+    width: 100%;
+    position: relative;
+    background:url('../../../../utils/css/images/noData.png') center no-repeat;
+
+    .text{
+        position: absolute;
+        top: 60%;
+        left: 50%;
+        -ms-transform: translateX(-24px);
+        transform: translateX(-24px);
+        color: #999999;
+    }
+}

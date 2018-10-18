@@ -1,0 +1,27 @@
+{
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "targets": {
+          "chrome": 45,
+          "safari": 7,
+          "browsers": ["last 2 versions", "ie >= 10"]
+        }
+      }
+    ],
+    "react",
+    "stage-0"
+  ],
+  "plugins": [
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "style": "true"
+      }
+    ]
+  ],
+  "comments": false
+}

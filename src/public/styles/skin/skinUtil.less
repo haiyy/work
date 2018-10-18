@@ -1,0 +1,885 @@
+@import (less) "../../../components/xn/style/button.less";
+@import (less) "../../../components/xn/style/loading.less";
+
+/*
+* @bgBeginColor：渐变色的起始颜色
+* @bgEndColor：渐变色的结束颜色
+* @headerBorderColor：头部导航栏缝隙描边色值
+* @defaultColor：主要颜色
+* @minorColor：次要颜色（例如：客服气泡、咨询接待右侧轨迹背景）
+* @passColor：鼠标经过颜色（例如：下拉框、导航栏）
+* @btnHoverColor：鼠标经过按钮的颜色
+* @btnDownColor：鼠标点击按钮的颜色
+* @bodyBorderColor：咨询接待三大块的边框值
+* @middleBorderColor：咨询接待中间会话底部边框的颜色
+* @shadowColor：input框聚焦的时候的模糊边框
+* @toolBackgroundColor: 右上角工具条的背景颜色
+* @skinType: 皮肤类型
+*/
+
+@unitNum: 1px;
+@defaultPaginationColor: rgba(0, 0, 0, 0.65); /*分页中默认字体的颜色*/
+@whiteColor: #fff;
+@quitBtnDefaultColor: #f7fbff; /*注销和退出按钮默认状态下的颜色*/
+@quitBtnHoverColor: #e5f2ff; /*注销和退出按钮移入和点击状态下的颜色*/
+@sixColor: #666;
+@base-url: "../../images/skin"; /*引入图片文件的前缀*/
+@disabledBackGround: #f7f7f7;
+@disabledBorder: #b5b5b5;
+@stepFinish: #46c36f; /*step组件已完成颜色 绿*/
+
+.bgColorAndBorderColor(@defaultColor) {
+    background-color: @defaultColor;
+    border-color: @defaultColor;
+}
+
+.change(@bgBeginColor: #a895ee, @bgEndColor: #8e79d8, @headerBorderColor: #edc6fb, @defaultColor: #a993ee, @minorColor: #f5f0fd, @passColor: #ebe4ff, @btnHoverColor: #8e7ad8, @btnDownColor: #9579d3, @bodyBorderColor: #ede4fb, @middleBorderColor: #e5e5e5, @shadowColor: rgba(169, 147, 238, 0.3), @toolBackgroundColor: #5144b8, @skinType: 'purple') {
+
+    /*加载失败页面 字体颜色*/
+    .loadFail_CompanyInfo div span {
+        color: @defaultColor;
+    }
+
+    /*加载动画的颜色*/
+    .la-square-jelly-box, .loading {
+        //color: @defaultColor;
+    }
+
+    /*头部导航条*/
+    .header {
+        background: -webkit-linear-gradient(left, @bgBeginColor, @bgEndColor); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(right, @bgBeginColor, @bgEndColor); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(right, @bgBeginColor, @bgEndColor); /* Firefox 3.6 - 15 */
+        background: linear-gradient(to right, @bgBeginColor, @bgEndColor); /* 标准的语法 */
+
+        /*头部导航栏缝隙描边*/
+        .main, .workStatistics .box {
+            border-right: @unitNum solid @headerBorderColor;
+        }
+        .more, .borderLeftShow, .user {
+            border-left: @unitNum solid @headerBorderColor;
+        }
+        .workStatistics .box:last-child {
+            border-right: 0;
+        }
+
+        /*右上角工具条的背景颜色*/
+        .toolWrap {
+            background-color: @toolBackgroundColor;
+        }
+    }
+
+    /*导航左侧logo菜单*/
+    .logoTrigger {
+        background: -webkit-linear-gradient(top, @bgBeginColor, @bgEndColor); /* Safari 5.1 - 6.0 */
+        background: -o-linear-gradient(bottom, @bgBeginColor, @bgEndColor); /* Opera 11.1 - 12.0 */
+        background: -moz-linear-gradient(bottom, @bgBeginColor, @bgEndColor); /* Firefox 3.6 - 15 */
+        background: linear-gradient(to bottom, @bgBeginColor, @bgEndColor); /* 标准的语法 */
+
+        .ant-menu-dark {
+            background: transparent;
+        }
+    }
+
+    /*咨询接待*/
+    .chatpage {
+        /*翻译区域背景色*/
+        .transBg {
+            background-color: @defaultColor;
+        }
+        .directionMessage {
+            /*访客气泡背景色*/
+            .UserMessage {
+                .comment_bubble {
+                    background-color: @defaultColor;
+                    &:before {
+                        border-right: 0.05rem solid @defaultColor;
+                    }
+                }
+                .audioWrapper {
+                    background-color: @defaultColor;
+                    &:before {
+                        border-right: 0.05rem solid @defaultColor;
+                    }
+                }
+            }
+            /*客服气泡背景色*/
+            .SelfMessage {
+                .comment_bubble {
+                    background-color: @minorColor;
+                    &:before {
+                        border-left: 0.05rem solid @minorColor;
+                    }
+                }
+                .audioWrapper {
+                    background-color: @minorColor;
+                    &:before {
+                        border-left: 0.05rem solid @minorColor;
+                    }
+                }
+            }
+        }
+
+        /*咨询接待中Menu组件的颜色（为了除去设置中的Menu的颜色）*/
+        .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+            background-color: @passColor;
+        }
+        .ant-menu-inline .ant-menu-item-selected {
+            color: @defaultColor;
+        }
+        .ant-menu-inline, .ant-menu-vertical {
+            .ant-menu-item {
+                &:after {
+                    border-right: @unitNum*3 solid @defaultColor;
+                }
+            }
+        }
+        .ant-menu-item:hover, .ant-menu-item-active,
+        .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+        .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+            color: @defaultColor;
+            background-color: @passColor;
+        }
+
+        .ColleagueConverMenu {
+            .ant-menu-inline, .ant-menu-vertical {
+                .ant-menu-item {
+                    &:after {
+                        border-left: @unitNum*4 solid @defaultColor;
+                        left: 0;
+                        border-right: 0;
+                    }
+                }
+            }
+        }
+
+        /*三大块的边框值*/
+        .infoLeft {
+            border-right: @unitNum solid @bodyBorderColor;
+            /*左侧我的咨询的边框颜色*/
+            .well {
+                .selected .normalColumnWrap, .information_consult {
+                    border-left: 0.03rem solid @defaultColor;
+                }
+            }
+            /*左侧我的咨询选中、划过的颜色*/
+            .consultinfo_container {
+                &:hover,
+                &.selected {
+                    background-color: @passColor;
+                }
+            }
+        }
+        .infoAside {
+            border-left: @unitNum solid @bodyBorderColor;
+        }
+        .send-box {
+            border-top: @unitNum solid @bodyBorderColor;
+        }
+        .MessageState_con {
+            border-bottom: @unitNum solid @middleBorderColor;
+            .MessageStateright {
+                border-left: @unitNum solid @middleBorderColor;
+            }
+        }
+
+        /*发送按钮的颜色*/
+        .sendtButton {
+            background-color: @defaultColor;
+            &:hover {
+                background-color: @btnHoverColor;
+            }
+            &:focus {
+                background-color: @btnDownColor;
+            }
+        }
+
+        /*结束会话按钮的颜色*/
+        .closeButton {
+            &:hover {
+                border-color: @btnHoverColor;
+                color: @btnHoverColor;
+            }
+            &:focus {
+                border-color: @btnDownColor;
+                color: @btnDownColor;
+            }
+        }
+
+        /*右侧用户轨迹中本次访问、轨迹信息的背景颜色*/
+        .ant-collapse-header, .traInfo {
+            background-color: @minorColor;
+        }
+
+        /*右侧互动记录的移入背景色*/
+        .retweetHistoryList {
+            &:hover {
+                background-color: @passColor;
+            }
+        }
+
+        /*左侧待处理背景颜色*/
+        .perView.selected {
+            background-color: @passColor;
+        }
+
+        /*咨询总结tag样式*/
+        .chatsummary_tree_selected_items_wrapper {
+            .ant-tag {
+                background-color: @defaultColor;
+            }
+        }
+    }
+
+    /*链接的颜色*/
+    a {
+        color: @defaultColor;
+    }
+
+    /*Tabs组件的颜色*/
+    .ant-tabs-nav {
+        .ant-tabs-tab-active {
+            color: @defaultColor;
+        }
+        .ant-tabs-tab {
+            &:hover {
+                color: @defaultColor;
+            }
+        }
+    }
+    .ant-tabs-ink-bar {
+        background-color: @defaultColor;
+    }
+
+    /*Switch组件的颜色*/
+    .ant-switch-checked {
+        .bgColorAndBorderColor(@defaultColor);
+    }
+
+    /*Radio组件的颜色*/
+    .ant-radio-inner:after {
+        background-color: @defaultColor;
+    }
+    .ant-radio-checked .ant-radio-inner {
+        border-color: @defaultColor;
+    }
+    .ant-radio-wrapper:hover .ant-radio-inner {
+        border-color: @defaultColor;
+    }
+
+    .ant-radio-disabled .ant-radio-inner:after {
+        background-color: @disabledBorder;
+    }
+
+    /*Checkbox组件的颜色*/
+    .ant-checkbox-wrapper:hover .ant-checkbox .ant-checkbox-inner,
+    .ant-checkbox-wrapper:hover .ant-checkbox .ant-checkbox-input,
+    .ant-checkbox:hover .ant-checkbox-inner,
+    .ant-checkbox:hover .ant-checkbox-input,
+    .ant-checkbox-focused .ant-checkbox-input
+    .ant-checkbox-focused .ant-checkbox-inner {
+        border-color: @defaultColor;
+    }
+    .ant-checkbox-checked .ant-checkbox-inner, .ant-checkbox-indeterminate .ant-checkbox-inner {
+        .bgColorAndBorderColor(@defaultColor);
+    }
+
+    .ant-checkbox-disabled .ant-checkbox-inner {
+        background-color: @disabledBackGround;
+        border-color: @disabledBorder;
+    }
+
+    /*Tree组件的颜色*/
+    .ant-tree li .ant-tree-node-content-wrapper:hover,
+    .ant-tree li a.ant-tree-node-selected, .ant-tree li span.ant-tree-node-selected {
+        background-color: @passColor !important;
+    }
+    .ant-tree-checkbox-inner:hover {
+        border-color: @defaultColor;
+    }
+    .ant-tree-checkbox-checked .ant-tree-checkbox-inner, .ant-tree-checkbox-indeterminate .ant-tree-checkbox-inner {
+        .bgColorAndBorderColor(@defaultColor);
+    }
+    .ant-tree li ul li:hover {
+      background-color: @passColor !important;
+    }
+
+    /*打开树节点加载样式*/
+    .ant-tree li span.ant-tree-icon_loading:after {
+        color: @defaultColor;
+    }
+
+    /*TreeSelect组件的颜色*/
+    .ant-select-tree-checkbox-checked .ant-select-tree-checkbox-inner,
+    .ant-select-tree-checkbox-indeterminate .ant-select-tree-checkbox-inner {
+        .bgColorAndBorderColor(@defaultColor);
+    }
+    .ant-select-tree-checkbox:hover .ant-select-tree-checkbox-inner {
+        border-color: @defaultColor;
+    }
+    .ant-select-tree li span.ant-select-tree-icon_loading:after {
+        color: @defaultColor;
+    }
+    .ant-select-tree li a.ant-select-tree-node-selected {
+        background-color: @passColor;
+    }
+    .ant-select-tree li a:hover {
+        background-color: @passColor;
+    }
+    .ant-select-tree li .ant-select-tree-node-content-wrapper.ant-select-tree-node-selected {
+        background-color: @passColor;
+    }
+    .ant-select-tree li .ant-select-tree-node-content-wrapper:hover {
+        background-color: @passColor;
+    }
+
+    /*Card组件的颜色*/
+    .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab-active,
+    .ant-tabs.ant-tabs-card > .ant-tabs-bar .ant-tabs-tab:hover {
+        color: @defaultColor;
+    }
+
+    /*Button组件type为primary类型的按钮的颜色*/
+    .ant-btn-primary {
+        .bgColorAndBorderColor(@defaultColor);
+        &:hover {
+            .bgColorAndBorderColor(@btnHoverColor);
+        }
+        &:focus {
+            .bgColorAndBorderColor(@btnDownColor);
+        }
+    }
+
+    /*Button组件type不是primary类型的按钮的颜色*/
+    .ant-btn:not(.ant-btn-primary) {
+        border-color: @defaultColor;
+    }
+    .ant-btn:not(.ant-btn-primary):focus {
+        color: @btnDownColor;
+        border-color: @btnDownColor;
+    }
+    .ant-btn:not(.ant-btn-primary):not(.ant-btn-default):not([disabled]):hover {
+        color: @btnHoverColor;
+        border-color: @btnHoverColor;
+    }
+    .ant-btn:not(.ant-btn-primary):focus,
+    .ant-btn:not(.ant-btn-primary):not(.ant-btn-default):hover {
+        i.newTipsIcon {
+            color: @whiteColor;
+        }
+    }
+
+    .ant-btn.disabled, .ant-btn[disabled], .ant-btn.disabled:hover, .ant-btn[disabled]:hover,
+    .ant-btn.disabled:focus, .ant-btn[disabled]:focus, .ant-btn.disabled:active,
+    .ant-btn[disabled]:active, .ant-btn.disabled.active, .ant-btn[disabled].active {
+        color: @whiteColor;
+        border-color: @disabledBorder;
+        background-color: @disabledBorder;
+    }
+
+    .ant-btn.disabled:not(ant-btn-primary), .ant-btn[disabled]:not(ant-btn-primary), .ant-btn.disabled:not(ant-btn-primary):hover,
+    .ant-btn[disabled]:not(ant-btn-primary):hover, .ant-btn.disabled:not(ant-btn-primary):focus, .ant-btn[disabled]:not(ant-btn-primary):focus,
+    .ant-btn.disabled:not(ant-btn-primary):active, .ant-btn[disabled]:not(ant-btn-primary):active, .ant-btn.disabled.active:not(ant-btn-primary),
+    .ant-btn[disabled].active:not(ant-btn-primary) {
+        color: @disabledBorder;
+        border-color: @disabledBorder;
+        background-color: @whiteColor;
+    }
+
+    /*自定义按钮样式设置*/
+    .button(@defaultColor, @passColor);
+
+    /*次按钮鼠标划过样式*/
+    .ant-btn-ghost:hover, .ant-btn-ghost:focus {
+        color: @defaultColor;
+        border-color: @defaultColor;
+    }
+
+    /*DropDown组件的颜色*/
+    .ant-dropdown-menu-item:hover, .ant-dropdown-menu-submenu-title:hover {
+        background-color: @passColor;
+    }
+
+    /*Table组件划过的颜色*/
+    .ant-table-thead > tr.ant-table-row-hover > td,
+    .ant-table-tbody > tr.ant-table-row-hover > td,
+    .ant-table-thead > tr:hover > td, .ant-table-tbody > tr:hover > td {
+        background-color: @passColor;
+    }
+
+    /*表格 头部 上下箭头颜色样式*/
+    .ant-table-column-sorter-up.on .anticon-caret-up,
+    .ant-table-column-sorter-down.on .anticon-caret-up,
+    .ant-table-column-sorter-up.on .anticon-caret-down,
+    .ant-table-column-sorter-down.on .anticon-caret-down {
+        color: @defaultColor;
+    }
+
+    /*设置左侧菜单的颜色*/
+    .settingTabsMenu, .recordTabWrap, .kpi {
+        .ant-menu-item.ant-menu-item-selected {
+            background-color: @defaultColor;
+        }
+    }
+
+    /*Pagination组件颜色*/
+    .ant-pagination-item {
+        a {
+            color: @defaultPaginationColor;
+        }
+        &-active {
+            .bgColorAndBorderColor(@defaultColor);
+            a {
+                color: @whiteColor;
+            }
+        }
+    }
+    .ant-pagination-item.ant-pagination-item-active {
+        &:hover {
+            .bgColorAndBorderColor(@btnHoverColor);
+        }
+        &:focus {
+            .bgColorAndBorderColor(@btnDownColor);
+        }
+    }
+    .ant-pagination-item:not(.ant-pagination-item-active):hover {
+        border-color: @btnHoverColor;
+        a {
+            color: @btnHoverColor;
+        }
+    }
+    .ant-pagination-options-quick-jumper input:hover {
+        border-color: @btnHoverColor;
+    }
+    .ant-pagination-prev, .ant-pagination-next {
+        &:hover {
+            .ant-pagination-item-link {
+                border-color: @btnHoverColor;
+                color: @btnHoverColor;
+            }
+        }
+        &:focus {
+            .ant-pagination-item-link {
+                border-color: @btnDownColor;
+                color: @btnDownColor;
+            }
+        }
+    }
+    .ant-pagination-options-quick-jumper input:focus {
+        border-color: @defaultColor;
+        box-shadow: 0 0 0 @unitNum*2 @shadowColor;
+    }
+    .ant-pagination-prev:not(.ant-pagination-disabled):hover, .ant-pagination-next:not(.ant-pagination-disabled):hover {
+        border-color: @btnHoverColor;
+        a {
+            color: @btnHoverColor;
+        }
+    }
+    .ant-pagination-jump-prev:hover:after,
+    .ant-pagination-jump-next:hover:after {
+        color: @btnHoverColor;
+    }
+    .ant-pagination-jump-prev:focus:after,
+    .ant-pagination-jump-next:focus:after {
+        color: @btnDownColor;
+    }
+
+    /*Select组件的颜色*/
+    .ant-select-focused .ant-select-selection, .ant-select-selection:focus, .ant-select-selection:active {
+        border-color: @defaultColor;
+        box-shadow: 0 0 0 @unitNum*2 @shadowColor;
+    }
+    .ant-select-dropdown-menu-item:hover, .ant-select-dropdown-menu-item-active {
+        background-color: @passColor;
+    }
+    .ant-select-selection:hover {
+        border-color: @defaultColor;
+    }
+    .ant-select-dropdown-menu-item-selected, .ant-select-dropdown-menu-item-selected:hover {
+        background-color: @passColor;
+    }
+
+    /*select下拉框条目的对勾*/
+    .ant-select-dropdown.ant-select-dropdown--multiple .ant-select-dropdown-menu-item-selected:after,
+    .ant-select-dropdown.ant-select-dropdown--multiple .ant-select-dropdown-menu-item-selected:hover:after {
+        color: @defaultColor;
+    }
+
+    /*Input组件的样式*/
+    .ant-form-item-control:not(.has-error) {
+        > .ant-input-wrapper > .ant-input:hover, > .ant-input-wrapper > .ant-input:focus,
+        > .ant-input:hover, > .ant-input:focus,
+        .ant-input-wrapper > .ant-input:hover, .ant-input-wrapper > .ant-input:focus,
+        .ant-input.NewTipsInput:hover, .ant-input.NewTipsInput:focus {
+            border-color: @defaultColor;
+        }
+        > .ant-input-wrapper > .ant-input:focus, > .ant-input:focus,
+        .ant-input-wrapper > .ant-input:focus, .ant-input.NewTipsInput:focus {
+            box-shadow: 0 0 0 @unitNum*2 @shadowColor;
+        }
+    }
+
+    /*InputNumber数字输入框组件的颜色*/
+    .ant-input-number:hover {
+        border-color: @defaultColor;
+    }
+    .ant-input-number:focus, .ant-input-number-focused {
+        border-color: @defaultColor;
+        box-shadow: 0 0 0 @unitNum*2 @shadowColor;
+    }
+    .ant-input-number-handler:hover .ant-input-number-handler-up-inner,
+    .ant-input-number-handler:hover .ant-input-number-handler-down-inner {
+        color: @defaultColor;
+    }
+
+    /*Slider组件的颜色*/
+    .ant-slider-handle, .ant-slider:hover .ant-slider-handle {
+        border-color: @defaultColor;
+    }
+    .ant-slider-track, .ant-slider:hover .ant-slider-track {
+        background-color: @defaultColor;
+    }
+
+    /*Steps步骤条组件的颜色*/
+    .ant-steps .ant-steps-item.ant-steps-status-process .ant-steps-head-inner {
+        .bgColorAndBorderColor(@defaultColor);
+    }
+    .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-head-inner {
+        border-color: @stepFinish;
+    }
+    .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-head-inner > .ant-steps-icon {
+        color: @stepFinish;
+    }
+    .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-tail > i:after {
+        background-color: @stepFinish;
+    }
+    .ant-steps .ant-steps-item.ant-steps-status-finish .ant-steps-main .ant-steps-title {
+        color: @stepFinish;
+    }
+
+    /*DatePicker日期选择框组件的颜色*/
+    .ant-calendar-picker:hover .ant-calendar-picker-input:not(.ant-input-disabled) {
+        border-color: @defaultColor;
+    }
+    .ant-calendar-picker-container {
+        .ant-calendar-today .ant-calendar-date {
+            border-color: @defaultColor;
+        }
+        .ant-calendar-header a:hover {
+            color: @defaultColor;
+        }
+        .ant-calendar-date:hover {
+            background-color: @passColor;
+        }
+        .ant-calendar-footer {
+            .ant-calendar-time-picker-btn, .ant-calendar-today-btn {
+                color: @defaultColor;
+            }
+        }
+        .ant-calendar-selected-day .ant-calendar-date, .ant-calendar .ant-calendar-ok-btn {
+            .bgColorAndBorderColor(@defaultColor);
+            color: @whiteColor;
+        }
+        .ant-calendar {
+            &-ok-btn:hover {
+                .bgColorAndBorderColor(@btnHoverColor);
+            }
+            &-ok-btn:focus {
+                .bgColorAndBorderColor(@btnDownColor);
+            }
+        }
+        .ant-calendar-range .ant-calendar-in-range-cell:before {
+            background-color: @passColor;
+        }
+    }
+    .ant-calendar-time-picker-select li:hover {
+        background-color: @passColor;
+    }
+
+    .ant-calendar-today .ant-calendar-date {
+        color: @defaultColor;
+    }
+
+    /*注销和退出两个按钮的背景颜色*/
+    .ant-dropdown-menu-item.deal {
+        background-color: @quitBtnDefaultColor;
+    }
+    .ant-dropdown-menu-item.deal:focus, .ant-dropdown-menu-item.deal:hover {
+        background-color: @quitBtnHoverColor;
+    }
+
+    /*设置模块*/
+    .settingTabsMenu {
+        /*感叹号、感叹号后面文字的颜色*/
+        .autoAnswerConfigure, .anticon-exclamation-circle-o {
+            color: @defaultColor;
+        }
+    }
+
+    /*一些需要特殊处理的Input组件*/
+    .distribution, .advancedSearch, .searchValueBox, .sameWebBox, .topspeedModelContent
+    .chatSummarModal, .consultativeEvaluation, .chatsummary, .leaveMsgUserinfo {
+        .ant-input:not(ant-input-disabled):hover {
+            border-color: @defaultColor;
+        }
+        .ant-input:focus {
+            border-color: @defaultColor;
+            box-shadow: 0 0 0 @unitNum*2 @shadowColor;
+        }
+    }
+
+    /*智能分配页面中圆、And的颜色*/
+    .makeusers circle {
+        fill: @defaultColor;
+    }
+    .ant-radio-button-wrapper {
+        .bgColorAndBorderColor(@defaultColor);
+        &:hover {
+            color: @defaultColor;
+        }
+    }
+
+    /*互动记录模块中待处理详情页面“留言信息”、“处理留言”的颜色*/
+    .pendingDetailRecord {
+        .leaveMessageStyle, .dealLeaveMessage {
+            color: @defaultColor;
+        }
+    }
+
+    /*互动记录模块中高级搜索符号的样式*/
+    .filterWrap .iconfont.icon-sousuo {
+        color: @defaultColor;
+    }
+    .advancedSearchTitle {
+        color: @defaultColor;
+    }
+
+    /*报表模块*/
+    .kpi {
+        .concernedReport, .kpiFilterIcon {
+            color: @defaultColor !important;
+        }
+        .screen .content {
+            .ant-radio-button-wrapper.ant-radio-button-wrapper-checked, .ant-form .ant-radio-button-wrapper {
+                background-color: @defaultColor;
+            }
+            circle {
+                fill: @defaultColor;
+            }
+        }
+        .reportDatails {
+            .goback, .ant-breadcrumb span:first-child span:first-child, .ant-btn-circle {
+                color: @defaultColor;
+            }
+            .ant-btn-circle:hover {
+                color: @btnHoverColor;
+            }
+            .reportView, .ant-anchor-link-title {
+                color: @defaultColor;
+            }
+        }
+        .ant-spin-dot i {
+            background-color: @defaultColor;
+        }
+        .ant-anchor-link-title {
+            background-color: @defaultColor;
+        }
+        .reportDetails {
+            .ant-btn-circle {
+                color: @btnHoverColor;
+            }
+        }
+        .ant-spin-spinning span i {
+            background-color: @defaultColor !important;
+        }
+    }
+
+    /*个性化中心/智能切换选择键盘键的样式*/
+    .intelligent-head-div {
+        &:hover {
+            border-color: @defaultColor;
+        }
+        &:focus {
+            border-color: @defaultColor;
+            box-shadow: 0 0 0 @unitNum*2 @shadowColor;
+        }
+    }
+
+    /*互动记录咨询详情页面左侧*/
+    .retweetHistoryList {
+        .audioWrapper {
+            background-color: @defaultColor;
+        }
+    }
+    .retweetHistoryList.selected {
+        background-color: @passColor;
+    }
+
+    /*个人常用话术转圈颜色*/
+    .is-validating.has-feedback:after {
+        color: @defaultColor;
+    }
+
+    /*角色管理弹框字的颜色*/
+    span.role-btn-visi {
+        color: @defaultColor;
+    }
+
+    /*点击发送按钮弹出样式*/
+    ul.types {
+        .enterTypeStyle {
+            color: @defaultColor;
+        }
+        li:hover {
+            background-color: @passColor;
+            color: @defaultColor;
+        }
+    }
+
+    /*关键页面 表格中暂无数据移入样式*/
+    .essential tr:hover .ant-table-placeholder {
+        background-color: @passColor;
+    }
+
+    /*高级搜索每个按钮的样式*/
+    .nt-button-group {
+        button {
+            &:hover {
+                border-color: @btnHoverColor;
+                color: @btnHoverColor;
+            }
+            &:focus {
+                border-color: @btnDownColor;
+                color: @btnDownColor;
+            }
+        }
+    }
+
+    /*咨询接待 右击列表的样式*/
+    .react-context-menu {
+        .ant-menu-item:hover, .ant-menu-item-active,
+        .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+        .ant-menu-submenu-active, .ant-menu-submenu-title:hover {
+            color: @sixColor;
+            background-color: @passColor;
+        }
+    }
+
+    /*互动记录 高级搜素列表样式*/
+    .nt-button-group-item-checked {
+        border: @unitNum solid @defaultColor;
+        color: @defaultColor;
+    }
+
+    /*新建常用话术*/
+    .choiceFatherGroup {
+        .ant-btn:not(.ant-btn-primary):not(.ant-btn-default):hover, .ant-btn:not(.ant-btn-primary):focus {
+            border: @unitNum solid @defaultColor;
+            background-color: @defaultColor;
+            color: @whiteColor;
+        }
+        .clearfix Button:hover {
+            .bgColorAndBorderColor(@defaultColor);
+            color: @whiteColor;
+        }
+    }
+    /*智能分配*/
+    .makeusers, .newCustomTabMiddle {
+        circle {
+            fill: @defaultColor;
+        }
+    }
+
+    /*咨询接待截图*/
+    .shortCutViewSpan.selected {
+        color: @defaultColor;
+    }
+
+    /*提示弹框按钮的样式*/
+    .ant-confirm .ant-confirm-btns {
+        .ant-btn.ant-btn-primary {
+            background-color: @defaultColor;
+            border-color: @defaultColor;
+        }
+        .ant-btn.ant-btn-primary:hover {
+            background-color: @btnHoverColor;
+            border-color: @btnHoverColor;
+        }
+        .ant-btn.ant-btn-primary:hover {
+            background-color: @btnDownColor;
+            border-color: @btnDownColor;
+        }
+        .ant-btn:not(.ant-btn-primary):hover {
+            border-color: @btnHoverColor;
+            color: @btnHoverColor;
+        }
+    }
+
+    /*视频进度条*/
+    .rh5v-Seek_fill {
+        background-color: @defaultColor;
+    }
+
+    /*第三方接入页面*/
+    .titleExplain {
+        .number {
+            background-color: @defaultColor;
+        }
+    }
+    .newReceptionRowStyle {
+        background-color: @passColor !important;
+    }
+
+    /*消息点击弹层*/
+    .messageTrigger {
+        .itemLi:hover, .circle {
+            background-color: @defaultColor;
+        }
+    }
+
+    .smartInput {
+        .smartInputTitle {
+            background-color: @defaultColor;
+        }
+        .inputViewFile {
+            circle {
+                fill: @defaultColor;
+            }
+            &:hover {
+                background-color: @passColor;
+            }
+        }
+        .inputViewFile.selected {
+            background-color: @passColor;
+        }
+    }
+
+    /*弹框同一颜色样式*/
+    .modalCommonStyle {
+        .ant-modal-close-x {
+            width: 50px;
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+            background: @defaultColor;
+        }
+        .ant-modal-close-x:before {
+            color: #fff;
+        }
+        .ant-modal-header {
+            background: @defaultColor;
+            .ant-modal-title {
+                color: #fff;
+            }
+        }
+    }
+    #addKeyWord {
+        color: @defaultColor !important;
+    }
+    //loading 图标颜色
+    .ant-spin-spinning > span > i {
+        background-color: @defaultColor !important;
+    }
+}
+
+

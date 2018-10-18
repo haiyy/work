@@ -1,0 +1,388 @@
+.permissions {
+    .ant-modal-title {
+        font-weight: normal;
+    }
+    .ant-modal-body {
+        padding: 0;
+        .message {
+            padding: 24px;
+            b {
+                padding-right: 15px;
+                width: 65px;
+                text-align: right;
+                display: inline-block;
+                color: #666;
+            }
+            span {
+                color: #999;
+            }
+        }
+        .ant-tabs {
+            .ant-tabs-bar {
+                .ant-tabs-nav-container {
+                    .ant-tabs-ink-bar {
+                        height: 4px;
+                        // background-color: #0177d7;
+                    }
+                    .ant-tabs-tab:nth-child(2) {
+                        //margin-left: 24px;
+                    }
+                    .ant-tabs-tab-active {
+                        // color: #0177d7;
+                    }
+                }
+            }
+            .ant-tabs-content {
+                .ant-tabs-tabpane {
+                    padding: 0 24px 0;
+                    .ant-btn-ghost {
+                        width: 160px;
+                        border-color: #2db7f5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.details {
+
+    .ant-modal {
+        top: 50%;
+        margin-top: -275px;
+    }
+    .ant-modal-title {
+        font-weight: normal;
+    }
+    .ant-modal-body {
+        padding: 16px 24px;
+        .message {
+            padding: 0 24px;
+            line-height: 38px;
+            b {
+                padding-right: 15px;
+                width: 80px;
+                text-align: right;
+                display: inline-block;
+                color: #666;
+                font-weight: normal;
+            }
+        }
+        .accountSkillTag {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            cursor: default;
+        }
+        .ant-tabs {
+            .ant-tabs-bar {
+                .ant-tabs-nav-container {
+                    .ant-tabs-ink-bar {
+                        height: 4px;
+                    }
+                    .ant-tabs-tab:nth-child(2) {
+                        //margin-left: 24px;
+                    }
+                }
+            }
+            .ant-tabs-content {
+                .ant-tabs-tabpane {
+                    padding: 0 24px 15px;
+                    .ant-row {
+                        line-height: 32px;
+                        .icon {
+                            font-size: 0.12rem;
+                            color: #56bd43;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.accountRight {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    .ant-modal-title {
+        font-weight: normal;
+    }
+    .accountListArea {
+        height: 100%;
+        .accountListProgress {
+            position: absolute;
+            width: calc(100% - 2.03rem);
+            height: 100%;
+            top: 0;
+            .newLoadImg {
+                width: 100%;
+                height: 100%;
+                background: url("../../../../public/images/componentLoading.gif") no-repeat center;
+            }
+        }
+    }
+    .searchAccountBox {
+        border-bottom: 1px solid #e8e8e8;
+        padding: 0 0.07rem 0.07rem 0.09rem;
+        .accountSearchForm {
+            height: 100%;
+            position: relative;
+            .accountSearchContainer {
+                padding-right: 150px;
+            }
+            .accountSearchBox {
+                display: inline-block;
+                margin-top: 0.07rem;
+                .ant-select-selection-selected-value {
+                    line-height: 0.26rem;
+                }
+                .ant-form-item {
+                    display: inline-block;
+                    width: 225px;
+                    margin: 0;
+                    .ant-form-item-label, .ant-form-item-label label {
+                        line-height: 0.28rem;
+                    }
+                    .ant-input-lg {
+                        height: 0.28rem;
+                    }
+                    .ant-form-item-control{
+                        line-height: 0.28rem;
+                        .ant-select-selection--single{
+                            height: 0.28rem;
+                            .ant-select-selection__rendered {
+                                line-height: 0.28rem;
+                            }
+                        }
+                    }
+                }
+
+
+            }
+
+            .accountSearchBtn {
+                position: absolute;
+                right: 0;
+                bottom: 0px;
+                .searchBtnBox {
+                    margin: 0;
+                    .ant-btn-primary {
+                        float: right;
+                        margin-right: 0.1rem;
+                        height: 0.28rem !important;
+                        color: #fff;
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+        .ant-col-3 {
+            width: 60px;
+        }
+        .ant-col-8 {
+            min-width: 67%;
+        }
+        .roleItem {
+            .ant-select-lg .ant-select-selection--multiple {
+                height: 32px;
+                overflow: auto;
+            }
+        }
+    }
+    .accountsTableList {
+        position: relative;
+        height: calc(100% - 0.78rem);
+        .accountScrollArea {
+            height: calc(100% - 0.42rem);
+            .ant-table-thead > tr > th.ant-table-selection-column,
+            .ant-table-tbody > tr > td.ant-table-selection-column {
+                text-align: right;
+                min-width: 40px;
+                width: 30px;
+            }
+        }
+        .ant-table-wrapper {
+            padding: 0 0.08rem 0 0;
+        }
+        .userNamePopover {
+            max-width: 250px;
+            height: auto;
+            word-wrap: break-word;
+        }
+
+        .nickNamePopover {
+            width: 150px;
+            height: auto;
+            word-wrap: break-word;
+        }
+
+        .mask{
+            margin:0;
+            padding:0;
+            font-size:16px;
+            i{
+                cursor:pointer;
+                margin-right:0.15rem;
+            }
+        }
+
+
+
+        .accountInfoStyle {
+            width: 100%;
+            overflow: hidden;
+            cursor: default;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            word-break: break-word;
+        }
+
+        .createAccountBtn {
+            padding: 0.07rem 0.09rem;
+            display: flex;
+            .ant-btn {
+                height: 0.28rem;
+                line-height: 0.28rem;
+                vertical-align: middle;
+            }
+            .accountOperateBox {
+                float: right;
+                .deleteAccount {
+                    margin-left: 8px;
+                    //color: #fff;
+                    text-align: center;
+                    //background: transparent;
+                    //border: 1px solid #cccccc;
+                   // color: #707070;
+                }
+                .deleteBtn {
+                    padding: 0 7px;
+                }
+            }
+        }
+        table{
+            table-layout: fixed;
+            width: 100%;
+            .ant-table-thead {
+                tr th {
+                    padding: 0.07rem 0.08rem;
+                }
+            }
+            tr td{
+                padding: 0.05rem 0.08rem;
+            }
+
+        }
+        .ant-table-pagination {
+            margin: 0.09rem 0.13rem 0.07rem 0.15rem;
+        }
+    }
+
+    .ant-tabs {
+        .ant-tabs-bar {
+            .ant-tabs-nav-container {
+                .ant-tabs-ink-bar {
+                    height: 4px;
+                }
+                .ant-tabs-tab:nth-child(2) {
+                    //margin-left: 24px;
+                }
+            }
+        }
+        .ant-tabs-content {
+            .ant-tabs-tabpane {
+                padding: 0 24px 15px;
+                .ant-row {
+                    line-height: 42px;
+                    .icon {
+                        font-size: 0.12rem;
+                        color: #56bd43;
+                    }
+                }
+            }
+        }
+    }
+    .info-num{
+        position: relative;
+        bottom: 22px;
+        display: inline-block;
+    }
+    .ant-form-item-required:after {
+        content: "";
+    }
+    .ant-form-item-label label {
+        text-align: center;
+        display: inline-block;
+        //width: 70px;
+    }
+    .ant-form-item-label label:before {
+        position: absolute;
+        left: -10px;
+        top: 10px;
+    }
+    .ant-form-item-label label:after {
+        content: "";
+    }
+    .createAccountHeader {
+        margin-bottom: 0.11rem;
+        font-size: 14px;
+    }
+    .conversationStyle {
+        .conversationNum {
+            color: #999;
+            display: inline-block;
+            height: 32px;
+        }
+        .ant-input-number-input {
+            height: 32px;
+        }
+        .conversationSlider {
+            width: 1.94rem;
+            float: left;
+        }
+        .conversationIptNum {
+            margin-left: 16px;
+            width: 50px;
+            height: 32px;
+        }
+    }
+    .ant-col-9 {
+        margin-left: 10px;
+    }
+    .ant-input-number {
+        margin-top: -5px;
+    }
+    .sliderStyle {
+        height: 45px;
+        padding-top: 6px;
+        box-sizing: border-box;
+    }
+    .maxOperateCount {
+        padding-top: 5px;
+        box-sizing: border-box;
+    }
+}
+
+.migrateModal {
+    .ant-modal {
+        top: 50%;
+        margin-top: -96px;
+    }
+    .ant-modal-header {
+        padding: 14px 20px;
+    }
+    .ant-modal-body {
+        padding: 30px 20px;
+        .ant-form-item {
+            margin-bottom: 0;
+            .ant-form-explain {
+                display: none;
+            }
+        }
+    }
+}
+
+.accountRight .accountsTableList .createAccountBtn .deleteAccount{
+    width: 56px;
+}

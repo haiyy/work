@@ -1,0 +1,60 @@
+﻿.infos {
+    width: 100%;
+    position: relative;
+	height: -moz-calc(100% - 1.41rem - 111px);
+	height: -webkit-calc(100% - 1.41rem - 111px);
+	height: calc(100% - 1.41rem - 111px);
+    .info-con {
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        .info-conDiv{
+            width: 100%;
+            height: 100%;
+            position: relative;
+            .info-conScrollArea{
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                top: 0;
+            }
+        }
+    }
+}
+
+.infos-without-trans {
+    height: -moz-calc(100% - 1.41rem - 55px);
+    height: -webkit-calc(100% - 1.41rem - 55px);
+    height: calc(100% - 1.41rem - 55px);
+}
+
+.FreeScrollbar-scrollbar {
+      width: 10px;
+}
+.FreeScrollbar-handler {
+    background-color: #ccc;
+    width: 10px;
+    border-radius: 6px;
+    cursor: default;
+}
+.fixedTime{
+  width: 276px;
+  padding: 4px 0;
+  background-color: #e9e9e9;
+  text-align: center;
+  border-radius: 10px;
+  position: absolute;
+  left: 50%;
+  margin-left: -138px;
+  bottom: 4px;
+  line-height: 16px;
+  color: #0a323c;
+  cursor: default;
+    opacity: 0.7;
+}
+.getMoreMessage{
+  margin-top: -10px;
+  text-align: center;
+  cursor: pointer;
+  color: #2786e4;
+}

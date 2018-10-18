@@ -1,0 +1,68 @@
+.advancedSearchContent{
+    .leaveMsgUserinfo{
+        padding: 0.2rem 0 0.2rem 0.17rem;
+        border-bottom: 1px solid #f0f0f0;
+        .leaveMsgUserinfo_name{
+            margin-bottom: 0.04rem;
+            margin-right: 0.1rem;
+            color: #929292;
+        }
+        .leaveMsgUserinfo_nameI{
+            margin-right: 0.24rem;
+        }
+        input{
+            width: 220px;
+        }
+    }
+    .center{
+        padding-top: 0.2rem;
+        .responsibilityKFSelect{
+            padding-left: 0.17rem;
+            label{
+                margin-right: 20px;
+            }
+            .customerLabel {
+                vertical-align: top;
+                top: 7px;
+            }
+            .ant-select{
+                width: 490px;
+                .ant-select-selection--multiple {
+                    max-height: 120px;
+                    overflow: auto;
+                }
+                .ant-select-selection--multiple::-webkit-scrollbar
+                {
+                    width: 5px;
+                    height: 5px;
+                }
+
+                .ant-select-selection--multiple::-webkit-scrollbar-track
+                {
+                    background-color: transparent;
+                }
+
+                .ant-select-selection--multiple::-webkit-scrollbar-thumb
+                {
+                    background-color: #bdbdbd;
+                    border-radius: 4px;
+                }
+            }
+
+        }
+        .perSelect{
+            padding-left: 0.17rem;
+            margin-bottom: 10px;
+            label{
+                margin-right: 20px;
+            }
+            .startPageLabel {
+                margin-right: 10px;
+            }
+            .startPageIpt {
+                width: 490px;
+                height: 32px;
+            }
+        }
+    }
+}

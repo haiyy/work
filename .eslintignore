@@ -1,0 +1,6 @@
+_*
+!__tests__
+/dist
+/src/test
+/public
+/node_modules

@@ -1,0 +1,33 @@
+.magicBoxWrapper{
+    padding: 10px;
+    table {
+        .ant-table-thead > tr > th, .ant-table-tbody tr td{
+            padding: 0.05rem 0.08rem;
+        }
+        .ant-table-thead > tr > th{
+            line-height: 0.24rem;
+            padding: 0.04rem 0.08rem;
+        }
+    }
+
+    .ant-spin-container{
+        .ant-table-pagination{
+            margin:0.06rem 0;
+        }
+    }
+
+    .handleWrapper{
+        i {
+            cursor: pointer;
+        }
+        .icon-yulan1{
+            font-size: 16px;
+            margin-left: 4px;
+        }
+        .icon-fuzhi{
+            margin-left: 0.14rem;
+            font-size: 18px;
+            color: #333;
+        }
+    }
+}

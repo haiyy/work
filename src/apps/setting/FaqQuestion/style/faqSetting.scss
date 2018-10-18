@@ -1,0 +1,462 @@
+.faqsetting {
+    padding-top: 0.05rem;
+    //height: calc(100% - 40px);
+    height: 100%;
+    position: relative;
+    .newLoadImg {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: url("../../../../public/images/componentLoading.gif") no-repeat center;
+    }
+}
+.faqsetting_pad {
+    width: calc(100% - 10px);
+    background-color: #fffbe7;
+    border: 1px solid #ffe58f;
+    height: 40px;
+    padding-left: 20px;
+    //line-height: 0.3rem;
+    font-size: 12px;
+    border-radius: 20px;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+    span,i,a{
+        vertical-align: middle;
+    }
+    .icon-011tishi {
+        color: #ffd648;
+        margin-right: 10px;
+        position: relative;
+        top: 1px;
+    }
+}
+
+.faqsetting_settitle {
+    display: block;
+    float: left;
+    padding-left: 20px;
+}
+
+.settingRight .mailCon .faqsetting .ant-switch {
+    margin: 0;
+}
+
+.faqsetting_maincontent_left {
+    height: 100%;
+    border-right: 1px solid #e9e9e9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.faqsetting_maincontent_left_title {
+    width: 100%;
+    height: 0.34rem;
+    line-height: 0.34rem;
+    float: left;
+    border-bottom: 1px solid #e9e9e9;
+    box-sizing: border-box;
+    padding: 0 0.1rem 0 0.12rem;
+    .faqGroupOperate {
+        i {
+            display: inline-block;
+            width: 32px;
+            font-size: 14px;
+            text-align: center;
+            cursor: pointer;
+        }
+    }
+}
+.faq-setting-button {
+    position: absolute;
+    top: 30%;
+    right: 0;
+    width: 7px;
+    height: 50px;
+}
+.faq-setting-button-open {
+    right: -8px;
+}
+.faqsetting_maincontent_left_tree {
+    width: 100%;
+    height: calc(100% - 0.34rem);
+    float: left;
+    position: relative;
+    .scrollarea .scrollbar-container.vertical {
+        display: none;
+    }
+    .scrollarea:hover .scrollbar-container.vertical {
+        display: block;
+    }
+    .groupNameStyle {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+
+.faqsetting_maincontent_left_tree .scrollarea .scrollbar-container{
+    z-index: 999;
+}
+
+.faqsetting_maincontent_left_tree .ant-tree{
+    padding: 0;
+}
+
+.faqsetting_maincontent_left_title > div {
+    float: right;
+}
+
+.faqsetting_maincontent_right {
+    flex: 1;
+    height: auto;
+    padding: 16px 20px;
+    box-sizing: border-box;
+}
+
+.faqsetting_maincontent_right_title {
+    position: relative;
+    width: 100%;
+    margin-bottom: 0.05rem;
+    float: left;
+    .faqSearch {
+        width: 164px;
+        height: 32px;
+        float: right;
+        margin-right: 0.08rem;
+        .faqSearchIpt {
+            width: 164px;
+            height: 32px;
+        }
+        .faqSearchBtn {
+            position: absolute;
+            right: 8px;
+            top: 0;
+            width: 30px;
+            height: 32px;
+            border: none;
+            border-radius: 0 4px 4px 0;
+        }
+    }
+    .right_title_btn {
+        float: left;
+        .rangeBtn {
+            vertical-align: middle;
+        }
+    }
+}
+
+.faqsetting_maincontent_right_title .right_title_btn > button {
+    margin: 0 0 0 7px;
+    height: 32px;
+    line-height: 32px;
+}
+
+.faqsetting_maincontent_right_title .ant-input:focus {
+    box-shadow: 0 0 0 0 rgba(45, 183, 245, 0.2)
+}
+
+.faqsetting_maincontent_right_content {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 0.35rem);
+    float: left;
+    .faqScrollArea {
+        height: 100%;
+        padding-right: 0.08rem;
+    }
+    .ant-spin-nested-loading {
+        table {
+            table-layout: fixed;
+            .ant-table-thead {
+                tr th {
+                    padding: 0.07rem 0.08rem;
+                }
+            }
+            tr td{
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                word-break: break-word;
+                padding: 0 0.08rem;
+            }
+        }
+        .ant-spin-container {
+            .ant-table-pagination {
+                margin: 0.09rem 0 0.07rem 0;
+            }
+        }
+    }
+    .ant-table-tbody>tr>td:nth-child(1){
+        text-align: center;
+    }
+    .overDue{
+        display: block;
+        width: 56px;
+        height: 39px;
+        background-image: url("../../../../public/images/faqSetting/overDue.png");
+        position: absolute;
+        right: 0;
+        top: 0;
+
+    }
+    .due{
+        display: none;
+    }
+    .title_groupStyle {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        word-break: break-word;
+    }
+    .answer_groupStyle {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis
+
+    }
+    .time_groupstyle {
+        width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        word-break: break-word;
+    }
+    .ant-pagination-options-size-changer {
+        width: 79px;
+        .ant-select-selection--single {
+            background: #fff;
+            color: #666;
+        }
+    }
+}
+
+.faqsetting-body {
+    float: left;
+    width: 100%;
+    height: calc(100% - 0.63rem);
+    box-sizing: border-box;
+    position: relative;
+}
+.ant-modal-wrap {
+    z-index: 1001;
+}
+
+.newfaq_alert_edit, .newfaq_alert_group{
+    width: 4.6rem!important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 10000;
+    margin-left: -2.095rem;
+    .has-error .ant-form-explain{
+        display: none;
+    }
+    .ant-modal-body {
+        padding: 0.1rem;
+        .ant-col-4{
+            width: 0.8rem;
+            padding-right: 0.1rem;
+        }
+    }
+    .newfaq_content{
+        li .sameMargin{
+            margin-top: 10px;
+        }
+    }
+}
+.newfaq_alert_edit{
+    margin-top: -252px;
+}
+.newfaq_alert_group {
+    margin-top: -114px;
+    .ant-form-item {
+        margin-bottom: 10px;
+    }
+    .ant-form-item-with-help, .ant-form-item-control {
+        height: 32px;
+
+    }
+
+}
+
+.faq-new-list {
+    width: 100%;
+    height: 32px;
+    position: relative;
+    margin: 0!important;
+    .newFaqTitle {
+        width: 100%;
+    }
+    .ant-form-item {
+        margin-bottom: 0;
+    }
+
+}
+
+
+.datapick {
+    height: 32px;
+    line-height: 32px;
+    box-sizing: border-box;
+
+    .newFaqBeginTimeStyle {
+        float: left;
+        margin-bottom: 0;
+        margin-right: 10px;
+    }
+
+    .ant-calendar-picker .ant-calendar-picker-icon {
+        right: 5px;
+    }
+    .ant-calendar-picker {
+        .ant-calendar-picker-clear {
+            right: 5px;
+        }
+    }
+    .ant-col-14{
+        .ant-calendar-picker input {
+            padding-left: 10px;
+        }
+        .has-success.has-feedback:after{
+            right: -318px;
+            display: none;
+        }
+        .has-error.has-feedback:after{
+            right: -318px;
+            display: none;
+        }
+        .has-error .ant-form-explain{
+            display: block;
+        }
+    }
+}
+
+.newFaqAnswer {
+    width: 100%;
+    .ant-input::-webkit-scrollbar
+    {
+        width: 8px;
+        height: 8px;
+    }
+
+    .ant-input::-webkit-scrollbar-thumb
+    {
+        background-color: #bdbdbd;
+        border-radius: 4px;
+    }
+    .ant-row{
+        margin-bottom: 0;
+    }
+}
+
+.newfaq_content_top {
+    width: 100%;
+    height: 40px;
+    float: left;
+    box-sizing: border-box;
+    padding: 0 5px;
+    border-bottom: 1px solid #d2d8db;
+    position: relative;
+}
+
+.newfaq_content_bottom {
+    margin-top: 10px;
+    float: left;
+    .datapick {
+        width: 100%;
+        height: 32px;
+        line-height: 32px;
+        box-sizing: border-box;
+        border: 1px solid #e9e9e9;
+        border-radius: 5px;
+        padding: 0 15px;
+    }
+}
+.faqsetting .faqsetting_maincontent_left .faqsetting_maincontent_left_tree .scrollarea .scrollarea-content{
+    .ant-tree{
+        margin:0;
+        padding:0;
+    }
+    .ant-tree li{
+        min-height: 35px;
+        line-height: 35px;
+        margin: 0;
+        padding: 0;
+        position: relative;
+        .ant-tree-node-content-wrapper{
+            position: relative;
+            height: 35px;
+            width: 100%;
+            padding: 0 12px 0 40px;
+            line-height: 35px;
+        }
+        span.ant-tree-switcher {
+            position: absolute;
+            z-index: 9;
+            left: 0;
+            top: 5px;
+            width: 20px;
+        }
+        .ant-tree-checkbox {
+            position: absolute;
+            left: 18px;
+            top: 10px;
+            margin: 0;
+            z-index: 9;
+        }
+    }
+}
+.faqsetting_maincontent_left .ant-tree-node-content-wrapper .ant-tree-title span {
+    display: none;
+
+}
+.faqsetting_maincontent_left .ant-tree-node-content-wrapper:hover .ant-tree-title span {
+    display: block;
+    position: absolute;
+    right: 15px;
+}
+.faqsetting_maincontent_left .groupNameStyle{
+    float: left;
+    width: 100%;
+    padding-right: 55px;
+}
+.GoodList .ant-form-explain {
+    visibility: hidden;
+}
+.leadingInModel{
+    z-index: 10000;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -143px;
+    margin-left: -260px;
+    padding-bottom: 0;
+    .ant-modal-body{
+        line-height: 2.5;
+    }
+}
+
+.importErrorMsg {
+    overflow : hidden;
+    text-align: left;
+    text-overflow: ellipsis;
+    word-break: break-word;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+.userGroupPWrapper{
+    text-align: center;
+    vertical-align: middle;
+    margin-top: 80px;
+    i,span{
+        vertical-align: middle;
+    }
+}

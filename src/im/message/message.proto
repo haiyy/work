@@ -1,0 +1,113 @@
+syntax = "proto3";
+package im.message;
+option java_outer_classname = "NetWorkMessageProbuf";
+message NetworkMessage {
+    // messageid，必填
+    string messageid = 1;
+    // 消息类型
+    int32 type = 2;
+    // 发送者
+    string fromUser = 3;
+    // 发送者
+    string fromConversation = 4;
+    // 接收者user
+    string toUser = 5;
+    // 接收者conversation
+    string toConversation = 6;
+    oneof Message{
+        // 握手消息
+        HandshakeMessage handshakeMessage = 7;
+        // 信令消息
+        OrderMessage orderMessage = 8;
+        // 文档消息
+        DocumentMessage documentMessage = 9;
+        // 时间消息
+        EventMessage eventMessage = 10;
+        // 空消息
+        InvalidMessage invalidMessage = 11;
+        // keepalive消息
+        KeepAliveMessage keepaliveMessage = 12;
+        // 主动断开
+        DisconnectMessage disconnectMessage = 13;
+        // 响应消息
+        ResultMessage resultMessage = 14;
+        
+        BytesList bytesList = 15;
+    }
+    message HandshakeMessage{
+        // token
+        string token = 1;
+        // 设备信息
+        string device = 2;
+        // ip
+        string ip = 3;
+        // appkey
+        string appkey = 4;
+        // userid
+        string userid = 5;
+        // sessionid
+        string sessionid = 6;
+    }
+    message OrderMessage{
+        // 消息版本号
+        int64 versionid = 1;
+        // 消息的有效时长
+        int64 validtime = 2;
+        // 过期时间
+        int64 expire = 3;
+        // 目标id，userid/sessionid/conversationid/messageid，必填
+        string targetid = 4;
+        // 信令消息类型，必填
+        int32 type = 5;
+        // 存放其他内容，扩展字段，选填
+        string content = 6;
+    }
+    message DocumentMessage{
+        int64 versionid = 1;
+        // 文档消息类型
+        int32 type = 2;
+        // String类型消息体
+        string contentString = 6;
+        // byte类型消息体
+        bytes contentBytes = 7;
+    }
+    message EventMessage{
+        int64 versionid = 1;
+        // 待定
+        int32 type = 2;
+        // String类型消息体
+        string content = 3;
+    }
+    message InvalidMessage{
+        // 消息版本号
+        int64 versionid = 1;
+        // 内容
+        string content = 2;
+    }
+    message KeepAliveMessage{
+        // sessionid
+        string sessionid = 1;
+        // SDK中最新版本号
+        int64 lastversion = 2;
+    }
+    message DisconnectMessage{
+        // 消息版本号
+        int64 versionid = 1;
+        // sessionid
+        string sessionid = 2;
+        // SDK中最新版本号
+        string content = 3;
+    }
+    message ResultMessage{
+        int32 type = 1;
+        // 处理结果
+        bool result = 2;
+        // 失败原因
+        string reason = 3;
+        // 扩展内容
+        string content = 4;
+    }
+    message BytesList {
+			repeated bytes byteList = 1;
+		}
+}

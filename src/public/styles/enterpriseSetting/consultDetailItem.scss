@@ -1,0 +1,39 @@
+.consultDetailItem{
+    width: 100%;
+    padding: 5px 0;
+    .consultDetailItemHead{
+        padding: 5px 20px;
+        .consultDetailItemHeadLeft{
+            float: left;
+        }
+        .consultDetailItemHeadRight{
+            float: right;
+        }
+    }
+    .consultDetailItemContent{
+        padding-left: 20px;
+        padding-left: 40px;
+        .consultDetailItemContentChild{
+            margin: 5px;
+
+            overflow: hidden;
+        }
+    }
+    // background-color:darkorange;
+    
+}
+
+.consultDetailItem:hover{
+    background-color: #eee;
+}
+
+@mixin clear-float{
+    content: '';
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+.consultDetailItemHead:after{
+    @include clear-float;
+}

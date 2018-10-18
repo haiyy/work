@@ -1,0 +1,16 @@
+ 换肤情况描述：
+     第三方网页与客户端之间是存在跨域问题，无法数据访问，无法得知客户端当前皮肤
+
+ 换肤方案：
+      1. 当第三方网页不为当前页时，需要向服务器请求皮肤信息
+           接口：/settings/{siteId}/{userid}/skin
+                   method:GET
+                   注意：域名在运维配置
+                            header里面需要增加 token字段 值为“xiaoneng”
+                 
+                   服务器接口说明：http://confluence.xiaoneng.cn/pages/viewpage.action?pageId=22030652#id-%E4%B8%AA%E6%80%A7%E5%8C%96%E5%8A%9F%E8%83%BD-%E4%B8%AA%E6%80%A7%E5%8C%96%E8%AE%BE%E7%BD%AE
+
+      2. 当第三方网页为当前页时，客户端更新皮肤，客户端会发出皮肤更改事件
+          接口：postmessage({type:"skinChange", skin:$value});
+                   type:事件名称为skinChange
+                                  skin：皮肤ID，为int类型

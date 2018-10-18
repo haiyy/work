@@ -1,0 +1,224 @@
+﻿.clearFix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+.window_style {
+    .ant-form-item-control {
+        line-height: 12px;
+    }
+    .ant-radio-group {
+        padding-top: 15px;
+        box-sizing: border-box;
+    }
+    .ant-radio-wrapper {
+        height: 113px;
+        margin-right: 19px;
+        .ant-radio {
+            display: none;
+        }
+        .ant-card {
+            top: -16px;
+            .ant-card-body {
+                position: relative;
+                .selectedStyle {
+                    font-size: 20px;
+                    position: absolute;
+                    bottom: 15px;
+                    right: 10px;
+                }
+                .change {
+                    background-color: rgba(44, 50, 57, .7);
+                    position: absolute;
+                    top: 0;
+                    width: 140px;
+                    height: 92px;
+                    display: none;
+                    padding: 16px 0;
+                    span {
+                        display: block;
+                        width: 100%;
+                        line-height: 30px;
+                        text-align: center;
+                        color: #fff;
+                        .icon {
+                            font-size: 14px;
+                            padding-right: 12px;
+                        }
+                    }
+                    span:hover {
+                        background-color: rgba(20, 20, 20, .8);
+                        color: #00b74f;
+                    }
+                }
+            }
+        }
+        .ant-card-body:hover .change {
+            display: block;
+        }
+    }
+    .ant-radio-wrapper {
+        .ant-card-body > .icon {
+            font-size: 20px;
+            position: relative;
+            top: -40px;
+            right: -115px;
+            color: #00b74f;
+        }
+    }
+}
+
+.windowPositionBtn {
+    width: 30px;
+    height: 30px;
+    float: left;
+    display: block;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border: none;
+    outline: none;
+    background: #cfeffe;
+}
+
+.windowPositionBtn:hover {
+    background: #67717d;
+}
+
+.windowPositionBtn:nth-child(3n) {
+    margin-right: 0;
+}
+
+.windowStyle {
+    .ant-modal-body {
+        position: relative;
+        padding: 0;
+        .cancelView {
+            position: absolute;
+            right: -22.5px;
+            top: -22.5px;
+            border-radius: 50%;
+            padding: 12px;
+            font-size: 30px;
+            color: #666666;
+            background: #fff;
+            line-height: 30px;
+            cursor: pointer;
+        }
+    }
+}
+
+.settint_web .ant-checkbox-group {
+    display: inline;
+    .ant-checkbox-group-item {
+        margin-left: 20px;
+    }
+}
+
+.settint_web .web_content {
+    box-shadow: "0px 0px 6px #ccc";
+}
+
+.settint_web .web_content .ant-form-item {
+    margin: 0;
+}
+
+.web-tabs {
+    .ant-checkbox-group-item {
+        span:nth-of-type(2) {
+            display: inline-block;
+            width: 64px;
+        }
+    }
+    .ant-checkbox-group-item:first-child {
+        margin-right: 20px;
+    }
+
+}
+
+.webViewScrollWrap {
+    position: relative;
+    box-sizing: border-box;
+    overflow: hidden;
+    .ant-tabs-nav .ant-tabs-tab{
+        padding: 8px 0;
+        margin-left: 24px;
+        margin-right: 0;
+    }
+    .ant-tabs-content {
+        min-height: 300px;
+    }
+    .company-footer {
+        background: #fff;
+    }
+}
+
+.settint_web, .settingSDK{
+    .has-error .ant-form-explain{
+        display: block;
+    }
+    .sameWebBox{
+        border: 1px solid #e7e7e7;
+        .ant-checkbox-group, .ant-radio-group{
+            padding-left: 12px;
+            box-sizing: border-box;
+        }
+        .ant-checkbox-group .ant-checkbox-group-item, .ant-radio-group .ant-radio-wrapper{
+            height: 50px;
+            line-height: 50px;
+        }
+
+        .SDKFormItem{
+            margin-bottom: 0;
+            position: relative;
+            .videoRecogi {
+                position: absolute;
+                left: 354px;
+                bottom: 8px;
+            }
+            .voiceRecogTab {
+                border: 1px solid rgb(233, 233, 233);
+                background: #fff;
+                position: absolute;
+                left: 236px;
+                top: 100px;
+                z-index: 999;
+                width: 260px;
+                padding: 12px 0;
+                border-radius: 8px;
+                box-shadow: 0 0 6px #ccc;
+                .voiceRecogCon {
+                    padding: 0 20px 12px;
+                }
+                .voiceRecogFooter {
+                    border-top: 1px solid rgb(233, 233, 233);
+                    padding-top: 10px;
+                    .ant-btn {
+                        float: right;
+                        margin-right: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .sameWebTitle{
+        height: 40px;
+        padding-left: 12px;
+        box-sizing: border-box;
+        background: #f9f9f9;
+        border-bottom: 1px solid #f1f1f1;
+    }
+    .positionStyle{
+        .ant-form-item-control{
+            height: 50px;
+            line-height: 50px;
+        }
+    }
+    .web_content {
+        .ant-form-item {
+            height: 32px;
+        }
+    }
+}

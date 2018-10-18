@@ -1,0 +1,51 @@
+.dealedDetailRecord{
+    font-family: "Microsoft YaHei";
+    height: 100%;
+    .content{
+        height: calc(100% - 0.697rem);
+        width: 100%;
+        .left{
+            float: left;
+            width: 100%;
+            padding: 0 0.14rem;
+            height: 100%;
+            .topContianer{
+                padding: 0.07rem 0 0.16rem;
+                border-bottom: dashed 1px #ccc;
+                .customInfo{
+                    padding: 0.07rem 0;
+                    vertical-align: bottom;
+                    line-height: 20px;
+                    color : #212121;
+                    .customName{
+                        float: left;
+                        font-size: 20px;
+                    }
+                    .infoTime{
+                        float: left;
+                        bottom: 0;
+                        padding-left: 10px;
+                    }
+                }
+            }
+            .bottomContainer{
+                padding-top: 0.19rem;
+            }
+        }
+    }
+}
+
+@mixin clear-float{
+    content: '';
+    display: block;
+    clear: both;
+    visibility: hidden;
+}
+
+.content:after{
+    @include clear-float;
+}
+
+.customInfo:after{
+    @include clear-float;
+}

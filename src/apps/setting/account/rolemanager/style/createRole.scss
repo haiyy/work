@@ -1,0 +1,355 @@
+.clearFix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.createRole{
+    height: 100%;
+    position: relative;
+    .ant-form-item-with-help{
+        margin-bottom: 24px;
+    }
+    .createRoleRight {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding: 0 0 16px 30px;
+        box-sizing: border-box;
+
+        .createRoleScroll {
+            height: calc(100% - 38px);
+            overflow: auto;
+            padding: 0 40px 20px 0;
+            position: relative;
+        }
+
+        .createRoleScroll::-webkit-scrollbar
+        {
+            width: 5px;
+            height: 5px;
+        }
+
+        .createRoleScroll::-webkit-scrollbar-track
+        {
+            background-color: transparent;
+        }
+
+        .createRoleScroll::-webkit-scrollbar-thumb
+        {
+            background-color: #bdbdbd;
+            border-radius: 4px;
+        }
+
+        .roleGroupTreeBox {
+            display: inline-block;
+            vertical-align: middle;
+            margin-bottom: 5px;
+        }
+
+        .limitComp {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .limitItemComp {
+            line-height: 46px;
+            border-left: 1px solid #ccc;
+            display: flex;
+            .limitTitle {
+                text-align: center;
+                padding: 0;
+            }
+        }
+
+        .firstFeatureNameComp {
+            width: 20%;
+            display: inline-block;
+            border-top: 1px solid #ccc;
+            text-align: center;
+            float: left;
+            .ant-checkbox-wrapper {
+                float: left;
+                margin-left: 20px;
+            }
+
+            .fieldName {
+                display: inline-block;
+                min-width: 65px;
+                text-align: left;
+            }
+        }
+
+        .featureRightComp {
+            display: inline-block;
+            width: 83%;
+            text-align: center;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+
+        .featureItemComp {
+            border-top: 1px solid #ccc;
+        }
+
+        .featureNameComp {
+            display: inline-block;
+            float: left;
+            width: 24%;
+            text-align: center;
+        }
+
+        .featureNameRight {
+            display: inline-block;
+            width: 76%;
+            text-align: center;
+        }
+
+        .ActionDosCheckBox {
+            display: inline-block;
+            width: 73%;
+            text-align: left;
+            padding-left: 25px;
+            border-left: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+        }
+
+        .dropDownComp {
+            display: inline-block;
+            width: 27%;
+            text-align: center;
+            cursor: default;
+            .featureDosMore {
+                font-size: 20px;
+                line-height: 20px;
+            }
+        }
+
+        .fieldDosComp {
+            border-top: 1px solid #ccc;
+
+            .numberLimitCheck {
+                margin-left: 15px;
+            }
+
+            .limitRadioBox {
+                display: inline-block;
+                max-width: 360px;
+                margin-left: 15px;
+            }
+
+            .fieldDosContent{
+                border-left: 1px solid #ccc;
+                padding-left: 25px;
+                text-align: left;
+                .fieldRadioTitle {
+                    float: left;
+                    height: 58px;
+                    line-height: 58px;
+                }
+                .ant-radio-group {
+                    min-width: 370px;
+                    width: 90%;
+                }
+            }
+
+            .groupSelectComp {
+                width: 122px;
+                min-height: 28px;
+                border-radius: 6px;
+                .ant-select-selection__choice {
+                    //margin-top: 5px;
+                }
+                .ant-select-selection--multiple {
+                    max-height: 115px;
+                    margin-top: 10px;
+                    overflow: auto;
+                }
+                .ant-select-selection--multiple::-webkit-scrollbar
+                {
+                    width: 5px;
+                    height: 5px;
+                }
+
+                .ant-select-selection--multiple::-webkit-scrollbar-track
+                {
+                    background-color: transparent;
+                }
+
+                .ant-select-selection--multiple::-webkit-scrollbar-thumb
+                {
+                    background-color: #bdbdbd;
+                    border-radius: 4px;
+                }
+            }
+
+        }
+
+
+        /***************div形式样式*****************/
+
+        .limitItem, .limitItemContent, .featureDos {
+            display: table;
+            border-collapse: collapse;
+        }
+
+        .operateBtn {
+            width: 100%;
+            position: absolute;
+            bottom: 21px;
+            height: 32px;
+            padding: 10px 20px;
+            border-top: 1px #e9e9e9 solid;
+            box-sizing: border-box;
+            z-index: 1000;
+            .backToRoleList {
+                float: right;
+                margin-right: 20px;
+                height: 32px;
+                span {
+                    line-height: 32px;
+                }
+            }
+        }
+
+        .roleNameTitle {
+            font-size: 14px;
+            font-weight: 900;
+        }
+        .roleName{
+            margin-top: 25px;
+            .has-success.has-feedback:after,
+            .has-warning.has-feedback:after,
+            .has-error.has-feedback:after,
+            .is-validating.has-feedback:after{
+                right: -2px;
+            }
+            .ant-col-4 {
+                width: 114px;
+            }
+        }
+
+        .roleDescribe{
+            .has-error .ant-form-explain,
+            .has-success .ant-form-explain,
+            .ant-form-item-control .ant-form-explain{
+                display: block;
+                float: right;
+                text-align: right;
+            }
+            .has-success.has-feedback:after,
+            .has-warning.has-feedback:after,
+            .has-error.has-feedback:after,
+            .is-validating.has-feedback:after{
+                top: -2px;
+                right: -2px;
+            }
+            .ant-col-4 {
+                width: 114px;
+            }
+
+            .roleDescribeIpt {
+                width: 100%;
+                height: 90px;
+                resize: none;
+            }
+
+
+            .roleDescribeIpt::-webkit-scrollbar
+            {
+                width: 5px;
+                height: 5px;
+            }
+
+            .roleDescribeIpt::-webkit-scrollbar-track
+            {
+                background-color: transparent;
+            }
+
+            .roleDescribeIpt::-webkit-scrollbar-thumb
+            {
+                background-color: #bdbdbd;
+                border-radius: 4px;
+            }
+        }
+        .limitBox {
+            width: 100%;
+            .limitType {
+                line-height: 32px;
+                .enterpriseChecked {
+                    margin-left: 20px;
+                }
+            }
+            .limitContent {
+                //display: inline-block;
+                //width: calc(100% - 70px);
+                width: 100%;
+                padding-left: 50px;
+                box-sizing: border-box;
+                .selectAllCheckBox {
+                    padding: 14px 0;
+                    box-sizing: border-box;
+                }
+                i {
+                    position: absolute;
+                    font-size: 14px;
+                    line-height: 14px;
+                    top: 2px;
+                    right: -4px;
+                    color: #168ff1;
+                }
+
+                .enterpriseBox {
+                    width: 100%;
+                    padding-top: 14px;
+                    box-sizing: border-box;
+                }
+                .enterpriseName {
+                    display: inline-block;
+                    width: 120px;
+                    padding-right: 20px;
+                    box-sizing: border-box;
+                    vertical-align: top;
+                    text-align: right;
+                }
+                .featureName {
+                    width: 120px;
+                    padding-right: 20px;
+                    box-sizing: border-box;
+                    text-align: right;
+                    font-weight: 900;
+                }
+                .innerEnterprise {
+                    display: inline-block;
+                    .innerEnterpriseName {
+                        padding-right: 20px;
+                        box-sizing: border-box;
+                        display: inline-block;
+                        width: 120px;
+                        text-align: right;
+                        vertical-align: top;
+                    }
+                    .limitCheckBox {
+                        display: inline-block;
+                        width: calc(100% - 120px);
+                    }
+                    .checkBox {
+                        position: relative;
+                        display: inline-block;
+                        margin-bottom: 14px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+.limitGroupSelectDropDown {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}

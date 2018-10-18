@@ -1,0 +1,143 @@
+﻿.userGroupConfig {
+    //padding: 10px 20px;
+    //min-width: 768px;
+    height: 100%;
+    position: relative;
+    .userGroupTable {
+        height: 100%;
+        position: relative;
+        .userGroupScrollArea {
+            height: 100%;
+            padding: 0.1rem 0.08rem 0 0.06rem;
+        }
+        .ant-table-wrapper {
+            .ant-spin-nested-loading .ant-spin-container table {
+                table-layout: fixed;
+                .ant-table-thead tr th {
+                    padding: 0.07rem 0.08rem;
+                    line-height: 0.24rem;
+                }
+                tr td {
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    padding: 0.05rem 0.08rem;
+                }
+                tr td:nth-child(3) {
+                    width: 80%;
+                }
+            }
+        }
+        .ant-table-pagination {
+            margin: 0.09rem 0 0.07rem 0;
+        }
+    }
+    .userGroupName {
+        width: 300px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .ant-tabs-content {
+        height: 100%;
+    }
+    .ant-table-body .ant-table-tbody .ant-switch {
+        margin: 0;
+    }
+
+    .btn {
+        height: 40px;
+    }
+
+    .ant-select-selection--single {
+        background: #0177d7;
+        height: 30px;
+        color: #fff;
+    }
+
+    .ant-select-selection-selected-value {
+        line-height: 30px;
+    }
+
+    .pageNum {
+        i {
+            color: #0177d7;
+        }
+        position: absolute;
+        left: 20px;
+        bottom: 22px;
+    }
+
+    .settings {
+        color: #0177d7;
+        cursor: pointer;
+    }
+
+
+    .wordNum {
+        position: absolute;
+        bottom: 0;
+        right: 30px;
+    }
+
+    .ant-form-item {
+        margin-bottom: 0;
+    }
+    .ant-tabs-nav-wrap .ant-tabs-nav {
+        margin-left: 20px;
+    }
+    .faqsetting .typeStyle .faqsetting_maincontent_left .faqsetting_maincontent_left_tree .scrollarea .scrollarea-content{
+        .ant-tree{
+            margin:0;
+            padding:0;
+        }
+        .ant-tree li{
+            min-height: 35px;
+            line-height: 35px;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            .ant-tree-node-content-wrapper{
+                height: 35px;
+                width: 100%;
+                line-height: 35px;
+                padding: 0 12px 0 44px;
+            }
+            /*span.ant-tree-switcher.ant-tree-noline_close,
+            span.ant-tree-switcher.ant-tree-noline_open,
+            span.ant-tree-switcher.ant-tree-switcher-noop {
+                position: absolute;
+                left: 15px;
+                top: 10px;
+                z-index: 1000;
+            }*/
+        }
+    }
+    .faqsetting_maincontent_left .ant-tree-node-content-wrapper .ant-tree-title span {
+        display: none;
+
+    }
+    .faqsetting_maincontent_left .ant-tree-node-content-wrapper:hover .ant-tree-title span {
+        display: block;
+        position: absolute;
+        right: 15px;
+    }
+    .faqsetting_maincontent_left .groupNameStyle{
+        float: left;
+        width: 76%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .userGroupSettingAnswer .ant-card-body {
+        padding: 0;
+        .cardTitle {
+            height: 40px;
+            background-color: #fafafa;
+        }
+        textarea {
+            padding:10px 10px 20px 10px;
+        }
+    }
+}
